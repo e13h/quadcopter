@@ -3673,26 +3673,6 @@
 <smd name="8" x="-4.881" y="0.25" dx="0.28" dy="1.562" layer="1" rot="R270"/>
 <smd name="9" x="-4.881" y="-0.25" dx="0.28" dy="1.562" layer="1" rot="R270"/>
 </package>
-<package name="BALUN" library_version="2">
-<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
-<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.127" layer="51"/>
-<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.127" layer="21"/>
-<circle x="-1.4" y="-0.4" radius="0.1" width="0.2" layer="21"/>
-<wire x1="-1.4" y1="-1.9" x2="-1.4" y2="1.9" width="0.05" layer="39"/>
-<wire x1="-1.4" y1="1.9" x2="1.4" y2="1.9" width="0.05" layer="39"/>
-<text x="0" y="2.25" size="0.9" layer="25" font="vector" rot="R180" align="center">&gt;NAME</text>
-<wire x1="1" y1="-0.625" x2="1" y2="0.625" width="0.127" layer="51"/>
-<wire x1="1" y1="0.625" x2="-1" y2="0.625" width="0.127" layer="51"/>
-<wire x1="1" y1="0.625" x2="1" y2="-0.625" width="0.127" layer="21"/>
-<wire x1="1.4" y1="-1.9" x2="-1.4" y2="-1.9" width="0.05" layer="39"/>
-<wire x1="1.4" y1="1.9" x2="1.4" y2="-1.9" width="0.05" layer="39"/>
-<smd name="1" x="-0.65" y="-0.8" dx="0.35" dy="1" layer="1"/>
-<smd name="2" x="0" y="-0.8" dx="0.35" dy="1" layer="1"/>
-<smd name="3" x="0.65" y="-0.8" dx="0.35" dy="1" layer="1"/>
-<smd name="4" x="0.65" y="0.8" dx="0.35" dy="1" layer="1"/>
-<smd name="5" x="0" y="0.8" dx="0.35" dy="1" layer="1"/>
-<smd name="6" x="-0.65" y="0.8" dx="0.35" dy="1" layer="1"/>
-</package>
 <package name="4.5MM_TACTILE_SWITCH_TL3305AF160QG" library_version="2">
 <wire x1="-1.23" y1="-2.5" x2="-2.5" y2="-1.23" width="0.12" layer="51"/>
 <wire x1="-2.31" y1="-1.02" x2="-2.31" y2="2.31" width="0.12" layer="21"/>
@@ -4748,6 +4728,26 @@
 <text x="2" y="-6.5" size="1.27" layer="21" font="vector" rot="SR270" align="center-left">&gt;PIN1</text>
 <text x="-2" y="-6.5" size="1.27" layer="21" font="vector" rot="SR270" align="center-left">&gt;PIN2</text>
 </package>
+<package name="BALUN" library_version="2">
+<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.127" layer="21"/>
+<circle x="-1.4" y="-0.4" radius="0.1" width="0.2" layer="21"/>
+<wire x1="-1.4" y1="-1.9" x2="-1.4" y2="1.9" width="0.05" layer="39"/>
+<wire x1="-1.4" y1="1.9" x2="1.4" y2="1.9" width="0.05" layer="39"/>
+<text x="0" y="2.25" size="0.9" layer="25" font="vector" rot="R180" align="center">&gt;NAME</text>
+<wire x1="1" y1="-0.625" x2="1" y2="0.625" width="0.127" layer="51"/>
+<wire x1="1" y1="0.625" x2="-1" y2="0.625" width="0.127" layer="51"/>
+<wire x1="1" y1="0.625" x2="1" y2="-0.625" width="0.127" layer="21"/>
+<wire x1="1.4" y1="-1.9" x2="-1.4" y2="-1.9" width="0.05" layer="39"/>
+<wire x1="1.4" y1="1.9" x2="1.4" y2="-1.9" width="0.05" layer="39"/>
+<smd name="1" x="-0.65" y="-0.8" dx="0.35" dy="1" layer="1"/>
+<smd name="2" x="0" y="-0.8" dx="0.35" dy="1" layer="1"/>
+<smd name="3" x="0.65" y="-0.8" dx="0.35" dy="1" layer="1"/>
+<smd name="4" x="0.65" y="0.8" dx="0.35" dy="1" layer="1"/>
+<smd name="5" x="0" y="0.8" dx="0.35" dy="1" layer="1"/>
+<smd name="6" x="-0.65" y="0.8" dx="0.35" dy="1" layer="1"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="SODFL3516X96" urn="urn:adsk.eagle:package:11793366/1" type="model" library_version="1">
@@ -5110,22 +5110,6 @@ This symbol includes Arduino pin assignments for the Sparkfun ATmega128RFA break
 <pin name="XTAL1" x="-27.94" y="0" length="short"/>
 <pin name="XTAL2" x="-27.94" y="-2.54" length="short"/>
 </symbol>
-<symbol name="BALUN" library_version="2">
-<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="-5.08" width="0.254" layer="94" curve="-180"/>
-<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-7.62" width="0.254" layer="94" curve="-180"/>
-<wire x1="-2.54" y1="0" x2="-2.54" y2="-2.54" width="0.254" layer="94" curve="-180"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="0" width="0.254" layer="94" curve="-180"/>
-<text x="-5.08" y="-20.32" size="1.778" layer="95">&gt;NAME</text>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="0" width="0.254" layer="94" curve="-180"/>
-<wire x1="2.54" y1="-5.08" x2="2.54" y2="-2.54" width="0.254" layer="94" curve="-180"/>
-<wire x1="2.54" y1="-7.62" x2="2.54" y2="-5.08" width="0.254" layer="94" curve="-180"/>
-<wire x1="2.54" y1="0" x2="2.54" y2="2.54" width="0.254" layer="94" curve="-180"/>
-<pin name="GND@2" x="5.08" y="-2.54" visible="pad" length="short" rot="R180"/>
-<pin name="GND@5" x="-2.54" y="-10.16" visible="pad" length="short" rot="R90"/>
-<pin name="IN" x="-2.54" y="5.08" visible="pad" length="short" rot="R270"/>
-<pin name="OUT1" x="2.54" y="5.08" visible="pad" length="short" rot="R270"/>
-<pin name="OUT2" x="2.54" y="-10.16" visible="pad" length="short" rot="R90"/>
-</symbol>
 <symbol name="RESOLVED-PUSHBUTTON-2PIN-NO-SHIELD_" library_version="2">
 <description>Generic 2 pin pushbutton</description>
 <wire x1="-1.905" y1="2.667" x2="-1.905" y2="1.397" width="0.254" layer="94"/>
@@ -5222,6 +5206,22 @@ This symbol includes Arduino pin assignments for the Sparkfun ATmega128RFA break
 <text x="5.08" y="1.27" size="1.778" layer="94" align="center">-</text>
 <pin name="N" x="5.08" y="0" visible="off" length="short" rot="R180"/>
 <pin name="P" x="-5.08" y="0" visible="off" length="short"/>
+</symbol>
+<symbol name="BALUN" library_version="2">
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="-5.08" width="0.254" layer="94" curve="-180"/>
+<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="-7.62" width="0.254" layer="94" curve="-180"/>
+<wire x1="-2.54" y1="0" x2="-2.54" y2="-2.54" width="0.254" layer="94" curve="-180"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="0" width="0.254" layer="94" curve="-180"/>
+<text x="-5.08" y="-20.32" size="1.778" layer="95">&gt;NAME</text>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="0" width="0.254" layer="94" curve="-180"/>
+<wire x1="2.54" y1="-5.08" x2="2.54" y2="-2.54" width="0.254" layer="94" curve="-180"/>
+<wire x1="2.54" y1="-7.62" x2="2.54" y2="-5.08" width="0.254" layer="94" curve="-180"/>
+<wire x1="2.54" y1="0" x2="2.54" y2="2.54" width="0.254" layer="94" curve="-180"/>
+<pin name="GND@2" x="5.08" y="-2.54" visible="pad" length="short" rot="R180"/>
+<pin name="GND@5" x="-2.54" y="-10.16" visible="pad" length="short" rot="R90"/>
+<pin name="IN" x="-2.54" y="5.08" visible="pad" length="short" rot="R270"/>
+<pin name="OUT1" x="2.54" y="5.08" visible="pad" length="short" rot="R270"/>
+<pin name="OUT2" x="2.54" y="-10.16" visible="pad" length="short" rot="R90"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -6575,38 +6575,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </device>
 </devices>
 </deviceset>
-<deviceset name="BALUN" prefix="B" library_version="2">
-<description>A balun to convert differential radio-frequency outputs from the microcontroller into a single-ended driver for the antenna.</description>
-<gates>
-<gate name="G$1" symbol="BALUN" x="0" y="0"/>
-</gates>
-<devices>
-<device name="0805" package="BALUN">
-<connects>
-<connect gate="G$1" pin="GND@2" pad="2"/>
-<connect gate="G$1" pin="GND@5" pad="5"/>
-<connect gate="G$1" pin="IN" pad="1"/>
-<connect gate="G$1" pin="OUT1" pad="4"/>
-<connect gate="G$1" pin="OUT2" pad="3"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DATASHEET" value="http://katalog.we-online.de/pbs/datasheet/748421245.pdf"/>
-<attribute name="DESC" value="BALUN 2.4GHZ-2.5GHZ 50/100 0805"/>
-<attribute name="DIST" value="Digikey"/>
-<attribute name="DISTPN" value="732-2230-1-ND"/>
-<attribute name="MFR" value="Wurth Electronics Inc."/>
-<attribute name="MOUNTING" value="SMD"/>
-<attribute name="MPN" value="748421245"/>
-<attribute name="PACKAGE" value="0805"/>
-<attribute name="PRICE" value="2.63"/>
-<attribute name="REVIEWER" value="Swanson"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="PUSHBUTTON_" prefix="SW" library_version="2">
 <description>"Tactile" or "clicky" button.</description>
 <gates>
@@ -7038,6 +7006,38 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </connects>
 <technologies>
 <technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BALUN" prefix="B" library_version="2">
+<description>A balun to convert differential radio-frequency outputs from the microcontroller into a single-ended driver for the antenna.</description>
+<gates>
+<gate name="G$1" symbol="BALUN" x="0" y="0"/>
+</gates>
+<devices>
+<device name="0805" package="BALUN">
+<connects>
+<connect gate="G$1" pin="GND@2" pad="2"/>
+<connect gate="G$1" pin="GND@5" pad="5"/>
+<connect gate="G$1" pin="IN" pad="1"/>
+<connect gate="G$1" pin="OUT1" pad="4"/>
+<connect gate="G$1" pin="OUT2" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DATASHEET" value="http://katalog.we-online.de/pbs/datasheet/748421245.pdf"/>
+<attribute name="DESC" value="BALUN 2.4GHZ-2.5GHZ 50/100 0805"/>
+<attribute name="DIST" value="Digikey"/>
+<attribute name="DISTPN" value="732-2230-1-ND"/>
+<attribute name="MFR" value="Wurth Electronics Inc."/>
+<attribute name="MOUNTING" value="SMD"/>
+<attribute name="MPN" value="748421245"/>
+<attribute name="PACKAGE" value="0805"/>
+<attribute name="PRICE" value="2.63"/>
+<attribute name="REVIEWER" value="Swanson"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -7491,7 +7491,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="P+15" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 <part name="P+16" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 <part name="U1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="ATMEGA128RFA1" device=""/>
-<part name="B1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BALUN" device="0805"/>
 <part name="C1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-22PF" value="22pF"/>
 <part name="C2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="C3" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
@@ -7602,6 +7601,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="P+21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 <part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
+<part name="B1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BALUN" device="0805"/>
 </parts>
 <sheets>
 <sheet>
@@ -7886,9 +7886,6 @@ Expected current thru LED: 15mA</text>
 </instance>
 <instance part="U1" gate="G$1" x="223.52" y="180.34" smashed="yes" rot="MR0">
 <attribute name="NAME" x="248.92" y="224.028" size="1.778" layer="95" rot="MR0"/>
-</instance>
-<instance part="B1" gate="G$1" x="297.18" y="195.58" smashed="yes" rot="R180">
-<attribute name="NAME" x="297.18" y="205.74" size="1.778" layer="95" rot="R180" align="top-center"/>
 </instance>
 <instance part="C1" gate="G$1" x="284.48" y="198.12" smashed="yes" rot="R90">
 <attribute name="VALUE" x="286.639" y="194.564" size="1.778" layer="96" rot="R90"/>
@@ -8268,6 +8265,9 @@ Expected current thru LED: 15mA</text>
 <instance part="GND27" gate="1" x="360.68" y="99.06" smashed="yes">
 <attribute name="VALUE" x="360.68" y="96.52" size="1.778" layer="96" align="center"/>
 </instance>
+<instance part="B1" gate="G$1" x="297.18" y="200.66" smashed="yes" rot="MR0">
+<attribute name="NAME" x="302.26" y="180.34" size="1.778" layer="95" rot="MR0"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8354,8 +8354,8 @@ Expected current thru LED: 15mA</text>
 </segment>
 <segment>
 <wire x1="299.72" y1="187.96" x2="299.72" y2="190.5" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="IN"/>
 <pinref part="GND18" gate="1" pin="GND"/>
+<pinref part="B1" gate="G$1" pin="GND@5"/>
 </segment>
 <segment>
 <wire x1="307.34" y1="198.12" x2="307.34" y2="195.58" width="0.1524" layer="91"/>
@@ -8780,8 +8780,8 @@ Expected current thru LED: 15mA</text>
 <net name="N$7" class="0">
 <segment>
 <wire x1="292.1" y1="198.12" x2="289.56" y2="198.12" width="0.1524" layer="91"/>
-<pinref part="B1" gate="G$1" pin="GND@2"/>
 <pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="B1" gate="G$1" pin="GND@2"/>
 </segment>
 </net>
 <net name="N$8" class="0">
@@ -8830,7 +8830,7 @@ Expected current thru LED: 15mA</text>
 <wire x1="271.78" y1="208.28" x2="294.64" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="294.64" y1="208.28" x2="294.64" y2="205.74" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="RFP"/>
-<pinref part="B1" gate="G$1" pin="OUT2"/>
+<pinref part="B1" gate="G$1" pin="OUT1"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -8854,9 +8854,9 @@ Expected current thru LED: 15mA</text>
 <wire x1="307.34" y1="205.74" x2="307.34" y2="210.82" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="210.82" x2="299.72" y2="210.82" width="0.1524" layer="91"/>
 <junction x="299.72" y="210.82"/>
-<pinref part="B1" gate="G$1" pin="GND@5"/>
 <pinref part="C6" gate="G$1" pin="1"/>
 <pinref part="A1" gate="G$1" pin="SIGNAL"/>
+<pinref part="B1" gate="G$1" pin="IN"/>
 </segment>
 </net>
 <net name="N$15" class="0">
@@ -8865,7 +8865,7 @@ Expected current thru LED: 15mA</text>
 <wire x1="271.78" y1="200.66" x2="271.78" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="271.78" y1="190.5" x2="294.64" y2="190.5" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="RFN"/>
-<pinref part="B1" gate="G$1" pin="OUT1"/>
+<pinref part="B1" gate="G$1" pin="OUT2"/>
 </segment>
 </net>
 <net name="2V5" class="0">
