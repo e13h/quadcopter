@@ -5609,7 +5609,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <devicesets>
 <deviceset name="LED-350-2312-1-ND" prefix="D" uservalue="yes">
 <gates>
-<gate name="G$1" symbol="RESOLVED-DIODE-LED_" x="-2.54" y="0"/>
+<gate name="G$1" symbol="RESOLVED-DIODE-LED_" x="0" y="0"/>
 </gates>
 <devices>
 <device name="-REVERSE" package="LED-350-2312-1-ND-REVERSE">
