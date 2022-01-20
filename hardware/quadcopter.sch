@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="3" visible="no" active="no"/>
@@ -5568,8 +5568,8 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <library name="LED">
 <packages>
 <package name="LED-350-2312-1-ND-REVERSE">
-<smd name="P$1" x="-1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
-<smd name="P$2" x="1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
+<smd name="1" x="-1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
+<smd name="2" x="1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
 <hole x="0" y="0" drill="1.8"/>
 <wire x1="-1.6" y1="0.8" x2="1.6" y2="0.8" width="0.05" layer="21"/>
 <wire x1="1.6" y1="0.8" x2="1.6" y2="-0.8" width="0.05" layer="21"/>
@@ -5614,8 +5614,8 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <devices>
 <device name="-REVERSE" package="LED-350-2312-1-ND-REVERSE">
 <connects>
-<connect gate="G$1" pin="A" pad="P$2"/>
-<connect gate="G$1" pin="C" pad="P$1"/>
+<connect gate="G$1" pin="A" pad="2"/>
+<connect gate="G$1" pin="C" pad="1"/>
 </connects>
 <technologies>
 <technology name="">
