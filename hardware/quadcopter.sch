@@ -4354,6 +4354,97 @@
 <smd name="FEED" x="-3.302" y="0" dx="1.016" dy="2.54" layer="1" rot="R180"/>
 <smd name="NC" x="3.302" y="0" dx="1.016" dy="2.54" layer="1" rot="R180"/>
 </package>
+<package name="SOT23-DBV" library_version="2">
+<rectangle x1="-0.25" y1="-1.5" x2="0.25" y2="-0.85" layer="51"/>
+<wire x1="-0.428" y1="-0.81" x2="-0.522" y2="-0.81" width="0.1524" layer="21"/>
+<wire x1="-0.522" y1="0.81" x2="0.522" y2="0.81" width="0.1524" layer="21"/>
+<rectangle x1="-1.2" y1="-1.5" x2="-0.7" y2="-0.85" layer="51"/>
+<rectangle x1="-1.2" y1="0.85" x2="-0.7" y2="1.5" layer="51"/>
+<wire x1="-1.328" y1="-0.81" x2="-1.422" y2="-0.81" width="0.1524" layer="21"/>
+<wire x1="-1.422" y1="-0.81" x2="-1.422" y2="0.81" width="0.1524" layer="21"/>
+<wire x1="-1.422" y1="0.81" x2="-1.328" y2="0.81" width="0.1524" layer="21"/>
+<wire x1="-1.422" y1="0.81" x2="1.422" y2="0.81" width="0.1524" layer="51"/>
+<wire x1="-1.9" y1="-2.4" x2="-1.9" y2="2.4" width="0.05" layer="39"/>
+<wire x1="-1.9" y1="2.4" x2="1.9" y2="2.4" width="0.05" layer="39"/>
+<text x="0.095" y="-2.929" size="0.9" layer="27" font="vector" align="center">&gt;VALUE</text>
+<text x="0.095" y="2.905" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
+<wire x1="0.522" y1="-0.81" x2="0.428" y2="-0.81" width="0.1524" layer="21"/>
+<rectangle x1="0.7" y1="-1.5" x2="1.2" y2="-0.85" layer="51"/>
+<rectangle x1="0.7" y1="0.85" x2="1.2" y2="1.5" layer="51"/>
+<wire x1="1.328" y1="0.81" x2="1.422" y2="0.81" width="0.1524" layer="21"/>
+<wire x1="1.422" y1="-0.81" x2="-1.422" y2="-0.81" width="0.1524" layer="51"/>
+<wire x1="1.422" y1="-0.81" x2="1.328" y2="-0.81" width="0.1524" layer="21"/>
+<wire x1="1.422" y1="0.81" x2="1.422" y2="-0.81" width="0.1524" layer="21"/>
+<wire x1="1.9" y1="-2.4" x2="-1.9" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="1.9" y1="2.4" x2="1.9" y2="-2.4" width="0.05" layer="39"/>
+<smd name="1" x="-0.95" y="-1.3" dx="0.55" dy="1.2" layer="1"/>
+<smd name="2" x="0" y="-1.3" dx="0.55" dy="1.2" layer="1" thermals="no"/>
+<smd name="3" x="0.95" y="-1.3" dx="0.55" dy="1.2" layer="1"/>
+<smd name="4" x="0.95" y="1.3" dx="0.55" dy="1.2" layer="1"/>
+<smd name="5" x="-0.95" y="1.3" dx="0.55" dy="1.2" layer="1"/>
+</package>
+<package name="JS102011JCQN" library_version="2">
+<text x="-2.5" y="-3.5" size="1.27" layer="25" font="vector">&gt;NAME</text>
+<wire x1="-4.2" y1="-1.8" x2="4.3" y2="-1.8" width="0.127" layer="51"/>
+<wire x1="-4.2" y1="-1.8" x2="4.3" y2="-1.8" width="0.127" layer="21"/>
+<wire x1="-4.2" y1="1.8" x2="-4.2" y2="-1.8" width="0.127" layer="51"/>
+<wire x1="-4.2" y1="1.8" x2="-4.2" y2="-1.8" width="0.127" layer="21"/>
+<wire x1="-4.9" y1="-2.4" x2="4.9" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="-4.9" y1="2.4" x2="-4.9" y2="-2.4" width="0.05" layer="39"/>
+<wire x1="4.3" y1="-1.8" x2="4.3" y2="1.8" width="0.127" layer="51"/>
+<wire x1="4.3" y1="-1.8" x2="4.3" y2="1.8" width="0.127" layer="21"/>
+<wire x1="4.3" y1="1.8" x2="-4.2" y2="1.8" width="0.127" layer="51"/>
+<wire x1="4.3" y1="1.8" x2="-4.2" y2="1.8" width="0.127" layer="21"/>
+<wire x1="4.9" y1="-2.4" x2="4.9" y2="2.4" width="0.05" layer="39"/>
+<wire x1="4.9" y1="2.4" x2="-4.9" y2="2.4" width="0.05" layer="39"/>
+<smd name="1" x="-2.5" y="-1.2" dx="1" dy="1.6" layer="1"/>
+<smd name="2" x="0" y="1.2" dx="1" dy="1.6" layer="1"/>
+<smd name="3" x="2.5" y="-1.2" dx="1" dy="1.6" layer="1"/>
+</package>
+<package name="JS102011SAQN" library_version="2">
+<wire x1="-1.5" y1="-4" x2="-1.5" y2="-1.8" width="0.1" layer="21"/>
+<wire x1="-3" y1="-1.8" x2="-3" y2="-4" width="0.1" layer="21"/>
+<wire x1="-3" y1="-4" x2="-1.5" y2="-4" width="0.1" layer="21"/>
+<hole x="-3.4" y="0" drill="0.9"/>
+<wire x1="-4.5" y1="-1.8" x2="4.5" y2="-1.8" width="0.1" layer="21"/>
+<wire x1="-4.5" y1="1.8" x2="-4.5" y2="-1.8" width="0.1" layer="21"/>
+<hole x="3.4" y="0" drill="0.9"/>
+<text x="4" y="3" size="1.27" layer="25" font="vector">&gt;NAME</text>
+<wire x1="4.5" y1="-1.8" x2="4.5" y2="1.8" width="0.1" layer="21"/>
+<wire x1="4.5" y1="1.8" x2="-4.5" y2="1.8" width="0.1" layer="21"/>
+<smd name="A" x="-2.5" y="2.75" dx="1.2" dy="2.5" layer="1"/>
+<smd name="B" x="2.5" y="2.75" dx="1.2" dy="2.5" layer="1"/>
+<smd name="C" x="0" y="2.75" dx="1.2" dy="2.5" layer="1"/>
+<wire x1="-4.9" y1="4.9" x2="-4.9" y2="-3.9" width="0.05" layer="39"/>
+<wire x1="-4.9" y1="-3.9" x2="4.9" y2="-3.9" width="0.05" layer="39"/>
+<wire x1="4.9" y1="-3.9" x2="4.9" y2="4.9" width="0.05" layer="39"/>
+<wire x1="4.9" y1="4.9" x2="-4.9" y2="4.9" width="0.05" layer="39"/>
+</package>
+<package name="POWER-SWITCH-MFS201N-9-Z" library_version="2">
+<wire x1="-10.16" y1="-2.54" x2="-10.16" y2="2.54" width="0.127" layer="21"/>
+<wire x1="-10.16" y1="-2.54" x2="10.16" y2="-2.54" width="0.127" layer="51"/>
+<wire x1="-10.16" y1="2.54" x2="-10.16" y2="-2.54" width="0.127" layer="51"/>
+<wire x1="-10.16" y1="2.54" x2="10.16" y2="2.54" width="0.127" layer="21"/>
+<wire x1="-11.43" y1="-3.81" x2="-11.43" y2="3.81" width="0.127" layer="39"/>
+<wire x1="-11.43" y1="3.81" x2="11.43" y2="3.81" width="0.127" layer="39"/>
+<text x="-5.08" y="3.81" size="1.27" layer="21" font="vector" align="center">ON</text>
+<hole x="-8.25" y="0" drill="2.3"/>
+<text x="0" y="-3.81" size="1.27" layer="25" font="vector" align="center">&gt;NAME</text>
+<wire x1="10.16" y1="-2.54" x2="-10.16" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="10.16" y1="-2.54" x2="10.16" y2="2.54" width="0.127" layer="51"/>
+<wire x1="10.16" y1="2.54" x2="-10.16" y2="2.54" width="0.127" layer="51"/>
+<wire x1="10.16" y1="2.54" x2="10.16" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="11.43" y1="-3.81" x2="-11.43" y2="-3.81" width="0.127" layer="39"/>
+<wire x1="11.43" y1="3.81" x2="11.43" y2="-3.81" width="0.127" layer="39"/>
+<text x="5.08" y="3.81" size="1.27" layer="21" font="vector" align="center">OFF</text>
+<hole x="8.25" y="0" drill="2.3"/>
+<pad name="A1" x="-4" y="1.25" drill="1.5" shape="square"/>
+<pad name="A2" x="-4" y="-1.25" drill="1.5"/>
+<pad name="B1" x="4" y="1.25" drill="1.5"/>
+<pad name="B2" x="4" y="-1.25" drill="1.5"/>
+<pad name="C1" x="0" y="1.25" drill="1.5"/>
+<pad name="C2" x="0" y="-1.25" drill="1.5"/>
+</package>
 <package name="BATTERY-W/HOLDER-380MAH-HUBSAN" library_version="2">
 <wire x1="-12" y1="11" x2="-9" y2="2.5" width="0.127" layer="21"/>
 <wire x1="-15.5" y1="-4" x2="-15.5" y2="-4.25" width="0.127" layer="21"/>
@@ -4656,97 +4747,6 @@
 <wire x1="-3.9" y1="6.9" x2="3.9" y2="6.9" width="0.05" layer="39"/>
 <text x="2" y="-6.5" size="1.27" layer="21" font="vector" rot="SR270" align="center-left">&gt;PIN1</text>
 <text x="-2" y="-6.5" size="1.27" layer="21" font="vector" rot="SR270" align="center-left">&gt;PIN2</text>
-</package>
-<package name="SOT23-DBV" library_version="2">
-<rectangle x1="-0.25" y1="-1.5" x2="0.25" y2="-0.85" layer="51"/>
-<wire x1="-0.428" y1="-0.81" x2="-0.522" y2="-0.81" width="0.1524" layer="21"/>
-<wire x1="-0.522" y1="0.81" x2="0.522" y2="0.81" width="0.1524" layer="21"/>
-<rectangle x1="-1.2" y1="-1.5" x2="-0.7" y2="-0.85" layer="51"/>
-<rectangle x1="-1.2" y1="0.85" x2="-0.7" y2="1.5" layer="51"/>
-<wire x1="-1.328" y1="-0.81" x2="-1.422" y2="-0.81" width="0.1524" layer="21"/>
-<wire x1="-1.422" y1="-0.81" x2="-1.422" y2="0.81" width="0.1524" layer="21"/>
-<wire x1="-1.422" y1="0.81" x2="-1.328" y2="0.81" width="0.1524" layer="21"/>
-<wire x1="-1.422" y1="0.81" x2="1.422" y2="0.81" width="0.1524" layer="51"/>
-<wire x1="-1.9" y1="-2.4" x2="-1.9" y2="2.4" width="0.05" layer="39"/>
-<wire x1="-1.9" y1="2.4" x2="1.9" y2="2.4" width="0.05" layer="39"/>
-<text x="0.095" y="-2.929" size="0.9" layer="27" font="vector" align="center">&gt;VALUE</text>
-<text x="0.095" y="2.905" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
-<wire x1="0.522" y1="-0.81" x2="0.428" y2="-0.81" width="0.1524" layer="21"/>
-<rectangle x1="0.7" y1="-1.5" x2="1.2" y2="-0.85" layer="51"/>
-<rectangle x1="0.7" y1="0.85" x2="1.2" y2="1.5" layer="51"/>
-<wire x1="1.328" y1="0.81" x2="1.422" y2="0.81" width="0.1524" layer="21"/>
-<wire x1="1.422" y1="-0.81" x2="-1.422" y2="-0.81" width="0.1524" layer="51"/>
-<wire x1="1.422" y1="-0.81" x2="1.328" y2="-0.81" width="0.1524" layer="21"/>
-<wire x1="1.422" y1="0.81" x2="1.422" y2="-0.81" width="0.1524" layer="21"/>
-<wire x1="1.9" y1="-2.4" x2="-1.9" y2="-2.4" width="0.05" layer="39"/>
-<wire x1="1.9" y1="2.4" x2="1.9" y2="-2.4" width="0.05" layer="39"/>
-<smd name="1" x="-0.95" y="-1.3" dx="0.55" dy="1.2" layer="1"/>
-<smd name="2" x="0" y="-1.3" dx="0.55" dy="1.2" layer="1" thermals="no"/>
-<smd name="3" x="0.95" y="-1.3" dx="0.55" dy="1.2" layer="1"/>
-<smd name="4" x="0.95" y="1.3" dx="0.55" dy="1.2" layer="1"/>
-<smd name="5" x="-0.95" y="1.3" dx="0.55" dy="1.2" layer="1"/>
-</package>
-<package name="JS102011JCQN" library_version="2">
-<text x="-2.5" y="-3.5" size="1.27" layer="25" font="vector">&gt;NAME</text>
-<wire x1="-4.2" y1="-1.8" x2="4.3" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="-4.2" y1="-1.8" x2="4.3" y2="-1.8" width="0.127" layer="21"/>
-<wire x1="-4.2" y1="1.8" x2="-4.2" y2="-1.8" width="0.127" layer="51"/>
-<wire x1="-4.2" y1="1.8" x2="-4.2" y2="-1.8" width="0.127" layer="21"/>
-<wire x1="-4.9" y1="-2.4" x2="4.9" y2="-2.4" width="0.05" layer="39"/>
-<wire x1="-4.9" y1="2.4" x2="-4.9" y2="-2.4" width="0.05" layer="39"/>
-<wire x1="4.3" y1="-1.8" x2="4.3" y2="1.8" width="0.127" layer="51"/>
-<wire x1="4.3" y1="-1.8" x2="4.3" y2="1.8" width="0.127" layer="21"/>
-<wire x1="4.3" y1="1.8" x2="-4.2" y2="1.8" width="0.127" layer="51"/>
-<wire x1="4.3" y1="1.8" x2="-4.2" y2="1.8" width="0.127" layer="21"/>
-<wire x1="4.9" y1="-2.4" x2="4.9" y2="2.4" width="0.05" layer="39"/>
-<wire x1="4.9" y1="2.4" x2="-4.9" y2="2.4" width="0.05" layer="39"/>
-<smd name="1" x="-2.5" y="-1.2" dx="1" dy="1.6" layer="1"/>
-<smd name="2" x="0" y="1.2" dx="1" dy="1.6" layer="1"/>
-<smd name="3" x="2.5" y="-1.2" dx="1" dy="1.6" layer="1"/>
-</package>
-<package name="JS102011SAQN" library_version="2">
-<wire x1="-1.5" y1="-4" x2="-1.5" y2="-1.8" width="0.1" layer="21"/>
-<wire x1="-3" y1="-1.8" x2="-3" y2="-4" width="0.1" layer="21"/>
-<wire x1="-3" y1="-4" x2="-1.5" y2="-4" width="0.1" layer="21"/>
-<hole x="-3.4" y="0" drill="0.9"/>
-<wire x1="-4.5" y1="-1.8" x2="4.5" y2="-1.8" width="0.1" layer="21"/>
-<wire x1="-4.5" y1="1.8" x2="-4.5" y2="-1.8" width="0.1" layer="21"/>
-<hole x="3.4" y="0" drill="0.9"/>
-<text x="4" y="3" size="1.27" layer="25" font="vector">&gt;NAME</text>
-<wire x1="4.5" y1="-1.8" x2="4.5" y2="1.8" width="0.1" layer="21"/>
-<wire x1="4.5" y1="1.8" x2="-4.5" y2="1.8" width="0.1" layer="21"/>
-<smd name="A" x="-2.5" y="2.75" dx="1.2" dy="2.5" layer="1"/>
-<smd name="B" x="2.5" y="2.75" dx="1.2" dy="2.5" layer="1"/>
-<smd name="C" x="0" y="2.75" dx="1.2" dy="2.5" layer="1"/>
-<wire x1="-4.9" y1="4.9" x2="-4.9" y2="-3.9" width="0.05" layer="39"/>
-<wire x1="-4.9" y1="-3.9" x2="4.9" y2="-3.9" width="0.05" layer="39"/>
-<wire x1="4.9" y1="-3.9" x2="4.9" y2="4.9" width="0.05" layer="39"/>
-<wire x1="4.9" y1="4.9" x2="-4.9" y2="4.9" width="0.05" layer="39"/>
-</package>
-<package name="POWER-SWITCH-MFS201N-9-Z" library_version="2">
-<wire x1="-10.16" y1="-2.54" x2="-10.16" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-10.16" y1="-2.54" x2="10.16" y2="-2.54" width="0.127" layer="51"/>
-<wire x1="-10.16" y1="2.54" x2="-10.16" y2="-2.54" width="0.127" layer="51"/>
-<wire x1="-10.16" y1="2.54" x2="10.16" y2="2.54" width="0.127" layer="21"/>
-<wire x1="-11.43" y1="-3.81" x2="-11.43" y2="3.81" width="0.127" layer="39"/>
-<wire x1="-11.43" y1="3.81" x2="11.43" y2="3.81" width="0.127" layer="39"/>
-<text x="-5.08" y="3.81" size="1.27" layer="21" font="vector" align="center">ON</text>
-<hole x="-8.25" y="0" drill="2.3"/>
-<text x="0" y="-3.81" size="1.27" layer="25" font="vector" align="center">&gt;NAME</text>
-<wire x1="10.16" y1="-2.54" x2="-10.16" y2="-2.54" width="0.127" layer="21"/>
-<wire x1="10.16" y1="-2.54" x2="10.16" y2="2.54" width="0.127" layer="51"/>
-<wire x1="10.16" y1="2.54" x2="-10.16" y2="2.54" width="0.127" layer="51"/>
-<wire x1="10.16" y1="2.54" x2="10.16" y2="-2.54" width="0.127" layer="21"/>
-<wire x1="11.43" y1="-3.81" x2="-11.43" y2="-3.81" width="0.127" layer="39"/>
-<wire x1="11.43" y1="3.81" x2="11.43" y2="-3.81" width="0.127" layer="39"/>
-<text x="5.08" y="3.81" size="1.27" layer="21" font="vector" align="center">OFF</text>
-<hole x="8.25" y="0" drill="2.3"/>
-<pad name="A1" x="-4" y="1.25" drill="1.5" shape="square"/>
-<pad name="A2" x="-4" y="-1.25" drill="1.5"/>
-<pad name="B1" x="4" y="1.25" drill="1.5"/>
-<pad name="B2" x="4" y="-1.25" drill="1.5"/>
-<pad name="C1" x="0" y="1.25" drill="1.5"/>
-<pad name="C2" x="0" y="-1.25" drill="1.5"/>
 </package>
 </packages>
 <packages3d>
@@ -5186,19 +5186,6 @@ This symbol includes Arduino pin assignments for the Sparkfun ATmega128RFA break
 <text x="1.27" y="0" size="1.778" layer="95">&gt;NAME</text>
 <pin name="SIGNAL" x="0" y="-5.08" visible="off" length="short" rot="R90"/>
 </symbol>
-<symbol name="BATTERY" library_version="2">
-<wire x1="-0.635" y1="0" x2="-0.635" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="2.54" x2="-0.635" y2="0" width="0.254" layer="94"/>
-<text x="-1.27" y="5.08" size="1.778" layer="95" font="vector" align="center">&gt;NAME</text>
-<wire x1="-3.81" y1="0" x2="-0.635" y2="0" width="0.1524" layer="94"/>
-<text x="-4.515" y="1.247" size="1.778" layer="94" align="center">+</text>
-<wire x1="0.635" y1="0" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="0.635" y1="1.27" x2="0.635" y2="0" width="0.254" layer="94"/>
-<text x="5.08" y="1.27" size="1.778" layer="94" align="center">-</text>
-<pin name="N" x="5.08" y="0" visible="off" length="short" rot="R180"/>
-<pin name="P" x="-5.08" y="0" visible="off" length="short"/>
-</symbol>
 <symbol name="TPS736*" library_version="2">
 <text x="0" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
 <wire x1="0" y1="0" x2="0" y2="15.24" width="0.254" layer="94"/>
@@ -5222,6 +5209,19 @@ This symbol includes Arduino pin assignments for the Sparkfun ATmega128RFA break
 <text x="1.27" y="3.81" size="1.778" layer="94" align="center">ON</text>
 <text x="1.27" y="-3.81" size="1.778" layer="94" align="center">OFF</text>
 <text x="-3.81" y="1.27" size="1.778" layer="94" align="center">C</text>
+</symbol>
+<symbol name="BATTERY" library_version="2">
+<wire x1="-0.635" y1="0" x2="-0.635" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="2.54" x2="-0.635" y2="0" width="0.254" layer="94"/>
+<text x="-1.27" y="5.08" size="1.778" layer="95" font="vector" align="center">&gt;NAME</text>
+<wire x1="-3.81" y1="0" x2="-0.635" y2="0" width="0.1524" layer="94"/>
+<text x="-4.515" y="1.247" size="1.778" layer="94" align="center">+</text>
+<wire x1="0.635" y1="0" x2="0.635" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="0.635" y1="1.27" x2="0.635" y2="0" width="0.254" layer="94"/>
+<text x="5.08" y="1.27" size="1.778" layer="94" align="center">-</text>
+<pin name="N" x="5.08" y="0" visible="off" length="short" rot="R180"/>
+<pin name="P" x="-5.08" y="0" visible="off" length="short"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -6785,129 +6785,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </device>
 </devices>
 </deviceset>
-<deviceset name="BATTERY" prefix="B" library_version="2">
-<description>Connections for a battery.</description>
-<gates>
-<gate name="G$1" symbol="BATTERY" x="0" y="0"/>
-</gates>
-<devices>
-<device name="-HUBSAN-W/HOLDER" package="BATTERY-W/HOLDER-380MAH-HUBSAN">
-<connects>
-<connect gate="G$1" pin="N" pad="-"/>
-<connect gate="G$1" pin="P" pad="+"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DIST" value="AMAZON"/>
-<attribute name="DISTPN" value="http://www.amazon.com/dp/B00RROB6Q4?smid=AMNTPWSAB5H0S"/>
-<attribute name="MFR" value="HUBSAN"/>
-<attribute name="MOUNTING" value="NONE"/>
-<attribute name="MPN" value="X4-H107C-8-in-1"/>
-<attribute name="REVIEWER" value="Swanson"/>
-</technology>
-</technologies>
-</device>
-<device name="-SCREW-TERMINAL-SMD" package="SCREW-TERMINAL-1X2-3.5MM-SMD">
-<connects>
-<connect gate="G$1" pin="N" pad="2"/>
-<connect gate="G$1" pin="P" pad="1"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DIST" value="DIGIKEY"/>
-<attribute name="DISTPN" value="732-5963-1-ND"/>
-<attribute name="MOUNTING" value="SMD"/>
-</technology>
-</technologies>
-</device>
-<device name="-SCREW-TERMINAL" package="SCREW-TERMINAL-1X2-2.54MM">
-<connects>
-<connect gate="G$1" pin="N" pad="1"/>
-<connect gate="G$1" pin="P" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DIST" value="DIGIKEY"/>
-<attribute name="DISTPN" value="ED10561-ND"/>
-<attribute name="MOUNTING" value="TH"/>
-<attribute name="PIN1" value="-"/>
-<attribute name="PIN2" value="+"/>
-</technology>
-</technologies>
-</device>
-<device name="-SMD" package="MOLEX-BATTERY-CONNECTOR-SMD-51005-2P">
-<connects>
-<connect gate="G$1" pin="N" pad="G G2 G3"/>
-<connect gate="G$1" pin="P" pad="P"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DESC" value="Surface mount  battery connector"/>
-<attribute name="DIST" value="ALIBABA"/>
-<attribute name="DISTPN" value="https://www.alibaba.com/product-detail/Molex-51005-51006-2-pin-female_60863668004.html?spm=a2700.7724857.normalList.97.20ef28e64nZnNK"/>
-<attribute name="MFR" value="UNKNOWN"/>
-<attribute name="MOUNTING" value="SMD"/>
-<attribute name="MPN" value="UNKNOWN"/>
-</technology>
-</technologies>
-</device>
-<device name="-SPRING-SMD" package="WIRE-TERMINAL-1X2-2.5MM-SMD-AVX-009276002021106">
-<connects>
-<connect gate="G$1" pin="N" pad="2A 2B"/>
-<connect gate="G$1" pin="P" pad="1A 1B"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DESC" value="TERM BLK 2POS SIDE ENT 2.5MM SMD"/>
-<attribute name="DIST" value="DIGIKEY"/>
-<attribute name="DISTPN" value="478-6169-1-ND"/>
-<attribute name="MFR" value="AVX Corporation"/>
-<attribute name="MOUNTING" value="SMD"/>
-<attribute name="MPN" value="_009276002021106_"/>
-<attribute name="PIN1" value="+" constant="no"/>
-<attribute name="PIN2" value="-" constant="no"/>
-</technology>
-</technologies>
-</device>
-<device name="" package="BATTERY-TERMINALS">
-<connects>
-<connect gate="G$1" pin="N" pad="-"/>
-<connect gate="G$1" pin="P" pad="+"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Swanson"/>
-<attribute name="DIST" value="NA"/>
-<attribute name="DISTPN" value="NA"/>
-<attribute name="MOUNTING" value="NONE"/>
-</technology>
-</technologies>
-</device>
-<device name="-SMD-TH" package="BATTERY-COMBO">
-<connects>
-<connect gate="G$1" pin="N" pad="2 G G2 G3"/>
-<connect gate="G$1" pin="P" pad="1 P"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="-SCREW-TERMINAL-MINI-SMD" package="2X1-SCREW-TERMINAL-TE-SMD-3.81MM">
-<connects>
-<connect gate="G$1" pin="N" pad="1"/>
-<connect gate="G$1" pin="P" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="TPS73633-DBVT" uservalue="yes" library_version="2">
 <description>LP3985-series voltage regulators.</description>
 <gates>
@@ -7042,6 +6919,129 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </device>
 </devices>
 </deviceset>
+<deviceset name="BATTERY" prefix="B" library_version="2">
+<description>Connections for a battery.</description>
+<gates>
+<gate name="G$1" symbol="BATTERY" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-HUBSAN-W/HOLDER" package="BATTERY-W/HOLDER-380MAH-HUBSAN">
+<connects>
+<connect gate="G$1" pin="N" pad="-"/>
+<connect gate="G$1" pin="P" pad="+"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DIST" value="AMAZON"/>
+<attribute name="DISTPN" value="http://www.amazon.com/dp/B00RROB6Q4?smid=AMNTPWSAB5H0S"/>
+<attribute name="MFR" value="HUBSAN"/>
+<attribute name="MOUNTING" value="NONE"/>
+<attribute name="MPN" value="X4-H107C-8-in-1"/>
+<attribute name="REVIEWER" value="Swanson"/>
+</technology>
+</technologies>
+</device>
+<device name="-SCREW-TERMINAL-SMD" package="SCREW-TERMINAL-1X2-3.5MM-SMD">
+<connects>
+<connect gate="G$1" pin="N" pad="2"/>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DIST" value="DIGIKEY"/>
+<attribute name="DISTPN" value="732-5963-1-ND"/>
+<attribute name="MOUNTING" value="SMD"/>
+</technology>
+</technologies>
+</device>
+<device name="-SCREW-TERMINAL" package="SCREW-TERMINAL-1X2-2.54MM">
+<connects>
+<connect gate="G$1" pin="N" pad="1"/>
+<connect gate="G$1" pin="P" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DIST" value="DIGIKEY"/>
+<attribute name="DISTPN" value="ED10561-ND"/>
+<attribute name="MOUNTING" value="TH"/>
+<attribute name="PIN1" value="-"/>
+<attribute name="PIN2" value="+"/>
+</technology>
+</technologies>
+</device>
+<device name="-SMD" package="MOLEX-BATTERY-CONNECTOR-SMD-51005-2P">
+<connects>
+<connect gate="G$1" pin="N" pad="G G2 G3"/>
+<connect gate="G$1" pin="P" pad="P"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DESC" value="Surface mount  battery connector"/>
+<attribute name="DIST" value="ALIBABA"/>
+<attribute name="DISTPN" value="https://www.alibaba.com/product-detail/Molex-51005-51006-2-pin-female_60863668004.html?spm=a2700.7724857.normalList.97.20ef28e64nZnNK"/>
+<attribute name="MFR" value="UNKNOWN"/>
+<attribute name="MOUNTING" value="SMD"/>
+<attribute name="MPN" value="UNKNOWN"/>
+</technology>
+</technologies>
+</device>
+<device name="-SPRING-SMD" package="WIRE-TERMINAL-1X2-2.5MM-SMD-AVX-009276002021106">
+<connects>
+<connect gate="G$1" pin="N" pad="2A 2B"/>
+<connect gate="G$1" pin="P" pad="1A 1B"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DESC" value="TERM BLK 2POS SIDE ENT 2.5MM SMD"/>
+<attribute name="DIST" value="DIGIKEY"/>
+<attribute name="DISTPN" value="478-6169-1-ND"/>
+<attribute name="MFR" value="AVX Corporation"/>
+<attribute name="MOUNTING" value="SMD"/>
+<attribute name="MPN" value="_009276002021106_"/>
+<attribute name="PIN1" value="+" constant="no"/>
+<attribute name="PIN2" value="-" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="" package="BATTERY-TERMINALS">
+<connects>
+<connect gate="G$1" pin="N" pad="-"/>
+<connect gate="G$1" pin="P" pad="+"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Swanson"/>
+<attribute name="DIST" value="NA"/>
+<attribute name="DISTPN" value="NA"/>
+<attribute name="MOUNTING" value="NONE"/>
+</technology>
+</technologies>
+</device>
+<device name="-SMD-TH" package="BATTERY-COMBO">
+<connects>
+<connect gate="G$1" pin="N" pad="2 G G2 G3"/>
+<connect gate="G$1" pin="P" pad="1 P"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-SCREW-TERMINAL-MINI-SMD" package="2X1-SCREW-TERMINAL-TE-SMD-3.81MM">
+<connects>
+<connect gate="G$1" pin="N" pad="1"/>
+<connect gate="G$1" pin="P" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="custom_michael_shao">
@@ -7170,10 +7170,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="1.75" y1="-1.5" x2="1.75" y2="1.5" width="0.127" layer="21"/>
 <wire x1="1.75" y1="1.5" x2="-1.75" y2="1.5" width="0.127" layer="21"/>
 </package>
-<package name="NET_BRIDGE_5X5">
-<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-</package>
 </packages>
 <symbols>
 <symbol name="NMOS">
@@ -7227,12 +7223,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="15.24" y1="-17.78" x2="15.24" y2="17.78" width="0.254" layer="94"/>
 <text x="-12.7" y="-20.32" size="0.9" layer="95" font="vector" ratio="9">&gt;NAME</text>
 <wire x1="-15.24" y1="-17.78" x2="15.24" y2="-17.78" width="0.254" layer="94"/>
-</symbol>
-<symbol name="NET_BRIDGE">
-<pin name="1" x="-7.62" y="0" length="middle"/>
-<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
-<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -7311,26 +7301,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </device>
 </devices>
 </deviceset>
-<deviceset name="NET_BRIDGE" prefix="BRID">
-<gates>
-<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_5X5" package="NET_BRIDGE_5X5">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="N/A"/>
-<attribute name="DISTPN" value="N/A"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
 </devicesets>
 </library>
 <library name="LED">
@@ -7391,6 +7361,45 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <attribute name="CUSTOM" value=""/>
 <attribute name="DIST" value="Digikey"/>
 <attribute name="DISTPN" value="350-2312-1-ND"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="custom" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
+<packages>
+<package name="NET_BRIDGE_5X5" library_version="44">
+<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
+</package>
+</packages>
+<symbols>
+<symbol name="NET_BRIDGE" library_version="44">
+<pin name="1" x="-7.62" y="0" length="middle"/>
+<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
+<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="NET_BRIDGE" prefix="BRID" library_version="44">
+<gates>
+<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="_5X5" package="NET_BRIDGE_5X5">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="N/A"/>
+<attribute name="DISTPN" value="N/A"/>
 </technology>
 </technologies>
 </device>
@@ -7497,7 +7506,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="C7" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="C8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="A1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="ANTENNA" device="-BOARD"/>
-<part name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BATTERY" device="-SMD"/>
 <part name="VR1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="TPS73633-DBVT" device="2.5V" value="2.5V"/>
 <part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="C9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
@@ -7515,11 +7523,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="Q4" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
 <part name="D6" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
 <part name="U2" library="custom_michael_shao" deviceset="IMU_LSM9DS1" device="-LSM9DS1"/>
-<part name="BRID1" library="custom_michael_shao" deviceset="NET_BRIDGE" device="_5X5"/>
 <part name="R8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="D7" library="LED" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
 <part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="P+17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
+<part name="BRID1" library="custom" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="NET_BRIDGE" device="_5X5"/>
+<part name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BATTERY" device="-SMD"/>
 </parts>
 <sheets>
 <sheet>
@@ -7877,9 +7886,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <attribute name="VALUE" x="300.99" y="215.9" size="1.778" layer="96"/>
 <attribute name="NAME" x="300.99" y="218.44" size="1.778" layer="95"/>
 </instance>
-<instance part="B2" gate="G$1" x="345.44" y="81.28" smashed="yes" rot="R270">
-<attribute name="NAME" x="350.52" y="82.55" size="1.778" layer="95" font="vector" rot="R270" align="center"/>
-</instance>
 <instance part="VR1" gate="G$1" x="373.38" y="93.98" smashed="yes">
 <attribute name="VALUE" x="373.38" y="91.44" size="1.778" layer="96"/>
 <attribute name="NAME" x="373.38" y="110.49" size="1.778" layer="95"/>
@@ -7936,9 +7942,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="U2" gate="G$1" x="53.34" y="228.6" smashed="yes">
 <attribute name="NAME" x="40.64" y="208.28" size="0.9" layer="95" font="vector" ratio="9"/>
 </instance>
-<instance part="BRID1" gate="G$1" x="355.6" y="71.12" smashed="yes">
-<attribute name="NAME" x="350.52" y="73.66" size="1.778" layer="95"/>
-</instance>
 <instance part="R8" gate="G$1" x="172.72" y="76.2" smashed="yes">
 <attribute name="VALUE" x="168.91" y="72.898" size="1.778" layer="96"/>
 <attribute name="NAME" x="168.91" y="77.6986" size="1.778" layer="95"/>
@@ -7950,8 +7953,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="GND28" gate="1" x="187.96" y="73.66" smashed="yes">
 <attribute name="VALUE" x="187.96" y="71.12" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="P+17" gate="VCC" x="345.44" y="109.22" smashed="yes">
-<attribute name="VALUE" x="345.44" y="111.76" size="1.778" layer="96" rot="R180" align="center"/>
+<instance part="P+17" gate="VCC" x="345.44" y="111.76" smashed="yes">
+<attribute name="VALUE" x="345.44" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="BRID1" gate="G$1" x="355.6" y="71.12" smashed="yes">
+<attribute name="NAME" x="350.52" y="73.66" size="1.778" layer="95"/>
+</instance>
+<instance part="B2" gate="G$1" x="345.44" y="81.28" smashed="yes" rot="R270">
+<attribute name="NAME" x="350.52" y="82.55" size="1.778" layer="95" font="vector" rot="R270" align="center"/>
 </instance>
 </instances>
 <busses>
@@ -8182,11 +8191,11 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="345.44" y1="76.2" x2="345.44" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="71.12" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="347.98" y1="71.12" x2="345.44" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="B2" gate="G$1" pin="N"/>
 <pinref part="GND32" gate="1" pin="BAT_GND"/>
-<pinref part="BRID1" gate="G$1" pin="1"/>
 <junction x="345.44" y="71.12"/>
 <label x="345.44" y="71.12" size="1.778" layer="95" rot="MR0" xref="yes"/>
+<pinref part="BRID1" gate="G$1" pin="1"/>
+<pinref part="B2" gate="G$1" pin="N"/>
 </segment>
 <segment>
 <pinref part="GND3" gate="1" pin="BAT_GND"/>
@@ -8248,18 +8257,19 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </segment>
 <segment>
 <wire x1="363.22" y1="88.9" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="106.68" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="109.22" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="88.9" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="109.22" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="370.84" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="B2" gate="G$1" pin="P"/>
 <pinref part="VR1" gate="G$1" pin="IN"/>
 <pinref part="C9" gate="G$1" pin="1"/>
 <pinref part="S1" gate="G$1" pin="ON"/>
 <pinref part="P+17" gate="VCC" pin="VBAT"/>
 <junction x="345.44" y="88.9"/>
-<junction x="345.44" y="106.68"/>
+<junction x="345.44" y="109.22"/>
 <junction x="350.52" y="106.68"/>
+<pinref part="B2" gate="G$1" pin="P"/>
 </segment>
 <segment>
 <pinref part="P+9" gate="VCC" pin="VBAT"/>
