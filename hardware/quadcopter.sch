@@ -7644,7 +7644,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="327.66" y1="60.96" x2="429.26" y2="60.96" width="0.3048" layer="97" style="longdash"/>
 <text x="332.74" y="116.84" size="7.62" layer="97">Power Supply</text>
 <wire x1="154.94" y1="274.32" x2="154.94" y2="137.16" width="0.3048" layer="97" style="longdash"/>
-<wire x1="154.94" y1="134.62" x2="154.94" y2="129.54" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="137.16" x2="154.94" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <wire x1="154.94" y1="129.54" x2="327.66" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <text x="205.74" y="261.62" size="7.62" layer="97">Microcontroller</text>
 <text x="124.46" y="134.62" size="6.35" layer="97" align="top-left">LEDs</text>
@@ -7685,7 +7685,6 @@ Expected current thru LED: 15mA</text>
 <wire x1="254" y1="58.42" x2="114.3" y2="58.42" width="0.3048" layer="97" style="longdash"/>
 <wire x1="114.3" y1="58.42" x2="114.3" y2="137.16" width="0.3048" layer="97" style="longdash"/>
 <wire x1="114.3" y1="137.16" x2="154.94" y2="137.16" width="0.3048" layer="97" style="longdash"/>
-<wire x1="154.94" y1="137.16" x2="154.94" y2="134.62" width="0.3048" layer="97" style="longdash"/>
 <wire x1="261.62" y1="60.96" x2="314.96" y2="60.96" width="0.1524" layer="97" style="longdash"/>
 </plain>
 <instances>
@@ -8955,9 +8954,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="U2" gate="G$1" pin="CS_M"/>
 </segment>
 <segment>
-<pinref part="D12" gate="G$1" pin="A"/>
 <pinref part="R15" gate="G$1" pin="2"/>
-<pinref part="R15" gate="G$1" pin="1"/>
 <pinref part="R8" gate="G$1" pin="2"/>
 <wire x1="238.76" y1="111.76" x2="243.84" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="243.84" y1="111.76" x2="248.92" y2="111.76" width="0.1524" layer="91"/>
@@ -9380,6 +9377,12 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="Q8" gate="G$1" pin="D"/>
 <pinref part="D13" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="N$33" class="0">
+<segment>
+<pinref part="D12" gate="G$1" pin="A"/>
+<pinref part="R15" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>
