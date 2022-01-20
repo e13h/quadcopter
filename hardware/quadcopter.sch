@@ -7794,9 +7794,9 @@ Expected current thru LED: 15mA</text>
 <instance part="GND34" gate="1" x="55.88" y="198.12" smashed="yes">
 <attribute name="VALUE" x="55.88" y="195.58" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="C12" gate="G$1" x="83.82" y="213.36" smashed="yes">
-<attribute name="VALUE" x="80.264" y="211.201" size="1.778" layer="96"/>
-<attribute name="NAME" x="84.328" y="213.741" size="1.778" layer="95"/>
+<instance part="C12" gate="G$1" x="73.66" y="210.82" smashed="yes">
+<attribute name="VALUE" x="70.104" y="208.661" size="1.778" layer="96"/>
+<attribute name="NAME" x="74.168" y="211.201" size="1.778" layer="95"/>
 </instance>
 <instance part="GND35" gate="1" x="83.82" y="205.74" smashed="yes">
 <attribute name="VALUE" x="83.82" y="203.2" size="1.778" layer="96" align="center"/>
@@ -7813,9 +7813,9 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="32.004" y="262.001" size="1.778" layer="96"/>
 <attribute name="NAME" x="36.068" y="264.541" size="1.778" layer="95"/>
 </instance>
-<instance part="C16" gate="G$1" x="73.66" y="210.82" smashed="yes">
-<attribute name="VALUE" x="70.104" y="208.661" size="1.778" layer="96"/>
-<attribute name="NAME" x="74.168" y="211.201" size="1.778" layer="95"/>
+<instance part="C16" gate="G$1" x="83.82" y="213.36" smashed="yes">
+<attribute name="VALUE" x="80.264" y="211.201" size="1.778" layer="96"/>
+<attribute name="NAME" x="84.328" y="213.741" size="1.778" layer="95"/>
 </instance>
 <instance part="R9" gate="G$1" x="30.48" y="246.38" smashed="yes" rot="R90">
 <attribute name="VALUE" x="33.782" y="242.57" size="1.778" layer="96" rot="R90"/>
@@ -8315,10 +8315,6 @@ Expected current thru LED: 15mA</text>
 <pinref part="U2" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C12" gate="G$1" pin="2"/>
-<pinref part="GND35" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="J2" gate="G$1" pin="7"/>
 <wire x1="63.5" y1="137.16" x2="66.04" y2="137.16" width="0.1524" layer="91"/>
 <label x="66.04" y="137.16" size="1.27" layer="95" xref="yes"/>
@@ -8337,10 +8333,6 @@ Expected current thru LED: 15mA</text>
 <pinref part="J1" gate="G$1" pin="3"/>
 <wire x1="60.96" y1="165.1" x2="63.5" y2="165.1" width="0.1524" layer="91"/>
 <label x="63.5" y="165.1" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="C16" gate="G$1" pin="2"/>
-<pinref part="GND37" gate="1" pin="GND"/>
 </segment>
 <segment>
 <wire x1="251.46" y1="144.78" x2="256.54" y2="144.78" width="0.1524" layer="91"/>
@@ -8523,6 +8515,14 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="C15" gate="G$1" pin="2"/>
 <pinref part="GND54" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND37" gate="1" pin="GND"/>
+<pinref part="C12" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="GND35" gate="1" pin="GND"/>
+<pinref part="C16" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -9124,13 +9124,6 @@ Expected current thru LED: 15mA</text>
 <label x="66.04" y="106.68" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$22" class="0">
-<segment>
-<wire x1="73.66" y1="215.9" x2="83.82" y2="215.9" width="0.1524" layer="91"/>
-<pinref part="C12" gate="G$1" pin="1"/>
-<pinref part="U2" gate="G$1" pin="C1"/>
-</segment>
-</net>
 <net name="TX0" class="0">
 <segment>
 <wire x1="185.42" y1="172.72" x2="182.88" y2="172.72" width="0.1524" layer="91"/>
@@ -9221,12 +9214,6 @@ Expected current thru LED: 15mA</text>
 <pinref part="J1" gate="G$1" pin="4"/>
 <wire x1="60.96" y1="167.64" x2="68.58" y2="167.64" width="0.1524" layer="91"/>
 <pinref part="C18" gate="G$1" pin="1"/>
-</segment>
-</net>
-<net name="N$16" class="0">
-<segment>
-<pinref part="C16" gate="G$1" pin="1"/>
-<pinref part="U2" gate="G$1" pin="CAP"/>
 </segment>
 </net>
 <net name="PWM5" class="0">
@@ -9412,6 +9399,19 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="D12" gate="G$1" pin="A"/>
 <pinref part="R15" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="CAP"/>
+<pinref part="C12" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$22" class="0">
+<segment>
+<pinref part="C16" gate="G$1" pin="1"/>
+<wire x1="83.82" y1="215.9" x2="73.66" y2="215.9" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="C1"/>
 </segment>
 </net>
 </nets>
