@@ -8532,7 +8532,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="R12" gate="G$1" pin="2"/>
 <wire x1="124.46" y1="83.82" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
 <junction x="124.46" y="83.82"/>
-<label x="121.92" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+<label x="121.92" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="BAT_GND" class="0">
@@ -8566,7 +8566,7 @@ Expected current thru LED: 15mA</text>
 <wire x1="345.44" y1="71.12" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="347.98" y1="71.12" x2="345.44" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="GND32" gate="1" pin="BAT_GND"/>
-<label x="345.44" y="71.12" size="1.778" layer="95" rot="MR0" xref="yes"/>
+<label x="345.44" y="71.12" size="1.27" layer="95" rot="MR0" xref="yes"/>
 <pinref part="B2" gate="G$1" pin="N"/>
 <junction x="345.44" y="71.12"/>
 <pinref part="BRID1" gate="G$1" pin="1"/>
@@ -8631,19 +8631,19 @@ Expected current thru LED: 15mA</text>
 </segment>
 <segment>
 <wire x1="363.22" y1="88.9" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="109.22" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="88.9" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="109.22" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="370.84" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="VR1" gate="G$1" pin="IN"/>
-<pinref part="C9" gate="G$1" pin="1"/>
+<wire x1="345.44" y1="106.68" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="88.9" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="S1" gate="G$1" pin="ON"/>
 <pinref part="P+17" gate="VCC" pin="VBAT"/>
-<junction x="345.44" y="88.9"/>
-<junction x="345.44" y="109.22"/>
-<junction x="350.52" y="106.68"/>
 <pinref part="B2" gate="G$1" pin="P"/>
+<junction x="345.44" y="88.9"/>
+<pinref part="VR1" gate="G$1" pin="IN"/>
+<wire x1="370.84" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
+<pinref part="C9" gate="G$1" pin="1"/>
+<wire x1="350.52" y1="106.68" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
+<junction x="350.52" y="106.68"/>
+<junction x="345.44" y="106.68"/>
 </segment>
 <segment>
 <pinref part="P+9" gate="VCC" pin="VBAT"/>
@@ -8690,7 +8690,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="R25" gate="G$1" pin="2"/>
 <wire x1="149.86" y1="83.82" x2="147.32" y2="83.82" width="0.1524" layer="91"/>
 <junction x="149.86" y="83.82"/>
-<label x="147.32" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+<label x="147.32" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -8728,7 +8728,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="R27" gate="G$1" pin="2"/>
 <wire x1="175.26" y1="83.82" x2="172.72" y2="83.82" width="0.1524" layer="91"/>
 <junction x="175.26" y="83.82"/>
-<label x="172.72" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+<label x="172.72" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -8766,7 +8766,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="R26" gate="G$1" pin="2"/>
 <wire x1="200.66" y1="83.82" x2="198.12" y2="83.82" width="0.1524" layer="91"/>
 <junction x="200.66" y="83.82"/>
-<label x="198.12" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+<label x="198.12" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -9301,7 +9301,7 @@ Expected current thru LED: 15mA</text>
 <pinref part="R17" gate="G$1" pin="2"/>
 <wire x1="276.86" y1="38.1" x2="274.32" y2="38.1" width="0.1524" layer="91"/>
 <junction x="276.86" y="38.1"/>
-<label x="274.32" y="38.1" size="0.889" layer="95" rot="R180" xref="yes"/>
+<label x="274.32" y="38.1" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$19" class="0">
