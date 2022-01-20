@@ -7524,7 +7524,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="C9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="C10" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="S1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="POWER-SWITCH-MFS201N-9-Z" device="-SMD-EDGE"/>
-<part name="GND31" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND33" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND32" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
 <part name="GND29" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
@@ -7992,9 +7991,9 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="373.38" y="91.44" size="1.778" layer="96"/>
 <attribute name="NAME" x="373.38" y="110.49" size="1.778" layer="95"/>
 </instance>
-<instance part="C9" gate="G$1" x="350.52" y="104.14" smashed="yes">
-<attribute name="VALUE" x="346.964" y="101.981" size="1.778" layer="96"/>
-<attribute name="NAME" x="351.028" y="104.521" size="1.778" layer="95"/>
+<instance part="C9" gate="G$1" x="353.06" y="104.14" smashed="yes">
+<attribute name="VALUE" x="349.504" y="101.981" size="1.778" layer="96"/>
+<attribute name="NAME" x="353.568" y="104.521" size="1.778" layer="95"/>
 </instance>
 <instance part="C10" gate="G$1" x="401.32" y="101.6" smashed="yes">
 <attribute name="VALUE" x="397.764" y="99.441" size="1.778" layer="96"/>
@@ -8002,9 +8001,6 @@ Expected current thru LED: 15mA</text>
 </instance>
 <instance part="S1" gate="G$1" x="365.76" y="88.9" smashed="yes" rot="R180">
 <attribute name="NAME" x="368.3" y="95.25" size="1.27" layer="95" rot="R180"/>
-</instance>
-<instance part="GND31" gate="1" x="350.52" y="96.52" smashed="yes">
-<attribute name="VALUE" x="350.52" y="93.98" size="1.778" layer="96" align="center"/>
 </instance>
 <instance part="GND33" gate="1" x="365.76" y="66.04" smashed="yes">
 <attribute name="VALUE" x="365.76" y="63.5" size="1.778" layer="96" align="center"/>
@@ -8262,8 +8258,8 @@ Expected current thru LED: 15mA</text>
 <instance part="P+21" gate="G$1" x="314.96" y="45.72" smashed="yes">
 <attribute name="VALUE" x="314.96" y="48.26" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="GND27" gate="1" x="360.68" y="99.06" smashed="yes">
-<attribute name="VALUE" x="360.68" y="96.52" size="1.778" layer="96" align="center"/>
+<instance part="GND27" gate="1" x="353.06" y="96.52" smashed="yes">
+<attribute name="VALUE" x="353.06" y="93.98" size="1.778" layer="96" align="center"/>
 </instance>
 <instance part="B1" gate="G$1" x="297.18" y="200.66" smashed="yes" rot="MR0">
 <attribute name="NAME" x="302.26" y="180.34" size="1.778" layer="95" rot="MR0"/>
@@ -8401,10 +8397,6 @@ Expected current thru LED: 15mA</text>
 <wire x1="175.26" y1="233.68" x2="175.26" y2="231.14" width="0.1524" layer="91"/>
 <pinref part="D5" gate="G$1" pin="C"/>
 <pinref part="GND26" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="C9" gate="G$1" pin="2"/>
-<pinref part="GND31" gate="1" pin="GND"/>
 </segment>
 <segment>
 <wire x1="363.22" y1="71.12" x2="365.76" y2="71.12" width="0.1524" layer="91"/>
@@ -8589,12 +8581,15 @@ Expected current thru LED: 15mA</text>
 </segment>
 <segment>
 <wire x1="370.84" y1="101.6" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="363.22" y1="101.6" x2="360.68" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="99.06" x2="353.06" y2="99.06" width="0.1524" layer="91"/>
 <pinref part="VR1" gate="G$1" pin="GND"/>
 <pinref part="S1" gate="G$1" pin="OFF"/>
-<wire x1="363.22" y1="91.44" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="91.44" x2="363.22" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="99.06" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="GND27" gate="1" pin="BAT_GND"/>
-<junction x="363.22" y="101.6"/>
+<pinref part="C9" gate="G$1" pin="2"/>
+<junction x="363.22" y="99.06"/>
+<junction x="353.06" y="99.06"/>
 </segment>
 </net>
 <net name="VBAT" class="0">
@@ -8646,12 +8641,12 @@ Expected current thru LED: 15mA</text>
 <pinref part="P+17" gate="VCC" pin="VBAT"/>
 <pinref part="B2" gate="G$1" pin="P"/>
 <pinref part="VR1" gate="G$1" pin="IN"/>
-<wire x1="370.84" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="106.68" x2="353.06" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="C9" gate="G$1" pin="1"/>
-<wire x1="350.52" y1="106.68" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="353.06" y1="106.68" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
 <junction x="345.44" y="86.36"/>
 <junction x="345.44" y="106.68"/>
-<junction x="350.52" y="106.68"/>
+<junction x="353.06" y="106.68"/>
 </segment>
 <segment>
 <pinref part="P+9" gate="VCC" pin="VBAT"/>
