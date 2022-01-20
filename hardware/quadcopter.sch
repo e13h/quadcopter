@@ -7601,6 +7601,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="P+21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 <part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
 <part name="B1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BALUN" device="0805"/>
+<part name="P+26" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="GND31" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="P+27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="P+28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="GND53" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND54" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7795,17 +7801,17 @@ Expected current thru LED: 15mA</text>
 <instance part="GND35" gate="1" x="83.82" y="205.74" smashed="yes">
 <attribute name="VALUE" x="83.82" y="203.2" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="C13" gate="G$1" x="60.96" y="256.54" smashed="yes">
-<attribute name="VALUE" x="57.404" y="254.381" size="1.778" layer="96"/>
-<attribute name="NAME" x="61.468" y="256.921" size="1.778" layer="95"/>
+<instance part="C13" gate="G$1" x="66.04" y="261.62" smashed="yes">
+<attribute name="VALUE" x="62.484" y="259.461" size="1.778" layer="96"/>
+<attribute name="NAME" x="66.548" y="262.001" size="1.778" layer="95"/>
 </instance>
-<instance part="C14" gate="G$1" x="43.18" y="256.54" smashed="yes">
-<attribute name="VALUE" x="39.624" y="254.381" size="1.778" layer="96"/>
-<attribute name="NAME" x="43.688" y="256.921" size="1.778" layer="95"/>
-</instance>
-<instance part="C15" gate="G$1" x="43.18" y="264.16" smashed="yes">
+<instance part="C14" gate="G$1" x="43.18" y="264.16" smashed="yes">
 <attribute name="VALUE" x="39.624" y="262.001" size="1.778" layer="96"/>
 <attribute name="NAME" x="43.688" y="264.541" size="1.778" layer="95"/>
+</instance>
+<instance part="C15" gate="G$1" x="35.56" y="264.16" smashed="yes">
+<attribute name="VALUE" x="32.004" y="262.001" size="1.778" layer="96"/>
+<attribute name="NAME" x="36.068" y="264.541" size="1.778" layer="95"/>
 </instance>
 <instance part="C16" gate="G$1" x="73.66" y="210.82" smashed="yes">
 <attribute name="VALUE" x="70.104" y="208.661" size="1.778" layer="96"/>
@@ -7859,11 +7865,11 @@ Expected current thru LED: 15mA</text>
 <instance part="P+7" gate="G$1" x="30.48" y="254" smashed="yes">
 <attribute name="VALUE" x="30.48" y="256.54" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="P+8" gate="G$1" x="43.18" y="269.24" smashed="yes">
-<attribute name="VALUE" x="43.18" y="271.78" size="1.778" layer="96" rot="R180" align="center"/>
+<instance part="P+8" gate="G$1" x="50.8" y="261.62" smashed="yes">
+<attribute name="VALUE" x="50.8" y="264.16" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="P+10" gate="G$1" x="60.96" y="261.62" smashed="yes">
-<attribute name="VALUE" x="60.96" y="264.16" size="1.778" layer="96" rot="R180" align="center"/>
+<instance part="P+10" gate="G$1" x="55.88" y="261.62" smashed="yes">
+<attribute name="VALUE" x="55.88" y="264.16" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
 <instance part="P+11" gate="G$1" x="83.82" y="223.52" smashed="yes">
 <attribute name="VALUE" x="83.82" y="226.06" size="1.778" layer="96" rot="R180" align="center"/>
@@ -8264,6 +8270,24 @@ Expected current thru LED: 15mA</text>
 <instance part="B1" gate="G$1" x="297.18" y="200.66" smashed="yes" rot="MR0">
 <attribute name="NAME" x="302.26" y="180.34" size="1.778" layer="95" rot="MR0"/>
 </instance>
+<instance part="P+26" gate="G$1" x="66.04" y="266.7" smashed="yes">
+<attribute name="VALUE" x="66.04" y="269.24" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="GND31" gate="1" x="66.04" y="254" smashed="yes">
+<attribute name="VALUE" x="66.04" y="251.46" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="P+27" gate="G$1" x="43.18" y="269.24" smashed="yes">
+<attribute name="VALUE" x="43.18" y="271.78" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="P+28" gate="G$1" x="35.56" y="269.24" smashed="yes">
+<attribute name="VALUE" x="35.56" y="271.78" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="GND53" gate="1" x="43.18" y="256.54" smashed="yes">
+<attribute name="VALUE" x="43.18" y="254" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="GND54" gate="1" x="35.56" y="256.54" smashed="yes">
+<attribute name="VALUE" x="35.56" y="254" size="1.778" layer="96" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8487,6 +8511,18 @@ Expected current thru LED: 15mA</text>
 <pinref part="U1" gate="G$1" pin="CLKI"/>
 <wire x1="254" y1="175.26" x2="251.46" y2="175.26" width="0.1524" layer="91"/>
 <label x="254" y="175.26" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="C13" gate="G$1" pin="2"/>
+<pinref part="GND31" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="C14" gate="G$1" pin="2"/>
+<pinref part="GND53" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="C15" gate="G$1" pin="2"/>
+<pinref part="GND54" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -8897,14 +8933,6 @@ Expected current thru LED: 15mA</text>
 <pinref part="P+7" gate="G$1" pin="2V5"/>
 </segment>
 <segment>
-<pinref part="C15" gate="G$1" pin="1"/>
-<pinref part="P+8" gate="G$1" pin="2V5"/>
-</segment>
-<segment>
-<pinref part="C13" gate="G$1" pin="1"/>
-<pinref part="P+10" gate="G$1" pin="2V5"/>
-</segment>
-<segment>
 <wire x1="83.82" y1="220.98" x2="73.66" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="P+11" gate="G$1" pin="2V5"/>
 <pinref part="U2" gate="G$1" pin="DEN_A/G"/>
@@ -8988,6 +9016,28 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="R18" gate="G$1" pin="2"/>
 <pinref part="P+21" gate="G$1" pin="2V5"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="VDDIO"/>
+<pinref part="P+10" gate="G$1" pin="2V5"/>
+<wire x1="55.88" y1="259.08" x2="55.88" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C13" gate="G$1" pin="1"/>
+<pinref part="P+26" gate="G$1" pin="2V5"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="VDD"/>
+<pinref part="P+8" gate="G$1" pin="2V5"/>
+<wire x1="50.8" y1="259.08" x2="50.8" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C14" gate="G$1" pin="1"/>
+<pinref part="P+27" gate="G$1" pin="2V5"/>
+</segment>
+<segment>
+<pinref part="C15" gate="G$1" pin="1"/>
+<pinref part="P+28" gate="G$1" pin="2V5"/>
 </segment>
 </net>
 <net name="PG0" class="0">
@@ -9079,26 +9129,6 @@ Expected current thru LED: 15mA</text>
 <wire x1="73.66" y1="215.9" x2="83.82" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="C12" gate="G$1" pin="1"/>
 <pinref part="U2" gate="G$1" pin="C1"/>
-</segment>
-</net>
-<net name="N$24" class="0">
-<segment>
-<pinref part="C13" gate="G$1" pin="2"/>
-<wire x1="60.96" y1="251.46" x2="55.88" y2="251.46" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="VDDIO"/>
-</segment>
-</net>
-<net name="N$25" class="0">
-<segment>
-<pinref part="C14" gate="G$1" pin="1"/>
-<pinref part="C15" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$26" class="0">
-<segment>
-<pinref part="C14" gate="G$1" pin="2"/>
-<wire x1="43.18" y1="251.46" x2="50.8" y2="251.46" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="VDD"/>
 </segment>
 </net>
 <net name="TX0" class="0">
