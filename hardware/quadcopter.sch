@@ -7170,7 +7170,29 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="1.75" y1="-1.5" x2="1.75" y2="1.5" width="0.127" layer="21"/>
 <wire x1="1.75" y1="1.5" x2="-1.75" y2="1.5" width="0.127" layer="21"/>
 </package>
+<package name="NET_BRIDGE_5X5">
+<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
+</package>
 </packages>
+<packages3d>
+<package3d name="SI2302DS" urn="" wip_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1" locally_modified="yes" type="model" footprint_synced="no">
+<description>3-SOT23, 0.95 mm pitch, 2.37 mm span, 2.92 X 1.30 X 1.12 mm body
+ &lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.37 mm span with body size 2.92 X 1.30 X 1.12 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="SI2302DS"/>
+</packageinstances>
+<metadata pins="3" pitch="0.95" bodyLength="2.92" bodyWidth="1.3" height="1.12" ipcFamily="SOT23" ipcName="SOT95P237X112-3N" mountingType="SMD"/>
+</package3d>
+<package3d name="LTST-C170EKT" urn="" wip_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" locally_modified="yes" type="model" footprint_synced="no">
+<description>Chip LED, 2.00 X 1.25 X 1.20 mm body
+ &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.20 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="LTST-C170EKT"/>
+</packageinstances>
+</package3d>
+</packages3d>
 <symbols>
 <symbol name="NMOS">
 <pin name="G" x="-5.08" y="0" length="point"/>
@@ -7224,6 +7246,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <text x="-12.7" y="-20.32" size="0.9" layer="95" font="vector" ratio="9">&gt;NAME</text>
 <wire x1="-15.24" y1="-17.78" x2="15.24" y2="-17.78" width="0.254" layer="94"/>
 </symbol>
+<symbol name="NET_BRIDGE">
+<pin name="1" x="-7.62" y="0" length="middle"/>
+<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
+<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="N-MOSFET" prefix="Q">
@@ -7237,6 +7265,9 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <connect gate="G$1" pin="G" pad="G"/>
 <connect gate="G$1" pin="S" pad="S"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="CREATOR" value="Michael Shao"/>
@@ -7257,6 +7288,9 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <connect gate="G$1" pin="A" pad="A"/>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="CREATOR" value="Michael Shao"/>
@@ -7296,6 +7330,26 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <attribute name="CREATOR" value="Michael Shao"/>
 <attribute name="DIST" value="Digikey"/>
 <attribute name="DISTPN" value="497-14946-1-ND"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="NET_BRIDGE" prefix="BRID">
+<gates>
+<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="_5X5" package="NET_BRIDGE_5X5">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="N/A"/>
+<attribute name="DISTPN" value="N/A"/>
 </technology>
 </technologies>
 </device>
@@ -7361,45 +7415,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <attribute name="CUSTOM" value=""/>
 <attribute name="DIST" value="Digikey"/>
 <attribute name="DISTPN" value="350-2312-1-ND"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="custom" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
-<packages>
-<package name="NET_BRIDGE_5X5" library_version="44">
-<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-<text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
-</package>
-</packages>
-<symbols>
-<symbol name="NET_BRIDGE" library_version="44">
-<pin name="1" x="-7.62" y="0" length="middle"/>
-<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
-<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="NET_BRIDGE" prefix="BRID" library_version="44">
-<gates>
-<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_5X5" package="NET_BRIDGE_5X5">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="N/A"/>
-<attribute name="DISTPN" value="N/A"/>
 </technology>
 </technologies>
 </device>
@@ -7517,18 +7532,18 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="GND29" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND30" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="C11" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-POL_" device="47UF-SMD-1206-TAJA" package3d_urn="urn:adsk.eagle:package:11793387/1" value="47uF"/>
-<part name="Q1" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q2" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q3" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q4" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="D6" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="Q1" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="Q2" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="Q3" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="Q4" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="D6" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
 <part name="U2" library="custom_michael_shao" deviceset="IMU_LSM9DS1" device="-LSM9DS1"/>
 <part name="R8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="D7" library="LED" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
 <part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="P+17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
 <part name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BATTERY" device="-SMD"/>
-<part name="BRID1" library="custom" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="NET_BRIDGE" device="_5X5"/>
+<part name="BRID1" library="custom_michael_shao" deviceset="NET_BRIDGE" device="_5X5"/>
 </parts>
 <sheets>
 <sheet>
