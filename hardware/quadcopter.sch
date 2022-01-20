@@ -7522,7 +7522,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="C8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="A1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="ANTENNA" device="-BOARD"/>
 <part name="VR1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="TPS73633-DBVT" device="2.5V" value="2.5V"/>
-<part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="C9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="C10" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-NP_" device="SMD-2012-0805_CERAMIC-1UF" value="1uF"/>
 <part name="S1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="POWER-SWITCH-MFS201N-9-Z" device="-SMD-EDGE"/>
@@ -7602,6 +7601,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="D14" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
 <part name="R18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="P+21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7995,9 +7995,6 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="373.38" y="91.44" size="1.778" layer="96"/>
 <attribute name="NAME" x="373.38" y="110.49" size="1.778" layer="95"/>
 </instance>
-<instance part="GND27" gate="1" x="358.14" y="99.06" smashed="yes">
-<attribute name="VALUE" x="358.14" y="96.52" size="1.778" layer="96" align="center"/>
-</instance>
 <instance part="C9" gate="G$1" x="350.52" y="104.14" smashed="yes">
 <attribute name="VALUE" x="346.964" y="101.981" size="1.778" layer="96"/>
 <attribute name="NAME" x="351.028" y="104.521" size="1.778" layer="95"/>
@@ -8006,8 +8003,8 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="397.764" y="99.441" size="1.778" layer="96"/>
 <attribute name="NAME" x="401.828" y="101.981" size="1.778" layer="95"/>
 </instance>
-<instance part="S1" gate="G$1" x="365.76" y="91.44" smashed="yes" rot="R180">
-<attribute name="NAME" x="368.3" y="97.79" size="1.27" layer="95" rot="R180"/>
+<instance part="S1" gate="G$1" x="365.76" y="88.9" smashed="yes" rot="R180">
+<attribute name="NAME" x="368.3" y="95.25" size="1.27" layer="95" rot="R180"/>
 </instance>
 <instance part="GND31" gate="1" x="350.52" y="96.52" smashed="yes">
 <attribute name="VALUE" x="350.52" y="93.98" size="1.778" layer="96" align="center"/>
@@ -8268,6 +8265,9 @@ Expected current thru LED: 15mA</text>
 <instance part="P+21" gate="G$1" x="314.96" y="45.72" smashed="yes">
 <attribute name="VALUE" x="314.96" y="48.26" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
+<instance part="GND27" gate="1" x="360.68" y="99.06" smashed="yes">
+<attribute name="VALUE" x="360.68" y="96.52" size="1.778" layer="96" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8403,15 +8403,6 @@ Expected current thru LED: 15mA</text>
 <pinref part="GND26" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="370.84" y1="101.6" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="363.22" y1="101.6" x2="358.14" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="VR1" gate="G$1" pin="GND"/>
-<pinref part="GND27" gate="1" pin="GND"/>
-<pinref part="S1" gate="G$1" pin="OFF"/>
-<wire x1="363.22" y1="93.98" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
-<junction x="363.22" y="101.6"/>
-</segment>
-<segment>
 <pinref part="C9" gate="G$1" pin="2"/>
 <pinref part="GND31" gate="1" pin="GND"/>
 </segment>
@@ -8494,6 +8485,16 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="Q8" gate="G$1" pin="S"/>
 <pinref part="GND44" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="TST"/>
+<wire x1="251.46" y1="208.28" x2="254" y2="208.28" width="0.1524" layer="91"/>
+<label x="254" y="208.28" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="CLKI"/>
+<wire x1="254" y1="175.26" x2="251.46" y2="175.26" width="0.1524" layer="91"/>
+<label x="254" y="175.26" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -8586,6 +8587,15 @@ Expected current thru LED: 15mA</text>
 <pinref part="GND10" gate="1" pin="BAT_GND"/>
 <pinref part="Q4" gate="G$1" pin="S"/>
 </segment>
+<segment>
+<wire x1="370.84" y1="101.6" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="101.6" x2="360.68" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="VR1" gate="G$1" pin="GND"/>
+<pinref part="S1" gate="G$1" pin="OFF"/>
+<wire x1="363.22" y1="91.44" x2="363.22" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="GND27" gate="1" pin="BAT_GND"/>
+<junction x="363.22" y="101.6"/>
+</segment>
 </net>
 <net name="VBAT" class="0">
 <segment>
@@ -8629,20 +8639,19 @@ Expected current thru LED: 15mA</text>
 <pinref part="D3" gate="G$1" pin="C"/>
 </segment>
 <segment>
-<wire x1="363.22" y1="88.9" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="86.36" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="109.22" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="106.68" x2="345.44" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="345.44" y1="88.9" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="345.44" y1="106.68" x2="345.44" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="S1" gate="G$1" pin="ON"/>
 <pinref part="P+17" gate="VCC" pin="VBAT"/>
 <pinref part="B2" gate="G$1" pin="P"/>
-<junction x="345.44" y="88.9"/>
 <pinref part="VR1" gate="G$1" pin="IN"/>
 <wire x1="370.84" y1="106.68" x2="350.52" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="C9" gate="G$1" pin="1"/>
 <wire x1="350.52" y1="106.68" x2="345.44" y2="106.68" width="0.1524" layer="91"/>
-<junction x="350.52" y="106.68"/>
+<junction x="345.44" y="86.36"/>
 <junction x="345.44" y="106.68"/>
+<junction x="350.52" y="106.68"/>
 </segment>
 <segment>
 <pinref part="P+9" gate="VCC" pin="VBAT"/>
@@ -8871,11 +8880,6 @@ Expected current thru LED: 15mA</text>
 <label x="66.04" y="101.6" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="J4" gate="G$1" pin="2"/>
-<wire x1="68.58" y1="83.82" x2="73.66" y2="83.82" width="0.1524" layer="91"/>
-<label x="73.66" y="83.82" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
 <wire x1="416.56" y1="109.22" x2="416.56" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="393.7" y1="106.68" x2="401.32" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="401.32" y1="106.68" x2="401.32" y2="104.14" width="0.1524" layer="91"/>
@@ -9021,7 +9025,7 @@ Expected current thru LED: 15mA</text>
 <segment>
 <pinref part="VR1" gate="G$1" pin="EN"/>
 <pinref part="S1" gate="G$1" pin="C"/>
-<wire x1="370.84" y1="91.44" x2="370.84" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="370.84" y1="88.9" x2="370.84" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
