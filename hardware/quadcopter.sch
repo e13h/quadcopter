@@ -5565,6 +5565,71 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </deviceset>
 </devicesets>
 </library>
+<library name="LED">
+<packages>
+<package name="LED-350-2312-1-ND-REVERSE">
+<smd name="P$1" x="-1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
+<smd name="P$2" x="1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
+<hole x="0" y="0" drill="1.8"/>
+<wire x1="-1.6" y1="0.8" x2="1.6" y2="0.8" width="0.05" layer="21"/>
+<wire x1="1.6" y1="0.8" x2="1.6" y2="-0.8" width="0.05" layer="21"/>
+<wire x1="1.6" y1="-0.8" x2="-1.6" y2="-0.8" width="0.05" layer="21"/>
+<wire x1="-1.6" y1="-0.8" x2="-1.6" y2="0.8" width="0.05" layer="21"/>
+<wire x1="-2.4" y1="-1.9" x2="-2.4" y2="2.4" width="0.05" layer="39"/>
+<wire x1="-2.4" y1="2.4" x2="2.4" y2="2.4" width="0.05" layer="39"/>
+<wire x1="2.4" y1="2.4" x2="2.4" y2="-1.9" width="0.05" layer="39"/>
+<wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.05" layer="39"/>
+<text x="0" y="1.5" size="0.9" layer="25" font="vector" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-1.5" size="0.9" layer="27" font="vector" align="top-center">&gt;VALUE</text>
+<wire x1="-1.75" y1="-1" x2="-1.75" y2="1" width="0.05" layer="21"/>
+<wire x1="-1.75" y1="1" x2="-0.75" y2="1" width="0.05" layer="21"/>
+<wire x1="-1.75" y1="-1" x2="-0.75" y2="-1" width="0.05" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="RESOLVED-DIODE-LED_">
+<description>Light emitting diode</description>
+<text x="-3.048" y="1.778" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.302" y="-5.207" size="1.778" layer="96">&gt;VALUE</text>
+<wire x1="0" y1="-1.905" x2="1.27" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="0.635" y1="-3.175" x2="1.27" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.905" x2="2.54" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-3.175" x2="1.905" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="2.54" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="2.54" y1="1.27" x2="2.54" y2="0" width="0.254" layer="94"/>
+<pin name="A" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+<pin name="C" x="5.08" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="LED-350-2312-1-ND" prefix="D" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="RESOLVED-DIODE-LED_" x="-2.54" y="0"/>
+</gates>
+<devices>
+<device name="-REVERSE" package="LED-350-2312-1-ND-REVERSE">
+<connects>
+<connect gate="G$1" pin="A" pad="P$2"/>
+<connect gate="G$1" pin="C" pad="P$1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Evan Smith"/>
+<attribute name="CUSTOM" value=""/>
+<attribute name="DIST" value="Digikey"/>
+<attribute name="DISTPN" value="350-2312-1-ND"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -5683,6 +5748,9 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="D6" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
 <part name="U2" library="custom_michael_shao" deviceset="IMU_LSM9DS1" device="-LSM9DS1"/>
 <part name="BRID1" library="custom_michael_shao" deviceset="NET_BRIDGE" device="_5X5"/>
+<part name="R8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="D7" library="LED" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
+<part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5727,6 +5795,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="154.94" y1="274.32" x2="154.94" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <wire x1="154.94" y1="129.54" x2="327.66" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <text x="205.74" y="261.62" size="7.62" layer="97">Microcontroller</text>
+<wire x1="154.94" y1="129.54" x2="154.94" y2="86.36" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="86.36" x2="154.94" y2="60.96" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="60.96" x2="220.98" y2="60.96" width="0.3048" layer="97" style="longdash"/>
+<text x="157.48" y="127" size="6.35" layer="97" align="top-left">LEDs</text>
+<text x="157.48" y="63.5" size="3.175" layer="97">Ground Effect LEDs</text>
+<wire x1="220.98" y1="60.96" x2="327.66" y2="60.96" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="86.36" x2="220.98" y2="86.36" width="0.1524" layer="97" style="longdash"/>
+<wire x1="220.98" y1="86.36" x2="220.98" y2="60.96" width="0.1524" layer="97" style="longdash"/>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes"/>
@@ -6094,6 +6170,17 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="BRID1" gate="G$1" x="355.6" y="71.12" smashed="yes">
 <attribute name="NAME" x="350.52" y="73.66" size="1.778" layer="95"/>
 </instance>
+<instance part="R8" gate="G$1" x="172.72" y="76.2" smashed="yes">
+<attribute name="VALUE" x="168.91" y="72.898" size="1.778" layer="96"/>
+<attribute name="NAME" x="168.91" y="77.6986" size="1.778" layer="95"/>
+</instance>
+<instance part="D7" gate="G$1" x="180.34" y="76.2" smashed="yes">
+<attribute name="NAME" x="177.292" y="77.978" size="1.778" layer="95"/>
+<attribute name="VALUE" x="177.038" y="70.993" size="1.778" layer="96"/>
+</instance>
+<instance part="GND28" gate="1" x="187.96" y="73.66" smashed="yes">
+<attribute name="VALUE" x="187.96" y="71.12" size="1.778" layer="96" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -6257,6 +6344,11 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="411.48" y1="93.98" x2="411.48" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="GND30" gate="1" pin="GND"/>
 <pinref part="C11" gate="G$1" pin="-"/>
+</segment>
+<segment>
+<pinref part="GND28" gate="1" pin="GND"/>
+<wire x1="187.96" y1="76.2" x2="185.42" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="D7" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -6889,6 +6981,24 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <segment>
 <pinref part="C16" gate="G$1" pin="1"/>
 <pinref part="U2" gate="G$1" pin="CAP"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="R8" gate="G$1" pin="2"/>
+<pinref part="D7" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="PG5" class="0">
+<segment>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="167.64" y1="76.2" x2="165.1" y2="76.2" width="0.1524" layer="91"/>
+<label x="165.1" y="76.2" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PG5(OC0B)"/>
+<wire x1="185.42" y1="139.7" x2="182.88" y2="139.7" width="0.1524" layer="91"/>
+<label x="182.88" y="139.7" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
