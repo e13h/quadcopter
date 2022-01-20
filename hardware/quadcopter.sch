@@ -7527,8 +7527,8 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="D7" library="LED" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
 <part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="P+17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
-<part name="BRID1" library="custom" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="NET_BRIDGE" device="_5X5"/>
 <part name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BATTERY" device="-SMD"/>
+<part name="BRID1" library="custom" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="NET_BRIDGE" device="_5X5"/>
 </parts>
 <sheets>
 <sheet>
@@ -7956,11 +7956,11 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="P+17" gate="VCC" x="345.44" y="111.76" smashed="yes">
 <attribute name="VALUE" x="345.44" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="BRID1" gate="G$1" x="355.6" y="71.12" smashed="yes">
-<attribute name="NAME" x="350.52" y="73.66" size="1.778" layer="95"/>
-</instance>
 <instance part="B2" gate="G$1" x="345.44" y="81.28" smashed="yes" rot="R270">
 <attribute name="NAME" x="350.52" y="82.55" size="1.778" layer="95" font="vector" rot="R270" align="center"/>
+</instance>
+<instance part="BRID1" gate="G$1" x="355.6" y="71.12" smashed="yes">
+<attribute name="NAME" x="350.52" y="73.66" size="1.778" layer="95"/>
 </instance>
 </instances>
 <busses>
@@ -8192,10 +8192,10 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="345.44" y1="71.12" x2="345.44" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="347.98" y1="71.12" x2="345.44" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="GND32" gate="1" pin="BAT_GND"/>
-<junction x="345.44" y="71.12"/>
 <label x="345.44" y="71.12" size="1.778" layer="95" rot="MR0" xref="yes"/>
-<pinref part="BRID1" gate="G$1" pin="1"/>
 <pinref part="B2" gate="G$1" pin="N"/>
+<junction x="345.44" y="71.12"/>
+<pinref part="BRID1" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="GND3" gate="1" pin="BAT_GND"/>
