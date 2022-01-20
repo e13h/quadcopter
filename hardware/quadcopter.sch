@@ -7549,10 +7549,8 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R11" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
 <part name="GND38" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND39" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
-<part name="R12" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-300" value="300"/>
 <part name="P+18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 <part name="P+19" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
-<part name="R13" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-300" value="300"/>
 <part name="D9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="DIODE-LED_" device="SMD-2012-0805-GREEN" value="green"/>
 <part name="Q6" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
 <part name="GND40" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
@@ -7566,17 +7564,44 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R16" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
 <part name="GND42" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="P+20" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
-<part name="P+21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
-<part name="R17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
-<part name="R18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="R20" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-150" value="150"/>
+<part name="R21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-150" value="150"/>
+<part name="Q9" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="GND45" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND46" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="R12" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="D17" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
+<part name="P+22" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="R13" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="P+23" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="P+24" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="P+25" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
+<part name="R22" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="R23" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="R24" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="D18" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
+<part name="D19" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
+<part name="D20" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
+<part name="Q10" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="Q11" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="Q12" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="GND47" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND48" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND49" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="R25" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="R26" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="R27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="GND50" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND51" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="GND52" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="R17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="GND43" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
+<part name="Q8" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
+<part name="GND44" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="D13" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
 <part name="D14" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
-<part name="D15" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
-<part name="D16" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" package3d_urn="urn:adsk.wipprod:fs.file:vf.ytkNY4OqRLC0HNU8MfIyog?version=1" value="red"/>
-<part name="Q8" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS" package3d_urn="urn:adsk.wipprod:fs.file:vf.6IIbgNpqRVCn1gDN5a1o5A?version=1"/>
-<part name="GND43" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
-<part name="GND44" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
-<part name="R19" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
+<part name="R18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
+<part name="P+21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="2V5" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7618,19 +7643,50 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="327.66" y1="129.54" x2="327.66" y2="60.96" width="0.3048" layer="97" style="longdash"/>
 <wire x1="327.66" y1="60.96" x2="429.26" y2="60.96" width="0.3048" layer="97" style="longdash"/>
 <text x="332.74" y="116.84" size="7.62" layer="97">Power Supply</text>
-<wire x1="154.94" y1="274.32" x2="154.94" y2="129.54" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="274.32" x2="154.94" y2="137.16" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="134.62" x2="154.94" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <wire x1="154.94" y1="129.54" x2="327.66" y2="129.54" width="0.3048" layer="97" style="longdash"/>
 <text x="205.74" y="261.62" size="7.62" layer="97">Microcontroller</text>
-<wire x1="154.94" y1="129.54" x2="154.94" y2="60.96" width="0.3048" layer="97" style="longdash"/>
-<text x="157.48" y="127" size="6.35" layer="97" align="top-left">LEDs</text>
+<text x="124.46" y="134.62" size="6.35" layer="97" align="top-left">LEDs</text>
 <text x="236.22" y="121.92" size="1.905" layer="97" align="bottom-center">Ground Effects</text>
-<wire x1="154.94" y1="60.96" x2="327.66" y2="60.96" width="0.3048" layer="97" style="longdash"/>
 <text x="309.88" y="119.38" size="1.905" layer="97" align="bottom-center">Front-Right Flashing Laser</text>
 <text x="274.32" y="119.38" size="1.905" layer="97" align="bottom-center">Front-Left Flashing Laser</text>
 <wire x1="292.1" y1="121.92" x2="292.1" y2="68.58" width="0.1524" layer="97" style="longdash"/>
 <wire x1="256.54" y1="121.92" x2="256.54" y2="68.58" width="0.1524" layer="97" style="longdash"/>
-<wire x1="220.98" y1="121.92" x2="220.98" y2="68.58" width="0.1524" layer="97" style="longdash"/>
-<text x="195.58" y="114.3" size="1.905" layer="97" align="center-right">Motor Status Lights</text>
+<wire x1="213.36" y1="121.92" x2="213.36" y2="68.58" width="0.1524" layer="97" style="longdash"/>
+<text x="180.34" y="124.46" size="1.905" layer="97" align="center-right">Motor Status Lights</text>
+<text x="238.76" y="116.84" size="0.889" layer="97" align="center-right">Forward voltage (for each LED): 2.0V
+Voltage drop (for each LED): 0.5V
+Total voltage drop for LEDs in series: 1.0V
+Resistance: 100 Ohms
+Expected current thru each LED: 15mA</text>
+<text x="311.404" y="109.22" size="0.889" layer="97" align="center-right">Forward voltage: 2.1V
+Voltage drop: 0.4V
+Resistance: 150 Ohms
+Expected current thru LED: 14mA</text>
+<text x="276.86" y="109.22" size="0.889" layer="97" align="center-right">Forward voltage: 2.1V
+Voltage drop: 0.4V
+Resistance: 150 Ohms
+Expected current thru LED: 14mA</text>
+<text x="180.34" y="119.38" size="0.889" layer="97" align="center-right">Forward voltage: 2.0V
+Voltage drop: 0.5V
+Resistance: 100 Ohms
+Expected current thru LED: 20 mA</text>
+<text x="279.4" y="50.8" size="0.889" layer="97" align="center-right">Forward voltage (for each LED): 2.0V
+Voltage drop (for each LED): 0.5V
+Total voltage drop: 1.0V
+Resistance: 100 Ohms
+Expected current thru LED: 15mA</text>
+<text x="294.64" y="53.34" size="1.905" layer="97" align="bottom-center">Taillights</text>
+<wire x1="327.66" y1="60.96" x2="320.04" y2="60.96" width="0.3048" layer="97" style="longdash"/>
+<wire x1="320.04" y1="60.96" x2="320.04" y2="17.78" width="0.3048" layer="97" style="longdash"/>
+<wire x1="320.04" y1="17.78" x2="254" y2="17.78" width="0.3048" layer="97" style="longdash"/>
+<wire x1="254" y1="17.78" x2="254" y2="58.42" width="0.3048" layer="97" style="longdash"/>
+<wire x1="254" y1="58.42" x2="114.3" y2="58.42" width="0.3048" layer="97" style="longdash"/>
+<wire x1="114.3" y1="58.42" x2="114.3" y2="137.16" width="0.3048" layer="97" style="longdash"/>
+<wire x1="114.3" y1="137.16" x2="154.94" y2="137.16" width="0.3048" layer="97" style="longdash"/>
+<wire x1="154.94" y1="137.16" x2="154.94" y2="134.62" width="0.3048" layer="97" style="longdash"/>
+<wire x1="261.62" y1="60.96" x2="314.96" y2="60.96" width="0.1524" layer="97" style="longdash"/>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes"/>
@@ -8029,19 +8085,11 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="GND39" gate="1" x="314.96" y="76.2" smashed="yes">
 <attribute name="VALUE" x="314.96" y="73.66" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="R12" gate="G$1" x="314.96" y="101.6" smashed="yes" rot="R90">
-<attribute name="VALUE" x="318.262" y="97.79" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="313.4614" y="97.79" size="1.778" layer="95" rot="R90"/>
-</instance>
 <instance part="P+18" gate="G$1" x="314.96" y="109.22" smashed="yes">
 <attribute name="VALUE" x="314.96" y="111.76" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
 <instance part="P+19" gate="G$1" x="281.94" y="109.22" smashed="yes">
 <attribute name="VALUE" x="281.94" y="111.76" size="1.778" layer="96" rot="R180" align="center"/>
-</instance>
-<instance part="R13" gate="G$1" x="281.94" y="101.6" smashed="yes" rot="R90">
-<attribute name="VALUE" x="285.242" y="97.79" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="280.4414" y="97.79" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="D9" gate="G$1" x="281.94" y="93.98" smashed="yes" rot="R270">
 <attribute name="NAME" x="283.718" y="97.028" size="1.778" layer="95" rot="R270"/>
@@ -8089,45 +8137,137 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <instance part="P+20" gate="G$1" x="243.84" y="116.84" smashed="yes">
 <attribute name="VALUE" x="243.84" y="119.38" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="P+21" gate="G$1" x="205.74" y="121.92" smashed="yes">
-<attribute name="VALUE" x="205.74" y="124.46" size="1.778" layer="96" rot="R180" align="center"/>
+<instance part="R20" gate="G$1" x="314.96" y="101.6" smashed="yes" rot="R90">
+<attribute name="VALUE" x="318.262" y="97.79" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="313.4614" y="97.79" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="R17" gate="G$1" x="200.66" y="111.76" smashed="yes" rot="R90">
-<attribute name="VALUE" x="203.962" y="107.95" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="199.1614" y="107.95" size="1.778" layer="95" rot="R90"/>
+<instance part="R21" gate="G$1" x="281.94" y="101.6" smashed="yes" rot="R90">
+<attribute name="VALUE" x="285.242" y="97.79" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="280.4414" y="97.79" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="R18" gate="G$1" x="210.82" y="111.76" smashed="yes" rot="R90">
-<attribute name="VALUE" x="214.122" y="107.95" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="209.3214" y="107.95" size="1.778" layer="95" rot="R90"/>
+<instance part="Q9" gate="G$1" x="132.08" y="83.82" smashed="yes">
+<attribute name="NAME" x="124.46" y="88.9" size="0.9" layer="95" font="vector"/>
 </instance>
-<instance part="D13" gate="G$1" x="210.82" y="101.6" smashed="yes" rot="R270">
-<attribute name="NAME" x="205.74" y="106.68" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="205.74" y="101.6" size="0.9" layer="96" font="vector" rot="R270"/>
+<instance part="GND45" gate="1" x="132.08" y="76.2" smashed="yes">
+<attribute name="VALUE" x="132.08" y="73.66" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="D14" gate="G$1" x="210.82" y="91.44" smashed="yes" rot="R270">
-<attribute name="NAME" x="205.74" y="96.52" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="205.74" y="91.44" size="0.9" layer="96" font="vector" rot="R270"/>
+<instance part="GND46" gate="1" x="124.46" y="71.12" smashed="yes">
+<attribute name="VALUE" x="124.46" y="68.58" size="1.778" layer="96" align="center"/>
 </instance>
-<instance part="D15" gate="G$1" x="200.66" y="101.6" smashed="yes" rot="R270">
-<attribute name="NAME" x="195.58" y="106.68" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="195.58" y="101.6" size="0.9" layer="96" font="vector" rot="R270"/>
+<instance part="R12" gate="G$1" x="124.46" y="78.74" smashed="yes" rot="R90">
+<attribute name="VALUE" x="127.762" y="74.93" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="122.9614" y="74.93" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="D16" gate="G$1" x="200.66" y="91.44" smashed="yes" rot="R270">
-<attribute name="NAME" x="195.58" y="96.52" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="195.58" y="91.44" size="0.9" layer="96" font="vector" rot="R270"/>
+<instance part="D17" gate="G$1" x="132.08" y="93.98" smashed="yes" rot="R270">
+<attribute name="NAME" x="127" y="99.06" size="0.9" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="127" y="93.98" size="0.9" layer="96" font="vector" rot="R270"/>
 </instance>
-<instance part="Q8" gate="G$1" x="205.74" y="78.74" smashed="yes">
-<attribute name="NAME" x="198.12" y="83.82" size="0.9" layer="95" font="vector"/>
+<instance part="P+22" gate="G$1" x="132.08" y="111.76" smashed="yes">
+<attribute name="VALUE" x="132.08" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="GND43" gate="1" x="205.74" y="71.12" smashed="yes">
-<attribute name="VALUE" x="205.74" y="68.58" size="1.778" layer="96" align="center"/>
+<instance part="R13" gate="G$1" x="132.08" y="104.14" smashed="yes" rot="R90">
+<attribute name="VALUE" x="135.382" y="100.33" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="130.5814" y="100.33" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="GND44" gate="1" x="198.12" y="66.04" smashed="yes">
-<attribute name="VALUE" x="198.12" y="63.5" size="1.778" layer="96" align="center"/>
+<instance part="P+23" gate="G$1" x="157.48" y="111.76" smashed="yes">
+<attribute name="VALUE" x="157.48" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
-<instance part="R19" gate="G$1" x="198.12" y="73.66" smashed="yes" rot="R90">
-<attribute name="VALUE" x="201.422" y="69.85" size="1.778" layer="96" rot="R90"/>
-<attribute name="NAME" x="196.6214" y="69.85" size="1.778" layer="95" rot="R90"/>
+<instance part="P+24" gate="G$1" x="208.28" y="111.76" smashed="yes">
+<attribute name="VALUE" x="208.28" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="P+25" gate="G$1" x="182.88" y="111.76" smashed="yes">
+<attribute name="VALUE" x="182.88" y="114.3" size="1.778" layer="96" rot="R180" align="center"/>
+</instance>
+<instance part="R22" gate="G$1" x="157.48" y="104.14" smashed="yes" rot="R90">
+<attribute name="VALUE" x="160.782" y="100.33" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="155.9814" y="100.33" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="R23" gate="G$1" x="208.28" y="104.14" smashed="yes" rot="R90">
+<attribute name="VALUE" x="211.582" y="100.33" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="206.7814" y="100.33" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="R24" gate="G$1" x="182.88" y="104.14" smashed="yes" rot="R90">
+<attribute name="VALUE" x="186.182" y="100.33" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="181.3814" y="100.33" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="D18" gate="G$1" x="157.48" y="93.98" smashed="yes" rot="R270">
+<attribute name="NAME" x="152.4" y="99.06" size="0.9" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="152.4" y="93.98" size="0.9" layer="96" font="vector" rot="R270"/>
+</instance>
+<instance part="D19" gate="G$1" x="208.28" y="93.98" smashed="yes" rot="R270">
+<attribute name="NAME" x="203.2" y="99.06" size="0.9" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="203.2" y="93.98" size="0.9" layer="96" font="vector" rot="R270"/>
+</instance>
+<instance part="D20" gate="G$1" x="182.88" y="93.98" smashed="yes" rot="R270">
+<attribute name="NAME" x="177.8" y="99.06" size="0.9" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="177.8" y="93.98" size="0.9" layer="96" font="vector" rot="R270"/>
+</instance>
+<instance part="Q10" gate="G$1" x="157.48" y="83.82" smashed="yes">
+<attribute name="NAME" x="149.86" y="88.9" size="0.9" layer="95" font="vector"/>
+</instance>
+<instance part="Q11" gate="G$1" x="208.28" y="83.82" smashed="yes">
+<attribute name="NAME" x="200.66" y="88.9" size="0.9" layer="95" font="vector"/>
+</instance>
+<instance part="Q12" gate="G$1" x="182.88" y="83.82" smashed="yes">
+<attribute name="NAME" x="175.26" y="88.9" size="0.9" layer="95" font="vector"/>
+</instance>
+<instance part="GND47" gate="1" x="157.48" y="76.2" smashed="yes">
+<attribute name="VALUE" x="157.48" y="73.66" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="GND48" gate="1" x="208.28" y="76.2" smashed="yes">
+<attribute name="VALUE" x="208.28" y="73.66" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="GND49" gate="1" x="182.88" y="76.2" smashed="yes">
+<attribute name="VALUE" x="182.88" y="73.66" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="R25" gate="G$1" x="149.86" y="78.74" smashed="yes" rot="R90">
+<attribute name="VALUE" x="153.162" y="74.93" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="148.3614" y="74.93" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="R26" gate="G$1" x="200.66" y="78.74" smashed="yes" rot="R90">
+<attribute name="VALUE" x="203.962" y="74.93" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="199.1614" y="74.93" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="R27" gate="G$1" x="175.26" y="78.74" smashed="yes" rot="R90">
+<attribute name="VALUE" x="178.562" y="74.93" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="173.7614" y="74.93" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="GND50" gate="1" x="149.86" y="71.12" smashed="yes">
+<attribute name="VALUE" x="149.86" y="68.58" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="GND51" gate="1" x="200.66" y="71.12" smashed="yes">
+<attribute name="VALUE" x="200.66" y="68.58" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="GND52" gate="1" x="175.26" y="71.12" smashed="yes">
+<attribute name="VALUE" x="175.26" y="68.58" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="R17" gate="G$1" x="276.86" y="33.02" smashed="yes" rot="R90">
+<attribute name="VALUE" x="280.162" y="29.21" size="1.778" layer="96" rot="R90"/>
+<attribute name="NAME" x="275.3614" y="29.21" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="GND43" gate="1" x="276.86" y="25.4" smashed="yes">
+<attribute name="VALUE" x="276.86" y="22.86" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="Q8" gate="G$1" x="284.48" y="38.1" smashed="yes">
+<attribute name="NAME" x="276.86" y="43.18" size="0.9" layer="95" font="vector"/>
+</instance>
+<instance part="GND44" gate="1" x="284.48" y="30.48" smashed="yes">
+<attribute name="VALUE" x="284.48" y="27.94" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="D13" gate="G$1" x="289.56" y="43.18" smashed="yes" rot="R180">
+<attribute name="NAME" x="294.64" y="48.26" size="0.9" layer="95" font="vector" rot="R180"/>
+<attribute name="VALUE" x="289.56" y="48.26" size="0.9" layer="96" font="vector" rot="R180"/>
+</instance>
+<instance part="D14" gate="G$1" x="299.72" y="43.18" smashed="yes" rot="R180">
+<attribute name="NAME" x="304.8" y="48.26" size="0.9" layer="95" font="vector" rot="R180"/>
+<attribute name="VALUE" x="299.72" y="48.26" size="0.9" layer="96" font="vector" rot="R180"/>
+</instance>
+<instance part="R18" gate="G$1" x="309.88" y="43.18" smashed="yes">
+<attribute name="VALUE" x="306.07" y="39.878" size="1.778" layer="96"/>
+<attribute name="NAME" x="306.07" y="44.6786" size="1.778" layer="95"/>
+</instance>
+<instance part="P+21" gate="G$1" x="314.96" y="45.72" smashed="yes">
+<attribute name="VALUE" x="314.96" y="48.26" size="1.778" layer="96" rot="R180" align="center"/>
 </instance>
 </instances>
 <busses>
@@ -8317,11 +8457,43 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <pinref part="GND42" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="Q8" gate="G$1" pin="S"/>
+<pinref part="Q9" gate="G$1" pin="S"/>
+<pinref part="GND45" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND46" gate="1" pin="GND"/>
+<pinref part="R12" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="Q10" gate="G$1" pin="S"/>
+<pinref part="GND47" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="Q11" gate="G$1" pin="S"/>
+<pinref part="GND48" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="Q12" gate="G$1" pin="S"/>
+<pinref part="GND49" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R25" gate="G$1" pin="1"/>
+<pinref part="GND50" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R26" gate="G$1" pin="1"/>
+<pinref part="GND51" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R27" gate="G$1" pin="1"/>
+<pinref part="GND52" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R17" gate="G$1" pin="1"/>
 <pinref part="GND43" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R19" gate="G$1" pin="1"/>
+<pinref part="Q8" gate="G$1" pin="S"/>
 <pinref part="GND44" gate="1" pin="GND"/>
 </segment>
 </net>
@@ -8353,6 +8525,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <pinref part="J2" gate="G$1" pin="6"/>
 <wire x1="63.5" y1="134.62" x2="66.04" y2="134.62" width="0.1524" layer="91"/>
 <label x="66.04" y="134.62" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q9" gate="G$1" pin="G"/>
+<wire x1="127" y1="83.82" x2="124.46" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<wire x1="124.46" y1="83.82" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
+<junction x="124.46" y="83.82"/>
+<label x="121.92" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="BAT_GND" class="0">
@@ -8504,6 +8684,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="63.5" y1="132.08" x2="66.04" y2="132.08" width="0.1524" layer="91"/>
 <label x="66.04" y="132.08" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="Q10" gate="G$1" pin="G"/>
+<wire x1="152.4" y1="83.82" x2="149.86" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="R25" gate="G$1" pin="2"/>
+<wire x1="149.86" y1="83.82" x2="147.32" y2="83.82" width="0.1524" layer="91"/>
+<junction x="149.86" y="83.82"/>
+<label x="147.32" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="N$3" class="0">
 <segment>
@@ -8534,6 +8722,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="63.5" y1="127" x2="66.04" y2="127" width="0.1524" layer="91"/>
 <label x="66.04" y="127" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="Q12" gate="G$1" pin="G"/>
+<wire x1="177.8" y1="83.82" x2="175.26" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="R27" gate="G$1" pin="2"/>
+<wire x1="175.26" y1="83.82" x2="172.72" y2="83.82" width="0.1524" layer="91"/>
+<junction x="175.26" y="83.82"/>
+<label x="172.72" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="N$4" class="0">
 <segment>
@@ -8563,6 +8759,14 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <pinref part="J2" gate="G$1" pin="2"/>
 <wire x1="63.5" y1="124.46" x2="66.04" y2="124.46" width="0.1524" layer="91"/>
 <label x="66.04" y="124.46" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q11" gate="G$1" pin="G"/>
+<wire x1="203.2" y1="83.82" x2="200.66" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="R26" gate="G$1" pin="2"/>
+<wire x1="200.66" y1="83.82" x2="198.12" y2="83.82" width="0.1524" layer="91"/>
+<junction x="200.66" y="83.82"/>
+<label x="198.12" y="83.82" size="0.889" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -8751,14 +8955,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <pinref part="U2" gate="G$1" pin="CS_M"/>
 </segment>
 <segment>
-<pinref part="R12" gate="G$1" pin="2"/>
-<pinref part="P+18" gate="G$1" pin="2V5"/>
-</segment>
-<segment>
-<pinref part="P+19" gate="G$1" pin="2V5"/>
-<pinref part="R13" gate="G$1" pin="2"/>
-</segment>
-<segment>
 <pinref part="D12" gate="G$1" pin="A"/>
 <pinref part="R15" gate="G$1" pin="2"/>
 <pinref part="R15" gate="G$1" pin="1"/>
@@ -8770,13 +8966,32 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <junction x="243.84" y="111.76"/>
 </segment>
 <segment>
-<pinref part="P+21" gate="G$1" pin="2V5"/>
-<wire x1="205.74" y1="119.38" x2="205.74" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="205.74" y1="116.84" x2="200.66" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="R17" gate="G$1" pin="2"/>
-<wire x1="205.74" y1="116.84" x2="210.82" y2="116.84" width="0.1524" layer="91"/>
-<junction x="205.74" y="116.84"/>
+<pinref part="P+18" gate="G$1" pin="2V5"/>
+<pinref part="R20" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="P+19" gate="G$1" pin="2V5"/>
+<pinref part="R21" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="R13" gate="G$1" pin="2"/>
+<pinref part="P+22" gate="G$1" pin="2V5"/>
+</segment>
+<segment>
+<pinref part="P+23" gate="G$1" pin="2V5"/>
+<pinref part="R22" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="P+24" gate="G$1" pin="2V5"/>
+<pinref part="R23" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="P+25" gate="G$1" pin="2V5"/>
+<pinref part="R24" gate="G$1" pin="2"/>
+</segment>
+<segment>
 <pinref part="R18" gate="G$1" pin="2"/>
+<pinref part="P+21" gate="G$1" pin="2V5"/>
 </segment>
 </net>
 <net name="PG0" class="0">
@@ -9009,18 +9224,6 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <pinref part="D8" gate="G$1" pin="C"/>
 </segment>
 </net>
-<net name="N$19" class="0">
-<segment>
-<pinref part="D8" gate="G$1" pin="A"/>
-<pinref part="R12" gate="G$1" pin="1"/>
-</segment>
-</net>
-<net name="N$20" class="0">
-<segment>
-<pinref part="R13" gate="G$1" pin="1"/>
-<pinref part="D9" gate="G$1" pin="A"/>
-</segment>
-</net>
 <net name="N$21" class="0">
 <segment>
 <pinref part="D9" gate="G$1" pin="C"/>
@@ -9086,54 +9289,97 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <label x="182.88" y="162.56" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$29" class="0">
-<segment>
-<pinref part="R18" gate="G$1" pin="1"/>
-<pinref part="D13" gate="G$1" pin="A"/>
-</segment>
-</net>
-<net name="N$31" class="0">
-<segment>
-<pinref part="D13" gate="G$1" pin="C"/>
-<pinref part="D14" gate="G$1" pin="A"/>
-</segment>
-</net>
-<net name="N$32" class="0">
-<segment>
-<pinref part="R17" gate="G$1" pin="1"/>
-<pinref part="D15" gate="G$1" pin="A"/>
-</segment>
-</net>
-<net name="N$33" class="0">
-<segment>
-<pinref part="D15" gate="G$1" pin="C"/>
-<pinref part="D16" gate="G$1" pin="A"/>
-</segment>
-</net>
-<net name="N$34" class="0">
-<segment>
-<pinref part="D14" gate="G$1" pin="C"/>
-<wire x1="210.82" y1="86.36" x2="205.74" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="D16" gate="G$1" pin="C"/>
-<wire x1="205.74" y1="86.36" x2="200.66" y2="86.36" width="0.1524" layer="91"/>
-<junction x="205.74" y="86.36"/>
-<wire x1="205.74" y1="86.36" x2="205.74" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="Q8" gate="G$1" pin="D"/>
-</segment>
-</net>
 <net name="PWM8" class="0">
-<segment>
-<pinref part="Q8" gate="G$1" pin="G"/>
-<wire x1="200.66" y1="78.74" x2="198.12" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="R19" gate="G$1" pin="2"/>
-<wire x1="198.12" y1="78.74" x2="195.58" y2="78.74" width="0.1524" layer="91"/>
-<junction x="198.12" y="78.74"/>
-<label x="195.58" y="78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="PG5(OC0B)"/>
 <wire x1="185.42" y1="139.7" x2="182.88" y2="139.7" width="0.1524" layer="91"/>
 <label x="182.88" y="139.7" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q8" gate="G$1" pin="G"/>
+<wire x1="279.4" y1="38.1" x2="276.86" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="R17" gate="G$1" pin="2"/>
+<wire x1="276.86" y1="38.1" x2="274.32" y2="38.1" width="0.1524" layer="91"/>
+<junction x="276.86" y="38.1"/>
+<label x="274.32" y="38.1" size="0.889" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="D8" gate="G$1" pin="A"/>
+<pinref part="R20" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="D9" gate="G$1" pin="A"/>
+<pinref part="R21" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$35" class="0">
+<segment>
+<pinref part="Q9" gate="G$1" pin="D"/>
+<pinref part="D17" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="N$36" class="0">
+<segment>
+<pinref part="D17" gate="G$1" pin="A"/>
+<pinref part="R13" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="R22" gate="G$1" pin="1"/>
+<pinref part="D18" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="N$38" class="0">
+<segment>
+<pinref part="R23" gate="G$1" pin="1"/>
+<pinref part="D19" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="R24" gate="G$1" pin="1"/>
+<pinref part="D20" gate="G$1" pin="A"/>
+</segment>
+</net>
+<net name="N$40" class="0">
+<segment>
+<pinref part="D18" gate="G$1" pin="C"/>
+<pinref part="Q10" gate="G$1" pin="D"/>
+</segment>
+</net>
+<net name="N$41" class="0">
+<segment>
+<pinref part="D19" gate="G$1" pin="C"/>
+<pinref part="Q11" gate="G$1" pin="D"/>
+</segment>
+</net>
+<net name="N$42" class="0">
+<segment>
+<pinref part="D20" gate="G$1" pin="C"/>
+<pinref part="Q12" gate="G$1" pin="D"/>
+</segment>
+</net>
+<net name="N$29" class="0">
+<segment>
+<pinref part="D13" gate="G$1" pin="A"/>
+<pinref part="D14" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="N$31" class="0">
+<segment>
+<pinref part="D14" gate="G$1" pin="A"/>
+<pinref part="R18" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$32" class="0">
+<segment>
+<pinref part="Q8" gate="G$1" pin="D"/>
+<pinref part="D13" gate="G$1" pin="C"/>
 </segment>
 </net>
 </nets>
@@ -9142,6 +9388,10 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </schematic>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
