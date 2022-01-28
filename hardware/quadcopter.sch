@@ -14322,9 +14322,9 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </deviceset>
 </devicesets>
 </library>
-<library name="custom_michael_shao">
+<library name="custom_michael_shao" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
 <packages>
-<package name="SI2302DS">
+<package name="SI2302DS" library_version="51">
 <description>3-SOT23, 0.95 mm pitch, 2.37 mm span, 2.92 X 1.30 X 1.12 mm body
  &lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.37 mm span with body size 2.92 X 1.30 X 1.12 mm&lt;/p&gt;</description>
 <smd name="G" x="1.15" y="-0.95" dx="1.5" dy="1" layer="1" rot="R180" stop="no" cream="no"/>
@@ -14356,31 +14356,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <rectangle x1="0.622" y1="0.6705" x2="1.346" y2="1.2295" layer="31"/>
 <rectangle x1="0.622" y1="-1.2295" x2="1.346" y2="-0.6705" layer="29"/>
 </package>
-<package name="LTST-C170EKT">
-<description>Chip LED, 2.00 X 1.25 X 1.20 mm body
- &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.20 mm&lt;/p&gt;</description>
-<smd name="C" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-<smd name="A" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="51"/>
-<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="51"/>
-<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="51"/>
-<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="51"/>
-<text x="0" y="1.6398" size="0.9" layer="25" font="vector" distance="51" align="bottom-center">&gt;NAME</text>
-<wire x1="-2.6" y1="-1.2" x2="2.6" y2="-1.2" width="0.05" layer="39"/>
-<wire x1="2.6" y1="-1.2" x2="2.6" y2="1.3" width="0.05" layer="39"/>
-<wire x1="2.6" y1="1.3" x2="-2.6" y2="1.3" width="0.05" layer="39"/>
-<wire x1="-2.6" y1="1.3" x2="-2.6" y2="-1.2" width="0.05" layer="39"/>
-<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="21"/>
-<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="21"/>
-<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="21"/>
-<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="21"/>
-<wire x1="-0.2" y1="0.4" x2="-0.2" y2="-0.4" width="0.127" layer="21"/>
-<wire x1="-0.2" y1="-0.4" x2="0.3" y2="0" width="0.127" layer="21"/>
-<wire x1="0.3" y1="0" x2="-0.2" y2="0.4" width="0.127" layer="21"/>
-<circle x="2.286" y="0" radius="0.127" width="0.127" layer="21"/>
-<text x="0" y="-2.54" size="0.9" layer="27" font="vector" align="bottom-center">&gt;VALUE</text>
-</package>
-<package name="LSM9DS1">
+<package name="LSM9DS1" library_version="51">
 <smd name="VDDIO1" x="-1.505" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
 <smd name="SCL/SPC" x="-1.725" y="0.645" dx="0.85" dy="0.275" layer="1"/>
 <smd name="VDDIO2" x="-1.725" y="0.215" dx="0.85" dy="0.275" layer="1"/>
@@ -14448,173 +14424,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <wire x1="1.75" y1="-1.5" x2="1.75" y2="1.5" width="0.127" layer="21"/>
 <wire x1="1.75" y1="1.5" x2="-1.75" y2="1.5" width="0.127" layer="21"/>
 </package>
-<package name="NET_BRIDGE_5X5">
+<package name="NET_BRIDGE_5X5" library_version="51">
 <smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
 <smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
 <text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
 </package>
-</packages>
-<symbols>
-<symbol name="NMOS">
-<pin name="G" x="-5.08" y="0" length="point"/>
-<pin name="D" x="0" y="5.08" length="point" rot="R270"/>
-<pin name="S" x="0" y="-5.08" length="point" rot="R90"/>
-<wire x1="0" y1="5.08" x2="0" y2="2.54" width="0.05" layer="94"/>
-<wire x1="0" y1="2.54" x2="-2.54" y2="2.54" width="0.05" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.05" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="0" y2="-2.54" width="0.05" layer="94"/>
-<wire x1="0" y1="-2.54" x2="0" y2="-5.08" width="0.05" layer="94"/>
-<wire x1="-5.08" y1="0" x2="-3.048" y2="0" width="0.05" layer="94"/>
-<wire x1="-3.048" y1="-2.54" x2="-3.048" y2="2.54" width="0.05" layer="94"/>
-<text x="-7.62" y="5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
-<wire x1="0" y1="-2.54" x2="-1.016" y2="-1.524" width="0.05" layer="94"/>
-<wire x1="-1.016" y1="-1.524" x2="-1.016" y2="-3.556" width="0.05" layer="94"/>
-<wire x1="-1.016" y1="-3.556" x2="0" y2="-2.54" width="0.05" layer="94"/>
-</symbol>
-<symbol name="DIODE">
-<pin name="A" x="-5.08" y="0" length="point"/>
-<pin name="C" x="5.08" y="0" length="point" rot="R180"/>
-<wire x1="-5.08" y1="0" x2="-2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-2.54" y2="-2.54" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="2.54" y1="0" x2="-2.54" y2="2.54" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="5.08" y1="0" x2="2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.127" layer="94"/>
-<text x="-5.08" y="-5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
-<text x="0" y="-5.08" size="0.9" layer="96" font="vector">&gt;VALUE</text>
-</symbol>
-<symbol name="IMU_LSM9DS1">
-<pin name="VDD" x="-2.54" y="22.86" length="middle" rot="R270"/>
-<pin name="GND" x="2.54" y="-22.86" length="middle" rot="R90"/>
-<pin name="VDDIO" x="2.54" y="22.86" length="middle" rot="R270"/>
-<pin name="SCL/SPC" x="-20.32" y="7.62" length="middle"/>
-<pin name="SDA/SDI/SDO" x="-20.32" y="2.54" length="middle"/>
-<pin name="SDO_A/G" x="-20.32" y="0" length="middle"/>
-<pin name="SDO_M" x="-20.32" y="-2.54" length="middle"/>
-<pin name="CS_A/G" x="-20.32" y="-7.62" length="middle"/>
-<pin name="CS_M" x="-20.32" y="-10.16" length="middle"/>
-<pin name="DRDY_M" x="20.32" y="7.62" length="middle" rot="R180"/>
-<pin name="INT_M" x="20.32" y="2.54" length="middle" rot="R180"/>
-<pin name="INT1_A/G" x="20.32" y="0" length="middle" rot="R180"/>
-<pin name="INT2_A/G" x="20.32" y="-2.54" length="middle" rot="R180"/>
-<pin name="DEN_A/G" x="20.32" y="-7.62" length="middle" rot="R180"/>
-<pin name="C1" x="20.32" y="-12.7" length="middle" rot="R180"/>
-<pin name="CAP" x="20.32" y="-15.24" length="middle" rot="R180"/>
-<wire x1="-15.24" y1="17.78" x2="-15.24" y2="-17.78" width="0.254" layer="94"/>
-<wire x1="15.24" y1="17.78" x2="-15.24" y2="17.78" width="0.254" layer="94"/>
-<wire x1="15.24" y1="-17.78" x2="15.24" y2="17.78" width="0.254" layer="94"/>
-<text x="-12.7" y="-20.32" size="0.9" layer="95" font="vector" ratio="9">&gt;NAME</text>
-<wire x1="-15.24" y1="-17.78" x2="15.24" y2="-17.78" width="0.254" layer="94"/>
-</symbol>
-<symbol name="NET_BRIDGE">
-<pin name="1" x="-7.62" y="0" length="middle"/>
-<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
-<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="N-MOSFET" prefix="Q">
-<gates>
-<gate name="G$1" symbol="NMOS" x="0" y="0"/>
-</gates>
-<devices>
-<device name="-SI2302DS" package="SI2302DS">
-<connects>
-<connect gate="G$1" pin="D" pad="D"/>
-<connect gate="G$1" pin="G" pad="G"/>
-<connect gate="G$1" pin="S" pad="S"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="Digikey"/>
-<attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="LED" prefix="D" uservalue="yes">
-<gates>
-<gate name="G$1" symbol="DIODE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_RED-LTST-C170EKT" package="LTST-C170EKT">
-<connects>
-<connect gate="G$1" pin="A" pad="A"/>
-<connect gate="G$1" pin="C" pad="C"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="Digikey"/>
-<attribute name="DISTPN" value="160-1178-1-ND"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="IMU_LSM9DS1" prefix="U">
-<gates>
-<gate name="G$1" symbol="IMU_LSM9DS1" x="0" y="0"/>
-</gates>
-<devices>
-<device name="-LSM9DS1" package="LSM9DS1">
-<connects>
-<connect gate="G$1" pin="C1" pad="C1"/>
-<connect gate="G$1" pin="CAP" pad="CAP"/>
-<connect gate="G$1" pin="CS_A/G" pad="CS_A/G"/>
-<connect gate="G$1" pin="CS_M" pad="CS_M"/>
-<connect gate="G$1" pin="DEN_A/G" pad="DEN_A/G"/>
-<connect gate="G$1" pin="DRDY_M" pad="DRDY_M"/>
-<connect gate="G$1" pin="GND" pad="GND1 GND2 RES1 RES2 RES3 RES4 RES5"/>
-<connect gate="G$1" pin="INT1_A/G" pad="INT1_A/G"/>
-<connect gate="G$1" pin="INT2_A/G" pad="INT2_A/G"/>
-<connect gate="G$1" pin="INT_M" pad="INT_M"/>
-<connect gate="G$1" pin="SCL/SPC" pad="SCL/SPC"/>
-<connect gate="G$1" pin="SDA/SDI/SDO" pad="SDA/SDI/SDO"/>
-<connect gate="G$1" pin="SDO_A/G" pad="SDO_A/G"/>
-<connect gate="G$1" pin="SDO_M" pad="SDO_M"/>
-<connect gate="G$1" pin="VDD" pad="VDD1 VDD2"/>
-<connect gate="G$1" pin="VDDIO" pad="VDDIO1 VDDIO2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="Digikey"/>
-<attribute name="DISTPN" value="497-14946-1-ND"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="NET_BRIDGE" prefix="BRID">
-<gates>
-<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="_5X5" package="NET_BRIDGE_5X5">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="CREATOR" value="Michael Shao"/>
-<attribute name="DIST" value="N/A"/>
-<attribute name="DISTPN" value="N/A"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="custom_michael_shao" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
-<packages>
-<package name="TIE_FIGHTER_0.15_SCALE">
+<package name="TIE_FIGHTER_0.15_SCALE" library_version="51">
 <rectangle x1="-34.475" y1="-36.075" x2="-32.825" y2="-35.925" layer="22"/>
 <rectangle x1="32.575" y1="-36.075" x2="34.375" y2="-35.925" layer="22"/>
 <rectangle x1="-34.475" y1="-35.925" x2="-32.825" y2="-35.775" layer="22"/>
@@ -22143,9 +21958,78 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <rectangle x1="32.275" y1="35.175" x2="32.425" y2="35.325" layer="22"/>
 <rectangle x1="32.575" y1="35.175" x2="34.375" y2="35.325" layer="22"/>
 </package>
+<package name="LTST-C170EKT" library_version="51">
+<description>Chip LED, 2.00 X 1.25 X 1.20 mm body
+ &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.20 mm&lt;/p&gt;</description>
+<smd name="C" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<smd name="A" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="51"/>
+<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="51"/>
+<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="51"/>
+<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="51"/>
+<text x="0" y="1.6398" size="0.9" layer="25" font="vector" distance="51" align="bottom-center">&gt;NAME</text>
+<wire x1="-2.6" y1="-1.2" x2="2.6" y2="-1.2" width="0.05" layer="39"/>
+<wire x1="2.6" y1="-1.2" x2="2.6" y2="1.3" width="0.05" layer="39"/>
+<wire x1="2.6" y1="1.3" x2="-2.6" y2="1.3" width="0.05" layer="39"/>
+<wire x1="-2.6" y1="1.3" x2="-2.6" y2="-1.2" width="0.05" layer="39"/>
+<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="21"/>
+<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="21"/>
+<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="-0.2" y1="0.4" x2="-0.2" y2="-0.4" width="0.127" layer="21"/>
+<wire x1="-0.2" y1="-0.4" x2="0.3" y2="0" width="0.127" layer="21"/>
+<wire x1="0.3" y1="0" x2="-0.2" y2="0.4" width="0.127" layer="21"/>
+<circle x="2.286" y="0" radius="0.127" width="0.127" layer="21"/>
+<text x="0" y="-2.54" size="0.9" layer="27" font="vector" align="bottom-center">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
-<symbol name="DECORATION" library_version="48">
+<symbol name="NMOS" library_version="51">
+<pin name="G" x="-5.08" y="0" length="point"/>
+<pin name="D" x="0" y="5.08" length="point" rot="R270"/>
+<pin name="S" x="0" y="-5.08" length="point" rot="R90"/>
+<wire x1="0" y1="5.08" x2="0" y2="2.54" width="0.05" layer="94"/>
+<wire x1="0" y1="2.54" x2="-2.54" y2="2.54" width="0.05" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.05" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="0" y2="-2.54" width="0.05" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-5.08" width="0.05" layer="94"/>
+<wire x1="-5.08" y1="0" x2="-3.048" y2="0" width="0.05" layer="94"/>
+<wire x1="-3.048" y1="-2.54" x2="-3.048" y2="2.54" width="0.05" layer="94"/>
+<text x="-7.62" y="5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
+<wire x1="0" y1="-2.54" x2="-1.016" y2="-1.524" width="0.05" layer="94"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.016" y2="-3.556" width="0.05" layer="94"/>
+<wire x1="-1.016" y1="-3.556" x2="0" y2="-2.54" width="0.05" layer="94"/>
+</symbol>
+<symbol name="IMU_LSM9DS1" library_version="51">
+<pin name="VDD" x="-2.54" y="22.86" length="middle" rot="R270"/>
+<pin name="GND" x="2.54" y="-22.86" length="middle" rot="R90"/>
+<pin name="VDDIO" x="2.54" y="22.86" length="middle" rot="R270"/>
+<pin name="SCL/SPC" x="-20.32" y="7.62" length="middle"/>
+<pin name="SDA/SDI/SDO" x="-20.32" y="2.54" length="middle"/>
+<pin name="SDO_A/G" x="-20.32" y="0" length="middle"/>
+<pin name="SDO_M" x="-20.32" y="-2.54" length="middle"/>
+<pin name="CS_A/G" x="-20.32" y="-7.62" length="middle"/>
+<pin name="CS_M" x="-20.32" y="-10.16" length="middle"/>
+<pin name="DRDY_M" x="20.32" y="7.62" length="middle" rot="R180"/>
+<pin name="INT_M" x="20.32" y="2.54" length="middle" rot="R180"/>
+<pin name="INT1_A/G" x="20.32" y="0" length="middle" rot="R180"/>
+<pin name="INT2_A/G" x="20.32" y="-2.54" length="middle" rot="R180"/>
+<pin name="DEN_A/G" x="20.32" y="-7.62" length="middle" rot="R180"/>
+<pin name="C1" x="20.32" y="-12.7" length="middle" rot="R180"/>
+<pin name="CAP" x="20.32" y="-15.24" length="middle" rot="R180"/>
+<wire x1="-15.24" y1="17.78" x2="-15.24" y2="-17.78" width="0.254" layer="94"/>
+<wire x1="15.24" y1="17.78" x2="-15.24" y2="17.78" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-17.78" x2="15.24" y2="17.78" width="0.254" layer="94"/>
+<text x="-12.7" y="-20.32" size="0.9" layer="95" font="vector" ratio="9">&gt;NAME</text>
+<wire x1="-15.24" y1="-17.78" x2="15.24" y2="-17.78" width="0.254" layer="94"/>
+</symbol>
+<symbol name="NET_BRIDGE" library_version="51">
+<pin name="1" x="-7.62" y="0" length="middle"/>
+<pin name="2" x="7.62" y="0" length="middle" rot="R180"/>
+<wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="DECORATION" library_version="51">
 <wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.127" layer="94"/>
 <wire x1="-2.54" y1="-2.54" x2="2.54" y2="-2.54" width="0.127" layer="94"/>
 <wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.127" layer="94"/>
@@ -22153,9 +22037,97 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <text x="0" y="2.794" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-2.794" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
 </symbol>
+<symbol name="DIODE" library_version="51">
+<pin name="A" x="-5.08" y="0" length="point"/>
+<pin name="C" x="5.08" y="0" length="point" rot="R180"/>
+<wire x1="-5.08" y1="0" x2="-2.54" y2="0" width="0.127" layer="94"/>
+<wire x1="-2.54" y1="0" x2="-2.54" y2="-2.54" width="0.127" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="2.54" y2="0" width="0.127" layer="94"/>
+<wire x1="2.54" y1="0" x2="-2.54" y2="2.54" width="0.127" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="0" width="0.127" layer="94"/>
+<wire x1="5.08" y1="0" x2="2.54" y2="0" width="0.127" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.127" layer="94"/>
+<text x="-5.08" y="-5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
+<text x="0" y="-5.08" size="0.9" layer="96" font="vector">&gt;VALUE</text>
+</symbol>
 </symbols>
 <devicesets>
-<deviceset name="DECORATION" prefix="DEC">
+<deviceset name="N-MOSFET" prefix="Q" library_version="51">
+<gates>
+<gate name="G$1" symbol="NMOS" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-SI2302DS" package="SI2302DS">
+<connects>
+<connect gate="G$1" pin="D" pad="D"/>
+<connect gate="G$1" pin="G" pad="G"/>
+<connect gate="G$1" pin="S" pad="S"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="Digikey"/>
+<attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="IMU_LSM9DS1" prefix="U" library_version="51">
+<gates>
+<gate name="G$1" symbol="IMU_LSM9DS1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="-LSM9DS1" package="LSM9DS1">
+<connects>
+<connect gate="G$1" pin="C1" pad="C1"/>
+<connect gate="G$1" pin="CAP" pad="CAP"/>
+<connect gate="G$1" pin="CS_A/G" pad="CS_A/G"/>
+<connect gate="G$1" pin="CS_M" pad="CS_M"/>
+<connect gate="G$1" pin="DEN_A/G" pad="DEN_A/G"/>
+<connect gate="G$1" pin="DRDY_M" pad="DRDY_M"/>
+<connect gate="G$1" pin="GND" pad="GND1 GND2 RES1 RES2 RES3 RES4 RES5"/>
+<connect gate="G$1" pin="INT1_A/G" pad="INT1_A/G"/>
+<connect gate="G$1" pin="INT2_A/G" pad="INT2_A/G"/>
+<connect gate="G$1" pin="INT_M" pad="INT_M"/>
+<connect gate="G$1" pin="SCL/SPC" pad="SCL/SPC"/>
+<connect gate="G$1" pin="SDA/SDI/SDO" pad="SDA/SDI/SDO"/>
+<connect gate="G$1" pin="SDO_A/G" pad="SDO_A/G"/>
+<connect gate="G$1" pin="SDO_M" pad="SDO_M"/>
+<connect gate="G$1" pin="VDD" pad="VDD1 VDD2"/>
+<connect gate="G$1" pin="VDDIO" pad="VDDIO1 VDDIO2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="Digikey"/>
+<attribute name="DISTPN" value="497-14946-1-ND"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="NET_BRIDGE" prefix="BRID" library_version="51">
+<gates>
+<gate name="G$1" symbol="NET_BRIDGE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="_5X5" package="NET_BRIDGE_5X5">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="N/A"/>
+<attribute name="DISTPN" value="N/A"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="DECORATION" prefix="DEC" library_version="51">
 <gates>
 <gate name="G$1" symbol="DECORATION" x="0" y="0"/>
 </gates>
@@ -22166,6 +22138,26 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <attribute name="CREATOR" value="Evan Smith"/>
 <attribute name="DIST" value="NA"/>
 <attribute name="DISTPN" value="NA"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="LED" prefix="D" uservalue="yes" library_version="51">
+<gates>
+<gate name="G$1" symbol="DIODE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="_RED-LTST-C170EKT" package="LTST-C170EKT">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="C"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="CREATOR" value="Michael Shao"/>
+<attribute name="DIST" value="Digikey"/>
+<attribute name="DISTPN" value="160-1178-1-ND"/>
 </technology>
 </technologies>
 </device>
@@ -22351,43 +22343,43 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="GND29" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND30" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="C11" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="CAPACITOR-POL_" device="47UF-SMD-1206-TAJA" package3d_urn="urn:adsk.eagle:package:11793387/1" value="47uF"/>
-<part name="Q1" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q2" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q3" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="Q4" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
-<part name="D6" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
-<part name="U2" library="custom_michael_shao" deviceset="IMU_LSM9DS1" device="-LSM9DS1"/>
+<part name="Q1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q2" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q3" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q4" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="D6" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="U2" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="IMU_LSM9DS1" device="-LSM9DS1"/>
 <part name="P+17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
 <part name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BATTERY" device="-SMD-TH" value="BATTERY-SMD-TH"/>
-<part name="BRID1" library="custom_michael_shao" deviceset="NET_BRIDGE" device="_5X5"/>
+<part name="BRID1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="NET_BRIDGE" device="_5X5"/>
 <part name="D8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="DIODE-LED_" device="SMD-2012-0805-GREEN" value="green"/>
 <part name="D9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="DIODE-LED_" device="SMD-2012-0805-GREEN" value="green"/>
-<part name="Q6" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q6" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
 <part name="GND40" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND41" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="R14" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
 <part name="R20" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-150" value="150"/>
 <part name="R21" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-150" value="150"/>
-<part name="Q9" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q9" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
 <part name="GND45" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="GND46" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="R12" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
-<part name="D17" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="D17" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
 <part name="R13" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R23" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R24" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
-<part name="D18" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
-<part name="D19" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
-<part name="D20" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
-<part name="Q12" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="D18" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="D19" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="D20" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="Q12" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
 <part name="GND49" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="R27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
 <part name="GND52" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
 <part name="R17" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-10K" value="10K"/>
 <part name="GND43" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
-<part name="Q8" library="custom_michael_shao" deviceset="N-MOSFET" device="-SI2302DS"/>
+<part name="Q8" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="N-MOSFET" device="-SI2302DS"/>
 <part name="GND44" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="GND" device=""/>
-<part name="D14" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="D14" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
 <part name="R18" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="GND27" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
 <part name="B1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BALUN" device="0805"/>
@@ -22411,12 +22403,11 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R26" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
-<part name="D7" library="custom_michael_shao" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
+<part name="D7" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="LED" device="_RED-LTST-C170EKT" value="red"/>
 <part name="P1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="PROPELLOR" device="-45MM"/>
 <part name="P2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="PROPELLOR" device="-45MM"/>
 <part name="P3" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="PROPELLOR" device="-45MM"/>
 <part name="P4" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="PROPELLOR" device="-45MM"/>
-<part name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="DECORATION" device="-TIE_FIGHTER_0.15_SCALE" value="TIE Fighter"/>
 <part name="H1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="MOUNTING_HOLE" device="-2-56"/>
 <part name="H2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="MOUNTING_HOLE" device="-2-56"/>
 <part name="H3" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="MOUNTING_HOLE" device="-2-56"/>
@@ -22426,6 +22417,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R11" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-15K" value="15K"/>
 <part name="R15" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-5.1K" value="5.1K"/>
 <part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
+<part name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="DECORATION" device="-TIE_FIGHTER_0.15_SCALE"/>
 </parts>
 <sheets>
 <sheet>
@@ -23054,10 +23046,6 @@ Expected current thru LED: 15mA</text>
 <instance part="P4" gate="G$1" x="132.08" y="12.7" smashed="yes">
 <attribute name="NAME" x="132.08" y="10.16" size="1.27" layer="95" align="center"/>
 </instance>
-<instance part="DEC1" gate="G$1" x="154.94" y="33.02" smashed="yes">
-<attribute name="NAME" x="154.94" y="35.814" size="1.778" layer="95" align="bottom-center"/>
-<attribute name="VALUE" x="154.94" y="30.226" size="1.778" layer="96" align="top-center"/>
-</instance>
 <instance part="H1" gate="G$1" x="104.14" y="35.56" smashed="yes">
 <attribute name="NAME" x="104.14" y="36.83" size="0.9" layer="95" font="vector" align="center"/>
 <attribute name="VALUE" x="104.14" y="34.29" size="0.9" layer="96" font="vector" align="center"/>
@@ -23091,6 +23079,10 @@ Expected current thru LED: 15mA</text>
 </instance>
 <instance part="GND28" gate="1" x="284.48" y="134.62" smashed="yes">
 <attribute name="VALUE" x="284.48" y="132.08" size="1.778" layer="96" align="center"/>
+</instance>
+<instance part="DEC1" gate="G$1" x="160.02" y="27.94" smashed="yes">
+<attribute name="NAME" x="160.02" y="30.734" size="1.778" layer="95" align="bottom-center"/>
+<attribute name="VALUE" x="160.02" y="25.146" size="1.778" layer="96" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -23303,8 +23295,8 @@ Expected current thru LED: 15mA</text>
 <pinref part="M1" gate="G$1" pin="V-"/>
 <wire x1="363.22" y1="233.68" x2="363.22" y2="223.52" width="0.1524" layer="91"/>
 <junction x="363.22" y="233.68"/>
-<pinref part="Q1" gate="G$1" pin="D"/>
 <pinref part="D1" gate="G$1" pin="A"/>
+<pinref part="Q1" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="PWM1" class="0">
@@ -23313,8 +23305,8 @@ Expected current thru LED: 15mA</text>
 <label x="347.98" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="350.52" y1="218.44" x2="347.98" y2="218.44" width="0.1524" layer="91"/>
 <junction x="350.52" y="218.44"/>
-<pinref part="Q1" gate="G$1" pin="G"/>
 <pinref part="R1" gate="G$1" pin="2"/>
+<pinref part="Q1" gate="G$1" pin="G"/>
 </segment>
 <segment>
 <wire x1="185.42" y1="210.82" x2="182.88" y2="210.82" width="0.1524" layer="91"/>
@@ -23360,8 +23352,8 @@ Expected current thru LED: 15mA</text>
 <pinref part="GND32" gate="1" pin="BAT_GND"/>
 <label x="345.44" y="71.12" size="1.27" layer="95" rot="MR0" xref="yes"/>
 <junction x="345.44" y="71.12"/>
-<pinref part="BRID1" gate="G$1" pin="1"/>
 <pinref part="B2" gate="G$1" pin="N"/>
+<pinref part="BRID1" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="GND3" gate="1" pin="BAT_GND"/>
@@ -23521,8 +23513,8 @@ Expected current thru LED: 15mA</text>
 <pinref part="M2" gate="G$1" pin="V-"/>
 <wire x1="416.56" y1="233.68" x2="416.56" y2="223.52" width="0.1524" layer="91"/>
 <junction x="416.56" y="233.68"/>
-<pinref part="Q2" gate="G$1" pin="D"/>
 <pinref part="D2" gate="G$1" pin="A"/>
+<pinref part="Q2" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="PWM2" class="0">
@@ -23531,8 +23523,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="401.32" y1="218.44" x2="403.86" y2="218.44" width="0.1524" layer="91"/>
 <junction x="403.86" y="218.44"/>
 <label x="401.32" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q2" gate="G$1" pin="G"/>
 <pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="Q2" gate="G$1" pin="G"/>
 </segment>
 <segment>
 <wire x1="185.42" y1="208.28" x2="182.88" y2="208.28" width="0.1524" layer="91"/>
@@ -23551,8 +23543,8 @@ Expected current thru LED: 15mA</text>
 <pinref part="M3" gate="G$1" pin="V-"/>
 <wire x1="363.22" y1="167.64" x2="363.22" y2="157.48" width="0.1524" layer="91"/>
 <junction x="363.22" y="167.64"/>
-<pinref part="Q3" gate="G$1" pin="D"/>
 <pinref part="D4" gate="G$1" pin="A"/>
+<pinref part="Q3" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="PWM3" class="0">
@@ -23561,8 +23553,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="350.52" y1="152.4" x2="347.98" y2="152.4" width="0.1524" layer="91"/>
 <junction x="350.52" y="152.4"/>
 <label x="347.98" y="152.4" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q3" gate="G$1" pin="G"/>
 <pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="Q3" gate="G$1" pin="G"/>
 </segment>
 <segment>
 <wire x1="185.42" y1="205.74" x2="182.88" y2="205.74" width="0.1524" layer="91" style="longdash"/>
@@ -23581,8 +23573,8 @@ Expected current thru LED: 15mA</text>
 <pinref part="M4" gate="G$1" pin="V-"/>
 <wire x1="416.56" y1="167.64" x2="416.56" y2="157.48" width="0.1524" layer="91"/>
 <junction x="416.56" y="167.64"/>
-<pinref part="Q4" gate="G$1" pin="D"/>
 <pinref part="D3" gate="G$1" pin="A"/>
+<pinref part="Q4" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="PWM4" class="0">
@@ -23591,8 +23583,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="401.32" y1="152.4" x2="403.86" y2="152.4" width="0.1524" layer="91"/>
 <junction x="403.86" y="152.4"/>
 <label x="401.32" y="152.4" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q4" gate="G$1" pin="G"/>
 <pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="Q4" gate="G$1" pin="G"/>
 </segment>
 <segment>
 <wire x1="185.42" y1="203.2" x2="182.88" y2="203.2" width="0.1524" layer="91" style="longdash"/>
@@ -23665,8 +23657,8 @@ Expected current thru LED: 15mA</text>
 <net name="N$5" class="0">
 <segment>
 <wire x1="190.5" y1="246.38" x2="190.5" y2="243.84" width="0.1524" layer="91"/>
-<pinref part="D6" gate="G$1" pin="A"/>
 <pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="D6" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$13" class="0">
@@ -23846,8 +23838,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="17.78" y1="231.14" x2="15.24" y2="231.14" width="0.1524" layer="91"/>
 <label x="15.24" y="231.14" size="1.27" layer="95" rot="R180" xref="yes"/>
 <junction x="17.78" y="231.14"/>
-<pinref part="U2" gate="G$1" pin="SDA/SDI/SDO"/>
 <pinref part="R10" gate="G$1" pin="1"/>
+<pinref part="U2" gate="G$1" pin="SDA/SDI/SDO"/>
 </segment>
 <segment>
 <wire x1="63.5" y1="142.24" x2="66.04" y2="142.24" width="0.1524" layer="91"/>
@@ -23872,8 +23864,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="30.48" y1="241.3" x2="33.02" y2="241.3" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="241.3" x2="33.02" y2="236.22" width="0.1524" layer="91"/>
 <junction x="30.48" y="241.3"/>
-<pinref part="U2" gate="G$1" pin="SCL/SPC"/>
 <pinref part="R9" gate="G$1" pin="1"/>
+<pinref part="U2" gate="G$1" pin="SCL/SPC"/>
 </segment>
 <segment>
 <wire x1="63.5" y1="139.7" x2="66.04" y2="139.7" width="0.1524" layer="91"/>
@@ -23989,8 +23981,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="154.94" y1="83.82" x2="152.4" y2="83.82" width="0.1524" layer="91"/>
 <junction x="154.94" y="83.82"/>
 <label x="152.4" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q9" gate="G$1" pin="G"/>
 <pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="Q9" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="PWM6" class="0">
@@ -24004,8 +23996,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="193.04" y1="83.82" x2="190.5" y2="83.82" width="0.1524" layer="91"/>
 <junction x="193.04" y="83.82"/>
 <label x="190.5" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q12" gate="G$1" pin="G"/>
 <pinref part="R27" gate="G$1" pin="2"/>
+<pinref part="Q12" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="PWM7" class="0">
@@ -24019,8 +24011,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="248.92" y1="83.82" x2="246.38" y2="83.82" width="0.1524" layer="91"/>
 <junction x="248.92" y="83.82"/>
 <label x="246.38" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q8" gate="G$1" pin="G"/>
 <pinref part="R17" gate="G$1" pin="2"/>
+<pinref part="Q8" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="PWM8" class="0">
@@ -24034,8 +24026,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="302.26" y1="81.28" x2="299.72" y2="81.28" width="0.1524" layer="91"/>
 <junction x="302.26" y="81.28"/>
 <label x="299.72" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q6" gate="G$1" pin="G"/>
 <pinref part="R14" gate="G$1" pin="2"/>
+<pinref part="Q6" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="N$19" class="0">
@@ -24052,33 +24044,33 @@ Expected current thru LED: 15mA</text>
 </net>
 <net name="N$38" class="0">
 <segment>
-<pinref part="D19" gate="G$1" pin="A"/>
 <pinref part="R23" gate="G$1" pin="1"/>
+<pinref part="D19" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$39" class="0">
 <segment>
-<pinref part="D20" gate="G$1" pin="A"/>
 <pinref part="R24" gate="G$1" pin="1"/>
+<pinref part="D20" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="CAP"/>
 <pinref part="C12" gate="G$1" pin="1"/>
+<pinref part="U2" gate="G$1" pin="CAP"/>
 </segment>
 </net>
 <net name="N$22" class="0">
 <segment>
 <wire x1="83.82" y1="215.9" x2="73.66" y2="215.9" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="C1"/>
 <pinref part="C16" gate="G$1" pin="1"/>
+<pinref part="U2" gate="G$1" pin="C1"/>
 </segment>
 </net>
 <net name="N$25" class="0">
 <segment>
-<pinref part="D18" gate="G$1" pin="A"/>
 <pinref part="R13" gate="G$1" pin="1"/>
+<pinref part="D18" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$26" class="0">
@@ -24097,8 +24089,8 @@ Expected current thru LED: 15mA</text>
 </net>
 <net name="N$24" class="0">
 <segment>
-<pinref part="D17" gate="G$1" pin="A"/>
 <pinref part="R25" gate="G$1" pin="1"/>
+<pinref part="D17" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$35" class="0">
@@ -24111,11 +24103,11 @@ Expected current thru LED: 15mA</text>
 <junction x="157.48" y="91.44"/>
 <junction x="162.56" y="91.44"/>
 <junction x="165.1" y="91.44"/>
-<pinref part="Q9" gate="G$1" pin="D"/>
-<pinref part="D17" gate="G$1" pin="C"/>
-<pinref part="D18" gate="G$1" pin="C"/>
 <pinref part="D15" gate="G$1" pin="C"/>
 <pinref part="D16" gate="G$1" pin="C"/>
+<pinref part="Q9" gate="G$1" pin="D"/>
+<pinref part="D18" gate="G$1" pin="C"/>
+<pinref part="D17" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$40" class="0">
@@ -24128,11 +24120,11 @@ Expected current thru LED: 15mA</text>
 <junction x="195.58" y="91.44"/>
 <junction x="200.66" y="91.44"/>
 <junction x="203.2" y="91.44"/>
-<pinref part="D19" gate="G$1" pin="C"/>
-<pinref part="D20" gate="G$1" pin="C"/>
-<pinref part="Q12" gate="G$1" pin="D"/>
 <pinref part="D22" gate="G$1" pin="C"/>
 <pinref part="D21" gate="G$1" pin="C"/>
+<pinref part="Q12" gate="G$1" pin="D"/>
+<pinref part="D19" gate="G$1" pin="C"/>
+<pinref part="D20" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$42" class="0">
@@ -24155,21 +24147,21 @@ Expected current thru LED: 15mA</text>
 <wire x1="309.88" y1="88.9" x2="314.96" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="309.88" y1="88.9" x2="309.88" y2="86.36" width="0.1524" layer="91"/>
 <junction x="309.88" y="88.9"/>
-<pinref part="Q6" gate="G$1" pin="D"/>
 <pinref part="D8" gate="G$1" pin="C"/>
 <pinref part="D9" gate="G$1" pin="C"/>
+<pinref part="Q6" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
-<pinref part="D14" gate="G$1" pin="A"/>
 <pinref part="R18" gate="G$1" pin="1"/>
+<pinref part="D14" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$21" class="0">
 <segment>
-<pinref part="D7" gate="G$1" pin="A"/>
 <pinref part="R8" gate="G$1" pin="1"/>
+<pinref part="D7" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$27" class="0">

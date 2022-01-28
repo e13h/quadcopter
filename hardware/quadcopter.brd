@@ -2146,38 +2146,9 @@
 </package3d>
 </packages3d>
 </library>
-<library name="custom_michael_shao">
+<library name="custom_michael_shao" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
 <packages>
-<package name="NET_BRIDGE_5X5">
-<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
-<text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
-</package>
-<package name="LTST-C170EKT">
-<description>Chip LED, 2.00 X 1.25 X 1.20 mm body
- &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.20 mm&lt;/p&gt;</description>
-<smd name="C" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-<smd name="A" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="51"/>
-<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="51"/>
-<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="51"/>
-<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="51"/>
-<text x="0" y="1.6398" size="0.9" layer="25" font="vector" distance="51" align="bottom-center">&gt;NAME</text>
-<wire x1="-2.6" y1="-1.2" x2="2.6" y2="-1.2" width="0.05" layer="39"/>
-<wire x1="2.6" y1="-1.2" x2="2.6" y2="1.3" width="0.05" layer="39"/>
-<wire x1="2.6" y1="1.3" x2="-2.6" y2="1.3" width="0.05" layer="39"/>
-<wire x1="-2.6" y1="1.3" x2="-2.6" y2="-1.2" width="0.05" layer="39"/>
-<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="21"/>
-<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="21"/>
-<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="21"/>
-<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="21"/>
-<wire x1="-0.2" y1="0.4" x2="-0.2" y2="-0.4" width="0.127" layer="21"/>
-<wire x1="-0.2" y1="-0.4" x2="0.3" y2="0" width="0.127" layer="21"/>
-<wire x1="0.3" y1="0" x2="-0.2" y2="0.4" width="0.127" layer="21"/>
-<circle x="2.286" y="0" radius="0.127" width="0.127" layer="21"/>
-<text x="0" y="-2.54" size="0.9" layer="27" font="vector" align="bottom-center">&gt;VALUE</text>
-</package>
-<package name="SI2302DS">
+<package name="SI2302DS" library_version="51">
 <description>3-SOT23, 0.95 mm pitch, 2.37 mm span, 2.92 X 1.30 X 1.12 mm body
  &lt;p&gt;3-pin SOT23 package with 0.95 mm pitch, 2.37 mm span with body size 2.92 X 1.30 X 1.12 mm&lt;/p&gt;</description>
 <smd name="G" x="1.15" y="-0.95" dx="1.5" dy="1" layer="1" rot="R180" stop="no" cream="no"/>
@@ -2209,7 +2180,7 @@
 <rectangle x1="0.622" y1="0.6705" x2="1.346" y2="1.2295" layer="31"/>
 <rectangle x1="0.622" y1="-1.2295" x2="1.346" y2="-0.6705" layer="29"/>
 </package>
-<package name="LSM9DS1">
+<package name="LSM9DS1" library_version="51">
 <smd name="VDDIO1" x="-1.505" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
 <smd name="SCL/SPC" x="-1.725" y="0.645" dx="0.85" dy="0.275" layer="1"/>
 <smd name="VDDIO2" x="-1.725" y="0.215" dx="0.85" dy="0.275" layer="1"/>
@@ -2277,11 +2248,12 @@
 <wire x1="1.75" y1="-1.5" x2="1.75" y2="1.5" width="0.127" layer="21"/>
 <wire x1="1.75" y1="1.5" x2="-1.75" y2="1.5" width="0.127" layer="21"/>
 </package>
-</packages>
-</library>
-<library name="custom_michael_shao" urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw">
-<packages>
-<package name="TIE_FIGHTER_0.15_SCALE">
+<package name="NET_BRIDGE_5X5" library_version="51">
+<smd name="1" x="-0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<smd name="2" x="0.2" y="0" dx="0.5" dy="0.5" layer="1" stop="no" cream="no"/>
+<text x="0" y="-1" size="0.9" layer="25" font="vector" align="center">&gt;NAME</text>
+</package>
+<package name="TIE_FIGHTER_0.15_SCALE" library_version="51">
 <rectangle x1="-34.475" y1="-36.075" x2="-32.825" y2="-35.925" layer="22"/>
 <rectangle x1="32.575" y1="-36.075" x2="34.375" y2="-35.925" layer="22"/>
 <rectangle x1="-34.475" y1="-35.925" x2="-32.825" y2="-35.775" layer="22"/>
@@ -9810,6 +9782,30 @@
 <rectangle x1="32.275" y1="35.175" x2="32.425" y2="35.325" layer="22"/>
 <rectangle x1="32.575" y1="35.175" x2="34.375" y2="35.325" layer="22"/>
 </package>
+<package name="LTST-C170EKT" library_version="51">
+<description>Chip LED, 2.00 X 1.25 X 1.20 mm body
+ &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.20 mm&lt;/p&gt;</description>
+<smd name="C" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<smd name="A" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="51"/>
+<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="51"/>
+<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="51"/>
+<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="51"/>
+<text x="0" y="1.6398" size="0.9" layer="25" font="vector" distance="51" align="bottom-center">&gt;NAME</text>
+<wire x1="-2.6" y1="-1.2" x2="2.6" y2="-1.2" width="0.05" layer="39"/>
+<wire x1="2.6" y1="-1.2" x2="2.6" y2="1.3" width="0.05" layer="39"/>
+<wire x1="2.6" y1="1.3" x2="-2.6" y2="1.3" width="0.05" layer="39"/>
+<wire x1="-2.6" y1="1.3" x2="-2.6" y2="-1.2" width="0.05" layer="39"/>
+<wire x1="-1.05" y1="-0.675" x2="-1.05" y2="0.675" width="0.12" layer="21"/>
+<wire x1="-1.05" y1="0.675" x2="1.05" y2="0.675" width="0.12" layer="21"/>
+<wire x1="1.05" y1="0.675" x2="1.05" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="1.05" y1="-0.675" x2="-1.05" y2="-0.675" width="0.12" layer="21"/>
+<wire x1="-0.2" y1="0.4" x2="-0.2" y2="-0.4" width="0.127" layer="21"/>
+<wire x1="-0.2" y1="-0.4" x2="0.3" y2="0" width="0.127" layer="21"/>
+<wire x1="0.3" y1="0" x2="-0.2" y2="0.4" width="0.127" layer="21"/>
+<circle x="2.286" y="0" radius="0.127" width="0.127" layer="21"/>
+<text x="0" y="-2.54" size="0.9" layer="27" font="vector" align="bottom-center">&gt;VALUE</text>
+</package>
 </packages>
 </library>
 <library name="LED" urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q">
@@ -10061,7 +10057,7 @@ design rules under a new name.</description>
 <element name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="BATTERY-COMBO" value="BATTERY-SMD-TH" x="-18.5" y="-12.5" smashed="yes">
 <attribute name="NAME" x="-18.5" y="-4.5" size="0.9" layer="25" font="vector" align="center"/>
 </element>
-<element name="BRID1" library="custom_michael_shao" package="NET_BRIDGE_5X5" value="NET_BRIDGE_5X5" x="-11.5" y="-13" smashed="yes">
+<element name="BRID1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="NET_BRIDGE_5X5" value="NET_BRIDGE_5X5" x="-11.5" y="-13" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="13.9" y="-110.79" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="N/A" x="13.9" y="-110.79" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="N/A" x="13.9" y="-110.79" size="1.778" layer="27" display="off"/>
@@ -10295,7 +10291,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="32" y="20.965" size="0.9" layer="25" font="vector" rot="R180" align="center"/>
 <attribute name="REVIEWER" value="Swanson" x="-30.23" y="107.59" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D14" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="7" y="-17" smashed="yes" rot="R270">
+<element name="D14" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="7" y="-17" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Michael Shao" x="-55.23" y="-88.12" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIST" value="Digikey" x="-55.23" y="-88.12" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="-55.23" y="-88.12" size="1.778" layer="27" rot="R270" display="off"/>
@@ -10318,21 +10314,21 @@ design rules under a new name.</description>
 <attribute name="NAME" x="35" y="-23.5" size="0.9" layer="25" font="vector" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="38" y="-23.5" size="0.9" layer="27" font="vector" rot="R90" align="top-center"/>
 </element>
-<element name="D17" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="-36" y="-14" smashed="yes" rot="R180">
+<element name="D17" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="-36" y="-14" smashed="yes" rot="R180">
 <attribute name="CREATOR" value="Michael Shao" x="-52.51" y="54.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DIST" value="Digikey" x="-52.51" y="54.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="-52.51" y="54.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="-36" y="-15.6398" size="0.9" layer="25" font="vector" rot="R180" align="bottom-center"/>
 <attribute name="VALUE" x="-36" y="-11.46" size="0.9" layer="27" font="vector" rot="R180" align="bottom-center"/>
 </element>
-<element name="D18" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="36.5" y="-19.5" smashed="yes">
+<element name="D18" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="36.5" y="-19.5" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="59.36" y="-88.08" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="59.36" y="-88.08" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="59.36" y="-88.08" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="36.5" y="-17.8602" size="0.9" layer="25" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="36.5" y="-22.04" size="0.9" layer="27" font="vector" align="bottom-center"/>
 </element>
-<element name="D19" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="37" y="14" smashed="yes">
+<element name="D19" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="37" y="14" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="66.21" y="-54.58" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="66.21" y="-54.58" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="66.21" y="-54.58" size="1.778" layer="27" display="off"/>
@@ -10350,7 +10346,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="25.465" y="-23" size="0.9" layer="25" font="vector" rot="R90" align="center"/>
 <attribute name="REVIEWER" value="Swanson" x="112.09" y="45.58" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="D20" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="-37" y="13" smashed="yes" rot="R180">
+<element name="D20" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="-37" y="13" smashed="yes" rot="R180">
 <attribute name="CREATOR" value="Michael Shao" x="-72.56" y="81.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DIST" value="Digikey" x="-72.56" y="81.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="-72.56" y="81.58" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10406,14 +10402,14 @@ design rules under a new name.</description>
 <attribute name="REVIEWER" value="Swanson" x="106.93" y="54.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="30.5" y="16" size="0.9" layer="27" font="vector" rot="R270" align="center"/>
 </element>
-<element name="D6" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="29" y="17" smashed="yes" rot="R90">
+<element name="D6" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="29" y="17" smashed="yes" rot="R90">
 <attribute name="CREATOR" value="Michael Shao" x="91.23" y="75.42" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DIST" value="Digikey" x="91.23" y="75.42" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="91.23" y="75.42" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="27.3602" y="17" size="0.9" layer="25" font="vector" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="31.54" y="17" size="0.9" layer="27" font="vector" rot="R90" align="bottom-center"/>
 </element>
-<element name="D7" library="custom_michael_shao" package="LTST-C170EKT" value="red" x="-7" y="-17" smashed="yes" rot="R270">
+<element name="D7" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LTST-C170EKT" value="red" x="-7" y="-17" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Michael Shao" x="-69.23" y="-81.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIST" value="Digikey" x="-69.23" y="-81.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DISTPN" value="160-1178-1-ND" x="-69.23" y="-81.77" size="1.778" layer="27" rot="R270" display="off"/>
@@ -10520,49 +10516,49 @@ design rules under a new name.</description>
 <attribute name="MPN" value="532610271" x="-101.85" y="37.89" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="-32" y="24.1" size="0.9" layer="25" font="vector" rot="R180" align="center"/>
 </element>
-<element name="Q1" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="26.5" y="24" smashed="yes" rot="R270">
+<element name="Q1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="26.5" y="24" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Michael Shao" x="-20.49" y="-50.93" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIST" value="Digikey" x="-20.49" y="-50.93" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="-20.49" y="-50.93" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="29.1" y="24" size="0.9" layer="25" font="vector" rot="R270" align="bottom-center"/>
 </element>
-<element name="Q12" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-32" y="13" smashed="yes">
+<element name="Q12" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-32" y="13" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="13.72" y="-47.96" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="13.72" y="-47.96" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="13.72" y="-47.96" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-32" y="15.6" size="0.9" layer="25" font="vector" align="bottom-center"/>
 </element>
-<element name="Q2" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="31.5" y="-22" smashed="yes" rot="R90">
+<element name="Q2" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="31.5" y="-22" smashed="yes" rot="R90">
 <attribute name="CREATOR" value="Michael Shao" x="92.46" y="-6.76" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DIST" value="Digikey" x="92.46" y="-6.76" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="92.46" y="-6.76" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="28.9" y="-22" size="0.9" layer="25" font="vector" rot="R90" align="bottom-center"/>
 </element>
-<element name="Q3" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-26.5" y="-24" smashed="yes" rot="R90">
+<element name="Q3" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-26.5" y="-24" smashed="yes" rot="R90">
 <attribute name="CREATOR" value="Michael Shao" x="34.46" y="-3.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DIST" value="Digikey" x="34.46" y="-3.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="34.46" y="-3.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="-29.1" y="-24" size="0.9" layer="25" font="vector" rot="R90" align="bottom-center"/>
 </element>
-<element name="Q4" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-32" y="18" smashed="yes" rot="R270">
+<element name="Q4" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-32" y="18" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Michael Shao" x="-92.96" y="-7.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIST" value="Digikey" x="-92.96" y="-7.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="-92.96" y="-7.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="-29.4" y="18" size="0.9" layer="25" font="vector" rot="R270" align="bottom-center"/>
 </element>
-<element name="Q6" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="2" y="13" smashed="yes" rot="R270">
+<element name="Q6" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="2" y="13" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Michael Shao" x="-58.96" y="-17.48" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIST" value="Digikey" x="-58.96" y="-17.48" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="-58.96" y="-17.48" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="4.6" y="13" size="0.9" layer="25" font="vector" rot="R270" align="bottom-center"/>
 </element>
-<element name="Q8" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="20" y="-17" smashed="yes">
+<element name="Q8" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="20" y="-17" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="55.56" y="-77.96" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="55.56" y="-77.96" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="55.56" y="-77.96" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="20" y="-14.4" size="0.9" layer="25" font="vector" align="bottom-center"/>
 </element>
-<element name="Q9" library="custom_michael_shao" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-36" y="-3" smashed="yes">
+<element name="Q9" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="SI2302DS" value="N-MOSFET-SI2302DS" x="-36" y="-3" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="4.64" y="-63.96" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="4.64" y="-63.96" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="SI2302CDS-T1-E3CT-ND" x="4.64" y="-63.96" size="1.778" layer="27" display="off"/>
@@ -10895,7 +10891,7 @@ design rules under a new name.</description>
 <attribute name="PRICE" value="10.21" x="0.95" y="54.07" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="REVIEWER" value="Swanson" x="0.95" y="54.07" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="U2" library="custom_michael_shao" package="LSM9DS1" value="IMU_LSM9DS1-LSM9DS1" x="0" y="0" smashed="yes">
+<element name="U2" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="LSM9DS1" value="IMU_LSM9DS1-LSM9DS1" x="0" y="0" smashed="yes">
 <attribute name="CREATOR" value="Michael Shao" x="68.58" y="-48.26" size="1.778" layer="27" display="off"/>
 <attribute name="DIST" value="Digikey" x="68.58" y="-48.26" size="1.778" layer="27" display="off"/>
 <attribute name="DISTPN" value="497-14946-1-ND" x="68.58" y="-48.26" size="1.778" layer="27" display="off"/>
@@ -10940,11 +10936,6 @@ design rules under a new name.</description>
 <element name="P4" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="MOTOR_AND_PROP" value="PROPELLOR-45MM" x="-57" y="57" smashed="yes">
 <attribute name="NAME" x="-64.7" y="59.4" size="1.27" layer="51" font="vector" align="center"/>
 </element>
-<element name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="TIE_FIGHTER_0.15_SCALE" value="TIE Fighter" x="0" y="0" smashed="yes">
-<attribute name="CREATOR" value="Evan Smith" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DIST" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DISTPN" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
-</element>
 <element name="H1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="2-56-MOUNTING-HOLE-NO-METAL" value="MOUNTING_HOLE-2-56" x="45" y="43" smashed="yes">
 <attribute name="NAME" x="45" y="40" size="0.9" layer="25" font="vector" align="center"/>
 </element>
@@ -10976,6 +10967,11 @@ design rules under a new name.</description>
 <attribute name="NAME" x="16" y="-10.5" size="0.9" layer="25" font="vector" rot="R180" align="center"/>
 <attribute name="REVIEWER" value="Swanson" x="16" y="-9" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="16" y="-7.5" size="0.9" layer="27" font="vector" rot="R180" align="center"/>
+</element>
+<element name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="TIE_FIGHTER_0.15_SCALE" value="DECORATION-TIE_FIGHTER_0.15_SCALE" x="0" y="0" smashed="yes">
+<attribute name="CREATOR" value="Evan Smith" x="0" y="0" size="1.778" layer="27" display="off"/>
+<attribute name="DIST" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
+<attribute name="DISTPN" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
 </element>
 </elements>
 <signals>
