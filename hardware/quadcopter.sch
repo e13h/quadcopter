@@ -14381,30 +14381,30 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <text x="0" y="-2.54" size="0.9" layer="27" font="vector" align="bottom-center">&gt;VALUE</text>
 </package>
 <package name="LSM9DS1">
-<smd name="VDDIO1" x="-1.505" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="SCL/SPC" x="-1.725" y="0.645" dx="0.85" dy="0.28" layer="1"/>
-<smd name="VDDIO2" x="-1.725" y="0.215" dx="0.85" dy="0.28" layer="1"/>
-<smd name="SDA/SDI/SDO" x="-1.725" y="-0.215" dx="0.85" dy="0.28" layer="1"/>
-<smd name="SDO_A/G" x="-1.725" y="-0.645" dx="0.85" dy="0.28" layer="1"/>
-<smd name="SDO_M" x="-1.505" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="CS_A/G" x="-1.075" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="CS_M" x="-0.645" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="DRDY_M" x="-0.215" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="INT_M" x="0.215" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="INT1_A/G" x="0.645" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="INT2_A/G" x="1.075" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="DEN_A/G" x="1.505" y="-1.475" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<smd name="RES1" x="1.725" y="-0.645" dx="0.85" dy="0.28" layer="1" rot="R180"/>
-<smd name="RES2" x="1.725" y="-0.215" dx="0.85" dy="0.28" layer="1" rot="R180"/>
-<smd name="RES3" x="1.725" y="0.215" dx="0.85" dy="0.28" layer="1" rot="R180"/>
-<smd name="RES4" x="1.725" y="0.645" dx="0.85" dy="0.28" layer="1" rot="R180"/>
-<smd name="RES5" x="1.505" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="GND1" x="1.075" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="GND2" x="0.645" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="CAP" x="0.215" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="VDD1" x="-0.215" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="VDD2" x="-0.645" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
-<smd name="C1" x="-1.075" y="1.475" dx="0.85" dy="0.28" layer="1" rot="R90"/>
+<smd name="VDDIO1" x="-1.505" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="SCL/SPC" x="-1.725" y="0.645" dx="0.85" dy="0.275" layer="1"/>
+<smd name="VDDIO2" x="-1.725" y="0.215" dx="0.85" dy="0.275" layer="1"/>
+<smd name="SDA/SDI/SDO" x="-1.725" y="-0.215" dx="0.85" dy="0.275" layer="1"/>
+<smd name="SDO_A/G" x="-1.725" y="-0.645" dx="0.85" dy="0.275" layer="1"/>
+<smd name="SDO_M" x="-1.505" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="CS_A/G" x="-1.075" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="CS_M" x="-0.645" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="DRDY_M" x="-0.215" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="INT_M" x="0.215" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="INT1_A/G" x="0.645" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="INT2_A/G" x="1.075" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="DEN_A/G" x="1.505" y="-1.475" dx="0.85" dy="0.275" layer="1" rot="R270"/>
+<smd name="RES1" x="1.725" y="-0.645" dx="0.85" dy="0.275" layer="1" rot="R180"/>
+<smd name="RES2" x="1.725" y="-0.215" dx="0.85" dy="0.275" layer="1" rot="R180"/>
+<smd name="RES3" x="1.725" y="0.215" dx="0.85" dy="0.275" layer="1" rot="R180"/>
+<smd name="RES4" x="1.725" y="0.645" dx="0.85" dy="0.275" layer="1" rot="R180"/>
+<smd name="RES5" x="1.505" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="GND1" x="1.075" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="GND2" x="0.645" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="CAP" x="0.215" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="VDD1" x="-0.215" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="VDD2" x="-0.645" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
+<smd name="C1" x="-1.075" y="1.475" dx="0.85" dy="0.275" layer="1" rot="R90"/>
 <wire x1="-1.75" y1="1.5" x2="-1.75" y2="-1.5" width="0.127" layer="51"/>
 <wire x1="-1.75" y1="-1.5" x2="1.75" y2="-1.5" width="0.127" layer="51"/>
 <wire x1="1.75" y1="-1.5" x2="1.75" y2="1.5" width="0.127" layer="51"/>
@@ -23780,18 +23780,18 @@ Expected current thru LED: 15mA</text>
 <pinref part="U2" gate="G$1" pin="CS_M"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="VDDIO"/>
 <pinref part="P+10" gate="G$1" pin="2V5"/>
 <wire x1="55.88" y1="259.08" x2="55.88" y2="251.46" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VDDIO"/>
 </segment>
 <segment>
 <pinref part="C13" gate="G$1" pin="1"/>
 <pinref part="P+26" gate="G$1" pin="2V5"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="VDD"/>
 <pinref part="P+8" gate="G$1" pin="2V5"/>
 <wire x1="50.8" y1="259.08" x2="50.8" y2="251.46" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VDD"/>
 </segment>
 <segment>
 <pinref part="C14" gate="G$1" pin="1"/>
@@ -24064,8 +24064,8 @@ Expected current thru LED: 15mA</text>
 </net>
 <net name="N$16" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="CAP"/>
 <pinref part="C12" gate="G$1" pin="1"/>
+<pinref part="U2" gate="G$1" pin="CAP"/>
 </segment>
 </net>
 <net name="N$22" class="0">
