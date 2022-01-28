@@ -10940,7 +10940,11 @@ design rules under a new name.</description>
 <element name="P4" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="MOTOR_AND_PROP" value="PROPELLOR-45MM" x="-57" y="57" smashed="yes">
 <attribute name="NAME" x="-64.7" y="59.4" size="1.27" layer="51" font="vector" align="center"/>
 </element>
-<element name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="TIE_FIGHTER_0.15_SCALE" value="TIE Fighter" x="0" y="0" smashed="yes"/>
+<element name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="TIE_FIGHTER_0.15_SCALE" value="TIE Fighter" x="0" y="0" smashed="yes">
+<attribute name="CREATOR" value="Evan Smith" x="0" y="0" size="1.778" layer="27" display="off"/>
+<attribute name="DIST" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
+<attribute name="DISTPN" value="NA" x="0" y="0" size="1.778" layer="27" display="off"/>
+</element>
 <element name="H1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="2-56-MOUNTING-HOLE-NO-METAL" value="MOUNTING_HOLE-2-56" x="45" y="43" smashed="yes">
 <attribute name="NAME" x="45" y="40" size="0.9" layer="25" font="vector" align="center"/>
 </element>

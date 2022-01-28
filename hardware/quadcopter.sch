@@ -22220,14 +22220,18 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="DECORATION" prefix="DEC" uservalue="yes">
+<deviceset name="DECORATION" prefix="DEC">
 <gates>
 <gate name="G$1" symbol="DECORATION" x="0" y="0"/>
 </gates>
 <devices>
 <device name="-TIE_FIGHTER_0.15_SCALE" package="TIE_FIGHTER_0.15_SCALE">
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="CREATOR" value="Evan Smith"/>
+<attribute name="DIST" value="NA"/>
+<attribute name="DISTPN" value="NA"/>
+</technology>
 </technologies>
 </device>
 </devices>
