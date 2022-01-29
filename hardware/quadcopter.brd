@@ -10057,11 +10057,11 @@ design rules under a new name.</description>
 <element name="B2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="BATTERY-COMBO" value="BATTERY-SMD-TH" x="-18.5" y="-12.5" smashed="yes">
 <attribute name="NAME" x="-18.5" y="-4.5" size="0.9" layer="25" font="vector" align="center"/>
 </element>
-<element name="BRID1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="NET_BRIDGE_5X5" value="NET_BRIDGE_5X5" x="-12" y="-14.2" smashed="yes" rot="R180">
-<attribute name="CREATOR" value="Michael Shao" x="-37.4" y="83.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DIST" value="N/A" x="-37.4" y="83.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DISTPN" value="N/A" x="-37.4" y="83.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-12" y="-13.2" size="0.9" layer="25" font="vector" rot="R180" align="center"/>
+<element name="BRID1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" package="NET_BRIDGE_5X5" value="NET_BRIDGE_5X5" x="-11" y="-17.5" smashed="yes" rot="R180">
+<attribute name="CREATOR" value="Michael Shao" x="-36.4" y="80.29" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DIST" value="N/A" x="-36.4" y="80.29" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DISTPN" value="N/A" x="-36.4" y="80.29" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="-11" y="-16.5" size="0.9" layer="25" font="vector" rot="R180" align="center"/>
 </element>
 <element name="C1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="CAPC2012X140_HS" value="22pF" x="28" y="6.5" smashed="yes" rot="R270">
 <attribute name="CREATOR" value="Swanson" x="-65.98" y="-35.41" size="1.778" layer="27" rot="R270" display="off"/>
@@ -10269,16 +10269,16 @@ design rules under a new name.</description>
 <attribute name="REVIEWER" value="Swanson" x="113.98" y="85.93" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="20" y="11" size="0.9" layer="27" font="vector" rot="R90"/>
 </element>
-<element name="C9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="CAPC2012X140_HS" value="1uF" x="-11" y="-16" smashed="yes">
-<attribute name="CREATOR" value="Swanson" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="DIST" value="Digikey" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="DISTPN" value="587-1281-1-ND" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="MFR" value="Taiyo Yuden" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="MOUNTING" value="SMD" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="TMK212B7105KG-T" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-11" y="-15.5" size="0.9" layer="25" font="vector"/>
-<attribute name="REVIEWER" value="Swanson" x="4.24" y="-113.79" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-10" y="-18" size="0.9" layer="27" font="vector"/>
+<element name="C9" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="CAPC2012X140_HS" value="1uF" x="-11" y="-15.5" smashed="yes">
+<attribute name="CREATOR" value="Swanson" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="DIST" value="Digikey" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="DISTPN" value="587-1281-1-ND" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="MFR" value="Taiyo Yuden" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="MOUNTING" value="SMD" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="TMK212B7105KG-T" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-11" y="-15" size="0.9" layer="25" font="vector"/>
+<attribute name="REVIEWER" value="Swanson" x="4.24" y="-113.29" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-10" y="-17.5" size="0.9" layer="27" font="vector"/>
 </element>
 <element name="D1" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" package="SODFL3516X96" package3d_urn="urn:adsk.eagle:package:11793366/1" value="360mV" x="32" y="22.5" smashed="yes" rot="R180">
 <attribute name="CREATOR" value="Swanson" x="-30.23" y="107.59" size="1.778" layer="27" rot="R180" display="off"/>
@@ -11188,7 +11188,7 @@ design rules under a new name.</description>
 <vertex x="14.9568375" y="14.0646"/>
 <vertex x="14.98484375" y="14.0762"/>
 </polygon>
-<via x="23.1454" y="-17.5" extent="1-16" drill="0.6096"/>
+<via x="24.4454" y="-16.4" extent="1-16" drill="0.6096"/>
 <wire x1="-12.5" y1="-5" x2="-12.5" y2="-5.5" width="0.762" layer="1"/>
 <wire x1="-12.5" y1="-5.5" x2="-14.4" y2="-7.4" width="0.762" layer="1"/>
 <via x="-14.4" y="-7.4" extent="1-16" drill="0.6096"/>
@@ -11196,19 +11196,17 @@ design rules under a new name.</description>
 <via x="-15.3" y="-10.5" extent="1-16" drill="0.6096"/>
 <wire x1="-21.7" y1="-12.95" x2="-21.7" y2="-10.5" width="0.762" layer="1"/>
 <via x="-21.7" y="-10.5" extent="1-16" drill="0.6096"/>
-<wire x1="24.455" y1="-15" x2="24.455" y2="-16.1904" width="0.762" layer="1"/>
-<wire x1="24.455" y1="-16.1904" x2="23.1454" y2="-17.5" width="0.762" layer="1"/>
+<wire x1="24.455" y1="-15" x2="24.455" y2="-16.3904" width="0.762" layer="1"/>
+<wire x1="24.455" y1="-16.3904" x2="24.4454" y2="-16.4" width="0.762" layer="1"/>
 <wire x1="-19.77" y1="-9.96" x2="-19.77" y2="-7.57" width="1.27" layer="1"/>
 <wire x1="-19.77" y1="-7.57" x2="-19.5" y2="-7.3" width="1.27" layer="1"/>
 <via x="-13.3877125" y="-12.0406" extent="1-16" drill="0.6096"/>
 <wire x1="-13.3877125" y1="-12.0406" x2="-13.3471125" y2="-12" width="0.762" layer="1"/>
 <wire x1="-13.3471125" y1="-12" x2="-11.8" y2="-12" width="0.762" layer="1"/>
-<wire x1="-11.8" y1="-14.2" x2="-10.9" y2="-14.2" width="0.762" layer="1"/>
-<via x="-10.9" y="-14.2" extent="1-16" drill="0.6096"/>
-<wire x1="-10.105" y1="-16" x2="-10.8216" y2="-15.2834" width="0.762" layer="1"/>
-<wire x1="-10.8216" y1="-15.2834" x2="-10.8216" y2="-15.21456875" width="0.762" layer="1"/>
-<wire x1="-10.8216" y1="-15.21456875" x2="-10.9" y2="-15.13616875" width="0.762" layer="1"/>
-<wire x1="-10.9" y1="-15.13616875" x2="-10.9" y2="-14.2" width="0.762" layer="1"/>
+<via x="-9.6" y="-17.5" extent="1-16" drill="0.6096"/>
+<wire x1="-8.9" y1="-15.5" x2="-10.105" y2="-15.5" width="0.762" layer="1"/>
+<via x="-8.9" y="-15.5" extent="1-16" drill="0.6096"/>
+<wire x1="-10.8" y1="-17.5" x2="-9.6" y2="-17.5" width="0.762" layer="1"/>
 </signal>
 <signal name="VBAT" class="3">
 <contactref element="M1" pad="1"/>
@@ -11318,8 +11316,7 @@ design rules under a new name.</description>
 <via x="-13.1446" y="-15.5" extent="1-16" drill="0.6096"/>
 <wire x1="-11.8" y1="-11.05" x2="-13.0245" y2="-11.05" width="0.762" layer="1"/>
 <wire x1="-13.0245" y1="-11.05" x2="-13.3245" y2="-10.75" width="0.762" layer="1"/>
-<wire x1="-11.895" y1="-16" x2="-12.6446" y2="-16" width="0.762" layer="1"/>
-<wire x1="-12.6446" y1="-16" x2="-13.1446" y2="-15.5" width="0.762" layer="1"/>
+<wire x1="-11.895" y1="-15.5" x2="-13.1446" y2="-15.5" width="0.762" layer="1"/>
 </signal>
 <signal name="N$1" class="3">
 <contactref element="D2" pad="2"/>
@@ -12150,7 +12147,8 @@ design rules under a new name.</description>
 <wire x1="-4.4635" y1="-19.2865" x2="-5.5" y2="-18.25" width="0.127" layer="1"/>
 <wire x1="3.69554375" y1="-19.2865" x2="-4.4635" y2="-19.2865" width="0.127" layer="1"/>
 <wire x1="7" y1="-21.75" x2="18.75" y2="-21.75" width="0.127" layer="1"/>
-<wire x1="18.75" y1="-21.75" x2="20" y2="-19.875" width="0.127" layer="1"/>
+<wire x1="20" y1="-19.875" x2="20" y2="-20.5" width="0.127" layer="1"/>
+<wire x1="20" y1="-20.5" x2="18.75" y2="-21.75" width="0.127" layer="1"/>
 </signal>
 <signal name="N$28">
 <contactref element="R15" pad="1"/>
@@ -12181,9 +12179,9 @@ design rules under a new name.</description>
 <approved hash="7,39,7a6339b94b76889a"/>
 <approved hash="7,39,a25e4d670305e323"/>
 <approved hash="7,39,ea782a54a78d672f"/>
-<approved hash="19,1,0b0fed19402ec6db"/>
-<approved hash="19,1,2b4a0eda97d697ac"/>
 <approved hash="3,1,b47a8e428e02b43a"/>
+<approved hash="19,1,6ea80b1b45d75a62"/>
+<approved hash="19,1,0cc43cfab3afa392"/>
 </errors>
 </board>
 </drawing>
