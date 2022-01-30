@@ -23,3 +23,4 @@ firmware/libraries/SoftI2CMaster/
 firmware/hardware/QuadClass-Atmega128RFA-Arduino-Addon/
 QuadClass-Quadcopter-Starter-*
 
+.vscode/*
