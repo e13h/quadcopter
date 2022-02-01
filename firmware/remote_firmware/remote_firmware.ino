@@ -44,7 +44,7 @@ void calibrateGimbals(){
   yawRange[1] = curYaw;
   rollRange[1] = curRoll;
   pitchRange[1] = curPitch;
-  delay(10);
+  delay(50);
 
   while(calibrationActive){
     
@@ -83,21 +83,34 @@ void calibrateGimbals(){
       pitchRange[1] = curPitch;
     }
 
-    // Debugging:
-    Serial.print("Throttle Min " + throttleRange[0]);
-    Serial.print("/nThrottle Max " + throttleRange[1]);
     
-    Serial.print("Yaw Min " + yawRange[0]);
-    Serial.print("/nYaw Max " + yawRange[1]);
-
-    Serial.print("Roll Min " + rollRange[0]);
-    Serial.print("/nRoll Max " + rollRange[1]);
-    
-    Serial.print("Pitch Min " + pitchRange[0]);
-    Serial.print("/nPitch Max " + pitchRange[1]);
   }
 
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Closing Calibration");
+  delay(1000);
+
+  // Debugging:
+  Serial.print("Throttle Min ");
+  Serial.print(throttleRange[0]);
+  Serial.print("\nThrottle Max ");
+  Serial.print(throttleRange[1]);
   
+  Serial.print("\nYaw Min ");
+  Serial.print(yawRange[0]);
+  Serial.print("\nYaw Max ");
+  Serial.print(yawRange[1]);
+
+  Serial.print("\nRoll Min ");
+  Serial.print(rollRange[0]);
+  Serial.print("\nRoll Max ");
+  Serial.print(rollRange[1]);
+  
+  Serial.print("\nPitch Min ");
+  Serial.print(pitchRange[0]);
+  Serial.print("\nPitch Max ");
+  Serial.print(pitchRange[1]);
 
   return;
 }
