@@ -2,6 +2,16 @@
 #include "quad_remote.h"  // Header file with pin definitions and setup
 #include <serLCD.h>
 
+struct quad_pkt {
+  uint8_t magic_constant = 176;
+  uint8_t yaw;
+  uint8_t throttle;
+  uint8_t roll;
+  uint8_t pitch;
+  bool armed;
+  uint8_t checksum;
+};
+
 bool calibrationActive = false;
 bool quadcopterArmed = false;
 
