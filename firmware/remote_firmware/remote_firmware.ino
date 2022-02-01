@@ -14,6 +14,12 @@ struct quad_pkt {
 
 bool calibrationActive = false;
 bool quadcopterArmed = false;
+int yaw = 0;
+int throttle = 0;
+int roll = 0;
+int pitch = 0;
+const int AXIS_MIN = 0;
+const int AXIS_MAX = 255;
 
 void btn1_pressed(bool);
 
@@ -27,27 +33,20 @@ void setup() {
 }
 
 void loop() {
-  int throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, 0, 1023, 0, 255);
-  Serial.print(throttle);
-  Serial.print(" ");
+  throttle = analogRead(PIN_THROTTLE);
+  throttle = map(throttle, 0, 1023, AXIS_MIN, AXIS_MAX);
 
-  int yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, 0, 1023, 0, 255);
-  Serial.print(yaw);
-  Serial.print(" ");
+  yaw = analogRead(PIN_YAW);
+  yaw = map(yaw, 0, 1023, AXIS_MIN, AXIS_MAX);
   
-  int roll = analogRead(PIN_ROLL);
-  roll = map(roll, 0, 1023, 0, 255);
-  Serial.print(roll);
-  Serial.print(" ");
+  roll = analogRead(PIN_ROLL);
+  roll = map(roll, 0, 1023, AXIS_MIN, AXIS_MAX);
 
-  int pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, 0, 1023, 0, 255);
-  Serial.print(pitch);
-  Serial.print(" ");
-  Serial.print("\n");
-  delay(10);
+  pitch = analogRead(PIN_PITCH);
+  pitch = map(pitch, 0, 1023, AXIS_MIN, AXIS_MAX);
+
+
+  delay(1000);
 }
 
 void btn1_pressed(bool down) {
