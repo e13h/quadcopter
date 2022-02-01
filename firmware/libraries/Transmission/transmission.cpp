@@ -22,6 +22,7 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
 
 bool recieve_packet(quad_pkt* q_pkt){
   uint8_t* pkt = (uint8_t*)q_pkt;
+  
   if(rfAvailable()){
     rfRead(pkt,sizeof(quad_pkt));
 
@@ -35,6 +36,7 @@ bool recieve_packet(quad_pkt* q_pkt){
     return false;
   }
 }
+
 
 void print_bytes(uint8_t* bytes, uint8_t len) {
   if (!checksum_valid(bytes, len)) {
