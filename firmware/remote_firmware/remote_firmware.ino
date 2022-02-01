@@ -14,10 +14,10 @@ struct quad_pkt {
 };
 
 // CONSTANTS
-#define THR_POS 0
-#define YAW_POS 8
-#define ROLL_POS 16
-#define PIT_POS 24
+const int THR_POS = 0;
+const int YAW_POS = 8;
+const int ROLL_POS = 16;
+const int PIT_POS = 24;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 
