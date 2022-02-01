@@ -24,10 +24,13 @@ const int AXIS_MAX = 255;
 void btn1_pressed(bool);
 
 void setup() {
-  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port 
+  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
+  const int RF_CHANNEL = 15;
+
 	Serial.begin(SERIAL_BAUD);           // Start up serial
 	delay(100);
 	quad_remote_setup();
+  rfBegin(RF_CHANNEL);
 
   btn1_cb = btn1_pressed;
 }
