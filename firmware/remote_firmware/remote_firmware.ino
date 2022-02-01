@@ -68,8 +68,9 @@ void loop() {
     if (millis() % 50 == 0) {  // Send a packet every 50ms
       send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
     }
-    Serial.println("Response: ");
-    recieve_response();
+
+    //Serial.println("Response: ");
+    //recieve_response();
   }
 }
 

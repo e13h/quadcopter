@@ -18,6 +18,8 @@ void setup() {
   roll = 0;
   pitch = 0;
   armed = false;
+  
+  pinMode(LED_BUILTIN, OUTPUT);
 
   rfBegin(RF_CHANNEL);
 }
@@ -30,11 +32,15 @@ void loop() {
     roll = pkt.roll;
     pitch = pkt.pitch;
     armed = pkt.armed;
-
-    
   }
-  if (millis() % 25 == 0) {
-    send_response(armed, pkt.checksum);
+  if(armed){
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   }
+  else{
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+  
+  //if (millis() % 100 == 0) {
+  //  send_response(armed, pkt.checksum);
+  //}
 }
-
