@@ -82,9 +82,22 @@ void calibrateGimbals(){
     if(curPitch > pitchRange[1]){
       pitchRange[1] = curPitch;
     }
+
+    // Debugging:
+    Serial.print("Throttle Min " + throttleRange[0]);
+    Serial.print("/nThrottle Max " + throttleRange[1]);
+    
+    Serial.print("Yaw Min " + yawRange[0]);
+    Serial.print("/nYaw Max " + yawRange[1]);
+
+    Serial.print("Roll Min " + rollRange[0]);
+    Serial.print("/nRoll Max " + rollRange[1]);
+    
+    Serial.print("Pitch Min " + pitchRange[0]);
+    Serial.print("/nPitch Max " + pitchRange[1]);
   }
 
-  // Reset display
+  
 
   return;
 }
