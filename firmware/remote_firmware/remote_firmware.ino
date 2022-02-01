@@ -3,11 +3,23 @@
 #include <serLCD.h>
 #include <EEPROM.h>
 
+struct quad_pkt {
+  uint8_t magic_constant = 176;
+  uint8_t yaw;
+  uint8_t throttle;
+  uint8_t roll;
+  uint8_t pitch;
+  bool armed;
+  uint8_t checksum;
+};
+
 // CONSTANTS
 #define THR_POS 0
 #define YAW_POS 8
 #define ROLL_POS 16
 #define PIT_POS 24
+const int AXIS_MIN = 0;
+const int AXIS_MAX = 255;
 
 
 //Global Variables
@@ -18,13 +30,28 @@ int pitchRange[2];
   
 bool calibrationActive = false;
 bool quadcopterArmed = false;
+int yaw = 0;
+int throttle = 0;
+int roll = 0;
+int pitch = 0;
 
 void btn1_pressed(bool);
+void set_gimbals();
+void print_gimbals();
+void calibrateGimbals();
+void print_range();
+void send_packet();
+void print_bytes(uint8_t*, uint8_t);
+bool checksum_valid(uint8_t*, uint8_t);
+
 void setup() {
-  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port 
+  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
+  const int RF_CHANNEL = 15;
+
 	Serial.begin(SERIAL_BAUD);           // Start up serial
 	delay(100);
 	quad_remote_setup();
+  rfBegin(RF_CHANNEL);
 
   btn1_cb = btn1_pressed;
 
@@ -38,13 +65,16 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if(calibrationActive){
     calibrateGimbals();
+  } else {
+    set_gimbals();
+    send_packet();
+    delay(1000);
   }
 }
 
-void calibrateGimbals(){
+void calibrateGimbals() {
 
   print_range();
 
@@ -126,7 +156,7 @@ void calibrateGimbals(){
   return;
 }
 
-void print_range(){
+void print_range() {
   Serial.print("\nThrottle Min ");
   Serial.print(throttleRange[0]);
   Serial.print("\nThrottle Max ");
@@ -148,28 +178,25 @@ void print_range(){
   Serial.print(pitchRange[1]);
 }
 
-void print_gimbals(){
-  int throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, 0, 1023, 0, 255);
+void set_gimbals() {
+  throttle = analogRead(PIN_THROTTLE);
+  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
+  yaw = analogRead(PIN_YAW);
+  yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MIN, AXIS_MAX);
+  roll = analogRead(PIN_ROLL);
+  roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
+  pitch = analogRead(PIN_PITCH);
+  pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MIN, AXIS_MAX);
+}
+
+void print_gimbals() {
   Serial.print(throttle);
   Serial.print(" ");
-
-  int yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, 0, 1023, 0, 255);
   Serial.print(yaw);
   Serial.print(" ");
-  
-  int roll = analogRead(PIN_ROLL);
-  roll = map(roll, 0, 1023, 0, 255);
   Serial.print(roll);
   Serial.print(" ");
-
-  int pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, 0, 1023, 0, 255);
-  Serial.print(pitch);
-  Serial.print(" ");
-  Serial.print("\n");
-  delay(10);
+  Serial.println(pitch);
 }
 
 void btn1_pressed(bool down) {
@@ -188,4 +215,52 @@ void btn1_pressed(bool down) {
   } else if (down && quadcopterArmed) {
     // Print message to disarm the quadcopter?
   }
+}
+
+void send_packet() {
+  quad_pkt pkt;
+  pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
+  pkt.throttle = constrain(throttle, AXIS_MIN, AXIS_MAX);
+  pkt.roll = constrain(roll, AXIS_MIN, AXIS_MAX);
+  pkt.pitch = constrain(pitch, AXIS_MIN, AXIS_MAX);
+  pkt.armed = quadcopterArmed;
+  pkt.checksum = pkt.magic_constant ^ pkt.yaw ^ pkt.throttle ^ pkt.roll ^ pkt.pitch ^ pkt.armed;
+
+  uint8_t* pkt_bytes = (uint8_t*) &pkt;
+  // rfWrite(pkt_bytes, sizeof(quad_pkt));  // TODO: actually write the packet
+  print_bytes(pkt_bytes, sizeof(quad_pkt));  // TODO: remove this line
+}
+
+void print_bytes(uint8_t* bytes, uint8_t len) {
+  if (!checksum_valid(bytes, len)) {
+    Serial.println("Packet integrity bad");
+    return;
+  }
+  quad_pkt* pkt = (quad_pkt*) bytes;
+  Serial.print("Yaw: ");
+  Serial.print(pkt->yaw);
+  Serial.print(" Throttle: ");
+  Serial.print(pkt->throttle);
+  Serial.print(" Roll: ");
+  Serial.print(pkt->roll);
+  Serial.print(" Pitch: ");
+  Serial.print(pkt->pitch);
+  Serial.print(" Armed: ");
+  Serial.print(pkt->armed);
+  Serial.print(" Checksum: ");
+  Serial.println(pkt->checksum);
+}
+
+bool checksum_valid(uint8_t* bytes, uint8_t len) {
+  if (len < sizeof(quad_pkt)) {
+    // If the number of bytes doesn't match the size of the packet,
+    // do not open the packet!
+    return false;
+  }
+  uint8_t actual_checksum = 0;
+  for (int i = 0; i < len - sizeof(uint8_t); i++) {
+    actual_checksum ^= bytes[i];
+  }
+  uint8_t expected_checksum = bytes[len - sizeof(uint8_t)];
+  return actual_checksum == expected_checksum;
 }
