@@ -1,7 +1,16 @@
 #include <radio.h>
 #include "quad_remote.h"  // Header file with pin definitions and setup
 #include <serLCD.h>
+#include <EEPROM.h>
 
+// CONSTANTS
+#define THR_POS 0
+#define YAW_POS 8
+#define ROLL_POS 16
+#define PIT_POS 24
+
+
+//Global Variables
 int throttleRange[2];
 int yawRange[2];
 int rollRange[2];
@@ -16,7 +25,16 @@ void setup() {
 	Serial.begin(SERIAL_BAUD);           // Start up serial
 	delay(100);
 	quad_remote_setup();
+
   btn1_cb = btn1_pressed;
+
+  eeprom_load(THR_POS, throttleRange);
+
+  eeprom_load(YAW_POS, yawRange);
+
+  eeprom_load(ROLL_POS, rollRange);
+  
+  eeprom_load(PIT_POS, pitchRange);
 }
 
 void loop() {
@@ -27,6 +45,8 @@ void loop() {
 }
 
 void calibrateGimbals(){
+
+  print_range();
 
   int curThrottle = analogRead(PIN_THROTTLE);
   int curYaw = analogRead(PIN_YAW);
@@ -44,7 +64,7 @@ void calibrateGimbals(){
   yawRange[1] = curYaw;
   rollRange[1] = curRoll;
   pitchRange[1] = curPitch;
-  delay(50);
+  delay(500);
 
   while(calibrationActive){
     
@@ -82,17 +102,32 @@ void calibrateGimbals(){
     if(curPitch > pitchRange[1]){
       pitchRange[1] = curPitch;
     }
-
-    
   }
 
+  // Display clalibration close
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Closing Calibration");
-  delay(1000);
 
-  // Debugging:
-  Serial.print("Throttle Min ");
+  // Update roll over values
+  eeprom_store(THR_POS, throttleRange);
+
+  eeprom_store(YAW_POS, yawRange);
+
+  eeprom_store(ROLL_POS, rollRange);
+  
+  eeprom_store(PIT_POS, pitchRange);
+
+  delay(1000);
+  lcd.clear();
+  
+  // Debug
+  print_range();
+  return;
+}
+
+void print_range(){
+  Serial.print("\nThrottle Min ");
   Serial.print(throttleRange[0]);
   Serial.print("\nThrottle Max ");
   Serial.print(throttleRange[1]);
@@ -111,8 +146,6 @@ void calibrateGimbals(){
   Serial.print(pitchRange[0]);
   Serial.print("\nPitch Max ");
   Serial.print(pitchRange[1]);
-
-  return;
 }
 
 void print_gimbals(){
