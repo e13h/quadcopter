@@ -61,18 +61,6 @@ void setup() {
 }
 
 void loop() {
-  throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, 0, 1023, AXIS_MIN, AXIS_MAX);
-
-  yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, 0, 1023, AXIS_MIN, AXIS_MAX);
-
-  roll = analogRead(PIN_ROLL);
-  roll = map(roll, 0, 1023, AXIS_MIN, AXIS_MAX);
-
-  pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, 0, 1023, AXIS_MIN, AXIS_MAX);
-
   send_packet();
   delay(1000);
   // put your main code here, to run repeatedly:
@@ -186,16 +174,24 @@ void print_range(){
 }
 
 void print_gimbals(){
-  int throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, 0, 1023, 0, 255);
+  throttle = analogRead(PIN_THROTTLE);
+  throttle = map(throttle, 0, 1023, AXIS_MIN, AXIS_MAX);
   Serial.print(throttle);
   Serial.print(" ");
 
-  int yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, 0, 1023, 0, 255);
+  yaw = analogRead(PIN_YAW);
+  yaw = map(yaw, 0, 1023, AXIS_MIN, AXIS_MAX);
   Serial.print(yaw);
   Serial.print(" ");
 
+  roll = analogRead(PIN_ROLL);
+  roll = map(roll, 0, 1023, AXIS_MIN, AXIS_MAX);
+  Serial.print(roll);
+  Serial.print(" ");
+
+  pitch = analogRead(PIN_PITCH);
+  pitch = map(pitch, 0, 1023, AXIS_MIN, AXIS_MAX);
+  Serial.println(pitch);
 }
 
 void btn1_pressed(bool down) {
