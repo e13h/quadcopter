@@ -28,7 +28,9 @@ int roll = 0;
 int pitch = 0;
 
 void btn1_pressed(bool);
+void btn2_pressed(bool);
 void set_gimbals();
+void check_arm_status();
 void print_gimbals();
 void calibrateGimbals();
 void print_range();
@@ -44,6 +46,8 @@ void setup() {
   rfBegin(RF_CHANNEL);
 
   btn1_cb = btn1_pressed;
+  btn2_cb = btn2_pressed;
+  lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
 
@@ -58,9 +62,13 @@ void loop() {
   if(calibrationActive){
     calibrateGimbals();
   } else {
-    set_gimbals();
-    send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
-    delay(1000);
+    if (millis() % 10 == 0) {  // Read gimbal values every 10ms
+      set_gimbals();
+    }
+    check_arm_status();
+    if (millis() % 50 == 0) {  // Send a packet every 50ms
+      send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
+    }
   }
 }
 
@@ -207,5 +215,19 @@ void btn1_pressed(bool down) {
     lcd.clear();
   } else if (down && quadcopterArmed) {
     // Print message to disarm the quadcopter?
+  }
+}
+
+void btn2_pressed(bool down) {
+  if (down && quadcopterArmed) {
+    quadcopterArmed = false;
+    lcd.setBacklight(0x000000FF);
+  }
+}
+
+void check_arm_status() {
+  if (!quadcopterArmed && throttle == 0 && yaw >= 250 && roll >= 250 && pitch >= 250) {
+    quadcopterArmed = true;
+    lcd.setBacklight(0x00FF0000);
   }
 }
