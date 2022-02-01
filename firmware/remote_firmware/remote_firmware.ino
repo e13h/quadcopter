@@ -2,16 +2,8 @@
 #include "quad_remote.h"  // Header file with pin definitions and setup
 #include <serLCD.h>
 #include <EEPROM.h>
+#include "transmission.h"
 
-struct quad_pkt {
-  uint8_t magic_constant = 176;
-  uint8_t yaw;
-  uint8_t throttle;
-  uint8_t roll;
-  uint8_t pitch;
-  bool armed;
-  uint8_t checksum;
-};
 
 // CONSTANTS
 const int THR_POS = 0;
@@ -36,13 +28,13 @@ int roll = 0;
 int pitch = 0;
 
 void btn1_pressed(bool);
+void btn2_pressed(bool);
 void set_gimbals();
+void check_arm_status();
 void print_gimbals();
 void calibrateGimbals();
 void print_range();
-void send_packet();
-void print_bytes(uint8_t*, uint8_t);
-bool checksum_valid(uint8_t*, uint8_t);
+
 
 void setup() {
   const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
@@ -54,6 +46,8 @@ void setup() {
   rfBegin(RF_CHANNEL);
 
   btn1_cb = btn1_pressed;
+  btn2_cb = btn2_pressed;
+  lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
 
@@ -68,9 +62,13 @@ void loop() {
   if(calibrationActive){
     calibrateGimbals();
   } else {
-    set_gimbals();
-    send_packet();
-    delay(1000);
+    if (millis() % 10 == 0) {  // Read gimbal values every 10ms
+      set_gimbals();
+    }
+    check_arm_status();
+    if (millis() % 50 == 0) {  // Send a packet every 50ms
+      send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
+    }
   }
 }
 
@@ -181,6 +179,9 @@ void print_range() {
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
   throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
+  if (throttle <= 15) {
+    throttle = 0;
+  }
   yaw = analogRead(PIN_YAW);
   yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MIN, AXIS_MAX);
   roll = analogRead(PIN_ROLL);
@@ -217,50 +218,16 @@ void btn1_pressed(bool down) {
   }
 }
 
-void send_packet() {
-  quad_pkt pkt;
-  pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
-  pkt.throttle = constrain(throttle, AXIS_MIN, AXIS_MAX);
-  pkt.roll = constrain(roll, AXIS_MIN, AXIS_MAX);
-  pkt.pitch = constrain(pitch, AXIS_MIN, AXIS_MAX);
-  pkt.armed = quadcopterArmed;
-  pkt.checksum = pkt.magic_constant ^ pkt.yaw ^ pkt.throttle ^ pkt.roll ^ pkt.pitch ^ pkt.armed;
-
-  uint8_t* pkt_bytes = (uint8_t*) &pkt;
-  // rfWrite(pkt_bytes, sizeof(quad_pkt));  // TODO: actually write the packet
-  print_bytes(pkt_bytes, sizeof(quad_pkt));  // TODO: remove this line
+void btn2_pressed(bool down) {
+  if (down && quadcopterArmed) {
+    quadcopterArmed = false;
+    lcd.setBacklight(0x000000FF);
+  }
 }
 
-void print_bytes(uint8_t* bytes, uint8_t len) {
-  if (!checksum_valid(bytes, len)) {
-    Serial.println("Packet integrity bad");
-    return;
+void check_arm_status() {
+  if (!quadcopterArmed && throttle == 0 && yaw >= 250 && roll >= 250 && pitch >= 250) {
+    quadcopterArmed = true;
+    lcd.setBacklight(0x00FF0000);
   }
-  quad_pkt* pkt = (quad_pkt*) bytes;
-  Serial.print("Yaw: ");
-  Serial.print(pkt->yaw);
-  Serial.print(" Throttle: ");
-  Serial.print(pkt->throttle);
-  Serial.print(" Roll: ");
-  Serial.print(pkt->roll);
-  Serial.print(" Pitch: ");
-  Serial.print(pkt->pitch);
-  Serial.print(" Armed: ");
-  Serial.print(pkt->armed);
-  Serial.print(" Checksum: ");
-  Serial.println(pkt->checksum);
-}
-
-bool checksum_valid(uint8_t* bytes, uint8_t len) {
-  if (len < sizeof(quad_pkt)) {
-    // If the number of bytes doesn't match the size of the packet,
-    // do not open the packet!
-    return false;
-  }
-  uint8_t actual_checksum = 0;
-  for (int i = 0; i < len - sizeof(uint8_t); i++) {
-    actual_checksum ^= bytes[i];
-  }
-  uint8_t expected_checksum = bytes[len - sizeof(uint8_t)];
-  return actual_checksum == expected_checksum;
 }
