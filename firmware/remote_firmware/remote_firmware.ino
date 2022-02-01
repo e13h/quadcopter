@@ -12,6 +12,8 @@ const int ROLL_POS = 16;
 const int PIT_POS = 24;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
+const int SERIAL_BAUD = 9600;        // Baud rate for serial port
+const int RF_CHANNEL = 15;
 
 
 //Global Variables
@@ -37,9 +39,6 @@ void print_range();
 
 
 void setup() {
-  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
-  const int RF_CHANNEL = 15;
-
 	Serial.begin(SERIAL_BAUD);           // Start up serial
 	delay(100);
 	quad_remote_setup();

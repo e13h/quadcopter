@@ -1,8 +1,12 @@
 #include "transmission.h"
+#include "radio.h"
+
+const int AXIS_MIN = 0;
+const int AXIS_MAX = 255;
+
 
 void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
-  const int AXIS_MIN = 0;
-  const int AXIS_MAX = 255;
+  
   quad_pkt pkt;
   pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
   pkt.throttle = constrain(throttle, AXIS_MIN, AXIS_MAX);
@@ -14,6 +18,22 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
   uint8_t* pkt_bytes = (uint8_t*) &pkt;
   // rfWrite(pkt_bytes, sizeof(quad_pkt));  // TODO: actually write the packet
   print_bytes(pkt_bytes, sizeof(quad_pkt));  // TODO: remove this line
+}
+
+bool recieve_packet(quad_pkt* q_pkt){
+  uint8_t* pkt = (uint8_t*)q_pkt;
+  if(rfAvailable()){
+    rfRead(pkt,sizeof(quad_pkt));
+
+    if(!checksum_valid(pkt, sizeof(quad_pkt))){
+      rfFlush();
+      return false;
+    }
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 void print_bytes(uint8_t* bytes, uint8_t len) {
