@@ -13,7 +13,7 @@ void setup() {
 
 void loop() {
   uint8_t buffer[sizeof(quad_pkt)];
-  if (rfAvailable()) {
+  if (millis() % 50 == 0 && rfAvailable()) {
     rfRead(buffer, sizeof(quad_pkt));
     if (checksum_valid(buffer, sizeof(quad_pkt))) {
       quad_pkt pkt = *((quad_pkt*) buffer);
