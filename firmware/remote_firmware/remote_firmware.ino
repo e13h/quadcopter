@@ -2,14 +2,21 @@
 #include "quad_remote.h"  // Header file with pin definitions and setup
 #include <serLCD.h>
 
+bool calibrationActive = false;
+bool quadcopterArmed = false;
+
+void btn1_pressed(bool);
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  
+  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port 
+	Serial.begin(SERIAL_BAUD);           // Start up serial
+	delay(100);
+	quad_remote_setup();
+
+  btn1_cb = btn1_pressed;
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   int throttle = analogRead(PIN_THROTTLE);
   throttle = map(throttle, 0, 1023, 0, 255);
   Serial.print(throttle);
@@ -31,4 +38,22 @@ void loop() {
   Serial.print(" ");
   Serial.print("\n");
   delay(10);
+}
+
+void btn1_pressed(bool down) {
+  if (down && !quadcopterArmed && !calibrationActive) {
+    calibrationActive = !calibrationActive;
+
+    // Print calibrating message
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Calibrating");
+  } else if (down && !quadcopterArmed && calibrationActive) {
+    calibrationActive = !calibrationActive;
+
+    // Print default message?
+    lcd.clear();
+  } else if (down && quadcopterArmed) {
+    // Print message to disarm the quadcopter?
+  }
 }
