@@ -18,6 +18,8 @@ struct quad_pkt {
 #define YAW_POS 8
 #define ROLL_POS 16
 #define PIT_POS 24
+const int AXIS_MIN = 0;
+const int AXIS_MAX = 255;
 
 
 //Global Variables
@@ -32,10 +34,12 @@ int yaw = 0;
 int throttle = 0;
 int roll = 0;
 int pitch = 0;
-const int AXIS_MIN = 0;
-const int AXIS_MAX = 255;
 
 void btn1_pressed(bool);
+void set_gimbals();
+void print_gimbals();
+void calibrateGimbals();
+void print_range();
 void send_packet();
 void print_bytes(uint8_t*, uint8_t);
 bool checksum_valid(uint8_t*, uint8_t);
@@ -61,15 +65,16 @@ void setup() {
 }
 
 void loop() {
-  send_packet();
-  delay(1000);
-  // put your main code here, to run repeatedly:
   if(calibrationActive){
     calibrateGimbals();
+  } else {
+    set_gimbals();
+    send_packet();
+    delay(1000);
   }
 }
 
-void calibrateGimbals(){
+void calibrateGimbals() {
 
   print_range();
 
@@ -151,7 +156,7 @@ void calibrateGimbals(){
   return;
 }
 
-void print_range(){
+void print_range() {
   Serial.print("\nThrottle Min ");
   Serial.print(throttleRange[0]);
   Serial.print("\nThrottle Max ");
@@ -173,24 +178,24 @@ void print_range(){
   Serial.print(pitchRange[1]);
 }
 
-void print_gimbals(){
+void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, 0, 1023, AXIS_MIN, AXIS_MAX);
+  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
+  yaw = analogRead(PIN_YAW);
+  yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MIN, AXIS_MAX);
+  roll = analogRead(PIN_ROLL);
+  roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
+  pitch = analogRead(PIN_PITCH);
+  pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MIN, AXIS_MAX);
+}
+
+void print_gimbals() {
   Serial.print(throttle);
   Serial.print(" ");
-
-  yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, 0, 1023, AXIS_MIN, AXIS_MAX);
   Serial.print(yaw);
   Serial.print(" ");
-
-  roll = analogRead(PIN_ROLL);
-  roll = map(roll, 0, 1023, AXIS_MIN, AXIS_MAX);
   Serial.print(roll);
   Serial.print(" ");
-
-  pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, 0, 1023, AXIS_MIN, AXIS_MAX);
   Serial.println(pitch);
 }
 
