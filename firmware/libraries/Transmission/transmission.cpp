@@ -16,7 +16,7 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
   pkt.checksum = pkt.magic_constant ^ pkt.yaw ^ pkt.throttle ^ pkt.roll ^ pkt.pitch ^ pkt.armed;
 
   uint8_t* pkt_bytes = (uint8_t*) &pkt;
-  // rfWrite(pkt_bytes, sizeof(quad_pkt));  // TODO: actually write the packet
+  rfWrite(pkt_bytes, sizeof(quad_pkt));  // TODO: actually write the packet
   print_bytes(pkt_bytes, sizeof(quad_pkt));  // TODO: remove this line
 }
 
@@ -37,6 +37,32 @@ bool recieve_packet(quad_pkt* q_pkt){
   }
 }
 
+void send_response(bool armed, int checksum){
+  response_pkt pkt;
+
+  pkt.armed = armed;
+  pkt.checksum = checksum;
+
+  uint8_t* pkt_bytes = (uint8_t*) &pkt;
+  rfWrite(pkt_bytes, sizeof(response_pkt));
+}
+
+void recieve_response(){
+  response_pkt pkt;
+
+  if(rfAvailable()){
+    rfRead((uint8_t*)&pkt,sizeof(response_pkt));
+    Serial.print(pkt.armed);
+    Serial.print(" ");
+    Serial.print(pkt.checksum);
+    Serial.print(" ");
+    Serial.print(pkt.magic_constant);
+    Serial.print("/n");
+  }
+  else{
+    Serial.println("no response...");
+  }
+}
 
 void print_bytes(uint8_t* bytes, uint8_t len) {
   if (!checksum_valid(bytes, len)) {
