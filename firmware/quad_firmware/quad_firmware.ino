@@ -47,11 +47,13 @@ void loop() {
 
   // Apply throttle to the motors
   if (armed) {
+    digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(MOTOR_1, throttle);
     analogWrite(MOTOR_2, throttle);
     analogWrite(MOTOR_3, throttle);
     analogWrite(MOTOR_4, throttle);
   } else {
+    digitalWrite(LED_BUILTIN, LOW);
     analogWrite(MOTOR_1, 0);
     analogWrite(MOTOR_2, 0);
     analogWrite(MOTOR_3, 0);
@@ -61,13 +63,7 @@ void loop() {
 
 void handle_packet(quad_pkt pkt) {
   time_last_good_pkt = millis();
-  if (pkt.armed) {
-    armed = true;
-    digitalWrite(LED_BUILTIN, HIGH);
-  } else {
-    armed = false;
-    digitalWrite(LED_BUILTIN, LOW);
-  }
+  armed = pkt.armed;
   throttle = pkt.throttle;
   yaw = pkt.yaw;
   roll = pkt.roll;

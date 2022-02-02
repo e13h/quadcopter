@@ -6,10 +6,10 @@
 
 
 // CONSTANTS
-#define THR_POS 0
-#define YAW_POS 8
-#define ROLL_POS 16
-#define PIT_POS 24
+const int THR_POS 0
+const int YAW_POS 8
+const int ROLL_POS 16
+const int PIT_POS 24
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 
@@ -39,9 +39,9 @@ void print_range();
 void setup() {
   const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
 
-	Serial.begin(SERIAL_BAUD);           // Start up serial
-	delay(100);
-	quad_remote_setup();
+  Serial.begin(SERIAL_BAUD);           // Start up serial
+  delay(100);
+  quad_remote_setup();
   rfBegin(RF_CHANNEL);
   Serial.print("Channel: ");
   Serial.println(RF_CHANNEL);
@@ -51,11 +51,8 @@ void setup() {
   lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
-
   eeprom_load(YAW_POS, yawRange);
-
   eeprom_load(ROLL_POS, rollRange);
-  
   eeprom_load(PIT_POS, pitchRange);
 }
 
