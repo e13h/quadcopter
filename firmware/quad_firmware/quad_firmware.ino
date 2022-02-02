@@ -1,7 +1,19 @@
 #include "radio.h"
 #include "transmission.h"
 
+const int MOTOR_1 = 8;
+const int MOTOR_2 = 3;
+const int MOTOR_3 = 4;
+const int MOTOR_4 = 5;
+
+bool armed = false;
+int throttle = 0;
+int yaw = 0;
+int roll = 0;
+int pitch = 0;
+
 void handle_packet(quad_pkt);
+void print_gimbals();
 
 void setup() {
    const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
@@ -22,22 +34,50 @@ void loop() {
       rfFlush();
     }
   }
-  
+
+  if (millis() % 100 == 0) {
+    print_gimbals();
+  }
+
+  // Apply throttle to the motors
+  if (armed) {
+    analogWrite(MOTOR_1, throttle);
+    analogWrite(MOTOR_2, throttle);
+    analogWrite(MOTOR_3, throttle);
+    analogWrite(MOTOR_4, throttle);
+  } else {
+    analogWrite(MOTOR_1, 0);
+    analogWrite(MOTOR_2, 0);
+    analogWrite(MOTOR_3, 0);
+    analogWrite(MOTOR_4, 0);
+  }
 }
 
 void handle_packet(quad_pkt pkt) {
   if (pkt.armed) {
-    Serial.print("A ");
+    armed = true;
     digitalWrite(LED_BUILTIN, HIGH);
   } else {
-    Serial.print(". ");
+    armed = false;
     digitalWrite(LED_BUILTIN, LOW);
   }
- Serial.print(pkt.throttle);
- Serial.print(" ");
- Serial.print(pkt.yaw);
- Serial.print(" ");
- Serial.print(pkt.roll);
- Serial.print(" ");
- Serial.println(pkt.pitch);
+  throttle = pkt.throttle;
+  yaw = pkt.yaw;
+  roll = pkt.roll;
+  pitch = pkt.pitch;
+}
+
+void print_gimbals() {
+  if (armed) {
+    Serial.print("A ");
+  } else {
+    Serial.print(". ");
+  }
+  Serial.print(throttle);
+  Serial.print(" ");
+  Serial.print(yaw);
+  Serial.print(" ");
+  Serial.print(roll);
+  Serial.print(" ");
+  Serial.println(pitch);
 }
