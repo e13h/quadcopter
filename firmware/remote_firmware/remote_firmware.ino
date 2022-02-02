@@ -71,6 +71,9 @@ void loop() {
       send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
     }
   }
+  if (millis() % 100 == 0) {
+    print_gimbals();
+  }
 }
 
 void calibrateGimbals() {
@@ -192,6 +195,11 @@ void set_gimbals() {
 }
 
 void print_gimbals() {
+  if (quadcopterArmed) {
+    Serial.print("A ");
+  } else {
+    Serial.print(". ");
+  }
   Serial.print(throttle);
   Serial.print(" ");
   Serial.print(yaw);
