@@ -5,12 +5,14 @@ const int MOTOR_1 = 8;
 const int MOTOR_2 = 3;
 const int MOTOR_3 = 4;
 const int MOTOR_4 = 5;
+const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 
 bool armed = false;
 int throttle = 0;
 int yaw = 0;
 int roll = 0;
 int pitch = 0;
+unsigned long time_last_good_pkt = 0;
 
 void handle_packet(quad_pkt);
 void print_gimbals();
@@ -24,8 +26,8 @@ void setup() {
 }
 
 void loop() {
-  uint8_t buffer[sizeof(quad_pkt)];
   if (millis() % 50 == 0 && rfAvailable()) {
+    uint8_t buffer[sizeof(quad_pkt)];
     rfRead(buffer, sizeof(quad_pkt));
     if (checksum_valid(buffer, sizeof(quad_pkt))) {
       quad_pkt pkt = *((quad_pkt*) buffer);
@@ -37,6 +39,10 @@ void loop() {
 
   if (millis() % 100 == 0) {
     print_gimbals();
+  }
+
+  if (millis() - time_last_good_pkt > MOTOR_SHUTOFF_TIMEOUT) {
+    armed = false;
   }
 
   // Apply throttle to the motors
@@ -54,6 +60,7 @@ void loop() {
 }
 
 void handle_packet(quad_pkt pkt) {
+  time_last_good_pkt = millis();
   if (pkt.armed) {
     armed = true;
     digitalWrite(LED_BUILTIN, HIGH);
