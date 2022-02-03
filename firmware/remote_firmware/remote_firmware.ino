@@ -141,9 +141,6 @@ void calibrateGimbals() {
   }
 
   // Display clalibration close
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Closing Calibration");
 
   // Update roll over values
   eeprom_store(THR_POS, throttleRange);
@@ -226,6 +223,9 @@ void btn1_pressed(bool down) {
 
     // Print default message?
     lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Closing Calibration");
+    delay(30);
   } else if (down && quadcopterArmed) {
     // Print message to disarm the quadcopter?
   }

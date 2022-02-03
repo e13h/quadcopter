@@ -25,7 +25,7 @@ void setup() {
    rfBegin(RF_CHANNEL);
    pinMode(LED_BUILTIN, OUTPUT);
 
-   for(int start = millis(); millis() - start < 3;){
+   for(int start = millis(); millis() - start < 3000;){
      send_response(false,-1);
      delay(20);
    }
