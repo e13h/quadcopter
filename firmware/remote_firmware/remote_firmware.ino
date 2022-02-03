@@ -37,7 +37,7 @@ void calibrateGimbals();
 void print_range();
 
 
-void setup() {\
+void setup() {
 
   Serial.begin(SERIAL_BAUD);           // Start up serial
   delay(100);
