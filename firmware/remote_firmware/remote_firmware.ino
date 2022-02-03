@@ -39,12 +39,11 @@ void calibrateGimbals();
 void print_range();
 
 
-void setup() {\
+void setup() {
 
   Serial.begin(SERIAL_BAUD);           // Start up serial
   delay(100);
   quad_remote_setup();
-  
   rfBegin(RF_CHANNEL);
   Serial.print("Channel: ");
   Serial.println(RF_CHANNEL);
@@ -75,9 +74,6 @@ void loop() {
     if (millis() % 50 == 0) {  // Send a packet every 50ms
       send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
     }
-
-    //Serial.println("Response: ");
-    //recieve_response();
   }
   if (millis() % 100 == 0) {
     print_gimbals();
