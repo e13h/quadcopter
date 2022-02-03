@@ -20,6 +20,8 @@ int throttleRange[2];
 int yawRange[2];
 int rollRange[2];
 int pitchRange[2];
+
+response_pkt pkt;
   
 bool calibrationActive = false;
 bool quadcopterArmed = false;
@@ -63,6 +65,11 @@ void loop() {
   } else {
     if (millis() % 10 == 0) {  // Read gimbal values every 10ms
       set_gimbals();
+    }
+    if(millis() % 80 == 0){
+      if(recieve_response(&pkt)){
+        quadcopterArmed = pkt.armed;
+      }
     }
     check_arm_status();
     if (millis() % 50 == 0) {  // Send a packet every 50ms

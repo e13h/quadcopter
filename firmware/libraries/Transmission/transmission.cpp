@@ -1,6 +1,5 @@
 #include "radio.h"
 #include "transmission.h"
-#include "radio.h"
 
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
@@ -25,7 +24,7 @@ bool recieve_packet(quad_pkt* q_pkt){
   if(rfAvailable()){
     rfRead(pkt,sizeof(quad_pkt));
 
-    if(!response_checksum_valid(pkt, sizeof(quad_pkt))){
+    if(!checksum_valid(pkt, sizeof(quad_pkt))){
       rfFlush();
       return false;
     }
@@ -47,19 +46,11 @@ void send_response(bool armed, int checksum){
   rfWrite(pkt_bytes, sizeof(response_pkt));
 }
 
-void recieve_response(){
-  response_pkt pkt;
-
+bool recieve_response(response_pkt* pkt){
   if(rfAvailable()){
     rfRead((uint8_t*)&pkt,sizeof(response_pkt));
-    if(response_checksum_valid((uint8_t*)&pkt,sizeof(response_pkt))){
-      Serial.print(pkt.armed);
-      Serial.print(" ");
-      Serial.print(pkt.checksum);
-      Serial.print(" ");
-      Serial.print(pkt.response_CheckSum);
-      Serial.print(" ");
-      Serial.println(pkt.magic_constant);
+    if(checksum_valid((uint8_t*)&pkt,sizeof(response_pkt))){
+      return true;
     }
     else{
       rfFlush();
@@ -68,6 +59,7 @@ void recieve_response(){
   else{
     Serial.println("no response...");
   }
+  return false;
 }
 
 void print_bytes(uint8_t* bytes, uint8_t len) {
@@ -91,11 +83,6 @@ void print_bytes(uint8_t* bytes, uint8_t len) {
 }
 
 bool checksum_valid(uint8_t* bytes, uint8_t len) {
-  if (len < sizeof(quad_pkt)) {
-    // If the number of bytes doesn't match the size of the packet,
-    // do not open the packet!
-    return false;
-  }
   uint8_t actual_checksum = 0;
   for (int i = 0; i < len - sizeof(uint8_t); i++) {
     actual_checksum ^= bytes[i];
@@ -104,16 +91,4 @@ bool checksum_valid(uint8_t* bytes, uint8_t len) {
   return actual_checksum == expected_checksum;
 }
 
-bool response_checksum_valid(uint8_t* bytes, uint8_t len) {
-  if (len < sizeof(response_pkt)) {
-    // If the number of bytes doesn't match the size of the packet,
-    // do not open the packet!
-    return false;
-  }
-  uint8_t actual_checksum = 0;
-  for (int i = 0; i < len - sizeof(uint8_t); i++) {
-    actual_checksum ^= bytes[i];
-  }
-  uint8_t expected_checksum = bytes[len - sizeof(uint8_t)];
-  return actual_checksum == expected_checksum;
-}
+

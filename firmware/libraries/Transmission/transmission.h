@@ -28,9 +28,8 @@ struct response_pkt {
 void send_packet(int, int, int, int, bool);
 bool recieve_packet(quad_pkt*);
 void send_response(bool,int);
-void recieve_response();
+bool recieve_response(response_pkt*);
 void print_bytes(uint8_t*, uint8_t);
 bool checksum_valid(uint8_t*, uint8_t);
-bool response_checksum_valid(uint8_t*, uint8_t);
 
 #endif

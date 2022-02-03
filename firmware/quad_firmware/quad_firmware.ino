@@ -24,10 +24,15 @@ void setup() {
    delay(100);
    rfBegin(RF_CHANNEL);
    pinMode(LED_BUILTIN, OUTPUT);
+
+   for(int start = millis(); millis() - start < 3;){
+     send_response(false,-1);
+     delay(20);
+   }
 }
 
 void loop() {
-  if (millis() % 50 == 0 && rfAvailable()) {
+  if (millis() % 50 == 0) {
     if (recieve_packet(&pkt)) {
       handle_packet(pkt);
     }
