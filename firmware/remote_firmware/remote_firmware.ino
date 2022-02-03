@@ -39,21 +39,23 @@ void print_range();
 
 
 void setup() {
-	Serial.begin(SERIAL_BAUD);           // Start up serial
-	delay(100);
-	quad_remote_setup();
+  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
+
+  Serial.begin(SERIAL_BAUD);           // Start up serial
+  delay(100);
+  quad_remote_setup();
+  
   rfBegin(RF_CHANNEL);
+  Serial.print("Channel: ");
+  Serial.println(RF_CHANNEL);
 
   btn1_cb = btn1_pressed;
   btn2_cb = btn2_pressed;
   lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
-
   eeprom_load(YAW_POS, yawRange);
-
   eeprom_load(ROLL_POS, rollRange);
-  
   eeprom_load(PIT_POS, pitchRange);
 }
 
@@ -71,6 +73,9 @@ void loop() {
 
     //Serial.println("Response: ");
     //recieve_response();
+  }
+  if (millis() % 100 == 0) {
+    print_gimbals();
   }
 }
 
@@ -193,6 +198,11 @@ void set_gimbals() {
 }
 
 void print_gimbals() {
+  if (quadcopterArmed) {
+    Serial.print("A ");
+  } else {
+    Serial.print(". ");
+  }
   Serial.print(throttle);
   Serial.print(" ");
   Serial.print(yaw);

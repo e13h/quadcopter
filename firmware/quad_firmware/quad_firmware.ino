@@ -1,46 +1,83 @@
-#include "transmission.h"
 #include "radio.h"
+#include "transmission.h"
 
-const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
-const int RF_CHANNEL = 15;
+const int MOTOR_1 = 8;
+const int MOTOR_2 = 3;
+const int MOTOR_3 = 4;
+const int MOTOR_4 = 5;
+const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 
+bool armed = false;
+int throttle = 0;
+int yaw = 0;
+int roll = 0;
+int pitch = 0;
+unsigned long time_last_good_pkt = 0;
 quad_pkt pkt;
-int throttle;
-int yaw;
-int roll;
-int pitch;
-bool armed;
+
+void handle_packet(quad_pkt);
+void print_gimbals();
 
 void setup() {
-  // put your setup code here, to run once:
-  throttle = 0;
-  yaw = 0;
-  roll = 0;
-  pitch = 0;
-  armed = false;
-  
-  pinMode(LED_BUILTIN, OUTPUT);
-
-  rfBegin(RF_CHANNEL);
+   const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
+   Serial.begin(SERIAL_BAUD);
+   delay(100);
+   rfBegin(RF_CHANNEL);
+   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(recieve_packet(&pkt)){
-    throttle = pkt.throttle;
-    yaw = pkt.yaw;
-    roll = pkt.roll;
-    pitch = pkt.pitch;
-    armed = pkt.armed;
+  if (millis() % 50 == 0 && rfAvailable()) {
+    if (recieve_packet(&pkt)) {
+      handle_packet(pkt);
+    }
   }
-  if(armed){
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+
+  if (millis() % 100 == 0) {
+    print_gimbals();
   }
-  else{
+
+  if (millis() - time_last_good_pkt > MOTOR_SHUTOFF_TIMEOUT) {
+    armed = false;
+  }
+
+  // Apply throttle to the motors
+  if (armed) {
+    digitalWrite(LED_BUILTIN, HIGH);
+    analogWrite(MOTOR_1, throttle);
+    analogWrite(MOTOR_2, throttle);
+    analogWrite(MOTOR_3, throttle);
+    analogWrite(MOTOR_4, throttle);
+  } 
+  else {
     digitalWrite(LED_BUILTIN, LOW);
+    analogWrite(MOTOR_1, 0);
+    analogWrite(MOTOR_2, 0);
+    analogWrite(MOTOR_3, 0);
+    analogWrite(MOTOR_4, 0);
   }
-  
-  //if (millis() % 100 == 0) {
-  //  send_response(armed, pkt.checksum);
-  //}
+}
+
+void handle_packet(quad_pkt pkt) {
+  time_last_good_pkt = millis();
+  armed = pkt.armed;
+  throttle = pkt.throttle;
+  yaw = pkt.yaw;
+  roll = pkt.roll;
+  pitch = pkt.pitch;
+}
+
+void print_gimbals() {
+  if (armed) {
+    Serial.print("A ");
+  } else {
+    Serial.print(". ");
+  }
+  Serial.print(throttle);
+  Serial.print(" ");
+  Serial.print(yaw);
+  Serial.print(" ");
+  Serial.print(roll);
+  Serial.print(" ");
+  Serial.println(pitch);
 }

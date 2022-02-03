@@ -15,6 +15,8 @@ struct quad_pkt {
   uint8_t checksum;
 };
 
+const int RF_CHANNEL = 15;
+
 struct response_pkt {
   uint8_t magic_constant = MAGIC_CONSTANT;
   bool armed;
