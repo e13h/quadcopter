@@ -48,8 +48,7 @@ void loop() {
     analogWrite(MOTOR_2, throttle);
     analogWrite(MOTOR_3, throttle);
     analogWrite(MOTOR_4, throttle);
-  } 
-  else {
+  } else {
     digitalWrite(LED_BUILTIN, LOW);
     analogWrite(MOTOR_1, 0);
     analogWrite(MOTOR_2, 0);
