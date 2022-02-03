@@ -5,10 +5,6 @@
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 
-
-const int AXIS_MIN = 0;
-const int AXIS_MAX = 255;
-
 void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
   quad_pkt pkt;
   pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
