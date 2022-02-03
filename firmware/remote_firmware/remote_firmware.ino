@@ -42,7 +42,6 @@ void setup() {\
   Serial.begin(SERIAL_BAUD);           // Start up serial
   delay(100);
   quad_remote_setup();
-  
   rfBegin(RF_CHANNEL);
   Serial.print("Channel: ");
   Serial.println(RF_CHANNEL);
