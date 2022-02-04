@@ -2,13 +2,29 @@
 
 Reviewer: Baymax
     - Evan Smith: eps001@ucsd.edu
-    - Michael Shao: 
+    - Michael Shao: mlshao@ucsd.edu
 Reviewee: Team 3647
     - Kunal:
     - Guy: 
 Met face-to-face: 
 
 Potential issues:
+
+DRC:
+    - Airwire - must fix
+    - Wire stub in balun N$3
+
+Silkscreen:
+    - The value for C18 overlaps slightly with the name for U2
+    - The name for C12 is slightly underneath its tPlace
+    - The name for C13 is on top of a via
+
+Crystal:
+    - The capacitors don't exactly match the layout given in the lab spec. Possibly not a big deal, but there is enough room so it should be easy to fix
+
+Cosmetic:
+    - Could move the lone trace running through the "may the force be with you" logo off to the side
+    - Reset trace on layer 16 by the bootloader is a mess
 
 Antenna:
     - If the antenna were moved down ~ 0.1mm there wouldn't be a sharp edge between the trace and the antenna
@@ -17,8 +33,12 @@ Antenna:
 Power planes:
     - The GND pour should be the same as the 2V5 pour and the BAT_GND pour should be the same as the VBAT pour
     - Is it okay that the power planes go all the way out into the motor holes (<3mm wide)?
-    - The VBAT and BAT_GND section on the left side could be thicker?
-
+    - The VBAT and BAT_GND section on the left side could be thicker? You could move the voltage regulator to the right a bit and the 2V5 trace could still be short
+    - Some traces are running through layer 2 and 15 (should they be?) (avoid cutting these planes into pieces)
 
 Misc:
-    - No mounting holes
+    - No mounting holes (will need to 3D print a mounting bracket)
+    - Wire ADC0 is laid out at 90 degree corners, could be fixed to have 45 degree angles instead
+    - PWM0-3 wires connecting to corresponding mosfets are too thick, should be 5 mils (not 30 mils)
+    - Rear blue LEDs and PWM4 use high current traces, shouldn't they be default 5 mil traces? If not, should be assigned HIGHCURRENT net class
+    - Voltage divider is labeled ADC0, but it is connected to ADC1
