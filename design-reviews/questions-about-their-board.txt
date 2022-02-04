@@ -9,3 +9,16 @@ Reviewee: Team 3647
 Met face-to-face: 
 
 Potential issues:
+
+Antenna:
+    - If the antenna were moved down ~ 0.1mm there wouldn't be a sharp edge between the trace and the antenna
+    - Perhaps the metal-free area around the antenna could extend up and down so that there is as little metal as possible around the antenna
+
+Power planes:
+    - The GND pour should be the same as the 2V5 pour and the BAT_GND pour should be the same as the VBAT pour
+    - Is it okay that the power planes go all the way out into the motor holes (<3mm wide)?
+    - The VBAT and BAT_GND section on the left side could be thicker?
+
+
+Misc:
+    - No mounting holes
