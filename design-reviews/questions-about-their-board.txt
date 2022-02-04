@@ -36,6 +36,9 @@ Power planes:
     - The VBAT and BAT_GND section on the left side could be thicker? You could move the voltage regulator to the right a bit and the 2V5 trace could still be short
     - Some traces are running through layer 2 and 15 (should they be?) (avoid cutting these planes into pieces)
 
+IMU:
+    - You can get rid of the clearance errors for the IMU by reducing the pad width from 0.28mm to 0.275mm for all the IMU pads.
+
 Misc:
     - No mounting holes (will need to 3D print a mounting bracket)
     - Wire ADC0 is laid out at 90 degree corners, could be fixed to have 45 degree angles instead
