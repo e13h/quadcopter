@@ -4,9 +4,9 @@ Reviewer: Baymax
     - Evan Smith: eps001@ucsd.edu
     - Michael Shao: mlshao@ucsd.edu
 Reviewee: Team 3647
-    - Kunal:
-    - Guy: 
-Met face-to-face: 
+    - Kunal: kusingla@ucsd.edu
+    - Guy: gnir@ucsd.edu
+Met face-to-face: 2/5/22 @ 10am
 
 Potential issues:
 
@@ -37,9 +37,10 @@ Power planes:
     - Some traces are running through layer 2 and 15 (should they be?) (avoid cutting these planes into pieces)
 
 IMU:
-    - You can get rid of the clearance errors for the IMU by reducing the pad width from 0.28mm to 0.275mm for all the IMU pads.
+    - You can get rid of the clearance errors /for the IMU by reducing the pad width from 0.28mm to 0.275mm for all the IMU pads.
 
 Misc:
+    - Voltage divider should be wired to ground
     - No mounting holes (will need to 3D print a mounting bracket)
     - Wire ADC0 is laid out at 90 degree corners, could be fixed to have 45 degree angles instead
     - PWM0-3 wires connecting to corresponding mosfets are too thick, should be 5 mils (not 30 mils)
