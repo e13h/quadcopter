@@ -1,0 +1,77 @@
+Reviewer Team Name: Team3647
+- Kunal Singla (kusingla@ucsd.edu)
+- Guy Nir (gnir@ucsd.edu)
+
+Reviewee Team Name: 
+- Evan Smith (eps001@ucsd.edu)
+- Michael Shao (mlshao@ucsd.edu)
+
+Date and Time Met:
+Saturday Feb 5th, 2022 at 10AM PST
+
+[] Antenna Trace not 45 or 90deg?
+[] no led_notes.txt file
+[] no datasheet for LED_RED-LTST-C170EKT (LED)
+[] LED device name should be generic: https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=The%20device%20should%20have%20a%20generic%20name%2C%20if%20it%20will%20have%20many%20variants.%20For%20instance%2C%20a%20%E2%80%9CResistor%E2%80%9D%20or%20%E2%80%9CCapacitor%E2%80%9D%20device%20will%20have%20variants%20for%20different%20footprint%20sizes%20and%20values.
+[] LED footprint name should contain meaningful name (hard to locate on datasheet): https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=Choose%20a%20meaningful%20name
+[] LED Symbol size is big (LED_RED-LTST-C170EKT (LED), custom_m_shao library)
+[] LED Symbol name size should be 0.07in not .9mm
+[] voltage divider schematic?
+[] mosfet symbol lines too thin?
+
+# Pours
+- Why not have all the pours extend all the way around the board, (also where the props are)
+- 2V5
+  - Reset trace going though from IMU to the programming header resistor
+- GND Route 16
+  - a lot of traces going through the pour, (It doesn't seem like there are orphan pours)
+  - For example next to J4 and H4
+
+# Traces
+- Reset trace
+  - is going throught the 2V5 pour
+- 2V5
+  - Reset is cutting through 2V5 MCU -> C18
+  - Really long trace from C10 to R7 (reset pull up resistor), can move closer to the pour
+
+# Antenna
+- C6 capacitor
+  - and antenna overlap the tKeepout
+  - I don't like the GND layer 1 kind of going "into" the capacitor (around the pads)
+  
+- Traces from mc to balun are not exactly of equal length
+  - RF_P is 0.025mm longer than RF_N
+- There is an outline of GND around/in the balun, not sure what that's for
+
+# LEDs
+- N$40 that connects the LED GND to the mosfet that controls them is very long
+- Same thing with N$35
+- N$26, N$27, both the VBAT -> resistor -> LED, are thing and long 
+- D16, D22, tKeepout outside the board
+
+# FTDI Header
+- No tPlace labels
+
+# Motor Controllers
+- M1
+  - R1 tKeepout is outside the board
+  - M1 tKeepout is outside the board
+- M2, M3, M4 tKeepout is outside the board (also the pads are really close to the edge)
+
+# Silk screen
+- All the part names aren't in the same orientation
+- I think the silkscreen art will probably overlap with some of the reference designators
+ 
+# IMU
+- You can move R10, C15, C13 down, then get C12,14,16 down a little
+- IMU in current orientation:
+  - Rotation over IMU datasheet X: Pitch
+  - Rotation over IMU datasheet Y: roll
+  - Yaw is the same
+
+# Microcontroller
+- Can probably get C4 closer to the MC, if you move C2 aside
+- Also C5 if you move R11 and R15
+
+# Voltage Regultor
+- 2V5 is not under the VRM
