@@ -22167,7 +22167,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </library>
 <library name="LED" urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q">
 <packages>
-<package name="LED-350-2312-1-ND-REVERSE" library_version="8">
+<package name="1206_LED_REVERSE" library_version="10">
 <smd name="1" x="-1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
 <smd name="2" x="1.3" y="0.25" dx="2.1" dy="0.6" layer="1" rot="R90"/>
 <hole x="0" y="0" drill="1.55"/>
@@ -22207,12 +22207,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="LED-350-2312-1-ND" prefix="D" uservalue="yes" library_version="8">
+<deviceset name="LED" prefix="D" uservalue="yes" library_version="10">
 <gates>
 <gate name="G$1" symbol="RESOLVED-DIODE-LED_" x="0" y="0"/>
 </gates>
 <devices>
-<device name="-REVERSE" package="LED-350-2312-1-ND-REVERSE">
+<device name="-350-2312-1-ND-REVERSE" package="1206_LED_REVERSE">
 <connects>
 <connect gate="G$1" pin="A" pad="2"/>
 <connect gate="G$1" pin="C" pad="1"/>
@@ -22386,12 +22386,12 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="P+22" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
 <part name="P+24" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
 <part name="P+25" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="VBAT" device=""/>
-<part name="D15" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
-<part name="D16" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
+<part name="D15" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED" device="-350-2312-1-ND-REVERSE" value="red"/>
+<part name="D16" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED" device="-350-2312-1-ND-REVERSE" value="red"/>
 <part name="R19" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R22" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
-<part name="D21" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
-<part name="D22" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED-350-2312-1-ND" device="-REVERSE" value="red"/>
+<part name="D21" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED" device="-350-2312-1-ND-REVERSE" value="red"/>
+<part name="D22" library="LED" library_urn="urn:adsk.wipprod:fs.file:vf.NaXM9vi8RxK1DTk1qfWV8Q" deviceset="LED" device="-350-2312-1-ND-REVERSE" value="red"/>
 <part name="R26" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
 <part name="R8" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-100" value="100"/>
@@ -24022,10 +24022,10 @@ Expected current thru LED: 15mA</text>
 <wire x1="165.1" y1="91.44" x2="170.18" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="91.44" x2="172.72" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="170.18" y1="91.44" x2="170.18" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="D15" gate="G$1" pin="C"/>
-<pinref part="D16" gate="G$1" pin="C"/>
 <junction x="165.1" y="91.44"/>
 <pinref part="Q9" gate="G$1" pin="D"/>
+<pinref part="D16" gate="G$1" pin="C"/>
+<pinref part="D15" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$40" class="0">
@@ -24033,10 +24033,10 @@ Expected current thru LED: 15mA</text>
 <wire x1="203.2" y1="91.44" x2="208.28" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="203.2" y1="91.44" x2="210.82" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="208.28" y1="91.44" x2="208.28" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="D22" gate="G$1" pin="C"/>
-<pinref part="D21" gate="G$1" pin="C"/>
 <junction x="203.2" y="91.44"/>
 <pinref part="Q12" gate="G$1" pin="D"/>
+<pinref part="D21" gate="G$1" pin="C"/>
+<pinref part="D22" gate="G$1" pin="C"/>
 </segment>
 </net>
 <net name="N$42" class="0">
