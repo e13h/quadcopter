@@ -1,0 +1,20 @@
+Status lights (positioned near motors):
+    Voltage source: 3.7-4.2V
+    Forward voltage (each LED): 2.0V
+    Voltage drop (each): 1.7-2.2V
+    Resistance: 100 Ohms
+    Expected current thru each LED: 20 mA
+
+Taillights:
+    Voltage source: 3.7-4.2V
+    Forward voltage (each LED): 2.0V
+    Voltage drop (each): 1.7-2.2V
+    Resistance: 100 Ohms
+    Expected current thru LED: 15mA
+
+Front flashing green lasers:
+    Voltage source: 3.7-4.2V
+    Forward voltage: 2.1V
+    Voltage drop: 1.6-2.1V
+    Resistance: 150 Ohms
+    Expected current thru each LED: 14mA

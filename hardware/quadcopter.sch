@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="3" visible="no" active="no"/>
@@ -21984,21 +21984,21 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </package>
 </packages>
 <symbols>
-<symbol name="NMOS" library_version="51">
-<pin name="G" x="-5.08" y="0" length="point"/>
-<pin name="D" x="0" y="5.08" length="point" rot="R270"/>
-<pin name="S" x="0" y="-5.08" length="point" rot="R90"/>
-<wire x1="0" y1="5.08" x2="0" y2="2.54" width="0.05" layer="94"/>
-<wire x1="0" y1="2.54" x2="-2.54" y2="2.54" width="0.05" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.05" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="0" y2="-2.54" width="0.05" layer="94"/>
-<wire x1="0" y1="-2.54" x2="0" y2="-5.08" width="0.05" layer="94"/>
-<wire x1="-5.08" y1="0" x2="-3.048" y2="0" width="0.05" layer="94"/>
-<wire x1="-3.048" y1="-2.54" x2="-3.048" y2="2.54" width="0.05" layer="94"/>
-<text x="-7.62" y="5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
-<wire x1="0" y1="-2.54" x2="-1.016" y2="-1.524" width="0.05" layer="94"/>
-<wire x1="-1.016" y1="-1.524" x2="-1.016" y2="-3.556" width="0.05" layer="94"/>
-<wire x1="-1.016" y1="-3.556" x2="0" y2="-2.54" width="0.05" layer="94"/>
+<symbol name="NMOS">
+<pin name="G" x="-5.08" y="0" visible="pad" length="point"/>
+<pin name="D" x="0" y="5.08" visible="pad" length="point" rot="R270"/>
+<pin name="S" x="0" y="-5.08" visible="pad" length="point" rot="R90"/>
+<wire x1="0" y1="5.08" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="0" x2="-3.048" y2="0" width="0.254" layer="94"/>
+<wire x1="-3.048" y1="-2.54" x2="-3.048" y2="2.54" width="0.254" layer="94"/>
+<text x="-2.54" y="2.54" size="1.778" layer="95" font="vector" align="bottom-right">&gt;NAME</text>
+<wire x1="0" y1="-2.54" x2="-1.016" y2="-1.524" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.016" y2="-3.556" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-3.556" x2="0" y2="-2.54" width="0.254" layer="94"/>
 </symbol>
 <symbol name="IMU_LSM9DS1" library_version="51">
 <pin name="VDD" x="-2.54" y="22.86" length="middle" rot="R270"/>
@@ -22037,22 +22037,22 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <text x="0" y="2.794" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-2.794" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
 </symbol>
-<symbol name="DIODE" library_version="51">
-<pin name="A" x="-5.08" y="0" length="point"/>
-<pin name="C" x="5.08" y="0" length="point" rot="R180"/>
-<wire x1="-5.08" y1="0" x2="-2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-2.54" y2="-2.54" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="2.54" y1="0" x2="-2.54" y2="2.54" width="0.127" layer="94"/>
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="5.08" y1="0" x2="2.54" y2="0" width="0.127" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.127" layer="94"/>
-<text x="-5.08" y="-5.08" size="0.9" layer="95" font="vector">&gt;NAME</text>
-<text x="0" y="-5.08" size="0.9" layer="96" font="vector">&gt;VALUE</text>
+<symbol name="DIODE">
+<pin name="A" x="-5.08" y="0" visible="pad" length="point"/>
+<pin name="C" x="5.08" y="0" visible="pad" length="point" rot="R180"/>
+<wire x1="-5.08" y1="0" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="-1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="5.08" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="1.27" y2="1.27" width="0.254" layer="94"/>
+<text x="0" y="2.54" size="1.778" layer="95" font="vector" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.54" size="1.778" layer="96" font="vector" align="top-center">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="N-MOSFET" prefix="Q" library_version="51">
+<deviceset name="N-MOSFET" prefix="Q">
 <gates>
 <gate name="G$1" symbol="NMOS" x="0" y="0"/>
 </gates>
@@ -22143,7 +22143,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 </device>
 </devices>
 </deviceset>
-<deviceset name="LED" prefix="D" uservalue="yes" library_version="51">
+<deviceset name="LED" prefix="D" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="DIODE" x="0" y="0"/>
 </gates>
@@ -22815,16 +22815,16 @@ Expected current thru LED: 15mA</text>
 <attribute name="NAME" x="411.734" y="101.981" size="1.778" layer="95"/>
 </instance>
 <instance part="Q1" gate="G$1" x="363.22" y="218.44" smashed="yes">
-<attribute name="NAME" x="355.6" y="223.52" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="358.14" y="220.98" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="Q2" gate="G$1" x="416.56" y="218.44" smashed="yes">
-<attribute name="NAME" x="408.94" y="223.52" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="411.48" y="220.98" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="Q3" gate="G$1" x="363.22" y="152.4" smashed="yes">
-<attribute name="NAME" x="355.6" y="157.48" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="358.14" y="154.94" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="Q4" gate="G$1" x="416.56" y="152.4" smashed="yes">
-<attribute name="NAME" x="408.94" y="157.48" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="411.48" y="154.94" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="D6" gate="G$1" x="190.5" y="238.76" smashed="yes" rot="R270">
 <attribute name="NAME" x="185.42" y="243.84" size="0.9" layer="95" font="vector" rot="R270"/>
@@ -22851,7 +22851,7 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="299.593" y="97.282" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="Q6" gate="G$1" x="309.88" y="81.28" smashed="yes">
-<attribute name="NAME" x="302.26" y="86.36" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="304.8" y="83.82" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="GND40" gate="1" x="309.88" y="73.66" smashed="yes">
 <attribute name="VALUE" x="309.88" y="71.12" size="1.778" layer="96" align="center"/>
@@ -22872,7 +22872,7 @@ Expected current thru LED: 15mA</text>
 <attribute name="NAME" x="303.3014" y="97.79" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="Q9" gate="G$1" x="170.18" y="83.82" smashed="yes">
-<attribute name="NAME" x="162.56" y="88.9" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="165.1" y="86.36" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="GND45" gate="1" x="170.18" y="76.2" smashed="yes">
 <attribute name="VALUE" x="170.18" y="73.66" size="1.778" layer="96" align="center"/>
@@ -22885,7 +22885,7 @@ Expected current thru LED: 15mA</text>
 <attribute name="NAME" x="161.0614" y="74.93" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="Q12" gate="G$1" x="208.28" y="83.82" smashed="yes">
-<attribute name="NAME" x="200.66" y="88.9" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="203.2" y="86.36" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="GND49" gate="1" x="208.28" y="76.2" smashed="yes">
 <attribute name="VALUE" x="208.28" y="73.66" size="1.778" layer="96" align="center"/>
@@ -22905,14 +22905,14 @@ Expected current thru LED: 15mA</text>
 <attribute name="VALUE" x="248.92" y="68.58" size="1.778" layer="96" align="center"/>
 </instance>
 <instance part="Q8" gate="G$1" x="256.54" y="83.82" smashed="yes">
-<attribute name="NAME" x="248.92" y="88.9" size="0.9" layer="95" font="vector"/>
+<attribute name="NAME" x="251.46" y="86.36" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="GND44" gate="1" x="256.54" y="76.2" smashed="yes">
 <attribute name="VALUE" x="256.54" y="73.66" size="1.778" layer="96" align="center"/>
 </instance>
 <instance part="D14" gate="G$1" x="251.46" y="96.52" smashed="yes" rot="R270">
-<attribute name="NAME" x="246.38" y="101.6" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="246.38" y="96.52" size="0.9" layer="96" font="vector" rot="R270"/>
+<attribute name="NAME" x="246.38" y="101.6" size="1.778" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="246.38" y="96.52" size="1.778" layer="96" font="vector" rot="R270"/>
 </instance>
 <instance part="R18" gate="G$1" x="251.46" y="106.68" smashed="yes" rot="R90">
 <attribute name="VALUE" x="254.762" y="102.87" size="1.778" layer="96" rot="R90"/>
@@ -22991,8 +22991,8 @@ Expected current thru LED: 15mA</text>
 <attribute name="NAME" x="257.5814" y="102.87" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="D7" gate="G$1" x="259.08" y="96.52" smashed="yes" rot="R270">
-<attribute name="NAME" x="254" y="101.6" size="0.9" layer="95" font="vector" rot="R270"/>
-<attribute name="VALUE" x="254" y="96.52" size="0.9" layer="96" font="vector" rot="R270"/>
+<attribute name="NAME" x="254" y="101.6" size="1.778" layer="95" font="vector" rot="R270"/>
+<attribute name="VALUE" x="254" y="96.52" size="1.778" layer="96" font="vector" rot="R270"/>
 </instance>
 <instance part="P1" gate="G$1" x="132.08" y="35.56" smashed="yes">
 <attribute name="NAME" x="132.08" y="33.02" size="1.27" layer="95" align="center"/>
@@ -23929,8 +23929,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="162.56" y1="83.82" x2="160.02" y2="83.82" width="0.1524" layer="91"/>
 <label x="160.02" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="R12" gate="G$1" pin="2"/>
-<pinref part="Q9" gate="G$1" pin="G"/>
 <junction x="162.56" y="83.82"/>
+<pinref part="Q9" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="PWM6" class="0">
@@ -23944,8 +23944,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="200.66" y1="83.82" x2="198.12" y2="83.82" width="0.1524" layer="91"/>
 <label x="198.12" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="R27" gate="G$1" pin="2"/>
-<pinref part="Q12" gate="G$1" pin="G"/>
 <junction x="200.66" y="83.82"/>
+<pinref part="Q12" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="PWM7" class="0">
@@ -24024,8 +24024,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="170.18" y1="91.44" x2="170.18" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="D15" gate="G$1" pin="C"/>
 <pinref part="D16" gate="G$1" pin="C"/>
-<pinref part="Q9" gate="G$1" pin="D"/>
 <junction x="165.1" y="91.44"/>
+<pinref part="Q9" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="N$40" class="0">
@@ -24035,8 +24035,8 @@ Expected current thru LED: 15mA</text>
 <wire x1="208.28" y1="91.44" x2="208.28" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="D22" gate="G$1" pin="C"/>
 <pinref part="D21" gate="G$1" pin="C"/>
-<pinref part="Q12" gate="G$1" pin="D"/>
 <junction x="203.2" y="91.44"/>
+<pinref part="Q12" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="N$42" class="0">

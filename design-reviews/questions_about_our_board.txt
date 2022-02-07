@@ -9,69 +9,110 @@ Reviewee Team Name:
 Date and Time Met:
 Saturday Feb 5th, 2022 at 10AM PST
 
-[] Antenna Trace not 45 or 90deg?
-[] no led_notes.txt file
-[] no datasheet for LED_RED-LTST-C170EKT (LED)
-[] LED device name should be generic: https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=The%20device%20should%20have%20a%20generic%20name%2C%20if%20it%20will%20have%20many%20variants.%20For%20instance%2C%20a%20%E2%80%9CResistor%E2%80%9D%20or%20%E2%80%9CCapacitor%E2%80%9D%20device%20will%20have%20variants%20for%20different%20footprint%20sizes%20and%20values.
-[] LED footprint name should contain meaningful name (hard to locate on datasheet): https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=Choose%20a%20meaningful%20name
-[] LED Symbol size is big (LED_RED-LTST-C170EKT (LED), custom_m_shao library)
-[] LED Symbol name size should be 0.07in not .9mm
-[] voltage divider schematic?
-[] mosfet symbol lines too thin?
+----------------------------------
+Our responses to Team 3647's feedback are denoted by the `>` symbol,
+and each begin with "Fixed", "No issue", or "Won't fix", with explanation
+as necessary.
+----------------------------------
 
+Feedback from Kunal:
+[x] Antenna Trace not 45 or 90deg?
+  > Won't fix, the antenna is angled to look nice on our board design, it should be okay that it is not a standard angle.
+[x] no led_notes.txt file
+  > Fixed, added the file.
+[x] no datasheet for LED_RED-LTST-C170EKT (LED)
+  > No issue, this LED is from the quadparts_prebuilt library, so the datasheet is found in the QuadClass Resources repo.
+[x] LED device name should be generic: https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=The%20device%20should%20have%20a%20generic%20name%2C%20if%20it%20will%20have%20many%20variants.%20For%20instance%2C%20a%20%E2%80%9CResistor%E2%80%9D%20or%20%E2%80%9CCapacitor%E2%80%9D%20device%20will%20have%20variants%20for%20different%20footprint%20sizes%20and%20values.
+  > Fixed, changed the name to be generic.
+[x] LED footprint name should contain meaningful name (hard to locate on datasheet): https://github.com/NVSL/QuadClass-Resources/tree/master/labs/Building-Parts-In-Eagle#:~:text=Choose%20a%20meaningful%20name
+  > Fixed, changed the footprint name to 1206_LED_REVERSE, since it is a 1206 size (.12" x .06", which is how it is referenced in the datasheet), reverse-mount LED.
+[x] LED Symbol size is big (LED_RED-LTST-C170EKT (LED), custom_m_shao library)
+  > Fixed.
+[x] LED Symbol name size should be 0.07in not .9mm
+  > Fixed.
+[x] voltage divider schematic?
+  > No issue, our voltage divider looked different from Team 3647's, but ours is correct (just confirmed from the SparkFun article linked to in the lab spec).
+[x] mosfet symbol lines too thin?
+  > Fixed.
+
+Feedback from Guy:
 # Pours
 - Why not have all the pours extend all the way around the board, (also where the props are)
+  > Won't fix, we thought it would be unnecessary to extend the pour all the way out to the motor mounting holes, since our board gets pretty narrow out there. 
 - 2V5
   - Reset trace going though from IMU to the programming header resistor
+    > Fixed, now it is routed on layers 16 and 1 only.
 - GND Route 16
   - a lot of traces going through the pour, (It doesn't seem like there are orphan pours)
   - For example next to J4 and H4
+  > No issue, since there are no airwires.
 
 # Traces
 - Reset trace
   - is going throught the 2V5 pour
+    > Fixed, already mentioned above.
 - 2V5
   - Reset is cutting through 2V5 MCU -> C18
+    > Fixed, already mentioned above.
   - Really long trace from C10 to R7 (reset pull up resistor), can move closer to the pour
+    > Fixed.
 
 # Antenna
-- C6 capacitor
-  - and antenna overlap the tKeepout
-  - I don't like the GND layer 1 kind of going "into" the capacitor (around the pads)
+- C6 capacitor and antenna overlap the tKeepout
+  > Won't fix, we intentionally violate tKeepout here to meet antenna placement requirements.
+- I don't like the GND layer 1 kind of going "into" the capacitor (around the pads)
+  > Won't fix, shouldn't affect the antenna performance.
   
 - Traces from mc to balun are not exactly of equal length
   - RF_P is 0.025mm longer than RF_N
+    > Fixed, the differential pair is now exactly mirrored.
 - There is an outline of GND around/in the balun, not sure what that's for
+  > No issue, used to prevent auto router from putting traces under the balun.
 
 # LEDs
 - N$40 that connects the LED GND to the mosfet that controls them is very long
+  > Won't fix, we have the front LEDs controlled by the same mosfet.
 - Same thing with N$35
+  > Won't fix, similarly, these rear LEDs are controlled by the same mosfet.
 - N$26, N$27, both the VBAT -> resistor -> LED, are thing and long 
+  > Won't fix, these LEDs are driven by the same mosfet
 - D16, D22, tKeepout outside the board
+  > No issue, since the board passes DRC.
 
 # FTDI Header
 - No tPlace labels
+  > Fixed, added the labels.
 
 # Motor Controllers
 - M1
   - R1 tKeepout is outside the board
+    > No issue, since the board passes DRC. 
   - M1 tKeepout is outside the board
+    > No issue, since the board passes DRC.
 - M2, M3, M4 tKeepout is outside the board (also the pads are really close to the edge)
+  > No issue, since the board passes DRC.
 
 # Silk screen
 - All the part names aren't in the same orientation
+  > Won't fix, we are okay with this
 - I think the silkscreen art will probably overlap with some of the reference designators
+  > No issue, the silkscreen art is on the bottom silkscreen layer, so it should not overlap with the reference designators on top silkscreen layer.
  
 # IMU
 - You can move R10, C15, C13 down, then get C12,14,16 down a little
+  > Won't fix, because our tKeepout for the IMU won't allow these capacitors to be any closer and still be on a 0.5mm grid.
 - IMU in current orientation:
   - Rotation over IMU datasheet X: Pitch
   - Rotation over IMU datasheet Y: roll
   - Yaw is the same
+  > Won't fix, we will just swap pitch and roll commands from the remote in software if necessary.
 
 # Microcontroller
 - Can probably get C4 closer to the MC, if you move C2 aside
+  > Won't fix, C4 is a crystal capacitor, so we are leaving it to keep the board layout as close to the reference design as possible.
 - Also C5 if you move R11 and R15
+  > Won't fix, also because C5 is a crystal capacitor, so we are leaving it to keep the board layout as close to the reference design as possible.
 
 # Voltage Regultor
 - 2V5 is not under the VRM
+  > No issue, I'm not sure I understand the concern here, the lab spec says that the VBAT pour should "pass under all four of your motor drivers and it should also extend to area where your battery connector and voltage regulator are located." We have VBAT under the voltage regulator, and a short trace connecting the voltage regulator to the 2V5 pour.
