@@ -6,12 +6,13 @@
 
 
 // CONSTANTS
-const int THR_POS 0
-const int YAW_POS 8
-const int ROLL_POS 16
-const int PIT_POS 24
+const int THR_POS = 0;
+const int YAW_POS = 8;
+const int ROLL_POS = 16;
+const int PIT_POS = 24;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
+const int SERIAL_BAUD = 9600;        // Baud rate for serial port
 
 
 //Global Variables
@@ -19,6 +20,8 @@ int throttleRange[2];
 int yawRange[2];
 int rollRange[2];
 int pitchRange[2];
+
+response_pkt pkt;
   
 bool calibrationActive = false;
 bool quadcopterArmed = false;
@@ -37,7 +40,6 @@ void print_range();
 
 
 void setup() {
-  const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
 
   Serial.begin(SERIAL_BAUD);           // Start up serial
   delay(100);
@@ -62,6 +64,11 @@ void loop() {
   } else {
     if (millis() % 10 == 0) {  // Read gimbal values every 10ms
       set_gimbals();
+    }
+    if(millis() % 80 == 0){
+      if(recieve_response(&pkt)){
+        quadcopterArmed = pkt.armed;
+      }
     }
     check_arm_status();
     if (millis() % 50 == 0) {  // Send a packet every 50ms
@@ -134,9 +141,6 @@ void calibrateGimbals() {
   }
 
   // Display clalibration close
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Closing Calibration");
 
   // Update roll over values
   eeprom_store(THR_POS, throttleRange);
@@ -219,6 +223,9 @@ void btn1_pressed(bool down) {
 
     // Print default message?
     lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Closing Calibration");
+    delay(30);
   } else if (down && quadcopterArmed) {
     // Print message to disarm the quadcopter?
   }

@@ -18,6 +18,50 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed) {
   // print_bytes(pkt_bytes, sizeof(quad_pkt));  // Debugging only
 }
 
+bool recieve_packet(quad_pkt* q_pkt){
+  uint8_t* pkt = (uint8_t*)q_pkt;
+  
+  if(rfAvailable()){
+    rfRead(pkt,sizeof(quad_pkt));
+
+    if(!checksum_valid(pkt, sizeof(quad_pkt))){
+      rfFlush();
+      return false;
+    }
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+void send_response(bool armed, int checksum){
+  response_pkt pkt;
+
+  pkt.armed = armed;
+  pkt.checksum = checksum;
+  pkt.response_CheckSum = pkt.checksum ^ pkt.magic_constant ^ pkt.armed;
+
+  uint8_t* pkt_bytes = (uint8_t*) &pkt;
+  rfWrite(pkt_bytes, sizeof(response_pkt));
+}
+
+bool recieve_response(response_pkt* pkt){
+  if(rfAvailable()){
+    rfRead((uint8_t*)&pkt,sizeof(response_pkt));
+    if(checksum_valid((uint8_t*)&pkt,sizeof(response_pkt))){
+      return true;
+    }
+    else{
+      rfFlush();
+    }
+  }
+  else{
+    Serial.println("no response...");
+  }
+  return false;
+}
+
 void print_bytes(uint8_t* bytes, uint8_t len) {
   if (!checksum_valid(bytes, len)) {
     Serial.println("Packet integrity bad");
@@ -39,11 +83,6 @@ void print_bytes(uint8_t* bytes, uint8_t len) {
 }
 
 bool checksum_valid(uint8_t* bytes, uint8_t len) {
-  if (len < sizeof(quad_pkt)) {
-    // If the number of bytes doesn't match the size of the packet,
-    // do not open the packet!
-    return false;
-  }
   uint8_t actual_checksum = 0;
   for (int i = 0; i < len - sizeof(uint8_t); i++) {
     actual_checksum ^= bytes[i];
@@ -51,3 +90,5 @@ bool checksum_valid(uint8_t* bytes, uint8_t len) {
   uint8_t expected_checksum = bytes[len - sizeof(uint8_t)];
   return actual_checksum == expected_checksum;
 }
+
+
