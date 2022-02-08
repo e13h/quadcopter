@@ -19,16 +19,16 @@ void handle_packet(quad_pkt);
 void print_gimbals();
 
 void setup() {
-   const int SERIAL_BAUD = 9600 ;        // Baud rate for serial port
-   Serial.begin(SERIAL_BAUD);
-   delay(100);
-   rfBegin(RF_CHANNEL);
-   pinMode(LED_BUILTIN, OUTPUT);
+  const int SERIAL_BAUD = 9600;  // Baud rate for serial port
+  Serial.begin(SERIAL_BAUD);
+  delay(100);
+  rfBegin(RF_CHANNEL);
+  pinMode(LED_BUILTIN, OUTPUT);
 
-   for(int start = millis(); millis() - start < 3000;){
-     send_response(false,-1);
-     delay(20);
-   }
+  for (int start = millis(); millis() - start < 3000;) {
+    send_response(false, -1);
+    delay(20);
+  }
 }
 
 void loop() {
