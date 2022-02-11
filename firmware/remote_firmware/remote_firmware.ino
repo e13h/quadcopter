@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 #include <radio.h>
-#include <serLCD.h>
+#include <SerLCD.h>
 
 #include "quad_remote.h"  // Header file with pin definitions and setup
 #include "transmission.h"
@@ -10,6 +10,7 @@ const int THR_POS = 0;
 const int YAW_POS = 8;
 const int ROLL_POS = 16;
 const int PIT_POS = 24;
+const int COMP_FILTER_POS = 32;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 const int SERIAL_BAUD = 9600;  // Baud rate for serial port
@@ -24,13 +25,19 @@ response_pkt pkt;
 
 bool calibrationActive = false;
 bool quadcopterArmed = false;
+bool tuneCompFilterGain = false;
+
 int yaw = 0;
 int throttle = 0;
 int roll = 0;
 int pitch = 0;
+float complementaryFilterGain = 0.9;
 
 void btn1_pressed(bool);
 void btn2_pressed(bool);
+void knob_pressed(bool);
+void btn_down_pressed(bool);
+void knobs_update();
 void set_gimbals();
 void check_arm_status();
 void print_gimbals();
@@ -40,6 +47,7 @@ void print_range();
 void setup() {
   Serial.begin(SERIAL_BAUD);  // Start up serial
   delay(100);
+  Serial.println("Remote is online!");
   quad_remote_setup();
   rfBegin(RF_CHANNEL);
   Serial.print("Channel: ");
@@ -47,12 +55,16 @@ void setup() {
 
   btn1_cb = btn1_pressed;
   btn2_cb = btn2_pressed;
+  knob1_btn_cb = knob_pressed;
+  btn_down_cb = btn_down_pressed;
+  knobs_update_cb = knobs_update;
   lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
   eeprom_load(YAW_POS, yawRange);
   eeprom_load(ROLL_POS, rollRange);
   eeprom_load(PIT_POS, pitchRange);
+  eeprom_load(COMP_FILTER_POS, complementaryFilterGain);
 }
 
 void loop() {
@@ -69,7 +81,13 @@ void loop() {
     }
     check_arm_status();
     if (millis() % 50 == 0) {  // Send a packet every 50ms
-      send_packet(throttle, yaw, roll, pitch, quadcopterArmed);
+      send_packet(throttle, yaw, roll, pitch, quadcopterArmed, complementaryFilterGain);
+    }
+    if (millis() % 100 == 0 && tuneCompFilterGain) {
+      lcd.setCursor(0, 1);
+      lcd.print(complementaryFilterGain, 2);
+      Serial.print("Gain: ");
+      Serial.println(complementaryFilterGain);
     }
   }
   if (millis() % 100 == 0) {
@@ -207,7 +225,7 @@ void print_gimbals() {
 }
 
 void btn1_pressed(bool down) {
-  if (down && !quadcopterArmed && !calibrationActive) {
+  if (down && !quadcopterArmed && !tuneCompFilterGain && !calibrationActive) {
     calibrationActive = !calibrationActive;
 
     // Print calibrating message
@@ -239,5 +257,32 @@ void check_arm_status() {
       pitch >= 250) {
     quadcopterArmed = true;
     lcd.setBacklight(0x00FF0000);
+  }
+}
+
+void knob_pressed(bool down) {
+  if (down && tuneCompFilterGain) {
+    eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
+    tuneCompFilterGain = false;
+    lcd.clear();
+    knob1.setCurrentPos(0);
+  }
+}
+
+void btn_down_pressed(bool down) {
+  if (down && !calibrationActive) {
+    tuneCompFilterGain = true;
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Gain: ");
+    knob1.setCurrentPos(0);
+  }
+}
+
+void knobs_update() {
+  if (tuneCompFilterGain) {
+    // Increment/decrement the gain by 0.01
+    complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
+    knob1.setCurrentPos(0);
   }
 }
