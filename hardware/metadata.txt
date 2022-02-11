@@ -1,0 +1,3 @@
+Quadcopter color: Black
+Silkscreen color: White
+Board dimensions: 130mm x 130mm
