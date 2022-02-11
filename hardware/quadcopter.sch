@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="3" visible="no" active="no"/>
@@ -22410,6 +22410,7 @@ This is the in-system programming (ISP) connector for Atmel Microcontrollers pro
 <part name="R15" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="RESISTOR_" device="SMD-2012-0805-5.1K" value="5.1K"/>
 <part name="GND28" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="BAT_GND" device=""/>
 <part name="DEC1" library="custom_michael_shao" library_urn="urn:adsk.wipprod:fs.file:vf.WEX53KctTd223gU3vuBSuw" deviceset="DECORATION" device="-TIE_FIGHTER_0.15_SCALE"/>
+<part name="DECO2" library="quadparts_prebuilt_2022" library_urn="urn:adsk.wipprod:fs.file:vf.VudH_-qgS-enOFMGlZoxrw" deviceset="DECORATION" device="-CLASS-LOGO-SMALL"/>
 </parts>
 <sheets>
 <sheet>
@@ -23043,6 +23044,10 @@ Expected current thru LED: 15mA</text>
 <instance part="DEC1" gate="G$1" x="160.02" y="27.94" smashed="yes">
 <attribute name="NAME" x="160.02" y="30.734" size="1.778" layer="95" align="bottom-center"/>
 <attribute name="VALUE" x="160.02" y="25.146" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="DECO2" gate="G$1" x="55.88" y="30.48" smashed="yes">
+<attribute name="NAME" x="55.88" y="33.02" size="1.27" layer="95" font="vector" align="center-left"/>
+<attribute name="VALUE" x="55.88" y="27.94" size="1.27" layer="96" font="vector" align="center-left"/>
 </instance>
 </instances>
 <busses>
