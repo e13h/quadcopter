@@ -343,10 +343,13 @@ void knobs_update() {
       // Increment/decrement the gain by 0.01, but don't go below 0 or above 1
       complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
     } else if (currentTuningParam == PID_P_POS) {
+      // Increment/decrement by 0.05, but don't go below 0 or above 4
       pid_p_gain = constrain(pid_p_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
     } else if (currentTuningParam == PID_I_POS) {
+      // Increment/decrement by 0.05, but don't go below 0 or above 4
       pid_i_gain = constrain(pid_i_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
     } else if (currentTuningParam == PID_D_POS) {
+      // Increment/decrement by 0.05, but don't go below 0 or above 4
       pid_d_gain = constrain(pid_d_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
     }
     knob1.setCurrentPos(0);
