@@ -5,7 +5,7 @@
 
 #include "radio.h"
 #include "transmission.h"
-
+// Flags and ids
 const int MOTOR_1 = 8;
 const int MOTOR_2 = 3;
 const int MOTOR_3 = 4;
@@ -16,18 +16,26 @@ const bool FLAG_PRINT_IMU = false;
 const bool FLAG_PRINT_PITCH_ONLY = true;
 const bool FLAG_PLOTTING = true;
 
+// Current packet values
 bool armed = false;
 int throttle = 0;
 int yaw = 0;
 int roll = 0;
 int pitch = 0;
-float compFilterGain = 0.9;
-float pitchFiltered = 0;
+
+// Packet recieve cariables
+unsigned long time_last_good_pkt = 0;
+quad_pkt pkt;
+
+// IMU data variables
 quad_data_t orientation;
 unsigned long orientationTimestamp = 0;
 float gyroDelta = 0.0;
-unsigned long time_last_good_pkt = 0;
-quad_pkt pkt;
+
+// Gain and filtering variables
+float compFilterGain = 0.9;
+float pitchFiltered = 0;
+
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();  // Create LSM9DS0 board instance.
 Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), NULL, &lsm.getGyro());
 
