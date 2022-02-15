@@ -7,10 +7,10 @@
 #include "transmission.h"
 
 // Flags and ids
-const int MOTOR_1 = 8;
-const int MOTOR_2 = 3;
-const int MOTOR_3 = 4;
-const int MOTOR_4 = 5;
+const int MOTOR_1 = 3;
+const int MOTOR_2 = 4;
+const int MOTOR_3 = 5;
+const int MOTOR_4 = 8;
 const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 const bool FLAG_PRINT_GIMBALS = false;
 const bool FLAG_PRINT_IMU = false;
