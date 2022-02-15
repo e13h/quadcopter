@@ -297,6 +297,11 @@ void mixer() {
   motor_3_throttle += pid_pitch;
   motor_4_throttle += pid_pitch;
 
+  motor_1_throttle = constrain(motor_1_throttle, 0, 255);
+  motor_2_throttle = constrain(motor_2_throttle, 0, 255);
+  motor_3_throttle = constrain(motor_3_throttle, 0, 255);
+  motor_4_throttle = constrain(motor_4_throttle, 0, 255);
+
   if (armed) {
     digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(MOTOR_1, motor_1_throttle);
