@@ -18,6 +18,7 @@ const bool FLAG_PRINT_PITCH = true;
 const bool FLAG_PRINT_ROLL = false;
 const bool FLAG_PRINT_YAW = false;
 const bool FLAG_PRINT_PID = true;
+const bool FLAG_PRINT_MOTORS = true;
 
 // Current packet values
 bool armed = false;
@@ -25,6 +26,11 @@ int throttle = 0;
 int yaw = 0;
 int roll = 0;
 int pitch = 0;
+
+int motor_1_throttle = throttle;
+int motor_2_throttle = throttle;
+int motor_3_throttle = throttle;
+int motor_4_throttle = throttle;
 
 // Packet recieve cariables
 unsigned long time_last_good_pkt = 0;
@@ -215,6 +221,23 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(yawFiltered);
     Serial.print(" ");
   }
+  if (FLAG_PRINT_MOTORS) {
+    Serial.print(F("m1:"));
+    Serial.print(motor_1_throttle);
+    Serial.print(F(" "));
+
+    Serial.print(F("m2:"));
+    Serial.print(motor_2_throttle);
+    Serial.print(F(" "));
+
+    Serial.print(F("m3:"));
+    Serial.print(motor_3_throttle);
+    Serial.print(F(" "));
+
+    Serial.print(F("m4:"));
+    Serial.print(motor_4_throttle);
+    Serial.print(F(" "));
+  }
   Serial.println(F(""));
 }
 
@@ -262,10 +285,10 @@ float PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum)
 void mixer() {
   deadband();
 
-  int motor_1_throttle = throttle;
-  int motor_2_throttle = throttle;
-  int motor_3_throttle = throttle;
-  int motor_4_throttle = throttle;
+  motor_1_throttle = throttle;
+  motor_2_throttle = throttle;
+  motor_3_throttle = throttle;
+  motor_4_throttle = throttle;
 
   pid_pitch = PID_calc(prevPitchErr, pitchFiltered, loopDeltaTime, sumPitchErr);
 
