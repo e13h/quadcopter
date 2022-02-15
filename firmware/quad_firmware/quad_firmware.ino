@@ -60,7 +60,7 @@ void handle_packet(quad_pkt);
 void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
-int PID_calc(float,float,float);
+float PID_calc(float, float, float, float);
 void mixer();
 
 void setup() {
@@ -242,7 +242,7 @@ void runCompFilter() {
     + (1 - compFilterGain) * orientation.pitch;
 }
 
-int PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum){
+float PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum){
   float deriv_err = (cur_err - prev_err) / delta_time;
 
   if(throttle != 0){
