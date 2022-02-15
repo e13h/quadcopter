@@ -33,7 +33,7 @@ quad_pkt pkt;
 // IMU data variables
 quad_data_t orientation;
 unsigned long orientationTimestamp = 0;
-float gyroDelta = 0.0;
+float loopDeltaTime = 0.0;
 
 // Gain and filtering variables
 float compFilterGain = 0.9;
@@ -103,7 +103,7 @@ void loop() {
   
   ahrs.getQuadOrientation(&orientation);  // Update quad orientation
   orientation.pitch_rate = -orientation.pitch_rate;  // inverting the pitch rate
-  gyroDelta = float(now - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
+  loopDeltaTime = float(now - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
   orientationTimestamp = now;
   if (millis() % 10 == 0) {
     print_stats(now - last);
@@ -238,8 +238,7 @@ void setupIMU() {
 }
 
 void runCompFilter() {
-  // Serial.println(gyroDelta);
-  pitchFiltered = compFilterGain * (pitchFiltered + (gyroDelta * orientation.pitch_rate))
+  pitchFiltered = compFilterGain * (pitchFiltered + (loopDeltaTime * orientation.pitch_rate))
     + (1 - compFilterGain) * orientation.pitch;
 }
 
