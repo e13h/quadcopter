@@ -22,7 +22,10 @@ int yaw = 0;
 int roll = 0;
 int pitch = 0;
 float compFilterGain = 0.9;
-float pitchFiltered = 0;
+float pGain = 0.0;
+float iGain = 0.0;
+float dGain = 0.0;
+float pitchFiltered = 0.0;
 quad_data_t orientation;
 unsigned long orientationTimestamp = 0;
 float gyroDelta = 0.0;
@@ -122,6 +125,9 @@ void handle_packet(quad_pkt pkt) {
   roll = pkt.roll;
   pitch = pkt.pitch;
   compFilterGain = float(pkt.scaledCompFilterGain) / 100.0;
+  pGain = float(pkt.scaledPGain) / 100.0;
+  iGain = float(pkt.scaledIGain) / 100.0;
+  dGain = float(pkt.scaledDGain) / 100.0;
 }
 
 void print_gimbals(unsigned long iterationTime) {

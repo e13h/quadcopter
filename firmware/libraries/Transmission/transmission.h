@@ -13,6 +13,9 @@ struct quad_pkt {
   uint8_t pitch;
   bool armed;
   uint8_t scaledCompFilterGain;
+  uint8_t scaledPGain;
+  uint8_t scaledIGain;
+  uint8_t scaledDGain;
   uint8_t checksum;
 };
 
@@ -26,7 +29,7 @@ struct response_pkt {
 };
 
 
-void send_packet(int, int, int, int, bool, float);
+void send_packet(int, int, int, int, bool, float, float, float, float);
 bool recieve_packet(quad_pkt*);
 void send_response(bool,int);
 bool recieve_response(response_pkt*);
