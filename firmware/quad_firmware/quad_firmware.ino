@@ -302,7 +302,7 @@ void mixer() {
   motor_3_throttle = constrain(motor_3_throttle, 0, 255);
   motor_4_throttle = constrain(motor_4_throttle, 0, 255);
 
-  if (armed) {
+  if (armed && throttle > 0) {
     digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(MOTOR_1, motor_1_throttle);
     analogWrite(MOTOR_2, motor_2_throttle);
