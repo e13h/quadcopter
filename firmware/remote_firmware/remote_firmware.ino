@@ -25,7 +25,8 @@ response_pkt pkt;
 
 bool calibrationActive = false;
 bool quadcopterArmed = false;
-bool tuneCompFilterGain = false;
+bool tuningActive = false;
+int currentTuningParam = -1;
 
 int yaw = 0;
 int throttle = 0;
@@ -43,6 +44,8 @@ void check_arm_status();
 void print_gimbals();
 void calibrateGimbals();
 void print_range();
+void display_tuning_param();
+void begin_tuning(const int, const char*);
 
 void setup() {
   Serial.begin(SERIAL_BAUD);  // Start up serial
@@ -83,11 +86,8 @@ void loop() {
     if (millis() % 50 == 0) {  // Send a packet every 50ms
       send_packet(throttle, yaw, roll, pitch, quadcopterArmed, complementaryFilterGain);
     }
-    if (millis() % 100 == 0 && tuneCompFilterGain) {
-      lcd.setCursor(0, 1);
-      lcd.print(complementaryFilterGain, 2);
-      Serial.print("Gain: ");
-      Serial.println(complementaryFilterGain);
+    if (millis() % 100 == 0 && tuningActive) {
+      display_tuning_param();
     }
   }
   if (millis() % 100 == 0) {
@@ -225,7 +225,7 @@ void print_gimbals() {
 }
 
 void btn1_pressed(bool down) {
-  if (down && !quadcopterArmed && !tuneCompFilterGain && !calibrationActive) {
+  if (down && !quadcopterArmed && !tuningActive && !calibrationActive) {
     calibrationActive = !calibrationActive;
 
     // Print calibrating message
@@ -261,28 +261,49 @@ void check_arm_status() {
 }
 
 void knob_pressed(bool down) {
-  if (down && tuneCompFilterGain) {
-    eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
-    tuneCompFilterGain = false;
+  if (down && tuningActive) {
+    if (currentTuningParam == COMP_FILTER_POS) {
+      eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
+    } else {
+      return;
+    }
+    tuningActive = false;
+    currentTuningParam = -1;
     lcd.clear();
     knob1.setCurrentPos(0);
   }
 }
 
 void btn_down_pressed(bool down) {
-  if (down && !calibrationActive) {
-    tuneCompFilterGain = true;
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Gain: ");
+  if (down && !calibrationActive && !tuningActive) {
+    begin_tuning(COMP_FILTER_POS, "Gain:");
+  }
+}
+
+void begin_tuning(const int tuningParam, const char* msg) {
+  tuningActive = true;
+  currentTuningParam = tuningParam;
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(msg);
+  knob1.setCurrentPos(0);
+}
+
+void knobs_update() {
+  if (tuningActive) {
+    if (currentTuningParam == COMP_FILTER_POS) {
+      // Increment/decrement the gain by 0.01, but don't go below 0 or above 1
+      complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
+    }
     knob1.setCurrentPos(0);
   }
 }
 
-void knobs_update() {
-  if (tuneCompFilterGain) {
-    // Increment/decrement the gain by 0.01
-    complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
-    knob1.setCurrentPos(0);
+void display_tuning_param() {
+  lcd.setCursor(0, 1);
+  if (currentTuningParam == COMP_FILTER_POS) {
+    lcd.print(complementaryFilterGain, 2);
+    Serial.print("Gain: ");
+    Serial.println(complementaryFilterGain);
   }
 }
