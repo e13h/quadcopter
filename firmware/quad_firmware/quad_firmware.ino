@@ -54,6 +54,7 @@ float sumPitchErr = 0;
 
 float prev_time = 0;
 float cur_time = 0;
+float pid_pitch = 0.0;
 
 
 void handle_packet(quad_pkt);
@@ -187,6 +188,10 @@ void print_stats(unsigned long iterationTime) {
     Serial.print("f_pitch:");
     Serial.print(pitchFiltered);
     Serial.print(" ");
+
+    Serial.print(F("pid_pitch:"));
+    Serial.print(pid_pitch);
+    Serial.print(F(" "));
   }
   if (FLAG_PRINT_ROLL) {
     Serial.print("xl_roll:");
@@ -257,12 +262,24 @@ float PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum)
 void mixer() {
   deadband();
 
+  int motor_1_throttle = throttle;
+  int motor_2_throttle = throttle;
+  int motor_3_throttle = throttle;
+  int motor_4_throttle = throttle;
+
+  pid_pitch = PID_calc(prevPitchErr, pitchFiltered, loopDeltaTime, sumPitchErr);
+
+  motor_1_throttle -= pid_pitch;
+  motor_2_throttle -= pid_pitch;
+  motor_3_throttle += pid_pitch;
+  motor_4_throttle += pid_pitch;
+
   if (armed) {
     digitalWrite(LED_BUILTIN, HIGH);
-    analogWrite(MOTOR_1, throttle);
-    analogWrite(MOTOR_2, throttle);
-    analogWrite(MOTOR_3, throttle);
-    analogWrite(MOTOR_4, throttle);
+    analogWrite(MOTOR_1, motor_1_throttle);
+    analogWrite(MOTOR_2, motor_2_throttle);
+    analogWrite(MOTOR_3, motor_3_throttle);
+    analogWrite(MOTOR_4, motor_4_throttle);
   } else {
     digitalWrite(LED_BUILTIN, LOW);
     analogWrite(MOTOR_1, 0);
