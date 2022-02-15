@@ -55,6 +55,7 @@ void calibrateGimbals();
 void print_range();
 void display_tuning_param();
 void begin_tuning(const int, const char*);
+void check_if_eeprom_loaded_nan(float&);
 
 void setup() {
   Serial.begin(SERIAL_BAUD);  // Start up serial
@@ -80,9 +81,13 @@ void setup() {
   eeprom_load(ROLL_POS, rollRange);
   eeprom_load(PIT_POS, pitchRange);
   eeprom_load(COMP_FILTER_POS, complementaryFilterGain);
+  check_if_eeprom_loaded_nan(complementaryFilterGain);
   eeprom_load(PID_P_POS, pid_p_gain);
+  check_if_eeprom_loaded_nan(pid_p_gain);
   eeprom_load(PID_I_POS, pid_i_gain);
+  check_if_eeprom_loaded_nan(pid_i_gain);
   eeprom_load(PID_D_POS, pid_d_gain);
+  check_if_eeprom_loaded_nan(pid_d_gain);
 }
 
 void loop() {
@@ -366,5 +371,12 @@ void display_tuning_param() {
     lcd.print(pid_d_gain, 2);
     Serial.print("D: ");
     Serial.println(pid_d_gain);
+  }
+}
+
+void check_if_eeprom_loaded_nan(float& param) {
+  if (isnan(param)) {
+    Serial.println("Error loading param from EEPROM, setting to 0.0");
+    param = 0.0;
   }
 }
