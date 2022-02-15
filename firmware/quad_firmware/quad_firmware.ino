@@ -61,6 +61,7 @@ void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
 int PID_calc(float,float,float);
+void mixer();
 
 void setup() {
   Serial.begin(115200);
@@ -110,19 +111,7 @@ void loop() {
   runCompFilter();
 
   // Apply throttle to the motors
-  if (armed) {
-    digitalWrite(LED_BUILTIN, HIGH);
-    analogWrite(MOTOR_1, throttle);
-    analogWrite(MOTOR_2, throttle);
-    analogWrite(MOTOR_3, throttle);
-    analogWrite(MOTOR_4, throttle);
-  } else {
-    digitalWrite(LED_BUILTIN, LOW);
-    analogWrite(MOTOR_1, 0);
-    analogWrite(MOTOR_2, 0);
-    analogWrite(MOTOR_3, 0);
-    analogWrite(MOTOR_4, 0);
-  }
+  mixer();
 
   last = now;
 }
@@ -264,4 +253,43 @@ int PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum){
   prev_err = cur_err;
 
   return pGain * cur_err + dGain * deriv_err + iGain * integ_sum;
+}
+
+void mixer() {
+  deadband();
+
+  if (armed) {
+    digitalWrite(LED_BUILTIN, HIGH);
+    analogWrite(MOTOR_1, throttle);
+    analogWrite(MOTOR_2, throttle);
+    analogWrite(MOTOR_3, throttle);
+    analogWrite(MOTOR_4, throttle);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+    analogWrite(MOTOR_1, 0);
+    analogWrite(MOTOR_2, 0);
+    analogWrite(MOTOR_3, 0);
+    analogWrite(MOTOR_4, 0);
+  }
+}
+
+void deadband() {
+  const uint8_t THROTTLE_DEADBAND = 15;
+  const uint8_t PITCH_DEADBAND = 15;
+  const uint8_t ROLL_DEADBAND = 15;
+  const uint8_t YAW_DEADBAND = 15;
+  const uint8_t CENTERING_ORIGIN = 128;
+
+  if (throttle < THROTTLE_DEADBAND) {
+    throttle = 0;
+  }
+  if (pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
+    pitch = CENTERING_ORIGIN;
+  }
+  if (roll >= CENTERING_ORIGIN - ROLL_DEADBAND && roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
+    roll = CENTERING_ORIGIN;
+  }
+  if (yaw >= CENTERING_ORIGIN - YAW_DEADBAND && yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
+    yaw = CENTERING_ORIGIN;
+  }
 }
