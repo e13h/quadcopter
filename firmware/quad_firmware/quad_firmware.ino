@@ -13,8 +13,10 @@ const int MOTOR_4 = 5;
 const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 const bool FLAG_PRINT_GIMBALS = false;
 const bool FLAG_PRINT_IMU = false;
-const bool FLAG_PRINT_PITCH_ONLY = true;
-const bool FLAG_PLOTTING = true;
+const bool FLAG_PRINT_PITCH = true;
+const bool FLAG_PRINT_ROLL = false;
+const bool FLAG_PRINT_YAW = false;
+const bool FLAG_PRINT_PID = true;
 
 bool armed = false;
 int throttle = 0;
@@ -26,6 +28,8 @@ float pGain = 0.0;
 float iGain = 0.0;
 float dGain = 0.0;
 float pitchFiltered = 0.0;
+float rollFiltered = 0.0;
+float yawFiltered = 0.0;
 quad_data_t orientation;
 unsigned long orientationTimestamp = 0;
 float gyroDelta = 0.0;
@@ -35,9 +39,7 @@ Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();  // Create LSM9DS0 board instance.
 Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), NULL, &lsm.getGyro());
 
 void handle_packet(quad_pkt);
-void print_gimbals(unsigned long);
-void print_IMU(unsigned long);
-void printPitch(unsigned long);
+void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
 
@@ -45,10 +47,6 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {
     delay(1); // Pause until serial console opens
-  }
-
-  if (!FLAG_PLOTTING) {
-    Serial.println("The quadcopter is online!");
   }
 
   rfBegin(RF_CHANNEL);
@@ -79,10 +77,6 @@ void loop() {
     handle_packet(pkt);
   }
 
-  if (FLAG_PRINT_GIMBALS && millis() % 100 == 0) {
-    print_gimbals(now - last);
-  }
-
   if (millis() - time_last_good_pkt > MOTOR_SHUTOFF_TIMEOUT) {
     armed = false;
   }
@@ -91,11 +85,8 @@ void loop() {
   orientation.pitch_rate = -orientation.pitch_rate;  // inverting the pitch rate
   gyroDelta = float(now - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
   orientationTimestamp = now;
-  if (FLAG_PRINT_IMU && millis() % 10 == 0) {
-    print_IMU(now - last);
-  }
-  if (FLAG_PRINT_PITCH_ONLY && millis() % 10 == 0) {
-    printPitch(now - last);
+  if (millis() % 10 == 0) {
+    print_stats(now - last);
   }
   runCompFilter();
 
@@ -130,70 +121,88 @@ void handle_packet(quad_pkt pkt) {
   dGain = float(pkt.scaledDGain) / 100.0;
 }
 
-void print_gimbals(unsigned long iterationTime) {
-  Serial.print(iterationTime);
-  Serial.print(F(" "));
-  if (armed) {
-    Serial.print(F("A "));
-  } else {
-    Serial.print(F(". "));
-  }
-  Serial.print(throttle);
-  Serial.print(F(" "));
-  Serial.print(yaw);
-  Serial.print(F(" "));
-  Serial.print(roll);
-  Serial.print(F(" "));
-  Serial.print(pitch);
-  Serial.println(F(""));
-}
-
-void print_IMU(unsigned long iterationTime) {
-  Serial.print(iterationTime);
-  Serial.print(F(" "));
-  if (armed) {
-    Serial.print(F("A "));
-  } else {
-    Serial.print(F(". "));
-  }
-  Serial.print(compFilterGain);
-  Serial.print(F(" "));
-  // 'orientation' should have valid .roll and .pitch fields
-  Serial.print(orientation.roll);
-  Serial.print(F(" "));
-  Serial.print(orientation.pitch);
-  Serial.print(F(" "));
-  Serial.print(orientation.roll_rate);
-  Serial.print(F(" "));
-  Serial.print(orientation.pitch_rate);
-  Serial.print(F(" "));
-  Serial.print(orientation.yaw_rate);
-  Serial.println(F(""));
-}
-
-void printPitch(unsigned long iterTime) {
+void print_stats(unsigned long iterationTime) {
   /* The bits of text printed before each value show up as labels on the
    serial plotter for easier viewing.
   */
-  Serial.print("iter:");
-  Serial.print(iterTime);
-  Serial.print(" ");
+  Serial.print(iterationTime);
+  Serial.print(F(" "));
+  if (armed) {
+    Serial.print(F("A "));
+  } else {
+    Serial.print(F(". "));
+  }
+  if (FLAG_PRINT_GIMBALS) {
+    Serial.print(F("thr_gim:"));
+    Serial.print(throttle);
+    Serial.print(F(" "));
 
-  Serial.print("gain:");
-  Serial.print(compFilterGain);
-  Serial.print(" ");
+    Serial.print(F("yaw_gim:"));
+    Serial.print(yaw);
+    Serial.print(F(" "));
 
-  Serial.print("xl_pitch:");
-  Serial.print(orientation.pitch);
-  Serial.print(" ");
+    Serial.print("rol_gim:");
+    Serial.print(roll);
+    Serial.print(F(" "));
 
-  Serial.print("gy_pitch:");
-  Serial.print(orientation.pitch_rate);
-  Serial.print(" ");
+    Serial.print(F("pit_gim:"));
+    Serial.print(pitch);
+    Serial.print(F(" "));
+  }
+  if (FLAG_PRINT_PID) {
+    Serial.print(F("P:"));
+    Serial.print(pGain);
+    Serial.print(F(" "));
 
-  Serial.print("f_pitch:");
-  Serial.print(pitchFiltered);
-  Serial.println("");
+    Serial.print(F("I:"));
+    Serial.print(iGain);
+    Serial.print(F(" "));
+
+    Serial.print(F("D:"));
+    Serial.print(dGain);
+    Serial.print(F(" "));
+  }
+  if (FLAG_PRINT_PITCH || FLAG_PRINT_ROLL || FLAG_PRINT_YAW) {
+    Serial.print("gain:");
+    Serial.print(compFilterGain);
+    Serial.print(" ");
+  }
+  if (FLAG_PRINT_PITCH) {
+    Serial.print("xl_pitch:");
+    Serial.print(orientation.pitch);
+    Serial.print(" ");
+
+    Serial.print("gy_pitch:");
+    Serial.print(orientation.pitch_rate);
+    Serial.print(" ");
+
+    Serial.print("f_pitch:");
+    Serial.print(pitchFiltered);
+    Serial.print(" ");
+  }
+  if (FLAG_PRINT_ROLL) {
+    Serial.print("xl_roll:");
+    Serial.print(orientation.roll);
+    Serial.print(" ");
+
+    Serial.print("gy_roll:");
+    Serial.print(orientation.roll_rate);
+    Serial.print(" ");
+
+    Serial.print("f_roll:");
+    Serial.print(rollFiltered);
+    Serial.print(" ");
+  }
+  if (FLAG_PRINT_YAW) {
+    Serial.print("gy_yaw:");
+    Serial.print(orientation.yaw_rate);
+    Serial.print(" ");
+
+    Serial.print("f_yaw:");
+    Serial.print(yawFiltered);
+    Serial.print(" ");
+  }
+  Serial.println(F(""));
 }
 
 void setupIMU() {
