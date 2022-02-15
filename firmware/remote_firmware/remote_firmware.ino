@@ -11,6 +11,9 @@ const int YAW_POS = 8;
 const int ROLL_POS = 16;
 const int PIT_POS = 24;
 const int COMP_FILTER_POS = 32;
+const int PID_P_POS = 36;
+const int PID_I_POS = 40;
+const int PID_D_POS = 44;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 const int SERIAL_BAUD = 9600;  // Baud rate for serial port
@@ -33,11 +36,17 @@ int throttle = 0;
 int roll = 0;
 int pitch = 0;
 float complementaryFilterGain = 0.9;
+float pid_p_gain = 0.0;
+float pid_i_gain = 0.0;
+float pid_d_gain = 0.0;
 
 void btn1_pressed(bool);
 void btn2_pressed(bool);
 void knob_pressed(bool);
 void btn_down_pressed(bool);
+void btn_left_pressed(bool);
+void btn_up_pressed(bool);
+void btn_right_pressed(bool);
 void knobs_update();
 void set_gimbals();
 void check_arm_status();
@@ -60,6 +69,9 @@ void setup() {
   btn2_cb = btn2_pressed;
   knob1_btn_cb = knob_pressed;
   btn_down_cb = btn_down_pressed;
+  btn_left_cb = btn_left_pressed;
+  btn_up_cb = btn_up_pressed;
+  btn_right_cb = btn_right_pressed;
   knobs_update_cb = knobs_update;
   lcd.setBacklight(0x000000FF);
 
@@ -68,6 +80,9 @@ void setup() {
   eeprom_load(ROLL_POS, rollRange);
   eeprom_load(PIT_POS, pitchRange);
   eeprom_load(COMP_FILTER_POS, complementaryFilterGain);
+  eeprom_load(PID_P_POS, pid_p_gain);
+  eeprom_load(PID_I_POS, pid_i_gain);
+  eeprom_load(PID_D_POS, pid_d_gain);
 }
 
 void loop() {
@@ -264,6 +279,12 @@ void knob_pressed(bool down) {
   if (down && tuningActive) {
     if (currentTuningParam == COMP_FILTER_POS) {
       eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
+    } else if (currentTuningParam == PID_P_POS) {
+      eeprom_store(PID_P_POS, pid_p_gain);
+    } else if (currentTuningParam == PID_I_POS) {
+      eeprom_store(PID_I_POS, pid_i_gain);
+    } else if (currentTuningParam == PID_D_POS) {
+      eeprom_store(PID_D_POS, pid_d_gain);
     } else {
       return;
     }
@@ -280,7 +301,29 @@ void btn_down_pressed(bool down) {
   }
 }
 
+void btn_left_pressed(bool down) {
+  if (down && !calibrationActive && !tuningActive) {
+    begin_tuning(PID_P_POS, "P:");
+  }
+}
+
+void btn_up_pressed(bool down) {
+  if (down && !calibrationActive && !tuningActive) {
+    begin_tuning(PID_I_POS, "I:");
+  }
+}
+
+void btn_right_pressed(bool down) {
+  if (down && !calibrationActive && !tuningActive) {
+    begin_tuning(PID_D_POS, "D:");
+  }
+}
+
 void begin_tuning(const int tuningParam, const char* msg) {
+  if (tuningParam != COMP_FILTER_POS && tuningParam != PID_P_POS &&
+      tuningParam != PID_I_POS && tuningParam != PID_D_POS) {
+    return;
+  }
   tuningActive = true;
   currentTuningParam = tuningParam;
   lcd.clear();
@@ -294,6 +337,12 @@ void knobs_update() {
     if (currentTuningParam == COMP_FILTER_POS) {
       // Increment/decrement the gain by 0.01, but don't go below 0 or above 1
       complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
+    } else if (currentTuningParam == PID_P_POS) {
+      pid_p_gain = constrain(pid_p_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
+    } else if (currentTuningParam == PID_I_POS) {
+      pid_i_gain = constrain(pid_i_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
+    } else if (currentTuningParam == PID_D_POS) {
+      pid_d_gain = constrain(pid_d_gain + (knob1.getCurrentPos() / 20.0), 0.0, 4.0);
     }
     knob1.setCurrentPos(0);
   }
@@ -305,5 +354,17 @@ void display_tuning_param() {
     lcd.print(complementaryFilterGain, 2);
     Serial.print("Gain: ");
     Serial.println(complementaryFilterGain);
+  } else if (currentTuningParam == PID_P_POS) {
+    lcd.print(pid_p_gain, 2);
+    Serial.print("P: ");
+    Serial.println(pid_p_gain);
+  } else if (currentTuningParam == PID_I_POS) {
+    lcd.print(pid_i_gain, 2);
+    Serial.print("I: ");
+    Serial.println(pid_i_gain);
+  } else if (currentTuningParam == PID_D_POS) {
+    lcd.print(pid_d_gain, 2);
+    Serial.print("D: ");
+    Serial.println(pid_d_gain);
   }
 }
