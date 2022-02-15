@@ -5,6 +5,7 @@
 
 #include "radio.h"
 #include "transmission.h"
+
 // Flags and ids
 const int MOTOR_1 = 8;
 const int MOTOR_2 = 3;
@@ -40,17 +41,26 @@ float pitchFiltered = 0.0;
 float rollFiltered = 0.0;
 float yawFiltered = 0.0;
 
+Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();  // Create LSM9DS0 board instance.
+Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), NULL, &lsm.getGyro());
+
+// PID variables
 float pGain = 0.0;
 float iGain = 0.0;
 float dGain = 0.0;
 
-Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();  // Create LSM9DS0 board instance.
-Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), NULL, &lsm.getGyro());
+float prevPitchErr = 0;
+float sumPitchErr = 0;
+
+float prev_time = 0;
+float cur_time = 0;
+
 
 void handle_packet(quad_pkt);
 void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
+int PID_calc(float,float,float);
 
 void setup() {
   Serial.begin(115200);
@@ -242,4 +252,16 @@ void runCompFilter() {
   // Serial.println(gyroDelta);
   pitchFiltered = compFilterGain * (pitchFiltered + (gyroDelta * orientation.pitch_rate))
     + (1 - compFilterGain) * orientation.pitch;
+}
+
+int PID_calc(float prev_err, float cur_err, float delta_time, float integ_sum){
+  float deriv_err = (cur_err - prev_err) / delta_time;
+
+  if(throttle != 0){
+    integ_sum =  (.75) * integ_sum  + .5 * (cur_err + prev_err) * delta_time; 
+  }
+  
+  prev_err = cur_err;
+
+  return pGain * cur_err + dGain * deriv_err + iGain * integ_sum;
 }
