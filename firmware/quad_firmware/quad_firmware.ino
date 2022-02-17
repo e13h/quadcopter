@@ -42,7 +42,7 @@ const int MOTOR_4 = 8;
 const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 const bool FLAG_PRINT_GIMBALS = false;
 const bool FLAG_PRINT_IMU = false;
-const bool FLAG_PRINT_PITCH = true;
+const bool FLAG_PRINT_PITCH = false;
 const bool FLAG_PRINT_ROLL = false;
 const bool FLAG_PRINT_YAW = false;
 const bool FLAG_PRINT_PID = true;
@@ -352,7 +352,7 @@ void mixer() {
   if(max_thr > 255){
     capper = max_thr-255;
   }
-  
+
   // Constrain
   mixer_inputs.motor1_throttle = constrain(mixer_inputs.motor1_throttle-capper, 0, 255);
   mixer_inputs.motor2_throttle = constrain(mixer_inputs.motor2_throttle-capper, 0, 255);
