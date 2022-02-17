@@ -274,8 +274,8 @@ void btn2_pressed(bool down) {
 }
 
 void check_arm_status() {
-  if (!quadcopterArmed && throttle == 0 && yaw >= 250 && roll >= 250 &&
-      pitch >= 250) {
+  if (!quadcopterArmed && throttle == 0 && yaw <= 5 && roll >= 250 &&
+      pitch <= 5) {
     quadcopterArmed = true;
     lcd.setBacklight(0x00FF0000);
   }
