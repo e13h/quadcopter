@@ -12,6 +12,7 @@ struct axis {
   int offset_degrees = 0;
   float pid = 0.0;
   float filtered = 0.0;
+
 };
 
 struct mixer_input_config {
@@ -315,12 +316,24 @@ void mixer() {
   
   // PID
   mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs.prev_error, mixer_inputs.pitch.filtered, loopDeltaTime, pitch_pid_inputs.sum_error);
+  //mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs.prev_error,orientation.yaw_rate, loopDeltaTime, yaw_pid_inputs.prev_error);
 
   // Mix
-  mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid;
-  mixer_inputs.motor2_throttle = mixer_inputs.gimbal_throttle + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid;
-  mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
-  mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
+  mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
+    + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid; 
+  //  - mixer_inputs.yaw.offset_degrees + mixer_inputs.yaw.pid;
+
+  mixer_inputs.motor2_throttle = mixer_inputs.gimbal_throttle 
+    + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid;
+  //  + mixer_inputs.yaw.offset_degrees - mixer_inputs.yaw.pid;
+
+  mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle 
+    - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
+  //  + mixer_inputs.yaw.offset_degrees - mixer_inputs.yaw.pid;
+
+  mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle 
+    - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
+  //  - mixer_inputs.yaw.offset_degrees + mixer_inputs.yaw.pid;
 
   // Constrain
   mixer_inputs.motor1_throttle = constrain(mixer_inputs.motor1_throttle, 0, 255);
