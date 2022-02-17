@@ -6,6 +6,33 @@
 #include "radio.h"
 #include "transmission.h"
 
+
+struct axis {
+  int gimbal_cmd = 0;
+  int offset_degrees = 0;
+  float pid = 0.0;
+  float filtered = 0.0;
+};
+
+struct mixer_input_config {
+  // Parameters for the mixer
+  int gimbal_throttle = 0;
+  axis yaw;
+  axis roll;
+  axis pitch;
+
+  int motor1_throttle = 0;
+  int motor2_throttle = 0;
+  int motor3_throttle = 0;
+  int motor4_throttle = 0;
+};
+
+struct pid_input_config {
+  // Parameters for the PID controller
+  float prev_error = 0.0;
+  float sum_error = 0.0;
+};
+
 // Flags and ids
 const int MOTOR_1 = 3;
 const int MOTOR_2 = 4;
@@ -20,21 +47,9 @@ const bool FLAG_PRINT_YAW = false;
 const bool FLAG_PRINT_PID = true;
 const bool FLAG_PRINT_MOTORS = true;
 
-// Current packet values
-bool armed = false;
-int cmd_throttle = 0;
-int cmd_yaw = 0;
-int cmd_roll = 0;
-int cmd_pitch = 0;
-
-int motor_1_throttle = cmd_throttle;
-int motor_2_throttle = cmd_throttle;
-int motor_3_throttle = cmd_throttle;
-int motor_4_throttle = cmd_throttle;
-
 // Packet recieve cariables
-unsigned long time_last_good_pkt = 0;
-quad_pkt pkt;
+quad_pkt pkt_from_remote;
+unsigned long pkt_from_remote_timestamp = 0;
 
 // IMU data variables
 quad_data_t orientation;
@@ -42,33 +57,24 @@ unsigned long orientationTimestamp = 0;
 float loopDeltaTime = 0.0;
 
 // Gain and filtering variables
-float compFilterGain = 0.9;
-float pitchFiltered = 0.0;
-float rollFiltered = 0.0;
-float yawFiltered = 0.0;
+mixer_input_config mixer_inputs;
 
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();  // Create LSM9DS0 board instance.
 Adafruit_Simple_AHRS ahrs(&lsm.getAccel(), NULL, &lsm.getGyro());
 
 // PID variables
-float pGain = 0.0;
-float iGain = 0.0;
-float dGain = 0.0;
-
-float prevPitchErr = 0;
-float sumPitchErr = 0;
-
-float prev_time = 0;
-float cur_time = 0;
-float pid_pitch = 0.0;
+pid_input_config pitch_pid_inputs;
+pid_input_config roll_pid_inputs;
+pid_input_config yaw_pid_inputs;
 
 
-void handle_packet(quad_pkt);
 void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
 float PID_calc(float&, float, float, float&);
 void mixer();
+void deadband();
+void offset();
 
 void setup() {
   Serial.begin(115200);
@@ -100,12 +106,13 @@ unsigned long last = millis();
 void loop() {
   unsigned long now = millis();
 
-  if (recieve_packet(&pkt)) {
-    handle_packet(pkt);
+  if (recieve_packet(&pkt_from_remote)) {
+    // handle_packet(pkt);
+    pkt_from_remote_timestamp = millis();
   }
 
-  if (millis() - time_last_good_pkt > MOTOR_SHUTOFF_TIMEOUT) {
-    armed = false;
+  if (millis() - pkt_from_remote_timestamp > MOTOR_SHUTOFF_TIMEOUT) {
+    pkt_from_remote.armed = false;
   }
   
   ahrs.getQuadOrientation(&orientation);  // Update quad orientation
@@ -115,25 +122,11 @@ void loop() {
   if (millis() % 10 == 0) {
     print_stats(now - last);
   }
-  runCompFilter();
 
   // Apply throttle to the motors
   mixer();
 
   last = now;
-}
-
-void handle_packet(quad_pkt pkt) {
-  time_last_good_pkt = millis();
-  armed = pkt.armed;
-  cmd_throttle = pkt.throttle;
-  cmd_yaw = pkt.yaw;
-  cmd_roll = pkt.roll;
-  cmd_pitch = pkt.pitch;
-  compFilterGain = float(pkt.scaledCompFilterGain) / 100.0;
-  pGain = float(pkt.scaledPGain) / 100.0;
-  iGain = float(pkt.scaledIGain) / 100.0;
-  dGain = float(pkt.scaledDGain) / 100.0;
 }
 
 void print_stats(unsigned long iterationTime) {
@@ -142,44 +135,44 @@ void print_stats(unsigned long iterationTime) {
   */
   Serial.print(iterationTime);
   Serial.print(F(" "));
-  if (armed) {
+  if (pkt_from_remote.armed) {
     Serial.print(F("A "));
   } else {
     Serial.print(F(". "));
   }
   if (FLAG_PRINT_GIMBALS) {
     Serial.print(F("thr_gim:"));
-    Serial.print(cmd_throttle);
+    Serial.print(pkt_from_remote.throttle);
     Serial.print(F(" "));
 
     Serial.print(F("yaw_gim:"));
-    Serial.print(cmd_yaw);
+    Serial.print(pkt_from_remote.yaw);
     Serial.print(F(" "));
 
     Serial.print("rol_gim:");
-    Serial.print(cmd_roll);
+    Serial.print(pkt_from_remote.roll);
     Serial.print(F(" "));
 
     Serial.print(F("pit_gim:"));
-    Serial.print(cmd_pitch);
+    Serial.print(pkt_from_remote.pitch);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_PID) {
     Serial.print(F("P:"));
-    Serial.print(pGain);
+    Serial.print(pkt_from_remote.scaledPGain / 100.0);
     Serial.print(F(" "));
 
     Serial.print(F("I:"));
-    Serial.print(iGain);
+    Serial.print(pkt_from_remote.scaledIGain / 100.0);
     Serial.print(F(" "));
 
     Serial.print(F("D:"));
-    Serial.print(dGain);
+    Serial.print(pkt_from_remote.scaledDGain / 100.0);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_PITCH || FLAG_PRINT_ROLL || FLAG_PRINT_YAW) {
     Serial.print("gain:");
-    Serial.print(compFilterGain);
+    Serial.print(pkt_from_remote.scaledCompFilterGain / 100.0);
     Serial.print(" ");
   }
   if (FLAG_PRINT_PITCH) {
@@ -192,11 +185,11 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(" ");
 
     Serial.print("f_pitch:");
-    Serial.print(pitchFiltered);
+    Serial.print(mixer_inputs.pitch.filtered);
     Serial.print(" ");
 
     Serial.print(F("pid_pitch:"));
-    Serial.print(pid_pitch);
+    Serial.print(mixer_inputs.pitch.pid);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_ROLL) {
@@ -209,7 +202,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(" ");
 
     Serial.print("f_roll:");
-    Serial.print(rollFiltered);
+    Serial.print(mixer_inputs.roll.filtered);
     Serial.print(" ");
   }
   if (FLAG_PRINT_YAW) {
@@ -218,24 +211,24 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(" ");
 
     Serial.print("f_yaw:");
-    Serial.print(yawFiltered);
+    Serial.print(mixer_inputs.yaw.filtered);
     Serial.print(" ");
   }
   if (FLAG_PRINT_MOTORS) {
     Serial.print(F("m1:"));
-    Serial.print(motor_1_throttle);
+    Serial.print(mixer_inputs.motor1_throttle);
     Serial.print(F(" "));
 
     Serial.print(F("m2:"));
-    Serial.print(motor_2_throttle);
+    Serial.print(mixer_inputs.motor2_throttle);
     Serial.print(F(" "));
 
     Serial.print(F("m3:"));
-    Serial.print(motor_3_throttle);
+    Serial.print(mixer_inputs.motor3_throttle);
     Serial.print(F(" "));
 
     Serial.print(F("m4:"));
-    Serial.print(motor_4_throttle);
+    Serial.print(mixer_inputs.motor4_throttle);
     Serial.print(F(" "));
   }
   Serial.println(F(""));
@@ -266,14 +259,22 @@ void setupIMU() {
 }
 
 void runCompFilter() {
-  pitchFiltered = compFilterGain * (pitchFiltered + (loopDeltaTime * orientation.pitch_rate))
+  float compFilterGain = pkt_from_remote.scaledCompFilterGain / 100.0;
+  mixer_inputs.pitch.filtered =
+    compFilterGain * (mixer_inputs.pitch.filtered + (loopDeltaTime * orientation.pitch_rate))
     + (1 - compFilterGain) * orientation.pitch;
+  mixer_inputs.roll.filtered =
+    compFilterGain * (mixer_inputs.roll.filtered + (loopDeltaTime * orientation.roll_rate))
+    + (1 - compFilterGain) * orientation.roll;
 }
 
 float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_sum){
+  float pGain = pkt_from_remote.scaledPGain / 100.0;
+  float iGain = pkt_from_remote.scaledIGain / 100.0;
+  float dGain = pkt_from_remote.scaledDGain / 100.0;
   float deriv_err = (cur_err - prev_err) / delta_time;
 
-  if(cmd_throttle != 0){
+  if(pkt_from_remote.throttle != 0){
     integ_sum =  (.75) * integ_sum  + .5 * (cur_err + prev_err) * delta_time; 
   }
   
@@ -283,31 +284,39 @@ float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_su
 }
 
 void mixer() {
+  // Copy gimbal commands from packet so that if we receive a new packet while
+  // in this function, we don't get unexpected behavior. 
+  mixer_inputs.gimbal_throttle = pkt_from_remote.throttle;
+  mixer_inputs.pitch.gimbal_cmd = pkt_from_remote.pitch;
+  mixer_inputs.roll.gimbal_cmd = pkt_from_remote.roll;
+  mixer_inputs.yaw.gimbal_cmd = pkt_from_remote.yaw;
+
   deadband();
+  offset();
+  runCompFilter();
+  
+  // PID
+  mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs.prev_error, mixer_inputs.pitch.filtered, loopDeltaTime, pitch_pid_inputs.sum_error);
 
-  motor_1_throttle = cmd_throttle;
-  motor_2_throttle = cmd_throttle;
-  motor_3_throttle = cmd_throttle;
-  motor_4_throttle = cmd_throttle;
+  // Mix
+  mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid;
+  mixer_inputs.motor2_throttle = mixer_inputs.gimbal_throttle + mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.pid;
+  mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
+  mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
 
-  pid_pitch = PID_calc(prevPitchErr, pitchFiltered, loopDeltaTime, sumPitchErr);
+  // Constrain
+  mixer_inputs.motor1_throttle = constrain(mixer_inputs.motor1_throttle, 0, 255);
+  mixer_inputs.motor2_throttle = constrain(mixer_inputs.motor2_throttle, 0, 255);
+  mixer_inputs.motor3_throttle = constrain(mixer_inputs.motor3_throttle, 0, 255);
+  mixer_inputs.motor4_throttle = constrain(mixer_inputs.motor4_throttle, 0, 255);
 
-  motor_1_throttle -= pid_pitch;
-  motor_2_throttle -= pid_pitch;
-  motor_3_throttle += pid_pitch;
-  motor_4_throttle += pid_pitch;
-
-  motor_1_throttle = constrain(motor_1_throttle, 0, 255);
-  motor_2_throttle = constrain(motor_2_throttle, 0, 255);
-  motor_3_throttle = constrain(motor_3_throttle, 0, 255);
-  motor_4_throttle = constrain(motor_4_throttle, 0, 255);
-
-  if (armed && cmd_throttle > 0) {
+  // Send commands to motors
+  if (pkt_from_remote.armed && mixer_inputs.gimbal_throttle > 0) {
     digitalWrite(LED_BUILTIN, HIGH);
-    analogWrite(MOTOR_1, motor_1_throttle);
-    analogWrite(MOTOR_2, motor_2_throttle);
-    analogWrite(MOTOR_3, motor_3_throttle);
-    analogWrite(MOTOR_4, motor_4_throttle);
+    analogWrite(MOTOR_1, mixer_inputs.motor1_throttle);
+    analogWrite(MOTOR_2, mixer_inputs.motor2_throttle);
+    analogWrite(MOTOR_3, mixer_inputs.motor3_throttle);
+    analogWrite(MOTOR_4, mixer_inputs.motor4_throttle);
   } else {
     digitalWrite(LED_BUILTIN, LOW);
     analogWrite(MOTOR_1, 0);
@@ -324,16 +333,28 @@ void deadband() {
   const uint8_t YAW_DEADBAND = 15;
   const uint8_t CENTERING_ORIGIN = 128;
 
-  if (cmd_throttle < THROTTLE_DEADBAND) {
-    cmd_throttle = 0;
+  if (mixer_inputs.gimbal_throttle < THROTTLE_DEADBAND) {
+    mixer_inputs.gimbal_throttle = 0;
   }
-  if (cmd_pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && cmd_pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
-    cmd_pitch = CENTERING_ORIGIN;
+  if (mixer_inputs.pitch.gimbal_cmd >= CENTERING_ORIGIN - PITCH_DEADBAND
+      && mixer_inputs.pitch.gimbal_cmd <= CENTERING_ORIGIN + PITCH_DEADBAND) {
+    mixer_inputs.pitch.gimbal_cmd = CENTERING_ORIGIN;
   }
-  if (cmd_roll >= CENTERING_ORIGIN - ROLL_DEADBAND && cmd_roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
-    cmd_roll = CENTERING_ORIGIN;
+  if (mixer_inputs.roll.gimbal_cmd >= CENTERING_ORIGIN - ROLL_DEADBAND
+      && mixer_inputs.roll.gimbal_cmd <= CENTERING_ORIGIN + ROLL_DEADBAND) {
+    mixer_inputs.roll.gimbal_cmd = CENTERING_ORIGIN;
   }
-  if (cmd_yaw >= CENTERING_ORIGIN - YAW_DEADBAND && cmd_yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
-    cmd_yaw = CENTERING_ORIGIN;
+  if (mixer_inputs.yaw.gimbal_cmd >= CENTERING_ORIGIN - YAW_DEADBAND
+      && mixer_inputs.yaw.gimbal_cmd <= CENTERING_ORIGIN + YAW_DEADBAND) {
+    mixer_inputs.yaw.gimbal_cmd = CENTERING_ORIGIN;
   }
+}
+
+void offset() {
+  const int YAW_OFFSET_ANGLE_MAX = 180;  // degrees
+  const int TILT_OFFSET_ANGLE_MAX = 10;  // degrees
+
+  mixer_inputs.pitch.offset_degrees = map(mixer_inputs.pitch.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
+  mixer_inputs.roll.offset_degrees = map(mixer_inputs.roll.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
+  mixer_inputs.yaw.offset_degrees = map(mixer_inputs.yaw.gimbal_cmd, 0, 255, -YAW_OFFSET_ANGLE_MAX, YAW_OFFSET_ANGLE_MAX);
 }
