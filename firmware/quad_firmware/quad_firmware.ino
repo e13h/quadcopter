@@ -121,7 +121,13 @@ void loop() {
   if (millis() % 10 == 0) {
     print_stats(now - last);
   }
-  // Set LED here
+
+  if (pkt_from_remote.armed) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+
   mixer();
 
   last = now;
@@ -332,13 +338,11 @@ void mixer() {
 
   // Send commands to motors
   if (pkt_from_remote.armed && mixer_inputs.gimbal_throttle > 0) {
-    digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(MOTOR_1, mixer_inputs.motor1_throttle);
     analogWrite(MOTOR_2, mixer_inputs.motor2_throttle);
     analogWrite(MOTOR_3, mixer_inputs.motor3_throttle);
     analogWrite(MOTOR_4, mixer_inputs.motor4_throttle);
   } else {
-    digitalWrite(LED_BUILTIN, LOW);
     analogWrite(MOTOR_1, 0);
     analogWrite(MOTOR_2, 0);
     analogWrite(MOTOR_3, 0);
