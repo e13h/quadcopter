@@ -33,7 +33,6 @@ bool recieve_packet(quad_pkt& q_pkt){
   
   if(rfAvailable()){
     rfRead((uint8_t*)&buffer, sizeof(quad_pkt));
-    Serial.println(buffer.magic_constant == MAGIC_CONSTANT);
     if(!checksum_valid((uint8_t*)&buffer, sizeof(quad_pkt)) || buffer.magic_constant != MAGIC_CONSTANT) {
       rfFlush();
       return false;
