@@ -107,7 +107,6 @@ void loop() {
   unsigned long now = millis();
 
   if (recieve_packet(&pkt_from_remote)) {
-    // handle_packet(pkt);
     pkt_from_remote_timestamp = millis();
   }
 
@@ -123,7 +122,6 @@ void loop() {
     print_stats(now - last);
   }
 
-  // Apply throttle to the motors
   mixer();
 
   last = now;
@@ -149,7 +147,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(pkt_from_remote.yaw);
     Serial.print(F(" "));
 
-    Serial.print("rol_gim:");
+    Serial.print(F("rol_gim:"));
     Serial.print(pkt_from_remote.roll);
     Serial.print(F(" "));
 
@@ -171,48 +169,68 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_PITCH || FLAG_PRINT_ROLL || FLAG_PRINT_YAW) {
-    Serial.print("gain:");
+    Serial.print(F("gain:"));
     Serial.print(pkt_from_remote.scaledCompFilterGain / 100.0);
-    Serial.print(" ");
+    Serial.print(F(" "));
   }
   if (FLAG_PRINT_PITCH) {
-    Serial.print("xl_pitch:");
+    Serial.print(F("xl_pitch:"));
     Serial.print(orientation.pitch);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
-    Serial.print("gy_pitch:");
+    Serial.print(F("gy_pitch:"));
     Serial.print(orientation.pitch_rate);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
-    Serial.print("f_pitch:");
+    Serial.print(F("f_pitch:"));
     Serial.print(mixer_inputs.pitch.filtered);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
     Serial.print(F("pid_pitch:"));
     Serial.print(mixer_inputs.pitch.pid);
     Serial.print(F(" "));
+
+    Serial.print(F("off_pitch:"));
+    Serial.print(mixer_inputs.pitch.offset);
+    Serial.print(F(" "));
   }
   if (FLAG_PRINT_ROLL) {
-    Serial.print("xl_roll:");
+    Serial.print(F("xl_roll:"));
     Serial.print(orientation.roll);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
-    Serial.print("gy_roll:");
+    Serial.print(F("gy_roll:"));
     Serial.print(orientation.roll_rate);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
-    Serial.print("f_roll:");
+    Serial.print(F("f_roll:"));
     Serial.print(mixer_inputs.roll.filtered);
-    Serial.print(" ");
+    Serial.print(F(" "));
+
+    Serial.print(F("pid_roll:"));
+    Serial.print(mixer_inputs.roll.pid);
+    Serial.print(F(" "));
+
+    Serial.print(F("off_roll:"));
+    Serial.print(mixer_inputs.roll.offset);
+    Serial.print(F(" "));
   }
   if (FLAG_PRINT_YAW) {
-    Serial.print("gy_yaw:");
+    Serial.print(F("gy_yaw:"));
     Serial.print(orientation.yaw_rate);
-    Serial.print(" ");
+    Serial.print(F(" "));
 
-    Serial.print("f_yaw:");
+    Serial.print(F("f_yaw:"));
     Serial.print(mixer_inputs.yaw.filtered);
-    Serial.print(" ");
+    Serial.print(F(" "));
+
+    Serial.print(F("pid_yaw:"));
+    Serial.print(mixer_inputs.yaw.pid);
+    Serial.print(F(" "));
+
+    Serial.print(F("off_yaw:"));
+    Serial.print(mixer_inputs.yaw.offset);
+    Serial.print(F(" "));
   }
   if (FLAG_PRINT_MOTORS) {
     Serial.print(F("m1:"));
