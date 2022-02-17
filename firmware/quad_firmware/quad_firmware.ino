@@ -343,11 +343,21 @@ void mixer() {
     - mixer_inputs.pitch.offset_degrees + mixer_inputs.pitch.pid;
   //  - mixer_inputs.yaw.offset_degrees + mixer_inputs.yaw.pid;
 
+  int max_thr = max(max(
+        max(mixer_inputs.motor4_throttle,mixer_inputs.motor3_throttle),
+      mixer_inputs.motor2_throttle),
+    mixer_inputs.motor1_throttle);
+
+  int capper = 0;
+  if(max_thr > 255){
+    capper = max_thr-255;
+  }
+  
   // Constrain
-  mixer_inputs.motor1_throttle = constrain(mixer_inputs.motor1_throttle, 0, 255);
-  mixer_inputs.motor2_throttle = constrain(mixer_inputs.motor2_throttle, 0, 255);
-  mixer_inputs.motor3_throttle = constrain(mixer_inputs.motor3_throttle, 0, 255);
-  mixer_inputs.motor4_throttle = constrain(mixer_inputs.motor4_throttle, 0, 255);
+  mixer_inputs.motor1_throttle = constrain(mixer_inputs.motor1_throttle-capper, 0, 255);
+  mixer_inputs.motor2_throttle = constrain(mixer_inputs.motor2_throttle-capper, 0, 255);
+  mixer_inputs.motor3_throttle = constrain(mixer_inputs.motor3_throttle-capper, 0, 255);
+  mixer_inputs.motor4_throttle = constrain(mixer_inputs.motor4_throttle-capper, 0, 255);
 
   // Send commands to motors
   if (pkt_from_remote.armed && mixer_inputs.gimbal_throttle > 0) {
