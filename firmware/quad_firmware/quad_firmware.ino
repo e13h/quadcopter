@@ -22,15 +22,15 @@ const bool FLAG_PRINT_MOTORS = true;
 
 // Current packet values
 bool armed = false;
-int throttle = 0;
-int yaw = 0;
-int roll = 0;
-int pitch = 0;
+int cmd_throttle = 0;
+int cmd_yaw = 0;
+int cmd_roll = 0;
+int cmd_pitch = 0;
 
-int motor_1_throttle = throttle;
-int motor_2_throttle = throttle;
-int motor_3_throttle = throttle;
-int motor_4_throttle = throttle;
+int motor_1_throttle = cmd_throttle;
+int motor_2_throttle = cmd_throttle;
+int motor_3_throttle = cmd_throttle;
+int motor_4_throttle = cmd_throttle;
 
 // Packet recieve cariables
 unsigned long time_last_good_pkt = 0;
@@ -126,10 +126,10 @@ void loop() {
 void handle_packet(quad_pkt pkt) {
   time_last_good_pkt = millis();
   armed = pkt.armed;
-  throttle = pkt.throttle;
-  yaw = pkt.yaw;
-  roll = pkt.roll;
-  pitch = pkt.pitch;
+  cmd_throttle = pkt.throttle;
+  cmd_yaw = pkt.yaw;
+  cmd_roll = pkt.roll;
+  cmd_pitch = pkt.pitch;
   compFilterGain = float(pkt.scaledCompFilterGain) / 100.0;
   pGain = float(pkt.scaledPGain) / 100.0;
   iGain = float(pkt.scaledIGain) / 100.0;
@@ -149,19 +149,19 @@ void print_stats(unsigned long iterationTime) {
   }
   if (FLAG_PRINT_GIMBALS) {
     Serial.print(F("thr_gim:"));
-    Serial.print(throttle);
+    Serial.print(cmd_throttle);
     Serial.print(F(" "));
 
     Serial.print(F("yaw_gim:"));
-    Serial.print(yaw);
+    Serial.print(cmd_yaw);
     Serial.print(F(" "));
 
     Serial.print("rol_gim:");
-    Serial.print(roll);
+    Serial.print(cmd_roll);
     Serial.print(F(" "));
 
     Serial.print(F("pit_gim:"));
-    Serial.print(pitch);
+    Serial.print(cmd_pitch);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_PID) {
@@ -273,7 +273,7 @@ void runCompFilter() {
 float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_sum){
   float deriv_err = (cur_err - prev_err) / delta_time;
 
-  if(throttle != 0){
+  if(cmd_throttle != 0){
     integ_sum =  (.75) * integ_sum  + .5 * (cur_err + prev_err) * delta_time; 
   }
   
@@ -285,10 +285,10 @@ float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_su
 void mixer() {
   deadband();
 
-  motor_1_throttle = throttle;
-  motor_2_throttle = throttle;
-  motor_3_throttle = throttle;
-  motor_4_throttle = throttle;
+  motor_1_throttle = cmd_throttle;
+  motor_2_throttle = cmd_throttle;
+  motor_3_throttle = cmd_throttle;
+  motor_4_throttle = cmd_throttle;
 
   pid_pitch = PID_calc(prevPitchErr, pitchFiltered, loopDeltaTime, sumPitchErr);
 
@@ -302,7 +302,7 @@ void mixer() {
   motor_3_throttle = constrain(motor_3_throttle, 0, 255);
   motor_4_throttle = constrain(motor_4_throttle, 0, 255);
 
-  if (armed && throttle > 0) {
+  if (armed && cmd_throttle > 0) {
     digitalWrite(LED_BUILTIN, HIGH);
     analogWrite(MOTOR_1, motor_1_throttle);
     analogWrite(MOTOR_2, motor_2_throttle);
@@ -324,16 +324,16 @@ void deadband() {
   const uint8_t YAW_DEADBAND = 15;
   const uint8_t CENTERING_ORIGIN = 128;
 
-  if (throttle < THROTTLE_DEADBAND) {
-    throttle = 0;
+  if (cmd_throttle < THROTTLE_DEADBAND) {
+    cmd_throttle = 0;
   }
-  if (pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
-    pitch = CENTERING_ORIGIN;
+  if (cmd_pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && cmd_pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
+    cmd_pitch = CENTERING_ORIGIN;
   }
-  if (roll >= CENTERING_ORIGIN - ROLL_DEADBAND && roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
-    roll = CENTERING_ORIGIN;
+  if (cmd_roll >= CENTERING_ORIGIN - ROLL_DEADBAND && cmd_roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
+    cmd_roll = CENTERING_ORIGIN;
   }
-  if (yaw >= CENTERING_ORIGIN - YAW_DEADBAND && yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
-    yaw = CENTERING_ORIGIN;
+  if (cmd_yaw >= CENTERING_ORIGIN - YAW_DEADBAND && cmd_yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
+    cmd_yaw = CENTERING_ORIGIN;
   }
 }
