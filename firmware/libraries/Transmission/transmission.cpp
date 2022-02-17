@@ -5,7 +5,8 @@ const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 
 void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
-    float compFilterGain, float pGain, float iGain, float dGain) {
+    float compFilterGain, pid_gains pitch_pid_gains, pid_gains roll_pid_gains,
+    pid_gains yaw_pid_gains) {
   quad_pkt pkt;
   pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
   pkt.throttle = constrain(throttle, AXIS_MIN, AXIS_MAX);
@@ -15,13 +16,21 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
 
   // Scale the filter gain so that we can easily compute the checksum
   pkt.scaledCompFilterGain = (int)(100.0 * constrain(compFilterGain, 0.0, 2.56));
-  pkt.scaledPGain = (int)(100.0 * constrain(pGain, 0.0, 2.56));
-  pkt.scaledIGain = (int)(100.0 * constrain(iGain, 0.0, 2.56));
-  pkt.scaledDGain = (int)(100.0 * constrain(dGain, 0.0, 2.56));
+  pkt.pitchScaledPGain = (int)(100.0 * constrain(pitch_pid_gains.p_gain, 0.0, 2.56));
+  pkt.pitchScaledIGain = (int)(100.0 * constrain(pitch_pid_gains.i_gain, 0.0, 2.56));
+  pkt.pitchScaledDGain = (int)(100.0 * constrain(pitch_pid_gains.d_gain, 0.0, 2.56));
+  pkt.rollScaledPGain = (int)(100.0 * constrain(roll_pid_gains.p_gain, 0.0, 2.56));
+  pkt.rollScaledIGain = (int)(100.0 * constrain(roll_pid_gains.i_gain, 0.0, 2.56));
+  pkt.rollScaledDGain = (int)(100.0 * constrain(roll_pid_gains.d_gain, 0.0, 2.56));
+  pkt.yawScaledPGain = (int)(100.0 * constrain(yaw_pid_gains.p_gain, 0.0, 2.56));
+  pkt.yawScaledIGain = (int)(100.0 * constrain(yaw_pid_gains.i_gain, 0.0, 2.56));
+  pkt.yawScaledDGain = (int)(100.0 * constrain(yaw_pid_gains.d_gain, 0.0, 2.56));
 
   pkt.checksum = pkt.magic_constant ^ pkt.yaw ^ pkt.throttle ^ pkt.roll
-    ^ pkt.pitch ^ pkt.armed ^ pkt.scaledCompFilterGain ^ pkt.scaledPGain
-    ^ pkt.scaledIGain ^ pkt.scaledDGain;
+    ^ pkt.pitch ^ pkt.armed ^ pkt.scaledCompFilterGain
+    ^ pkt.pitchScaledPGain ^ pkt.pitchScaledIGain ^ pkt.pitchScaledDGain
+    ^ pkt.rollScaledPGain ^ pkt.rollScaledIGain ^ pkt.rollScaledDGain
+    ^ pkt.yawScaledPGain ^ pkt.yawScaledIGain ^ pkt.yawScaledDGain;
 
   uint8_t* pkt_bytes = (uint8_t*) &pkt;
   rfWrite(pkt_bytes, sizeof(quad_pkt));
@@ -89,12 +98,24 @@ void print_bytes(uint8_t* bytes, uint8_t len) {
   Serial.print(pkt->armed);
   Serial.print(" ScaledCompFilterGain: ");
   Serial.print(pkt->scaledCompFilterGain);
-  Serial.print(" ScaledPGain: ");
-  Serial.print(pkt->scaledPGain);
-  Serial.print(" ScaledIGain: ");
-  Serial.print(pkt->scaledIGain);
-  Serial.print(" ScaledDGain: ");
-  Serial.print(pkt->scaledDGain);
+  Serial.print(" PitchScaledPGain: ");
+  Serial.print(pkt->pitchScaledPGain);
+  Serial.print(" PitchScaledIGain: ");
+  Serial.print(pkt->pitchScaledIGain);
+  Serial.print(" PitchScaledDGain: ");
+  Serial.print(pkt->pitchScaledDGain);
+  Serial.print(" RollScaledPGain: ");
+  Serial.print(pkt->rollScaledPGain);
+  Serial.print(" RollScaledIGain: ");
+  Serial.print(pkt->rollScaledIGain);
+  Serial.print(" RollScaledDGain: ");
+  Serial.print(pkt->rollScaledDGain);
+  Serial.print(" YawScaledPGain: ");
+  Serial.print(pkt->yawScaledPGain);
+  Serial.print(" YawScaledIGain: ");
+  Serial.print(pkt->yawScaledIGain);
+  Serial.print(" YawScaledDGain: ");
+  Serial.print(pkt->yawScaledDGain);
   Serial.print(" Checksum: ");
   Serial.println(pkt->checksum);
 }
