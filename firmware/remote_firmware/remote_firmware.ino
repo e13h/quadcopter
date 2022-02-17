@@ -98,7 +98,7 @@ void loop() {
       set_gimbals();
     }
     if (millis() % 80 == 0) {
-      if (recieve_response(&pkt)) {
+      if (recieve_response(pkt)) {
         quadcopterArmed = pkt.armed;
       }
     }
