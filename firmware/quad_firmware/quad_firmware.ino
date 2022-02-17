@@ -121,7 +121,7 @@ void loop() {
   if (millis() % 10 == 0) {
     print_stats(now - last);
   }
-
+  // Set LED here
   mixer();
 
   last = now;
@@ -191,7 +191,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(F(" "));
 
     Serial.print(F("off_pitch:"));
-    Serial.print(mixer_inputs.pitch.offset);
+    Serial.print(mixer_inputs.pitch.offset_degrees);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_ROLL) {
@@ -212,7 +212,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(F(" "));
 
     Serial.print(F("off_roll:"));
-    Serial.print(mixer_inputs.roll.offset);
+    Serial.print(mixer_inputs.roll.offset_degrees);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_YAW) {
@@ -229,7 +229,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(F(" "));
 
     Serial.print(F("off_yaw:"));
-    Serial.print(mixer_inputs.yaw.offset);
+    Serial.print(mixer_inputs.yaw.offset_degrees);
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_MOTORS) {
