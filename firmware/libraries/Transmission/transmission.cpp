@@ -55,18 +55,18 @@ void send_response(bool armed, int checksum){
   rfWrite(pkt_bytes, sizeof(response_pkt));
 }
 
-bool recieve_response(response_pkt* pkt){
+bool recieve_response(response_pkt& pkt){
+  response_pkt buffer;
+
   if(rfAvailable()){
-    rfRead((uint8_t*)&pkt,sizeof(response_pkt));
-    if(checksum_valid((uint8_t*)&pkt,sizeof(response_pkt))){
+    rfRead((uint8_t*)&buffer, sizeof(response_pkt));
+    if (!checksum_valid((uint8_t*)&buffer, sizeof(response_pkt)) || buffer.magic_constant != MAGIC_CONSTANT) {
+      rfFlush();
+      return false;
+    } else {
+      pkt = buffer;
       return true;
     }
-    else{
-      rfFlush();
-    }
-  }
-  else{
-    Serial.println("no response...");
   }
   return false;
 }

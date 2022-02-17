@@ -32,7 +32,7 @@ struct response_pkt {
 void send_packet(int, int, int, int, bool, float, float, float, float);
 bool recieve_packet(quad_pkt&);
 void send_response(bool,int);
-bool recieve_response(response_pkt*);
+bool recieve_response(response_pkt&);
 void print_bytes(uint8_t*, uint8_t);
 bool checksum_valid(uint8_t*, uint8_t);
 
