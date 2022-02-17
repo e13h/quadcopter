@@ -223,11 +223,11 @@ void set_gimbals() {
     throttle = 0;
   }
   yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MIN, AXIS_MAX);
+  yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
   roll = analogRead(PIN_ROLL);
   roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
   pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MIN, AXIS_MAX);
+  pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
 }
 
 void print_gimbals() {
