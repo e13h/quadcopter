@@ -213,7 +213,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(pkt_from_remote.scaledCompFilterGain / 100.0);
     Serial.print(F(" "));
   }
-  if (FLAG_PRINT_PITCH) {
+  if (FLAG_PRINT_IMU && FLAG_PRINT_PITCH) {
     Serial.print(F("xl_pitch:"));
     Serial.print(orientation.pitch);
     Serial.print(F(" "));
@@ -234,7 +234,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(mixer_inputs.pitch.offset_degrees);
     Serial.print(F(" "));
   }
-  if (FLAG_PRINT_ROLL) {
+  if (FLAG_PRINT_IMU && FLAG_PRINT_ROLL) {
     Serial.print(F("xl_roll:"));
     Serial.print(orientation.roll);
     Serial.print(F(" "));
@@ -255,7 +255,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(mixer_inputs.roll.offset_degrees);
     Serial.print(F(" "));
   }
-  if (FLAG_PRINT_YAW) {
+  if (FLAG_PRINT_IMU && FLAG_PRINT_YAW) {
     Serial.print(F("gy_yaw:"));
     Serial.print(orientation.yaw_rate);
     Serial.print(F(" "));
