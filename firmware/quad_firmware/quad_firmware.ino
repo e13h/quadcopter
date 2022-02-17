@@ -106,7 +106,7 @@ unsigned long last = millis();
 void loop() {
   unsigned long now = millis();
 
-  if (recieve_packet(&pkt_from_remote)) {
+  if (recieve_packet(pkt_from_remote)) {
     pkt_from_remote_timestamp = millis();
   }
 

@@ -28,19 +28,19 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
   // print_bytes(pkt_bytes, sizeof(quad_pkt));  // Debugging only
 }
 
-bool recieve_packet(quad_pkt* q_pkt){
-  uint8_t* pkt = (uint8_t*)q_pkt;
+bool recieve_packet(quad_pkt& q_pkt){
+  quad_pkt buffer;
   
   if(rfAvailable()){
-    rfRead(pkt,sizeof(quad_pkt));
-
-    if(!checksum_valid(pkt, sizeof(quad_pkt))){
+    rfRead((uint8_t*)&buffer, sizeof(quad_pkt));
+    Serial.println(buffer.magic_constant == MAGIC_CONSTANT);
+    if(!checksum_valid((uint8_t*)&buffer, sizeof(quad_pkt)) || buffer.magic_constant != MAGIC_CONSTANT) {
       rfFlush();
       return false;
     }
+    q_pkt = buffer;
     return true;
-  }
-  else{
+  } else {
     return false;
   }
 }
