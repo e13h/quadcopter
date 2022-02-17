@@ -107,7 +107,7 @@ unsigned long last = millis();
 void loop() {
   unsigned long now = millis();
 
-  if (recieve_packet(&pkt_from_remote)) {
+  if (recieve_packet(pkt_from_remote)) {
     pkt_from_remote_timestamp = millis();
   }
 
@@ -293,8 +293,10 @@ float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_su
   float dGain = pkt_from_remote.scaledDGain / 100.0;
   float deriv_err = (cur_err - prev_err) / delta_time;
 
-  if(pkt_from_remote.throttle != 0){
-    integ_sum =  (.75) * integ_sum  + .5 * (cur_err + prev_err) * delta_time; 
+  if (pkt_from_remote.throttle == 0) {
+    integ_sum = 0;
+  } else {
+    integ_sum = integ_sum + .5 * (cur_err + prev_err) * delta_time; 
   }
   
   prev_err = cur_err;
