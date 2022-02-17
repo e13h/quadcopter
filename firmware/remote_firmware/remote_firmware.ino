@@ -11,9 +11,15 @@ const int YAW_POS = 8;
 const int ROLL_POS = 16;
 const int PIT_POS = 24;
 const int COMP_FILTER_POS = 32;
-const int PID_P_POS = 36;
-const int PID_I_POS = 40;
-const int PID_D_POS = 44;
+const int PITCH_PID_P_POS = 36;
+const int PITCH_PID_I_POS = 40;
+const int PITCH_PID_D_POS = 44;
+const int ROLL_PID_P_POS = 48;
+const int ROLL_PID_I_POS = 52;
+const int ROLL_PID_D_POS = 56;
+const int YAW_PID_P_POS = 60;
+const int YAW_PID_I_POS = 64;
+const int YAW_PID_D_POS = 68;
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
 const int SERIAL_BAUD = 9600;  // Baud rate for serial port
@@ -36,9 +42,10 @@ int throttle = 0;
 int roll = 0;
 int pitch = 0;
 float complementaryFilterGain = 0.9;
-float pid_p_gain = 0.0;
-float pid_i_gain = 0.0;
-float pid_d_gain = 0.0;
+pid_gains pitch_pid_gains;
+pid_gains roll_pid_gains;
+pid_gains yaw_pid_gains;
+pid_gains* currentTuningAxis = &pitch_pid_gains;
 
 void btn1_pressed(bool);
 void btn2_pressed(bool);
@@ -47,12 +54,14 @@ void btn_down_pressed(bool);
 void btn_left_pressed(bool);
 void btn_up_pressed(bool);
 void btn_right_pressed(bool);
+void btn_center_pressed(bool);
 void knobs_update();
 void set_gimbals();
 void check_arm_status();
 void print_gimbals();
 void calibrateGimbals();
 void print_range();
+void print_pid();
 void display_tuning_param();
 void begin_tuning(const int, const char*);
 void check_if_eeprom_loaded_nan(float&);
@@ -73,6 +82,7 @@ void setup() {
   btn_left_cb = btn_left_pressed;
   btn_up_cb = btn_up_pressed;
   btn_right_cb = btn_right_pressed;
+  btn_center_cb = btn_center_pressed;
   knobs_update_cb = knobs_update;
   lcd.setBacklight(0x000000FF);
 
@@ -82,12 +92,24 @@ void setup() {
   eeprom_load(PIT_POS, pitchRange);
   eeprom_load(COMP_FILTER_POS, complementaryFilterGain);
   check_if_eeprom_loaded_nan(complementaryFilterGain);
-  eeprom_load(PID_P_POS, pid_p_gain);
-  check_if_eeprom_loaded_nan(pid_p_gain);
-  eeprom_load(PID_I_POS, pid_i_gain);
-  check_if_eeprom_loaded_nan(pid_i_gain);
-  eeprom_load(PID_D_POS, pid_d_gain);
-  check_if_eeprom_loaded_nan(pid_d_gain);
+  eeprom_load(PITCH_PID_P_POS, pitch_pid_gains.p_gain);
+  check_if_eeprom_loaded_nan(pitch_pid_gains.p_gain);
+  eeprom_load(PITCH_PID_I_POS, pitch_pid_gains.i_gain);
+  check_if_eeprom_loaded_nan(pitch_pid_gains.i_gain);
+  eeprom_load(PITCH_PID_D_POS, pitch_pid_gains.d_gain);
+  check_if_eeprom_loaded_nan(pitch_pid_gains.d_gain);
+  eeprom_load(ROLL_PID_P_POS, roll_pid_gains.p_gain);
+  check_if_eeprom_loaded_nan(roll_pid_gains.p_gain);
+  eeprom_load(ROLL_PID_I_POS, roll_pid_gains.i_gain);
+  check_if_eeprom_loaded_nan(roll_pid_gains.i_gain);
+  eeprom_load(ROLL_PID_D_POS, roll_pid_gains.d_gain);
+  check_if_eeprom_loaded_nan(roll_pid_gains.d_gain);
+  eeprom_load(YAW_PID_P_POS, yaw_pid_gains.p_gain);
+  check_if_eeprom_loaded_nan(yaw_pid_gains.p_gain);
+  eeprom_load(YAW_PID_I_POS, yaw_pid_gains.i_gain);
+  check_if_eeprom_loaded_nan(yaw_pid_gains.i_gain);
+  eeprom_load(YAW_PID_D_POS, yaw_pid_gains.d_gain);
+  check_if_eeprom_loaded_nan(yaw_pid_gains.d_gain);
 }
 
 void loop() {
@@ -105,7 +127,7 @@ void loop() {
     check_arm_status();
     if (millis() % 50 == 0) {  // Send a packet every 50ms
       send_packet(throttle, yaw, roll, pitch, quadcopterArmed,
-        complementaryFilterGain, pid_p_gain, pid_i_gain, pid_d_gain);
+        complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
     }
     if (millis() % 100 == 0 && tuningActive) {
       display_tuning_param();
@@ -212,6 +234,32 @@ void print_range() {
   Serial.print(pitchRange[1]);
 }
 
+void print_pid() {
+  Serial.print(F("pitch: "));
+  Serial.print(pitch_pid_gains.p_gain);
+  Serial.print(F(" "));
+  Serial.print(pitch_pid_gains.i_gain);
+  Serial.print(F(" "));
+  Serial.print(pitch_pid_gains.d_gain);
+  Serial.print(F(" "));
+
+  Serial.print(F("roll: "));
+  Serial.print(roll_pid_gains.p_gain);
+  Serial.print(F(" "));
+  Serial.print(roll_pid_gains.i_gain);
+  Serial.print(F(" "));
+  Serial.print(roll_pid_gains.d_gain);
+  Serial.print(F(" "));
+
+  Serial.print(F("yaw: "));
+  Serial.print(yaw_pid_gains.p_gain);
+  Serial.print(F(" "));
+  Serial.print(yaw_pid_gains.i_gain);
+  Serial.print(F(" "));
+  Serial.print(yaw_pid_gains.d_gain);
+  Serial.println(F(""));
+}
+
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
   throttle =
@@ -271,17 +319,16 @@ void check_arm_status() {
 
 void knob_pressed(bool down) {
   if (down && tuningActive) {
-    if (currentTuningParam == COMP_FILTER_POS) {
-      eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
-    } else if (currentTuningParam == PID_P_POS) {
-      eeprom_store(PID_P_POS, pid_p_gain);
-    } else if (currentTuningParam == PID_I_POS) {
-      eeprom_store(PID_I_POS, pid_i_gain);
-    } else if (currentTuningParam == PID_D_POS) {
-      eeprom_store(PID_D_POS, pid_d_gain);
-    } else {
-      return;
-    }
+    eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
+    eeprom_store(PITCH_PID_P_POS, pitch_pid_gains.p_gain);
+    eeprom_store(PITCH_PID_I_POS, pitch_pid_gains.i_gain);
+    eeprom_store(PITCH_PID_D_POS, pitch_pid_gains.d_gain);
+    eeprom_store(ROLL_PID_P_POS, roll_pid_gains.p_gain);
+    eeprom_store(ROLL_PID_I_POS, roll_pid_gains.i_gain);
+    eeprom_store(ROLL_PID_D_POS, roll_pid_gains.d_gain);
+    eeprom_store(YAW_PID_P_POS, yaw_pid_gains.p_gain);
+    eeprom_store(YAW_PID_I_POS, yaw_pid_gains.i_gain);
+    eeprom_store(YAW_PID_D_POS, yaw_pid_gains.d_gain);
     tuningActive = false;
     currentTuningParam = -1;
     lcd.clear();
@@ -290,32 +337,68 @@ void knob_pressed(bool down) {
 }
 
 void btn_down_pressed(bool down) {
-  if (down && !calibrationActive && !tuningActive) {
+  if (down && !calibrationActive) {
     begin_tuning(COMP_FILTER_POS, "Gain:");
   }
 }
 
 void btn_left_pressed(bool down) {
-  if (down && !calibrationActive && !tuningActive) {
-    begin_tuning(PID_P_POS, "P:");
+  if (down && !calibrationActive) {
+    if (currentTuningAxis == &pitch_pid_gains) {
+      begin_tuning(PITCH_PID_P_POS, "Pitch P:");
+    } else if (currentTuningAxis == &roll_pid_gains) {
+      begin_tuning(ROLL_PID_P_POS, "Roll P:");
+    } else if (currentTuningAxis == &yaw_pid_gains) {
+      begin_tuning(YAW_PID_P_POS, "Yaw P:");
+    }
   }
 }
 
 void btn_up_pressed(bool down) {
-  if (down && !calibrationActive && !tuningActive) {
-    begin_tuning(PID_I_POS, "I:");
+  if (down && !calibrationActive) {
+    if (currentTuningAxis == &pitch_pid_gains) {
+      begin_tuning(PITCH_PID_I_POS, "Pitch I:");
+    } else if (currentTuningAxis == &roll_pid_gains) {
+      begin_tuning(ROLL_PID_I_POS, "Roll I:");
+    } else if (currentTuningAxis == &yaw_pid_gains) {
+      begin_tuning(YAW_PID_I_POS, "Yaw I:");
+    }
   }
 }
 
 void btn_right_pressed(bool down) {
-  if (down && !calibrationActive && !tuningActive) {
-    begin_tuning(PID_D_POS, "D:");
+  if (down && !calibrationActive) {
+    if (currentTuningAxis == &pitch_pid_gains) {
+      begin_tuning(PITCH_PID_D_POS, "Pitch D:");
+    } else if (currentTuningAxis == &roll_pid_gains) {
+      begin_tuning(ROLL_PID_D_POS, "Roll D:");
+    } else if (currentTuningAxis == &yaw_pid_gains) {
+      begin_tuning(YAW_PID_D_POS, "Yaw D:");
+    }
+  }
+}
+
+void btn_center_pressed(bool down) {
+  if (down && tuningActive && !calibrationActive) {
+    if (currentTuningAxis == &pitch_pid_gains) {
+      Serial.println("Roll");
+      currentTuningAxis = &roll_pid_gains;
+    } else if (currentTuningAxis == &roll_pid_gains) {
+      currentTuningAxis = &yaw_pid_gains;
+      Serial.println("Yaw");
+    } else if (currentTuningAxis == &yaw_pid_gains) {
+      currentTuningAxis = &pitch_pid_gains;
+      Serial.println("Pitch");
+    }
   }
 }
 
 void begin_tuning(const int tuningParam, const char* msg) {
-  if (tuningParam != COMP_FILTER_POS && tuningParam != PID_P_POS &&
-      tuningParam != PID_I_POS && tuningParam != PID_D_POS) {
+  if (tuningParam != COMP_FILTER_POS && tuningParam != PITCH_PID_P_POS &&
+      tuningParam != PITCH_PID_I_POS && tuningParam != PITCH_PID_D_POS &&
+      tuningParam != ROLL_PID_P_POS && tuningParam != ROLL_PID_I_POS &&
+      tuningParam != ROLL_PID_D_POS && tuningParam != YAW_PID_P_POS &&
+      tuningParam != YAW_PID_I_POS && tuningParam != YAW_PID_D_POS) {
     return;
   }
   tuningActive = true;
@@ -331,15 +414,21 @@ void knobs_update() {
     if (currentTuningParam == COMP_FILTER_POS) {
       // Increment/decrement the gain by 0.01, but don't go below 0 or above 1
       complementaryFilterGain = constrain(complementaryFilterGain + (knob1.getCurrentPos() / 100.0), 0.0, 1.0);
-    } else if (currentTuningParam == PID_P_POS) {
+    } else if (
+        (currentTuningParam == PITCH_PID_P_POS || currentTuningParam == ROLL_PID_P_POS || currentTuningParam == YAW_PID_P_POS)
+        && currentTuningAxis != NULL) {
       // Increment/decrement by 0.05, but don't go below 0 or above 2.5
-      pid_p_gain = constrain(pid_p_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
-    } else if (currentTuningParam == PID_I_POS) {
+      currentTuningAxis->p_gain = constrain(currentTuningAxis->p_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
+    } else if (
+        (currentTuningParam == PITCH_PID_I_POS || currentTuningParam == ROLL_PID_I_POS || currentTuningParam == YAW_PID_I_POS)
+        && currentTuningAxis != NULL) {
       // Increment/decrement by 0.05, but don't go below 0 or above 2.5
-      pid_i_gain = constrain(pid_i_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
-    } else if (currentTuningParam == PID_D_POS) {
+      currentTuningAxis->i_gain = constrain(currentTuningAxis->i_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
+    } else if (
+        (currentTuningParam == PITCH_PID_D_POS || currentTuningParam == ROLL_PID_D_POS || currentTuningParam == YAW_PID_D_POS)
+        && currentTuningAxis != NULL) {
       // Increment/decrement by 0.05, but don't go below 0 or above 2.5
-      pid_d_gain = constrain(pid_d_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
+      currentTuningAxis->d_gain = constrain(currentTuningAxis->d_gain + (knob1.getCurrentPos() / 20.0), 0.0, 2.5);
     }
     knob1.setCurrentPos(0);
   }
@@ -351,18 +440,24 @@ void display_tuning_param() {
     lcd.print(complementaryFilterGain, 2);
     Serial.print("Gain: ");
     Serial.println(complementaryFilterGain);
-  } else if (currentTuningParam == PID_P_POS) {
-    lcd.print(pid_p_gain, 2);
-    Serial.print("P: ");
-    Serial.println(pid_p_gain);
-  } else if (currentTuningParam == PID_I_POS) {
-    lcd.print(pid_i_gain, 2);
-    Serial.print("I: ");
-    Serial.println(pid_i_gain);
-  } else if (currentTuningParam == PID_D_POS) {
-    lcd.print(pid_d_gain, 2);
-    Serial.print("D: ");
-    Serial.println(pid_d_gain);
+  } else if (currentTuningParam == PITCH_PID_P_POS && currentTuningAxis == &pitch_pid_gains) {
+    lcd.print(currentTuningAxis->p_gain, 2);
+  } else if (currentTuningParam == PITCH_PID_I_POS && currentTuningAxis == &pitch_pid_gains) {
+    lcd.print(currentTuningAxis->i_gain, 2);
+  } else if (currentTuningParam == PITCH_PID_D_POS && currentTuningAxis == &pitch_pid_gains) {
+    lcd.print(currentTuningAxis->d_gain, 2);
+  } else if (currentTuningParam == ROLL_PID_P_POS && currentTuningAxis == &roll_pid_gains) {
+    lcd.print(currentTuningAxis->p_gain, 2);
+  } else if (currentTuningParam == ROLL_PID_I_POS && currentTuningAxis == &roll_pid_gains) {
+    lcd.print(currentTuningAxis->i_gain, 2);
+  } else if (currentTuningParam == ROLL_PID_D_POS && currentTuningAxis == &roll_pid_gains) {
+    lcd.print(currentTuningAxis->d_gain, 2);
+  } else if (currentTuningParam == YAW_PID_P_POS && currentTuningAxis == &yaw_pid_gains) {
+    lcd.print(currentTuningAxis->p_gain, 2);
+  } else if (currentTuningParam == YAW_PID_I_POS && currentTuningAxis == &yaw_pid_gains) {
+    lcd.print(currentTuningAxis->i_gain, 2);
+  } else if (currentTuningParam == YAW_PID_D_POS && currentTuningAxis == &yaw_pid_gains) {
+    lcd.print(currentTuningAxis->d_gain, 2);
   }
 }
 

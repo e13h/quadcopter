@@ -30,6 +30,9 @@ struct mixer_input_config {
 
 struct pid_input_config {
   // Parameters for the PID controller
+  float p_gain = 0.0;
+  float i_gain = 0.0;
+  float d_gain = 0.0;
   float prev_error = 0.0;
   float sum_error = 0.0;
 };
@@ -72,10 +75,11 @@ pid_input_config yaw_pid_inputs;
 void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
-float PID_calc(float&, float, float, float&);
+float PID_calc(pid_input_config&, float, float);
 void mixer();
 void deadband();
 void offset();
+void assign_PID_gains();
 
 void setup() {
   Serial.begin(115200);
@@ -109,6 +113,7 @@ void loop() {
 
   if (recieve_packet(pkt_from_remote)) {
     pkt_from_remote_timestamp = millis();
+    assign_PID_gains();
   }
 
   if (millis() - pkt_from_remote_timestamp > MOTOR_SHUTOFF_TIMEOUT) {
@@ -163,17 +168,45 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(F(" "));
   }
   if (FLAG_PRINT_PID) {
-    Serial.print(F("P:"));
-    Serial.print(pkt_from_remote.scaledPGain / 100.0);
-    Serial.print(F(" "));
+    if (FLAG_PRINT_PITCH) {
+      Serial.print(F("P:"));
+      Serial.print(pitch_pid_inputs.p_gain);
+      Serial.print(F(" "));
 
-    Serial.print(F("I:"));
-    Serial.print(pkt_from_remote.scaledIGain / 100.0);
-    Serial.print(F(" "));
+      Serial.print(F("I:"));
+      Serial.print(pitch_pid_inputs.i_gain);
+      Serial.print(F(" "));
 
-    Serial.print(F("D:"));
-    Serial.print(pkt_from_remote.scaledDGain / 100.0);
-    Serial.print(F(" "));
+      Serial.print(F("D:"));
+      Serial.print(pitch_pid_inputs.d_gain);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_ROLL) {
+      Serial.print(F("P:"));
+      Serial.print(roll_pid_inputs.p_gain);
+      Serial.print(F(" "));
+
+      Serial.print(F("I:"));
+      Serial.print(roll_pid_inputs.i_gain);
+      Serial.print(F(" "));
+
+      Serial.print(F("D:"));
+      Serial.print(roll_pid_inputs.d_gain);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_YAW) {
+      Serial.print(F("P:"));
+      Serial.print(yaw_pid_inputs.p_gain);
+      Serial.print(F(" "));
+
+      Serial.print(F("I:"));
+      Serial.print(yaw_pid_inputs.i_gain);
+      Serial.print(F(" "));
+
+      Serial.print(F("D:"));
+      Serial.print(yaw_pid_inputs.d_gain);
+      Serial.print(F(" "));
+    }
   }
   if (FLAG_PRINT_PITCH || FLAG_PRINT_ROLL || FLAG_PRINT_YAW) {
     Serial.print(F("gain:"));
@@ -293,21 +326,30 @@ void runCompFilter() {
     + (1 - compFilterGain) * orientation.roll;
 }
 
-float PID_calc(float& prev_err, float cur_err, float delta_time, float& integ_sum){
-  float pGain = pkt_from_remote.scaledPGain / 100.0;
-  float iGain = pkt_from_remote.scaledIGain / 100.0;
-  float dGain = pkt_from_remote.scaledDGain / 100.0;
-  float deriv_err = (cur_err - prev_err) / delta_time;
+void assign_PID_gains() {
+  pitch_pid_inputs.p_gain = pkt_from_remote.pitchScaledPGain / 100.0;
+  pitch_pid_inputs.i_gain = pkt_from_remote.pitchScaledIGain / 100.0;
+  pitch_pid_inputs.d_gain = pkt_from_remote.pitchScaledDGain / 100.0;
+  roll_pid_inputs.p_gain = pkt_from_remote.rollScaledPGain / 100.0;
+  roll_pid_inputs.i_gain = pkt_from_remote.rollScaledIGain / 100.0;
+  roll_pid_inputs.d_gain = pkt_from_remote.rollScaledDGain / 100.0;
+  yaw_pid_inputs.p_gain = pkt_from_remote.yawScaledPGain / 100.0;
+  yaw_pid_inputs.i_gain = pkt_from_remote.yawScaledIGain / 100.0;
+  yaw_pid_inputs.d_gain = pkt_from_remote.yawScaledDGain / 100.0;
+}
+
+float PID_calc(pid_input_config& config, float cur_err, float delta_time){
+  float deriv_err = (cur_err - config.prev_error) / delta_time;
 
   if (pkt_from_remote.throttle == 0) {
-    integ_sum = 0;
+    config.sum_error = 0;
   } else {
-    integ_sum = integ_sum + .5 * (cur_err + prev_err) * delta_time; 
+    config.sum_error = config.sum_error + .5 * (cur_err + config.prev_error) * delta_time; 
   }
   
-  prev_err = cur_err;
+  config.prev_error = cur_err;
 
-  return pGain * cur_err + dGain * deriv_err + iGain * integ_sum;
+  return config.p_gain * cur_err + config.d_gain * deriv_err + config.i_gain * config.sum_error;
 }
 
 void mixer() {
@@ -323,8 +365,8 @@ void mixer() {
   runCompFilter();
   
   // PID
-  mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs.prev_error, mixer_inputs.pitch.filtered, loopDeltaTime, pitch_pid_inputs.sum_error);
-  //mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs.prev_error,orientation.yaw_rate, loopDeltaTime, yaw_pid_inputs.prev_error);
+  mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs, mixer_inputs.pitch.filtered, loopDeltaTime);
+  //mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs,orientation.yaw_rate, loopDeltaTime);
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
