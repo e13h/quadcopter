@@ -269,6 +269,7 @@ void btn1_pressed(bool down) {
 void btn2_pressed(bool down) {
   if (down && quadcopterArmed) {
     quadcopterArmed = false;
+    lcd.setBacklight(0x000000FF);
   }
 }
 
@@ -277,10 +278,6 @@ void check_arm_status() {
       pitch <= 5) {
     quadcopterArmed = true;
     lcd.setBacklight(0x00FF0000);
-  } else if (quadcopterArmed) {
-    lcd.setBacklight(0x00FF0000);
-  } else {
-    lcd.setBacklight(0x000000FF);
   }
 }
 
