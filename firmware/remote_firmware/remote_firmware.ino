@@ -67,7 +67,7 @@ void begin_tuning(const int, const char*);
 void check_if_eeprom_loaded_nan(float&);
 
 void setup() {
-  Serial.begin(SERIAL_BAUD);  // Start up serial
+  Serial.begin(115200);  // Start up serial
   delay(100);
   Serial.println("Remote is online!");
   quad_remote_setup();
