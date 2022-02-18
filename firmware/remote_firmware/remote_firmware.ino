@@ -134,7 +134,8 @@ void loop() {
     }
   }
   if (millis() % 100 == 0) {
-    print_gimbals();
+    // print_gimbals();
+    print_pid();
   }
 }
 
@@ -235,6 +236,10 @@ void print_range() {
 }
 
 void print_pid() {
+  Serial.print(F("comp_filter: "));
+  Serial.print(complementaryFilterGain);
+  Serial.print(F(" "));
+
   Serial.print(F("pitch: "));
   Serial.print(pitch_pid_gains.p_gain);
   Serial.print(F(" "));
