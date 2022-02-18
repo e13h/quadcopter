@@ -70,6 +70,7 @@ void setup() {
   Serial.begin(115200);  // Start up serial
   delay(100);
   Serial.println("Remote is online!");
+  pinMode(LED_BUILTIN, OUTPUT);
   quad_remote_setup();
   rfBegin(RF_CHANNEL);
   Serial.print("Channel: ");
@@ -136,6 +137,11 @@ void loop() {
   if (millis() % 100 == 0) {
     // print_gimbals();
     print_pid();
+  }
+  if (quadcopterArmed) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
   }
 }
 
