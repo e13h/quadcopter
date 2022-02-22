@@ -290,6 +290,9 @@ void print_pid() {
 }
 
 void set_gimbals() {
+  const uint8_t PITCH_CENTER = 114;
+  const uint8_t ROLL_CENTER = 137;
+  const uint8_t YAW_CENTER = 106;
   throttle = analogRead(PIN_THROTTLE);
   throttle =
       map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
@@ -298,10 +301,17 @@ void set_gimbals() {
   }
   yaw = analogRead(PIN_YAW);
   yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
+  yaw = yaw + int((128 - YAW_CENTER) * offset_factor(yaw));
   roll = analogRead(PIN_ROLL);
   roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
+  roll = roll + int((128 - ROLL_CENTER) * offset_factor(roll));
   pitch = analogRead(PIN_PITCH);
   pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
+  pitch = pitch + int((128 - PITCH_CENTER) * offset_factor(pitch));
+}
+
+float offset_factor(int raw_input) {
+  return (1.0 - abs((raw_input - 128.0)/128.0));
 }
 
 void print_gimbals() {
