@@ -260,10 +260,6 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(orientation.yaw_rate);
     Serial.print(F(" "));
 
-    Serial.print(F("f_yaw:"));
-    Serial.print(mixer_inputs.yaw.filtered);
-    Serial.print(F(" "));
-
     Serial.print(F("pid_yaw:"));
     Serial.print(mixer_inputs.yaw.pid);
     Serial.print(F(" "));
