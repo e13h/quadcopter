@@ -333,7 +333,7 @@ void print_pid() {
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
   throttle =
-      map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
+      map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, 200);
   if (throttle <= 15) {
     throttle = 0;
   }
