@@ -54,7 +54,7 @@ void eeprom_load(int addr, T & v) {
 template<class T>
 void eeprom_store(int addr, T & v) {
 	for(int i = 0; i < sizeof(T); i++) {
-		EEPROM.write(addr + i, ((uint8_t*)&v)[i]);
+		EEPROM.update(addr + i, ((uint8_t*)&v)[i]);
 	}
 }
 
