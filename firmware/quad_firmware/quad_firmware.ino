@@ -292,7 +292,7 @@ void print_stats(unsigned long iterationTime) {
 void setupIMU() {
   // Set data rate for G and XL.  Set G low-pass cut off.  (Section 7.12)
   lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG1_G,
-             ODR_476 | G_BW_G_10);  // 952hz ODR + 63Hz cutoff
+             ODR_238 | G_BW_G_10);  // 952hz ODR + 63Hz cutoff
 
   // Set filters on the gyroscope (Section 7.13) to use just a high pass filter
   lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG2_G, G_OUTSEL_HP);
