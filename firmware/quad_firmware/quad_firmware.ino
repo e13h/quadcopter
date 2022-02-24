@@ -72,6 +72,7 @@ pid_input_config roll_pid_inputs;
 pid_input_config yaw_pid_inputs;
 
 
+
 void print_stats(unsigned long);
 void setupIMU();
 void runCompFilter();
@@ -363,6 +364,7 @@ void mixer() {
   // PID
   mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs, mixer_inputs.pitch.filtered, loopDeltaTime);
   mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs, orientation.yaw_rate, loopDeltaTime);
+
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
