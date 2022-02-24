@@ -11,21 +11,21 @@ const int YAW_POS = 12;
 const int ROLL_POS = 24;
 const int PIT_POS = 36;
 
-const int COMP_FILTER_POS = 40;
+const int COMP_FILTER_POS = 48;
 
-const int PITCH_PID_P_POS = 44;
-const int PITCH_PID_I_POS = 48;
-const int PITCH_PID_D_POS = 52;
+const int PITCH_PID_P_POS = 52;
+const int PITCH_PID_I_POS = 56;
+const int PITCH_PID_D_POS = 60;
 
-const int ROLL_PID_P_POS = 56;
-const int ROLL_PID_I_POS = 60;
-const int ROLL_PID_D_POS = 64;
+const int ROLL_PID_P_POS = 64;
+const int ROLL_PID_I_POS = 68;
+const int ROLL_PID_D_POS = 72;
 
-const int YAW_PID_P_POS = 68;
-const int YAW_PID_I_POS = 72;
-const int YAW_PID_D_POS = 76;
+const int YAW_PID_P_POS = 76;
+const int YAW_PID_I_POS = 80;
+const int YAW_PID_D_POS = 84;
 
-const int YAW_TRIM = 80;
+const int YAW_TRIM = 88;
 
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
