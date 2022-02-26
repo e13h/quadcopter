@@ -46,8 +46,8 @@ enum TuningAxis {
   YAW
 };
 
-const char* TUNING_AXIS_LABELS[] = {"Pitch", "Roll", "Yaw"};
-const char* TUNING_PARAM_LABELS[] = {"", "Filter Gain:", "P", "I", "D"};
+const char* TUNING_AXIS_LABELS[] = {"Pitch: ", "Roll: ", "Yaw: "};
+const char* TUNING_PARAM_LABELS[] = {"", "Filter: ", "P-", "I-", "D-"};
 
 
 // Global Variables
@@ -96,9 +96,9 @@ void print_gimbals();
 void calibrateGimbals();
 void print_range();
 void print_pid();
-void display_tuning_param();
 void begin_tuning();
 void check_if_eeprom_loaded_nan(float&);
+void updateLCD();
 
 
 // Implementation
@@ -121,7 +121,6 @@ void setup() {
   btn_right_cb = btn_right_pressed;
   btn_center_cb = btn_center_pressed;
   knobs_update_cb = knobs_update;
-  lcd.setBacklight(0x000000FF);
 
   eeprom_load(THR_POS, throttleRange);
   eeprom_load(YAW_POS, yawRange);
@@ -166,7 +165,11 @@ void loop() {
     send_packet(throttle, yaw, roll, pitch, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
   }
+  if (millis() % 1000 == 0) {
+    lcd.clear();
+  }
   if (millis() % 100 == 0) {
+    updateLCD();
     if (calibrationActive) {
       print_range();
     } else {
@@ -178,6 +181,34 @@ void loop() {
     digitalWrite(LED_BUILTIN, HIGH);
   } else {
     digitalWrite(LED_BUILTIN, LOW);
+  }
+}
+
+void updateLCD() {
+  lcd.setCursor(0, 0);
+  if (quadcopterArmed) {
+    lcd.setFastBacklight(255, 0, 0);  // red
+  } else if (calibrationActive) {
+    lcd.setFastBacklight(0, 255, 0);  // green
+  } else {
+    lcd.setFastBacklight(0, 0, 255);  // blue
+  }
+  if (calibrationActive) {
+    lcd.print("Calibrating");
+  } else if (tuningActive) {
+    String msg = TUNING_PARAM_LABELS[currentTuningParamType];
+    if (currentTuningParamType != COMPLEMENTARY_FILTER) {
+      msg += TUNING_AXIS_LABELS[currentTuningAxis];
+    }
+    msg = msg + String(*currentTuningParam, 2);
+    lcd.print(msg);
+  } else if (trimmingActive) {
+    lcd.print("Trim    Y: " + String(yaw_trim));
+    lcd.setCursor(0, 1);
+    String msg = "R: " + String(roll_trim) + "   P: " + String(pitch_trim);
+    lcd.print(msg);
+  } else {
+    // Print some useful stats?
   }
 }
 
@@ -315,7 +346,6 @@ void btn1_pressed(bool down) {
 void btn2_pressed(bool down) {
   if (down && quadcopterArmed) {
     quadcopterArmed = false;
-    lcd.setBacklight(0x000000FF);
   }
   if (down && calibrationActive) {
     // Update the centers
@@ -337,7 +367,6 @@ void check_arm_status() {
   if (!quadcopterArmed && !calibrationActive && throttle == 0 && yaw <= 5 && roll >= 250 &&
       pitch <= 5) {
     quadcopterArmed = true;
-    lcd.setBacklight(0x00FF0000);
   }
 }
 
@@ -450,16 +479,6 @@ void begin_tuning() {
       currentTuningParam = &(gains->d_gain);
       break;
   }
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-
-  String msg = TUNING_AXIS_LABELS[currentTuningAxis];
-  if (currentTuningParamType != COMPLEMENTARY_FILTER && currentTuningParamType != TRIM) {
-    msg = msg + " " + TUNING_PARAM_LABELS[currentTuningParamType];
-  }
-
-  lcd.print(msg);
   knob1.setCurrentPos(0);
 }
 
@@ -487,11 +506,6 @@ void knobs_update() {
     yaw_trim = constrain(yaw_trim + knob1.getCurrentPos(), -128, 127);
   }
   knob1.setCurrentPos(0);
-}
-
-void display_tuning_param() {
-  lcd.setCursor(0, 1);
-  lcd.print(*currentTuningParam, 2);
 }
 
 void check_if_eeprom_loaded_nan(float& param) {
