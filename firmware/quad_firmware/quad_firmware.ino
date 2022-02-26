@@ -314,12 +314,12 @@ void setupIMU() {
 
   // Set low-pass XL filter frequency divider (Section 7.25)
   lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG7_XL,
-             HR_MODE | XL_LP_ODR_RATIO_400);
+             HR_MODE | XL_LP_ODR_RATIO_100);
 
   // This only sets range of measurable values for each sensor.  Setting these
   // manually (I.e., without using these functions) will cause incorrect output
   // from the library.
-  lsm.setupAccel(Adafruit_LSM9DS1::LSM9DS1_ACCELRANGE_2G);
+  lsm.setupAccel(Adafruit_LSM9DS1::LSM9DS1_ACCELRANGE_8G);
   lsm.setupGyro(Adafruit_LSM9DS1::LSM9DS1_GYROSCALE_2000DPS);
 }
 
