@@ -59,6 +59,8 @@ unsigned long pkt_from_remote_timestamp = 0;
 quad_data_t orientation;
 unsigned long orientationTimestamp = 0;
 float loopDeltaTime = 0.0;
+quad_data_t imu_offsets;
+bool imu_calibrated = false;
 
 // Gain and filtering variables
 mixer_input_config mixer_inputs;
@@ -81,6 +83,8 @@ void mixer();
 void deadband();
 void offset();
 void assign_PID_gains();
+void calibrateIMU();
+void applyIMUCalibration();
 
 void setup() {
   Serial.begin(115200);
@@ -122,11 +126,17 @@ void loop() {
   }
   
   ahrs.getQuadOrientation(&orientation);  // Update quad orientation
-  orientation.pitch_rate = -orientation.pitch_rate;  // inverting the pitch rate
-  loopDeltaTime = float(now - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
-  orientationTimestamp = now;
+  applyIMUCalibration();
+  loopDeltaTime = float(millis() - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
+  orientationTimestamp = millis();
   if (millis() % 10 == 0) {
     print_stats(now - last);
+  }
+
+  if (pkt_from_remote.armed && !imu_calibrated) {
+    // The first time that we arm the quad, calibrate the IMU.
+    calibrateIMU();
+    imu_calibrated = true;
   }
 
   if (pkt_from_remote.armed) {
@@ -450,4 +460,45 @@ void offset() {
   mixer_inputs.pitch.offset_degrees = map(mixer_inputs.pitch.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
   mixer_inputs.roll.offset_degrees = map(mixer_inputs.roll.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
   mixer_inputs.yaw.offset_degrees = map(mixer_inputs.yaw.gimbal_cmd, 0, 255, -YAW_OFFSET_ANGLE_MAX, YAW_OFFSET_ANGLE_MAX);
+}
+
+void calibrateIMU() {
+  const int NUM_MEASUREMENTS = 20;
+  quad_data_t measurements[NUM_MEASUREMENTS];
+  for (int i = 0; i < NUM_MEASUREMENTS; i++) {
+    ahrs.getQuadOrientation(&measurements[i]);
+    delay(1);
+  }
+  imu_offsets.pitch = 0.0;
+  imu_offsets.roll = 0.0;
+  imu_offsets.pitch_rate = 0.0;
+  imu_offsets.roll_rate = 0.0;
+  imu_offsets.yaw_rate = 0.0;
+  for (int i = 0; i < NUM_MEASUREMENTS; i++) {
+    imu_offsets.pitch += measurements[i].pitch;
+    imu_offsets.roll += measurements[i].roll;
+    imu_offsets.pitch_rate += measurements[i].pitch_rate;
+    imu_offsets.roll_rate += measurements[i].roll_rate;
+    imu_offsets.yaw_rate += measurements[i].yaw_rate;
+  }
+  imu_offsets.pitch /= NUM_MEASUREMENTS;
+  imu_offsets.roll /= NUM_MEASUREMENTS;
+  imu_offsets.pitch_rate /= NUM_MEASUREMENTS;
+  imu_offsets.roll_rate /= NUM_MEASUREMENTS;
+  imu_offsets.yaw_rate /= NUM_MEASUREMENTS;
+
+  imu_offsets.pitch_rate = -imu_offsets.pitch_rate;  // invert the pitch rate
+}
+
+void applyIMUCalibration() {
+  orientation.pitch_rate = -orientation.pitch_rate;  // invert the pitch rate
+
+  if (!imu_calibrated) {
+    return;
+  }
+  orientation.pitch -= imu_offsets.pitch;
+  orientation.roll -= imu_offsets.roll;
+  orientation.pitch_rate -= imu_offsets.pitch_rate;
+  orientation.roll_rate -= imu_offsets.roll_rate;
+  orientation.yaw_rate -= imu_offsets.yaw_rate;
 }
