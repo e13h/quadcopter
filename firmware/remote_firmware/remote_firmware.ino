@@ -193,31 +193,31 @@ void calibrateGimbals() {
 }
 
 void print_range() {
-  Serial.print("\nThrottle Min ");
+  Serial.print(F("Throttle: "));
   Serial.print(throttleRange[0]);
-  Serial.print("\nThrottle Max ");
+  Serial.print(F(" "));
   Serial.print(throttleRange[1]);
 
-  Serial.print("\nYaw Min ");
+  Serial.print(F(" Yaw: "));
   Serial.print(yawRange[0]);
-  Serial.print("\nYaw Max ");
+  Serial.print(F(" "));
   Serial.print(yawRange[1]);
-  Serial.print("\nYaw Center ");
+  Serial.print(F(" "));
   Serial.print(yawRange[2]);
 
-  Serial.print("\nRoll Min ");
+  Serial.print(F(" Roll: "));
   Serial.print(rollRange[0]);
-  Serial.print("\nRoll Max ");
+  Serial.print(F(" "));
   Serial.print(rollRange[1]);
-  Serial.print("\nRoll Center ");
+  Serial.print(F(" "));
   Serial.print(rollRange[2]);
 
-  Serial.print("\nPitch Min ");
+  Serial.print(F(" Pitch: "));
   Serial.print(pitchRange[0]);
-  Serial.print("\nPitch Max ");
+  Serial.print(F(" "));
   Serial.print(pitchRange[1]);
-  Serial.print("\nPitch Center ");
-  Serial.print(pitchRange[2]);
+  Serial.print(F(" "));
+  Serial.println(pitchRange[2]);
 }
 
 void print_pid() {
@@ -281,16 +281,10 @@ void print_gimbals() {
   Serial.print(throttle);
   Serial.print("  ");
   Serial.print(yaw);
-  Serial.print(" ");
-  Serial.print(yawRange[2]);
   Serial.print("  ");
   Serial.print(roll);
-  Serial.print(" ");
-  Serial.print(rollRange[2]);
   Serial.print("  ");
-  Serial.print(pitch);
-  Serial.print(" ");
-  Serial.println(pitchRange[2]);
+  Serial.println(pitch);
 }
 
 void btn1_pressed(bool down) {
