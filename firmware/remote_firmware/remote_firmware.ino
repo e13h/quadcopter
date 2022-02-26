@@ -25,20 +25,19 @@ const int YAW_PID_P_POS = 76;
 const int YAW_PID_I_POS = 80;
 const int YAW_PID_D_POS = 84;
 
-const int YAW_TRIM = 88;
+const int PITCH_TRIM = 88;
+const int ROLL_TRIM = 92;
+const int YAW_TRIM = 96;
 
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
-
-const int SERIAL_BAUD = 9600;  // Baud rate for serial port
 
 enum TuningParam {
   NONE,
   COMPLEMENTARY_FILTER,
   PROPORTIONAL,
   INTEGRAL,
-  DERIVATIVE,
-  TRIM
+  DERIVATIVE
 };
 
 enum TuningAxis {
@@ -48,7 +47,7 @@ enum TuningAxis {
 };
 
 const char* TUNING_AXIS_LABELS[] = {"Pitch", "Roll", "Yaw"};
-const char* TUNING_PARAM_LABELS[] = {"", "Filter Gain:", "P", "I", "D", "Trim"};
+const char* TUNING_PARAM_LABELS[] = {"", "Filter Gain:", "P", "I", "D"};
 
 
 // Global Variables
@@ -61,6 +60,7 @@ response_pkt pkt;
 
 bool calibrationActive = false;
 bool quadcopterArmed = false;
+bool trimmingActive = false;
 
 bool tuningActive = false;
 TuningParam currentTuningParamType = NONE;
@@ -76,7 +76,9 @@ float complementaryFilterGain = 0.98;
 pid_gains pitch_pid_gains;
 pid_gains roll_pid_gains;
 pid_gains yaw_pid_gains;
-float yaw_trim = 0;
+int pitch_trim = 0;
+int roll_trim = 0;
+int yaw_trim = 0;
 
 // Function Declarations
 void btn1_pressed(bool);
@@ -145,34 +147,32 @@ void setup() {
   check_if_eeprom_loaded_nan(yaw_pid_gains.i_gain);
   eeprom_load(YAW_PID_D_POS, yaw_pid_gains.d_gain);
   check_if_eeprom_loaded_nan(yaw_pid_gains.d_gain);
+  eeprom_load(PITCH_TRIM, pitch_trim);
+  eeprom_load(ROLL_TRIM, roll_trim);
   eeprom_load(YAW_TRIM, yaw_trim);
-  check_if_eeprom_loaded_nan(yaw_trim);
 }
 
 void loop() {
   if (calibrationActive) {
     calibrateGimbals();
-  } else {
-    if (millis() % 10 == 0) {  // Read gimbal values every 10ms
-      set_gimbals();
-    }
-    if (millis() % 80 == 0) {
-      if (recieve_response(pkt)) {
-        quadcopterArmed = pkt.armed;
-      }
-    }
-    check_arm_status();
-    if (millis() % 50 == 0) {  // Send a packet every 50ms
-      send_packet(throttle, yaw, roll, pitch, quadcopterArmed,
-        complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
-    }
-    if (millis() % 100 == 0 && tuningActive) {
-      display_tuning_param();
-    }
+  } else if (millis() % 10 == 0) {  // Read gimbal values every 10ms
+    set_gimbals();
+  }
+  if (millis() % 80 == 0 && recieve_response(pkt)) {
+    quadcopterArmed = pkt.armed;
+  }
+  check_arm_status();
+  if (millis() % 50 == 0) {  // Send a packet every 50ms
+    send_packet(throttle, yaw, roll, pitch, quadcopterArmed,
+      complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
   }
   if (millis() % 100 == 0) {
-    print_gimbals();
-    //print_pid();
+    if (calibrationActive) {
+      print_range();
+    } else {
+      print_gimbals();
+      // print_pid();
+    }
   }
   if (quadcopterArmed) {
     digitalWrite(LED_BUILTIN, HIGH);
@@ -182,94 +182,14 @@ void loop() {
 }
 
 void calibrateGimbals() {
-  print_range();
-
-  int curThrottle = analogRead(PIN_THROTTLE);
-  int curYaw = analogRead(PIN_YAW);
-  int curRoll = analogRead(PIN_ROLL);
-  int curPitch = analogRead(PIN_PITCH);
-
-  // Set default Min range
-  throttleRange[0] = curThrottle;
-  yawRange[0] = curYaw;
-  rollRange[0] = curRoll;
-  pitchRange[0] = curPitch;
-
-  // Set default Max range
-  throttleRange[1] = curThrottle;
-  yawRange[1] = curYaw;
-  rollRange[1] = curRoll;
-  pitchRange[1] = curPitch;
-  delay(500);
-
-  while (calibrationActive) {
-    // Get new gimbal values
-    curThrottle = analogRead(PIN_THROTTLE);
-    curYaw = analogRead(PIN_YAW);
-    curRoll = analogRead(PIN_ROLL);
-    curPitch = analogRead(PIN_PITCH);
-
-    // Update range if need be
-    if (curThrottle < throttleRange[0]) {
-      throttleRange[0] = curThrottle;
-    }
-    if (curThrottle > throttleRange[1]) {
-      throttleRange[1] = curThrottle;
-    }
-
-    if (curYaw < yawRange[0]) {
-      yawRange[0] = curYaw;
-    }
-    if (curYaw > yawRange[1]) {
-      yawRange[1] = curYaw;
-    }
-
-    if (curRoll < rollRange[0]) {
-      rollRange[0] = curRoll;
-    }
-    if (curRoll > rollRange[1]) {
-      rollRange[1] = curRoll;
-    }
-
-    if (curPitch < pitchRange[0]) {
-      pitchRange[0] = curPitch;
-    }
-    if (curPitch > pitchRange[1]) {
-      pitchRange[1] = curPitch;
-    }
-  }
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Getting center");
-  delay(1500);
-  //last read gets the new center
-  curYaw = analogRead(PIN_YAW);
-  curRoll = analogRead(PIN_ROLL);
-  curPitch = analogRead(PIN_PITCH);
-
-  curYaw = map(curYaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
-  curRoll = map(curRoll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
-  curPitch = map(curPitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
-
-  yawRange[2] = curYaw;
-  rollRange[2] = curRoll;
-  pitchRange[2] = curPitch;
-
-  eeprom_store(THR_POS, throttleRange);
-  eeprom_store(YAW_POS, yawRange);
-  eeprom_store(ROLL_POS, rollRange);
-  eeprom_store(PIT_POS, pitchRange);
-
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Closing Calibration");
-  delay(1000);
-  lcd.clear();
-
-  // Debug
-  print_range();
-  return;
+  throttleRange[0] = min(throttleRange[0], analogRead(PIN_THROTTLE));
+  throttleRange[1] = max(throttleRange[1], analogRead(PIN_THROTTLE));
+  yawRange[0] = min(yawRange[0], analogRead(PIN_YAW));
+  yawRange[1] = max(yawRange[1], analogRead(PIN_YAW));
+  rollRange[0] = min(rollRange[0], analogRead(PIN_ROLL));
+  rollRange[1] = max(rollRange[1], analogRead(PIN_ROLL));
+  pitchRange[0] = min(pitchRange[0], analogRead(PIN_PITCH));
+  pitchRange[1] = max(pitchRange[1], analogRead(PIN_PITCH));
 }
 
 void print_range() {
@@ -339,13 +259,13 @@ void set_gimbals() {
   }
   yaw = analogRead(PIN_YAW);
   yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
-  yaw = yaw + int((128 - yawRange[2] - (int)yaw_trim) * offset_factor(yaw));
+  yaw = constrain(yaw + int((128 - yawRange[2] + yaw_trim) * offset_factor(yaw)), AXIS_MIN, AXIS_MAX);
   roll = analogRead(PIN_ROLL);
   roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
-  roll = roll + int((128 - rollRange[2]) * offset_factor(roll));
+  roll = constrain(roll + int((128 - rollRange[2] + roll_trim) * offset_factor(roll)), AXIS_MIN, AXIS_MAX);
   pitch = analogRead(PIN_PITCH);
   pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
-  pitch = pitch + int((128 - pitchRange[2]) * offset_factor(pitch));
+  pitch = constrain(pitch + int((128 - pitchRange[2] + pitch_trim) * offset_factor(pitch)), AXIS_MIN, AXIS_MAX);
 }
 
 float offset_factor(int raw_input) {
@@ -374,16 +294,27 @@ void print_gimbals() {
 }
 
 void btn1_pressed(bool down) {
-  if (down && !quadcopterArmed && !tuningActive && !calibrationActive) {
+  if (down && !quadcopterArmed && !tuningActive && !calibrationActive && !trimmingActive) {
     calibrationActive = true;
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Calibrating");
-  }
-  else if (down && quadcopterArmed && !calibrationActive){
-    currentTuningParamType = TRIM;
-    currentTuningAxis = YAW;
-    begin_tuning();
+
+    int curThrottle = analogRead(PIN_THROTTLE);
+    int curYaw = analogRead(PIN_YAW);
+    int curRoll = analogRead(PIN_ROLL);
+    int curPitch = analogRead(PIN_PITCH);
+
+    // Set default Min range
+    throttleRange[0] = curThrottle;
+    yawRange[0] = curYaw;
+    rollRange[0] = curRoll;
+    pitchRange[0] = curPitch;
+
+    // Set default Max range
+    throttleRange[1] = curThrottle;
+    yawRange[1] = curYaw;
+    rollRange[1] = curRoll;
+    pitchRange[1] = curPitch;
+  } else if (down && quadcopterArmed && !calibrationActive && !tuningActive && !trimmingActive) {
+    trimmingActive = true;
   }
 }
 
@@ -393,12 +324,23 @@ void btn2_pressed(bool down) {
     lcd.setBacklight(0x000000FF);
   }
   if (down && calibrationActive) {
+    // Update the centers
+    yawRange[2] = map(analogRead(PIN_YAW), yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
+    rollRange[2] = map(analogRead(PIN_ROLL), rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
+    pitchRange[2] = map(analogRead(PIN_PITCH), pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
+
+    // Save
+    eeprom_store(THR_POS, throttleRange);
+    eeprom_store(YAW_POS, yawRange);
+    eeprom_store(ROLL_POS, rollRange);
+    eeprom_store(PIT_POS, pitchRange);
+
     calibrationActive = false;
   }
 }
 
 void check_arm_status() {
-  if (!quadcopterArmed && throttle == 0 && yaw <= 5 && roll >= 250 &&
+  if (!quadcopterArmed && !calibrationActive && throttle == 0 && yaw <= 5 && roll >= 250 &&
       pitch <= 5) {
     quadcopterArmed = true;
     lcd.setBacklight(0x00FF0000);
@@ -407,7 +349,7 @@ void check_arm_status() {
 
 void knob_pressed(bool down) {
   if (down){
-    if(tuningActive) {
+    if (tuningActive) {
       eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
       eeprom_store(PITCH_PID_P_POS, pitch_pid_gains.p_gain);
       eeprom_store(PITCH_PID_I_POS, pitch_pid_gains.i_gain);
@@ -418,47 +360,58 @@ void knob_pressed(bool down) {
       eeprom_store(YAW_PID_P_POS, yaw_pid_gains.p_gain);
       eeprom_store(YAW_PID_I_POS, yaw_pid_gains.i_gain);
       eeprom_store(YAW_PID_D_POS, yaw_pid_gains.d_gain);
-      eeprom_store(YAW_TRIM, yaw_trim);
 
       tuningActive = false;
       currentTuningParam = NULL;
+    } else if (trimmingActive) {
+      eeprom_store(PITCH_TRIM, pitch_trim);
+      eeprom_store(ROLL_TRIM, roll_trim);
+      eeprom_store(YAW_TRIM, yaw_trim);
 
-      lcd.clear();
-      knob1.setCurrentPos(0);
+      trimmingActive = false;
     }
+    knob1.setCurrentPos(0);
   }
 }
 
 void btn_down_pressed(bool down) {
-  if (down && !calibrationActive) {
+  if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = COMPLEMENTARY_FILTER;
     begin_tuning();
+  } else if (down && !calibrationActive && !tuningActive && trimmingActive) {
+    pitch_trim = constrain(pitch_trim - 1, -128, 127);
   }
 }
 
 void btn_left_pressed(bool down) {
-  if (down && !calibrationActive) {
+  if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = PROPORTIONAL;
     begin_tuning();
+  } else if (down && !calibrationActive && !tuningActive && trimmingActive) {
+    roll_trim = constrain(roll_trim - 1, -128, 127);
   }
 }
 
 void btn_up_pressed(bool down) {
-  if (down && !calibrationActive) {
+  if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = INTEGRAL;
     begin_tuning();
+  } else if (down && !calibrationActive && !tuningActive && trimmingActive) {
+    pitch_trim = constrain(pitch_trim + 1, -128, 127);
   }
 }
 
 void btn_right_pressed(bool down) {
-  if (down && !calibrationActive) {
+  if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = DERIVATIVE;
     begin_tuning();
+  } else if (down && !calibrationActive && !tuningActive && trimmingActive) {
+    roll_trim = constrain(roll_trim + 1, -128, 127);
   }
 }
 
 void btn_center_pressed(bool down) {
-  if (down && tuningActive && !calibrationActive) {
+  if (down && tuningActive && !calibrationActive && !trimmingActive) {
     if (currentTuningAxis == PITCH) {
       currentTuningAxis = ROLL;
     } else if (currentTuningAxis == ROLL) {
@@ -472,6 +425,9 @@ void btn_center_pressed(bool down) {
 }
 
 void begin_tuning() {
+  if (calibrationActive || trimmingActive) {
+    return;
+  }
   tuningActive = true;
   pid_gains* gains = NULL;
   switch (currentTuningAxis) {
@@ -499,9 +455,6 @@ void begin_tuning() {
     case DERIVATIVE:
       currentTuningParam = &(gains->d_gain);
       break;
-    case TRIM:
-      currentTuningParam = &yaw_trim;
-      break;
   }
 
   lcd.clear();
@@ -525,11 +478,6 @@ void knobs_update() {
     switch (currentTuningParamType) {
       case COMPLEMENTARY_FILTER:
         break;
-      case TRIM:
-        knob_divider = 1;
-        gain_min = -128;
-        gain_max = 127;
-        break;
       case PROPORTIONAL:
       case INTEGRAL:
       case DERIVATIVE:
@@ -541,8 +489,10 @@ void knobs_update() {
     }
 
     *currentTuningParam = constrain(*currentTuningParam + (knob1.getCurrentPos() / knob_divider), gain_min, gain_max);
-    knob1.setCurrentPos(0);
+  } else if (trimmingActive) {
+    yaw_trim = constrain(yaw_trim + knob1.getCurrentPos(), -128, 127);
   }
+  knob1.setCurrentPos(0);
 }
 
 void display_tuning_param() {
