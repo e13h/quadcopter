@@ -6,7 +6,6 @@
 #include "radio.h"
 #include "transmission.h"
 
-
 struct axis {
   int gimbal_cmd = 0;
   int offset_degrees = 0;
@@ -305,7 +304,7 @@ void setupIMU() {
              ODR_238 | G_BW_G_10);  // 952hz ODR + 63Hz cutoff
 
   // Set filters on the gyroscope (Section 7.13) to use just a high pass filter
-  lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG2_G, G_OUTSEL_HP);
+  lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG2_G, G_OUTSEL_RAW);
   lsm.write8(XGTYPE, Adafruit_LSM9DS1::LSM9DS1_REGISTER_CTRL_REG3_G, G_HP_EN | G_HP_CUT_1001);
 
   // Enable the XL (Section 7.23)
