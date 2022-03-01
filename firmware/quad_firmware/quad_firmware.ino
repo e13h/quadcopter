@@ -447,10 +447,12 @@ void calibrateIMU() {
   imu_offsets.yaw_rate /= NUM_MEASUREMENTS;
 
   imu_offsets.pitch_rate = -imu_offsets.pitch_rate;  // invert the pitch rate
+  imu_offsets.roll_rate = -imu_offsets.roll_rate;  // invert the roll rate
 }
 
 void applyIMUCalibration() {
   orientation.pitch_rate = -orientation.pitch_rate;  // invert the pitch rate
+  orientation.roll_rate = -orientation.roll_rate;  // invert the roll rate
 
   if (!imu_calibrated) {
     return;
