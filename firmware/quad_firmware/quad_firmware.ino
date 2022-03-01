@@ -367,27 +367,33 @@ void mixer() {
   // PID
   float pitch_error = mixer_inputs.pitch.offset_degrees - mixer_inputs.pitch.filtered;
   mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs, pitch_error, loopDeltaTime);
+  float roll_error = mixer_inputs.roll.offset_degrees - mixer_inputs.roll.filtered;
+  mixer_inputs.roll.pid = PID_calc(roll_pid_inputs, roll_error, loopDeltaTime);
   float yaw_error = mixer_inputs.yaw.offset_degrees - orientation.yaw_rate;
   mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs, yaw_error, loopDeltaTime);
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
     + mixer_inputs.pitch.pid
+    - mixer_inputs.roll.pid
     - mixer_inputs.yaw.pid
     ;
 
   mixer_inputs.motor2_throttle = mixer_inputs.gimbal_throttle 
     + mixer_inputs.pitch.pid
+    + mixer_inputs.roll.pid
     + mixer_inputs.yaw.pid
     ;
 
   mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle 
     - mixer_inputs.pitch.pid
+    + mixer_inputs.roll.pid
     - mixer_inputs.yaw.pid
     ;
 
   mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle 
     - mixer_inputs.pitch.pid
+    - mixer_inputs.roll.pid
     + mixer_inputs.yaw.pid
     ;
 
