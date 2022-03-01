@@ -7,11 +7,9 @@
 #include "transmission.h"
 
 struct axis {
-  int gimbal_cmd = 0;
   int offset_degrees = 0;
   float pid = 0.0;
   float filtered = 0.0;
-
 };
 
 struct mixer_input_config {
@@ -79,8 +77,6 @@ void setupIMU();
 void runCompFilter();
 float PID_calc(pid_input_config&, float, float);
 void mixer();
-void deadband();
-void offset();
 void assign_PID_gains();
 void calibrateIMU();
 void applyIMUCalibration();
@@ -362,12 +358,10 @@ void mixer() {
   // Copy gimbal commands from packet so that if we receive a new packet while
   // in this function, we don't get unexpected behavior. 
   mixer_inputs.gimbal_throttle = pkt_from_remote.throttle;
-  mixer_inputs.pitch.gimbal_cmd = pkt_from_remote.pitch;
-  mixer_inputs.roll.gimbal_cmd = pkt_from_remote.roll;
-  mixer_inputs.yaw.gimbal_cmd = pkt_from_remote.yaw;
+  mixer_inputs.pitch.offset_degrees = pkt_from_remote.pitch;
+  mixer_inputs.roll.offset_degrees = pkt_from_remote.roll;
+  mixer_inputs.yaw.offset_degrees = pkt_from_remote.yaw;
 
-  deadband();
-  offset();
   runCompFilter();
   
   // PID
@@ -375,7 +369,6 @@ void mixer() {
   mixer_inputs.pitch.pid = PID_calc(pitch_pid_inputs, pitch_error, loopDeltaTime);
   float yaw_error = mixer_inputs.yaw.offset_degrees - orientation.yaw_rate;
   mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs, yaw_error, loopDeltaTime);
-
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
@@ -426,39 +419,6 @@ void mixer() {
     analogWrite(MOTOR_3, 0);
     analogWrite(MOTOR_4, 0);
   }
-}
-
-void deadband() {
-  const uint8_t THROTTLE_DEADBAND = 15;
-  const uint8_t PITCH_DEADBAND = 15;
-  const uint8_t ROLL_DEADBAND = 15;
-  const uint8_t YAW_DEADBAND = 15;
-  const uint8_t CENTERING_ORIGIN = 128;
-
-  if (mixer_inputs.gimbal_throttle < THROTTLE_DEADBAND) {
-    mixer_inputs.gimbal_throttle = 0;
-  }
-  if (mixer_inputs.pitch.gimbal_cmd >= CENTERING_ORIGIN - PITCH_DEADBAND
-      && mixer_inputs.pitch.gimbal_cmd <= CENTERING_ORIGIN + PITCH_DEADBAND) {
-    mixer_inputs.pitch.gimbal_cmd = CENTERING_ORIGIN;
-  }
-  if (mixer_inputs.roll.gimbal_cmd >= CENTERING_ORIGIN - ROLL_DEADBAND
-      && mixer_inputs.roll.gimbal_cmd <= CENTERING_ORIGIN + ROLL_DEADBAND) {
-    mixer_inputs.roll.gimbal_cmd = CENTERING_ORIGIN;
-  }
-  if (mixer_inputs.yaw.gimbal_cmd >= CENTERING_ORIGIN - YAW_DEADBAND
-      && mixer_inputs.yaw.gimbal_cmd <= CENTERING_ORIGIN + YAW_DEADBAND) {
-    mixer_inputs.yaw.gimbal_cmd = CENTERING_ORIGIN;
-  }
-}
-
-void offset() {
-  const int YAW_OFFSET_ANGLE_MAX = 180;  // degrees
-  const int TILT_OFFSET_ANGLE_MAX = 10;  // degrees
-
-  mixer_inputs.pitch.offset_degrees = map(mixer_inputs.pitch.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
-  mixer_inputs.roll.offset_degrees = map(mixer_inputs.roll.gimbal_cmd, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
-  mixer_inputs.yaw.offset_degrees = map(mixer_inputs.yaw.gimbal_cmd, 0, 255, -YAW_OFFSET_ANGLE_MAX, YAW_OFFSET_ANGLE_MAX);
 }
 
 void calibrateIMU() {

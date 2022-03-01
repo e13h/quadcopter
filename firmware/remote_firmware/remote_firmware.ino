@@ -68,9 +68,12 @@ float* currentTuningParam = NULL;
 TuningAxis currentTuningAxis = PITCH;
 
 int yaw = 0;
+int yaw_offset = 0;
 int throttle = 0;
 int roll = 0;
+int roll_offset = 0;
 int pitch = 0;
+int pitch_offset = 0;
 
 float complementaryFilterGain = 0.98;
 pid_gains pitch_pid_gains;
@@ -99,6 +102,8 @@ void print_pid();
 void begin_tuning();
 void check_if_eeprom_loaded_nan(float&);
 void updateLCD();
+void deadband();
+void offset();
 
 
 // Implementation
@@ -156,13 +161,15 @@ void loop() {
     calibrateGimbals();
   } else if (millis() % 10 == 0) {  // Read gimbal values every 10ms
     set_gimbals();
+    deadband();
+    offset();
   }
   if (millis() % 80 == 0 && recieve_response(pkt)) {
     quadcopterArmed = pkt.armed;
   }
   check_arm_status();
   if (millis() % 50 == 0) {  // Send a packet every 50ms
-    send_packet(throttle, yaw, roll, pitch, quadcopterArmed,
+    send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
   }
   if (millis() % 1000 == 0) {
@@ -283,11 +290,7 @@ void print_pid() {
 
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
-  throttle =
-      map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, 200);
-  if (throttle <= 15) {
-    throttle = 0;
-  }
+  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, 200);
   yaw = analogRead(PIN_YAW);
   yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
   yaw = constrain(yaw + int((128 - yawRange[2] + yaw_trim) * offset_factor(yaw)), AXIS_MIN, AXIS_MAX);
@@ -310,12 +313,18 @@ void print_gimbals() {
     Serial.print(". ");
   }
   Serial.print(throttle);
-  Serial.print("  ");
+  Serial.print("   ");
   Serial.print(yaw);
-  Serial.print("  ");
+  Serial.print(" ");
+  Serial.print(yaw_offset);
+  Serial.print("   ");
   Serial.print(roll);
-  Serial.print("  ");
-  Serial.println(pitch);
+  Serial.print(" ");
+  Serial.print(roll_offset);
+  Serial.print("   ");
+  Serial.print(pitch);
+  Serial.print(" ");
+  Serial.println(pitch_offset);
 }
 
 void btn1_pressed(bool down) {
@@ -513,4 +522,34 @@ void check_if_eeprom_loaded_nan(float& param) {
     Serial.println("Error loading param from EEPROM, setting to 0.0");
     param = 0.0;
   }
+}
+
+void deadband() {
+  const uint8_t THROTTLE_DEADBAND = 15;
+  const uint8_t PITCH_DEADBAND = 15;
+  const uint8_t ROLL_DEADBAND = 15;
+  const uint8_t YAW_DEADBAND = 15;
+  const uint8_t CENTERING_ORIGIN = 128;
+
+  if (throttle < THROTTLE_DEADBAND) {
+    throttle = 0;
+  }
+  if (pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
+    pitch = CENTERING_ORIGIN;
+  }
+  if (roll >= CENTERING_ORIGIN - ROLL_DEADBAND && roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
+    roll = CENTERING_ORIGIN;
+  }
+  if (yaw >= CENTERING_ORIGIN - YAW_DEADBAND && yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
+    yaw = CENTERING_ORIGIN;
+  }
+}
+
+void offset() {
+  const int YAW_OFFSET_ANGLE_MAX = 125;  // degrees
+  const int TILT_OFFSET_ANGLE_MAX = 10;  // degrees
+
+  pitch_offset = map(pitch, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
+  roll_offset = map(roll, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
+  yaw_offset = map(yaw, 0, 255, -YAW_OFFSET_ANGLE_MAX, YAW_OFFSET_ANGLE_MAX);
 }
