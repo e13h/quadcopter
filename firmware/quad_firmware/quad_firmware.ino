@@ -45,7 +45,9 @@ const bool FLAG_PRINT_IMU = false;
 const bool FLAG_PRINT_PITCH = false;
 const bool FLAG_PRINT_ROLL = false;
 const bool FLAG_PRINT_YAW = false;
-const bool FLAG_PRINT_PID = true;
+const bool FLAG_PRINT_PID_GAINS = false;
+const bool FLAG_PRINT_PID = false;
+const bool FLAG_PRINT_COMP_FILTER = false;
 const bool FLAG_PRINT_MOTORS = true;
 
 // Packet recieve cariables
@@ -173,7 +175,7 @@ void print_stats(unsigned long iterationTime) {
     Serial.print(pkt_from_remote.pitch);
     Serial.print(F(" "));
   }
-  if (FLAG_PRINT_PID) {
+  if (FLAG_PRINT_PID_GAINS) {
     if (FLAG_PRINT_PITCH) {
       Serial.print(F("P:"));
       Serial.print(pitch_pid_inputs.p_gain);
@@ -214,65 +216,62 @@ void print_stats(unsigned long iterationTime) {
       Serial.print(F(" "));
     }
   }
-  if (FLAG_PRINT_PITCH || FLAG_PRINT_ROLL || FLAG_PRINT_YAW) {
+  if (FLAG_PRINT_PID) {
+    if (FLAG_PRINT_PITCH) {
+      Serial.print(F("pid_pitch:"));
+      Serial.print(mixer_inputs.pitch.pid);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_ROLL) {
+      Serial.print(F("pid_roll:"));
+      Serial.print(mixer_inputs.roll.pid);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_YAW) {
+      Serial.print(F("pid_yaw:"));
+      Serial.print(mixer_inputs.yaw.pid);
+      Serial.print(F(" "));
+    }
+  }
+  if (FLAG_PRINT_IMU) {
+    if (FLAG_PRINT_PITCH) {
+      Serial.print(F("xl_pitch:"));
+      Serial.print(orientation.pitch);
+      Serial.print(F(" "));
+
+      Serial.print(F("gy_pitch:"));
+      Serial.print(orientation.pitch_rate);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_ROLL) {
+      Serial.print(F("xl_roll:"));
+      Serial.print(orientation.roll);
+      Serial.print(F(" "));
+
+      Serial.print(F("gy_roll:"));
+      Serial.print(orientation.roll_rate);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_YAW) {
+      Serial.print(F("gy_yaw:"));
+      Serial.print(orientation.yaw_rate);
+      Serial.print(F(" "));
+    }
+  }
+  if (FLAG_PRINT_COMP_FILTER) {
     Serial.print(F("gain:"));
     Serial.print(pkt_from_remote.scaledCompFilterGain / 100.0);
     Serial.print(F(" "));
-  }
-  if (FLAG_PRINT_IMU && FLAG_PRINT_PITCH) {
-    Serial.print(F("xl_pitch:"));
-    Serial.print(orientation.pitch);
-    Serial.print(F(" "));
-
-    Serial.print(F("gy_pitch:"));
-    Serial.print(orientation.pitch_rate);
-    Serial.print(F(" "));
-
-    Serial.print(F("f_pitch:"));
-    Serial.print(mixer_inputs.pitch.filtered);
-    Serial.print(F(" "));
-
-    Serial.print(F("pid_pitch:"));
-    Serial.print(mixer_inputs.pitch.pid);
-    Serial.print(F(" "));
-
-    Serial.print(F("off_pitch:"));
-    Serial.print(mixer_inputs.pitch.offset_degrees);
-    Serial.print(F(" "));
-  }
-  if (FLAG_PRINT_IMU && FLAG_PRINT_ROLL) {
-    Serial.print(F("xl_roll:"));
-    Serial.print(orientation.roll);
-    Serial.print(F(" "));
-
-    Serial.print(F("gy_roll:"));
-    Serial.print(orientation.roll_rate);
-    Serial.print(F(" "));
-
-    Serial.print(F("f_roll:"));
-    Serial.print(mixer_inputs.roll.filtered);
-    Serial.print(F(" "));
-
-    Serial.print(F("pid_roll:"));
-    Serial.print(mixer_inputs.roll.pid);
-    Serial.print(F(" "));
-
-    Serial.print(F("off_roll:"));
-    Serial.print(mixer_inputs.roll.offset_degrees);
-    Serial.print(F(" "));
-  }
-  if (FLAG_PRINT_IMU && FLAG_PRINT_YAW) {
-    Serial.print(F("gy_yaw:"));
-    Serial.print(orientation.yaw_rate);
-    Serial.print(F(" "));
-
-    Serial.print(F("pid_yaw:"));
-    Serial.print(mixer_inputs.yaw.pid);
-    Serial.print(F(" "));
-
-    Serial.print(F("off_yaw:"));
-    Serial.print(mixer_inputs.yaw.offset_degrees);
-    Serial.print(F(" "));
+    if (FLAG_PRINT_PITCH) {
+      Serial.print(F("f_pitch:"));
+      Serial.print(mixer_inputs.pitch.filtered);
+      Serial.print(F(" "));
+    }
+    if (FLAG_PRINT_ROLL) {
+      Serial.print(F("f_roll:"));
+      Serial.print(mixer_inputs.roll.filtered);
+      Serial.print(F(" "));
+    }
   }
   if (FLAG_PRINT_MOTORS) {
     Serial.print(F("m1:"));
