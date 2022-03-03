@@ -83,6 +83,9 @@ int pitch_trim = 0;
 int roll_trim = 0;
 int yaw_trim = 0;
 
+int packet_time = millis();
+int gimbal_time = millis();
+
 // Function Declarations
 void btn1_pressed(bool);
 void btn2_pressed(bool);
@@ -104,6 +107,7 @@ void check_if_eeprom_loaded_nan(float&);
 void updateLCD();
 void deadband();
 void offset();
+bool update_time(int& prev_time, int interval);
 
 
 // Implementation
@@ -159,7 +163,7 @@ void setup() {
 void loop() {
   if (calibrationActive) {
     calibrateGimbals();
-  } else if (millis() % 10 == 0) {  // Read gimbal values every 10ms
+  } else if (update_time(gimbal_time,10)) {  // Read gimbal values every 10ms
     set_gimbals();
     deadband();
     offset();
@@ -168,22 +172,25 @@ void loop() {
     quadcopterArmed = pkt.armed;
   }
   check_arm_status();
-  if (millis() % 50 == 0) {  // Send a packet every 50ms
+  if (update_time(packet_time, 50)) {  // Send a packet every 50ms
     send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
+      Serial.println(packet_time);
   }
-  if (millis() % 1000 == 0) {
+  
+  if (millis() % 5000 == 0) {
     lcd.clear();
   }
-  if (millis() % 100 == 0) {
+  if (millis() % 500 == 0) {
     updateLCD();
     if (calibrationActive) {
-      print_range();
+      //print_range();
     } else {
-      print_gimbals();
+      //print_gimbals();
       // print_pid();
     }
   }
+  
   if (quadcopterArmed) {
     digitalWrite(LED_BUILTIN, HIGH);
   } else {
@@ -300,6 +307,21 @@ void set_gimbals() {
   pitch = analogRead(PIN_PITCH);
   pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
   pitch = constrain(pitch + int((128 - pitchRange[2] + pitch_trim) * offset_factor(pitch)), AXIS_MIN, AXIS_MAX);
+}
+
+/*void print_update_time(int prev_time, int cur_time){
+  Serial.print("packet sent: ");
+  Serial.println(prev_time - cur_time);
+}*/
+
+bool update_time(int& prev_time, int interval){
+  int new_time = millis();
+  //print_update_time(prev_time, new_time);
+  if(new_time - prev_time > interval){
+    prev_time = new_time;
+    return true;
+  }
+  return false;
 }
 
 float offset_factor(int raw_input) {
