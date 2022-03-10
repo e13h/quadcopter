@@ -1,17 +1,15 @@
 #include "radio.h"
 #include "transmission.h"
 
-const int AXIS_MIN = 0;
-const int AXIS_MAX = 255;
 
 void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
     float compFilterGain, pid_gains pitch_pid_gains, pid_gains roll_pid_gains,
     pid_gains yaw_pid_gains) {
   quad_pkt pkt;
-  pkt.yaw = constrain(yaw, AXIS_MIN, AXIS_MAX);
-  pkt.throttle = constrain(throttle, AXIS_MIN, AXIS_MAX);
-  pkt.roll = constrain(roll, AXIS_MIN, AXIS_MAX);
-  pkt.pitch = constrain(pitch, AXIS_MIN, AXIS_MAX);
+  pkt.yaw = yaw;
+  pkt.throttle = throttle;
+  pkt.roll = roll;
+  pkt.pitch = pitch;
   pkt.armed = armed;
 
   // Scale the filter gain so that we can easily compute the checksum

@@ -13,10 +13,10 @@ struct pid_gains {
 
 struct quad_pkt {
   uint8_t magic_constant = MAGIC_CONSTANT;
-  uint8_t yaw;
+  int8_t yaw;
   uint8_t throttle;
-  uint8_t roll;
-  uint8_t pitch;
+  int8_t roll;
+  int8_t pitch;
   bool armed;
   uint8_t scaledCompFilterGain;
   uint8_t pitchScaledPGain;
