@@ -177,11 +177,7 @@ void loop() {
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
       Serial.println(packet_time);
   }
-  
-  if (millis() % 5000 == 0) {
-    lcd.clear();
-  }
-  if (millis() % 500 == 0) {
+  if (millis() % 100 == 0) {
     updateLCD();
     if (calibrationActive) {
       //print_range();
@@ -402,6 +398,7 @@ void check_arm_status() {
 }
 
 void knob_pressed(bool down) {
+  lcd.clear();
   if (down){
     if (tuningActive) {
       eeprom_store(COMP_FILTER_POS, complementaryFilterGain);
@@ -429,6 +426,7 @@ void knob_pressed(bool down) {
 }
 
 void btn_down_pressed(bool down) {
+  lcd.clear();
   if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = COMPLEMENTARY_FILTER;
     begin_tuning();
@@ -438,6 +436,7 @@ void btn_down_pressed(bool down) {
 }
 
 void btn_left_pressed(bool down) {
+  lcd.clear();
   if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = PROPORTIONAL;
     begin_tuning();
@@ -447,6 +446,7 @@ void btn_left_pressed(bool down) {
 }
 
 void btn_up_pressed(bool down) {
+  lcd.clear();
   if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = INTEGRAL;
     begin_tuning();
@@ -456,6 +456,7 @@ void btn_up_pressed(bool down) {
 }
 
 void btn_right_pressed(bool down) {
+  lcd.clear();
   if (down && !calibrationActive && !trimmingActive) {
     currentTuningParamType = DERIVATIVE;
     begin_tuning();
@@ -465,6 +466,7 @@ void btn_right_pressed(bool down) {
 }
 
 void btn_center_pressed(bool down) {
+  lcd.clear();
   if (down && tuningActive && !calibrationActive && !trimmingActive) {
     if (currentTuningAxis == PITCH) {
       currentTuningAxis = ROLL;
@@ -514,6 +516,7 @@ void begin_tuning() {
 }
 
 void knobs_update() {
+  lcd.clear();
   if (tuningActive) {
     float knob_divider = 100.0;
     float gain_min = 0.0;
