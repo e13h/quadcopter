@@ -176,7 +176,6 @@ void loop() {
   if (update_time(packet_time, 50)) {  // Send a packet every 50ms
     send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
-      Serial.println(packet_time);
   }
   if (millis() % 100 == 0) {
     updateLCD();
