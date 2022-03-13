@@ -538,23 +538,19 @@ void check_if_eeprom_loaded_nan(float& param) {
 }
 
 void deadband() {
-  const uint8_t THROTTLE_DEADBAND = 15;
-  const uint8_t PITCH_DEADBAND = 15;
-  const uint8_t ROLL_DEADBAND = 15;
-  const uint8_t YAW_DEADBAND = 15;
-  const uint8_t CENTERING_ORIGIN = 128;
+  const uint8_t DEADBAND_OFFSET = 10;
 
-  if (throttle < THROTTLE_DEADBAND) {
+  if (throttle < DEADBAND_OFFSET) {
     throttle = 0;
   }
-  if (pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
-    pitch = CENTERING_ORIGIN;
+  if (pitch >= pitchRange[2] - DEADBAND_OFFSET && pitch <= pitchRange[2] + DEADBAND_OFFSET) {
+    pitch = pitchRange[2];
   }
-  if (roll >= CENTERING_ORIGIN - ROLL_DEADBAND && roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
-    roll = CENTERING_ORIGIN;
+  if (roll >= rollRange[2] - DEADBAND_OFFSET && roll <= rollRange[2] + DEADBAND_OFFSET) {
+    roll = rollRange[2];
   }
-  if (yaw >= CENTERING_ORIGIN - YAW_DEADBAND && yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
-    yaw = CENTERING_ORIGIN;
+  if (yaw >= yawRange[2] - DEADBAND_OFFSET && yaw <= yawRange[2] + DEADBAND_OFFSET) {
+    yaw = yawRange[2];
   }
 }
 
