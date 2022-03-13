@@ -46,9 +46,10 @@ const int BACK_RED_LIGHTS = BOARD_IS_FCB ? -1 : 5;
 const int FRONT_GREEN_LIGHTS = BOARD_IS_FCB ? -1 : 19;
 
 const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
-const bool FLAG_PRINT_GIMBALS = false;
-const bool FLAG_PRINT_IMU = false;
-const bool FLAG_PRINT_PITCH = false;
+const bool FLAG_REAL_TIME_MODE = false;
+const bool FLAG_PRINT_GIMBALS = true;
+const bool FLAG_PRINT_IMU = true;
+const bool FLAG_PRINT_PITCH = true;
 const bool FLAG_PRINT_ROLL = false;
 const bool FLAG_PRINT_YAW = false;
 const bool FLAG_PRINT_PID_GAINS = false;
@@ -132,7 +133,7 @@ void loop() {
   applyIMUCalibration();
   loopDeltaTime = float(millis() - orientationTimestamp) / 1000.0;  // Calculate time (sec) since last update
   orientationTimestamp = millis();
-  if (millis() % 10 == 0) {
+  if (FLAG_REAL_TIME_MODE || millis() % 10 == 0) {
     print_stats(now - last);
   }
 
