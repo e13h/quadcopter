@@ -333,6 +333,7 @@ void print_gimbals() {
 }
 
 void btn1_pressed(bool down) {
+  lcd.clear();
   if (down && !quadcopterArmed && !tuningActive && !calibrationActive && !trimmingActive) {
     calibrationActive = true;
 
@@ -358,6 +359,7 @@ void btn1_pressed(bool down) {
 }
 
 void btn2_pressed(bool down) {
+  lcd.clear();
   if (down && quadcopterArmed) {
     quadcopterArmed = false;
   }
