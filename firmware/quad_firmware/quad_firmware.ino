@@ -380,27 +380,27 @@ void mixer() {
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
-    + mixer_inputs.pitch.pid
+    - mixer_inputs.pitch.pid
     - mixer_inputs.roll.pid
-    - mixer_inputs.yaw.pid
+    + mixer_inputs.yaw.pid
     ;
 
   mixer_inputs.motor2_throttle = mixer_inputs.gimbal_throttle 
-    + mixer_inputs.pitch.pid
-    + mixer_inputs.roll.pid
-    + mixer_inputs.yaw.pid
-    ;
-
-  mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle 
     - mixer_inputs.pitch.pid
     + mixer_inputs.roll.pid
     - mixer_inputs.yaw.pid
     ;
 
-  mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle 
-    - mixer_inputs.pitch.pid
-    - mixer_inputs.roll.pid
+  mixer_inputs.motor3_throttle = mixer_inputs.gimbal_throttle 
+    + mixer_inputs.pitch.pid
+    + mixer_inputs.roll.pid
     + mixer_inputs.yaw.pid
+    ;
+
+  mixer_inputs.motor4_throttle = mixer_inputs.gimbal_throttle 
+    + mixer_inputs.pitch.pid
+    - mixer_inputs.roll.pid
+    - mixer_inputs.yaw.pid
     ;
 
   int max_thr = max(max(
