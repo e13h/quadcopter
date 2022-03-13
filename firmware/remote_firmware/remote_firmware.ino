@@ -180,7 +180,7 @@ void loop() {
   if (millis() % 100 == 0) {
     updateLCD();
     if (calibrationActive) {
-      //print_range();
+      print_range();
     } else {
       //print_gimbals();
       // print_pid();
