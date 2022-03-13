@@ -318,17 +318,46 @@ void print_gimbals() {
     Serial.print(". ");
   }
   Serial.print(throttle);
-  Serial.print("   ");
+  Serial.print(" [");
+  Serial.print(analogRead(PIN_THROTTLE));
+  Serial.print("]   ");
+
   Serial.print(yaw);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(yawRange[0]);
+  Serial.print(", ");
+  Serial.print(yawRange[2]);
+  Serial.print(", ");
+  Serial.print(yawRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_YAW));
+  Serial.print("] ");
   Serial.print(yaw_offset);
   Serial.print("   ");
+
   Serial.print(roll);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(rollRange[0]);
+  Serial.print(", ");
+  Serial.print(rollRange[2]);
+  Serial.print(", ");
+  Serial.print(rollRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_ROLL));
+  Serial.print("] ");
   Serial.print(roll_offset);
   Serial.print("   ");
+
   Serial.print(pitch);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(pitchRange[0]);
+  Serial.print(", ");
+  Serial.print(pitchRange[2]);
+  Serial.print(", ");
+  Serial.print(pitchRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_PITCH));
+  Serial.print("] ");
   Serial.println(pitch_offset);
 }
 
