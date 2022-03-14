@@ -87,6 +87,7 @@ int yaw_trim = 0;
 unsigned long packet_time = 0;
 unsigned long gimbal_time = 0;
 unsigned long armed_time = 0;
+unsigned long debug_time = 0;
 
 // Function Declarations
 void btn1_pressed(bool);
@@ -182,7 +183,7 @@ void loop() {
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
       Serial.println(packet_time);
   }
-  if (millis() % 100 == 0) {
+  if (update_time(debug_time, 1000)) {
     updateLCD();
     if (calibrationActive) {
       //print_range();
