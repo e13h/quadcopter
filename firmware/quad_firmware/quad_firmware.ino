@@ -89,6 +89,7 @@ void mixer();
 void assign_PID_gains();
 void calibrateIMU();
 void applyIMUCalibration();
+void smoothPID();
 
 void setup() {
   Serial.begin(115200);
@@ -381,6 +382,7 @@ void mixer() {
   mixer_inputs.roll.pid = PID_calc(roll_pid_inputs, roll_error, loopDeltaTime);
   float yaw_error = mixer_inputs.yaw.offset_degrees - orientation.yaw_rate;
   mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs, yaw_error, loopDeltaTime);
+  smoothPID();
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
@@ -419,6 +421,19 @@ void mixer() {
     analogWrite(MOTOR_3, 0);
     analogWrite(MOTOR_4, 0);
   }
+}
+
+void smoothPID() {
+  int pid_thresh = 0;
+  if (mixer_inputs.gimbal_throttle < 128) {
+    pid_thresh = mixer_inputs.gimbal_throttle / 2;
+  } else {
+    pid_thresh = (255 - mixer_inputs.gimbal_throttle) / 2;
+  }
+  pid_thresh = min(40, pid_thresh);
+  mixer_inputs.yaw.pid = constrain(mixer_inputs.yaw.pid, -pid_thresh, pid_thresh);
+  mixer_inputs.pitch.pid = constrain(mixer_inputs.pitch.pid, -pid_thresh, pid_thresh);
+  mixer_inputs.roll.pid = constrain(mixer_inputs.roll.pid, -pid_thresh, pid_thresh);
 }
 
 void calibrateIMU() {
