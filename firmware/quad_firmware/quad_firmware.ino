@@ -35,7 +35,7 @@ struct pid_input_config {
 };
 
 // Flags and ids
-const bool BOARD_IS_FCB = true;
+const bool BOARD_IS_FCB = false;
 const int MOTOR_1 = BOARD_IS_FCB ? 3 : 9;
 const int MOTOR_2 = BOARD_IS_FCB ? 4 : 8;
 const int MOTOR_3 = BOARD_IS_FCB ? 5 : 34;
