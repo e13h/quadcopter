@@ -35,10 +35,16 @@ struct pid_input_config {
 };
 
 // Flags and ids
-const int MOTOR_1 = 3;
-const int MOTOR_2 = 4;
-const int MOTOR_3 = 5;
-const int MOTOR_4 = 8;
+const bool BOARD_IS_FCB = true;
+const int MOTOR_1 = BOARD_IS_FCB ? 3 : 9;
+const int MOTOR_2 = BOARD_IS_FCB ? 4 : 8;
+const int MOTOR_3 = BOARD_IS_FCB ? 5 : 34;
+const int MOTOR_4 = BOARD_IS_FCB ? 8 : 35;
+const int REAR_REVERSE_RED_LIGHTS = BOARD_IS_FCB ? -1 : 3;
+const int FRONT_REVERSE_RED_LIGHTS = BOARD_IS_FCB ? -1 : 4;
+const int BACK_RED_LIGHTS = BOARD_IS_FCB ? -1 : 5;
+const int FRONT_GREEN_LIGHTS = BOARD_IS_FCB ? -1 : 19;
+
 const int MOTOR_SHUTOFF_TIMEOUT = 5000;  // milliseconds
 const bool FLAG_PRINT_GIMBALS = false;
 const bool FLAG_PRINT_IMU = false;
@@ -451,13 +457,17 @@ void calibrateIMU() {
   imu_offsets.roll_rate /= NUM_MEASUREMENTS;
   imu_offsets.yaw_rate /= NUM_MEASUREMENTS;
 
-  imu_offsets.pitch_rate = -imu_offsets.pitch_rate;  // invert the pitch rate
-  imu_offsets.roll_rate = -imu_offsets.roll_rate;  // invert the roll rate
+  if (BOARD_IS_FCB) {
+    imu_offsets.pitch_rate = -imu_offsets.pitch_rate;  // invert the pitch rate
+    imu_offsets.roll_rate = -imu_offsets.roll_rate;  // invert the roll rate
+  }
 }
 
 void applyIMUCalibration() {
-  orientation.pitch_rate = -orientation.pitch_rate;  // invert the pitch rate
-  orientation.roll_rate = -orientation.roll_rate;  // invert the roll rate
+  if (BOARD_IS_FCB) {
+    orientation.pitch_rate = -orientation.pitch_rate;  // invert the pitch rate
+    orientation.roll_rate = -orientation.roll_rate;  // invert the roll rate
+  }
 
   if (!imu_calibrated) {
     return;
