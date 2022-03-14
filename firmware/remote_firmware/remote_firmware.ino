@@ -173,8 +173,8 @@ void loop() {
     }
     offset();
   }
-  if (millis() % 80 == 0 && recieve_response(pkt)) {
-    quadcopterArmed = pkt.armed;
+  if (recieve_response(pkt) && !pkt.armed) {
+    quadcopterArmed = false;
   }
   check_arm_status();
   if (update_time(packet_time, 50)) {  // Send a packet every 50ms
