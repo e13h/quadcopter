@@ -281,6 +281,10 @@ void print_stats(unsigned long iterationTime) {
     }
   }
   if (FLAG_PRINT_MOTORS) {
+    Serial.print(F("max:"));
+    Serial.print(255);
+    Serial.print(F(" "));
+
     Serial.print(F("m1:"));
     Serial.print(mixer_inputs.motor1_throttle);
     Serial.print(F(" "));
