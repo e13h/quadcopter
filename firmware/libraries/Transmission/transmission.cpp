@@ -6,10 +6,10 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
     float compFilterGain, pid_gains pitch_pid_gains, pid_gains roll_pid_gains,
     pid_gains yaw_pid_gains) {
   quad_pkt pkt;
-  pkt.yaw = yaw;
-  pkt.throttle = throttle;
-  pkt.roll = roll;
-  pkt.pitch = pitch;
+  pkt.yaw = constrain(yaw, -128, 127);
+  pkt.throttle = constrain(throttle, 0, 255);
+  pkt.roll = constrain(roll, -128, 127);
+  pkt.pitch = constrain(pitch, -128, 127);
   pkt.armed = armed;
 
   // Scale the filter gain so that we can easily compute the checksum
