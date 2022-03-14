@@ -31,6 +31,7 @@ const int YAW_TRIM = 96;
 
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
+const int ARMED_TIMEOUT = 10000;  // milliseconds
 
 enum TuningParam {
   NONE,
@@ -83,8 +84,10 @@ int pitch_trim = 0;
 int roll_trim = 0;
 int yaw_trim = 0;
 
-int packet_time = millis();
-int gimbal_time = millis();
+unsigned long packet_time = 0;
+unsigned long gimbal_time = 0;
+unsigned long armed_time = 0;
+unsigned long debug_time = 0;
 
 // Function Declarations
 void btn1_pressed(bool);
@@ -107,7 +110,7 @@ void check_if_eeprom_loaded_nan(float&);
 void updateLCD();
 void deadband();
 void offset();
-bool update_time(int& prev_time, int interval);
+bool update_time(unsigned long& prev_time, int interval);
 int convert_gimbal_to_angle(int, const int, int, int);
 
 
@@ -167,17 +170,20 @@ void loop() {
   } else if (update_time(gimbal_time,10)) {  // Read gimbal values every 10ms
     set_gimbals();
     deadband();
+    if (quadcopterArmed && throttle > 0) {
+      armed_time = millis();
+    }
     offset();
   }
-  if (millis() % 80 == 0 && recieve_response(pkt)) {
-    quadcopterArmed = pkt.armed;
+  if (recieve_response(pkt) && !pkt.armed) {
+    quadcopterArmed = false;
   }
   check_arm_status();
   if (update_time(packet_time, 50)) {  // Send a packet every 50ms
     send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
   }
-  if (millis() % 100 == 0) {
+  if (update_time(debug_time, 1000)) {
     updateLCD();
     if (calibrationActive) {
       print_range();
@@ -302,8 +308,8 @@ void set_gimbals() {
   pitch = map(pitch, pitchRange[1], pitchRange[0], AXIS_MIN, AXIS_MAX);
 }
 
-bool update_time(int& prev_time, int interval){
-  int new_time = millis();
+bool update_time(unsigned long& prev_time, int interval){
+  unsigned long new_time = millis();
   if(new_time - prev_time > interval){
     prev_time = new_time;
     return true;
@@ -412,6 +418,10 @@ void check_arm_status() {
   if (!quadcopterArmed && !calibrationActive && throttle == 0 && yaw <= 5 && roll >= 250 &&
       pitch <= 5) {
     quadcopterArmed = true;
+    armed_time = millis();
+  }
+  if (millis() - armed_time > ARMED_TIMEOUT) {
+    quadcopterArmed = false;
   }
 }
 
