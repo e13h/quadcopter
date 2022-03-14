@@ -31,6 +31,7 @@ const int YAW_TRIM = 96;
 
 const int AXIS_MIN = 0;
 const int AXIS_MAX = 255;
+const int ARMED_TIMEOUT = 10000;  // milliseconds
 
 enum TuningParam {
   NONE,
@@ -85,6 +86,7 @@ int yaw_trim = 0;
 
 int packet_time = millis();
 int gimbal_time = millis();
+unsigned long armed_time = 0;
 
 // Function Declarations
 void btn1_pressed(bool);
@@ -166,6 +168,9 @@ void loop() {
   } else if (update_time(gimbal_time,10)) {  // Read gimbal values every 10ms
     set_gimbals();
     deadband();
+    if (quadcopterArmed && throttle > 0) {
+      armed_time = millis();
+    }
     offset();
   }
   if (millis() % 80 == 0 && recieve_response(pkt)) {
@@ -394,6 +399,10 @@ void check_arm_status() {
   if (!quadcopterArmed && !calibrationActive && throttle == 0 && yaw <= 5 && roll >= 250 &&
       pitch <= 5) {
     quadcopterArmed = true;
+    armed_time = millis();
+  }
+  if (millis() - armed_time > ARMED_TIMEOUT) {
+    quadcopterArmed = false;
   }
 }
 
