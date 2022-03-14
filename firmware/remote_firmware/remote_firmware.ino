@@ -84,8 +84,8 @@ int pitch_trim = 0;
 int roll_trim = 0;
 int yaw_trim = 0;
 
-int packet_time = millis();
-int gimbal_time = millis();
+unsigned long packet_time = 0;
+unsigned long gimbal_time = 0;
 unsigned long armed_time = 0;
 
 // Function Declarations
@@ -109,7 +109,7 @@ void check_if_eeprom_loaded_nan(float&);
 void updateLCD();
 void deadband();
 void offset();
-bool update_time(int& prev_time, int interval);
+bool update_time(unsigned long& prev_time, int interval);
 
 
 // Implementation
@@ -315,8 +315,8 @@ void set_gimbals() {
   Serial.println(prev_time - cur_time);
 }*/
 
-bool update_time(int& prev_time, int interval){
-  int new_time = millis();
+bool update_time(unsigned long& prev_time, int interval){
+  unsigned long new_time = millis();
   //print_update_time(prev_time, new_time);
   if(new_time - prev_time > interval){
     prev_time = new_time;
