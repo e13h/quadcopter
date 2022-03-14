@@ -59,6 +59,7 @@ const bool FLAG_PRINT_MOTORS = true;
 // Packet recieve cariables
 quad_pkt pkt_from_remote;
 unsigned long pkt_from_remote_timestamp = 0;
+unsigned long pkt_to_remote_timestamp = 0;
 
 // IMU data variables
 quad_data_t orientation;
@@ -110,8 +111,14 @@ void setup() {
 
   // Tell the remote to disarm.
   for (int start = millis(); millis() - start < 3000;) {
-    send_response(false, -1);
-    delay(20);
+    if (millis() - pkt_to_remote_timestamp > 20) {
+      send_response(false, -1);
+      pkt_to_remote_timestamp = millis();
+    }
+    if (recieve_packet(pkt_from_remote) && !pkt_from_remote.armed) {
+      // The remote has disarmed.
+      break;
+    }
   }
 }
 
