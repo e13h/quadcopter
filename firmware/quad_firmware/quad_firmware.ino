@@ -370,7 +370,7 @@ void mixer() {
   mixer_inputs.gimbal_throttle = pkt_from_remote.throttle;
   mixer_inputs.pitch.offset_degrees = pkt_from_remote.pitch;
   mixer_inputs.roll.offset_degrees = pkt_from_remote.roll;
-  mixer_inputs.yaw.offset_degrees = -pkt_from_remote.yaw;  // invert yaw axis
+  mixer_inputs.yaw.offset_degrees = pkt_from_remote.yaw;
 
   runCompFilter();
   
