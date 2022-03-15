@@ -463,13 +463,8 @@ void constrainMotors() {
 }
 
 void smoothPID() {
-  int pid_thresh = 0;
-  if (mixer_inputs.gimbal_throttle < 128) {
-    pid_thresh = mixer_inputs.gimbal_throttle / 2;
-  } else {
-    pid_thresh = (255 - mixer_inputs.gimbal_throttle) / 2;
-  }
-  pid_thresh = min(40, pid_thresh);
+  const int MAX_PID_OFFSET = 40;
+  int pid_thresh = min(MAX_PID_OFFSET, mixer_inputs.gimbal_throttle / 2);
   mixer_inputs.yaw.pid = constrain(mixer_inputs.yaw.pid, -pid_thresh, pid_thresh);
   mixer_inputs.pitch.pid = constrain(mixer_inputs.pitch.pid, -pid_thresh, pid_thresh);
   mixer_inputs.roll.pid = constrain(mixer_inputs.roll.pid, -pid_thresh, pid_thresh);
