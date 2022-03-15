@@ -33,19 +33,36 @@ struct quad_pkt {
 
 const int RF_CHANNEL = 15;
 
-struct response_pkt {
+struct motor_pkt {
   uint8_t magic_constant = MAGIC_CONSTANT;
   bool armed;
+  uint8_t motor_1;
+  uint8_t motor_2;
+  uint8_t motor_3;
+  uint8_t motor_4;
   uint8_t checksum;
-  uint8_t response_CheckSum;
 };
 
-
 void send_packet(int, int, int, int, bool, float, pid_gains, pid_gains, pid_gains);
-bool recieve_packet(quad_pkt&);
-void send_response(bool,int);
-bool recieve_response(response_pkt&);
+void send_motors(bool, int, int, int, int);
 void print_bytes(uint8_t*, uint8_t);
 bool checksum_valid(uint8_t*, uint8_t);
+
+template<class T>
+bool receive_packet(T& pkt) {
+  T buffer;
+  
+  if(rfAvailable()){
+    rfRead((uint8_t*)&buffer, sizeof(T));
+    if(!checksum_valid((uint8_t*)&buffer, sizeof(T)) || buffer.magic_constant != MAGIC_CONSTANT) {
+      rfFlush();
+      return false;
+    }
+    pkt = buffer;
+    return true;
+  } else {
+    return false;
+  }
+}
 
 #endif

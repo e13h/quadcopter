@@ -35,47 +35,16 @@ void send_packet(int throttle, int yaw, int roll, int pitch, bool armed,
   // print_bytes(pkt_bytes, sizeof(quad_pkt));  // Debugging only
 }
 
-bool recieve_packet(quad_pkt& q_pkt){
-  quad_pkt buffer;
-  
-  if(rfAvailable()){
-    rfRead((uint8_t*)&buffer, sizeof(quad_pkt));
-    if(!checksum_valid((uint8_t*)&buffer, sizeof(quad_pkt)) || buffer.magic_constant != MAGIC_CONSTANT) {
-      rfFlush();
-      return false;
-    }
-    q_pkt = buffer;
-    return true;
-  } else {
-    return false;
-  }
-}
-
-void send_response(bool armed, int checksum){
-  response_pkt pkt;
-
+void send_motors(bool armed, int motor_1, int motor_2, int motor_3, int motor_4) {
+  motor_pkt pkt;
   pkt.armed = armed;
-  pkt.checksum = checksum;
-  pkt.response_CheckSum = pkt.checksum ^ pkt.magic_constant ^ pkt.armed;
-
+  pkt.motor_1 = constrain(motor_1, 0, 255);
+  pkt.motor_2 = constrain(motor_2, 0, 255);
+  pkt.motor_3 = constrain(motor_3, 0, 255);
+  pkt.motor_4 = constrain(motor_4, 0, 255);
+  pkt.checksum = pkt.magic_constant ^ pkt.armed ^ pkt.motor_1 ^ pkt.motor_2 ^ pkt.motor_3 ^ pkt.motor_4;
   uint8_t* pkt_bytes = (uint8_t*) &pkt;
-  rfWrite(pkt_bytes, sizeof(response_pkt));
-}
-
-bool recieve_response(response_pkt& pkt){
-  response_pkt buffer;
-
-  if(rfAvailable()){
-    rfRead((uint8_t*)&buffer, sizeof(response_pkt));
-    if (!checksum_valid((uint8_t*)&buffer, sizeof(response_pkt)) || buffer.magic_constant != MAGIC_CONSTANT) {
-      rfFlush();
-      return false;
-    } else {
-      pkt = buffer;
-      return true;
-    }
-  }
-  return false;
+  rfWrite(pkt_bytes, sizeof(motor_pkt));
 }
 
 void print_bytes(uint8_t* bytes, uint8_t len) {

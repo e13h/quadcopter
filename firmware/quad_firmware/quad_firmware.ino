@@ -114,10 +114,10 @@ void setup() {
   // Tell the remote to disarm.
   for (int start = millis(); millis() - start < 3000;) {
     if (millis() - pkt_to_remote_timestamp > 20) {
-      send_response(false, -1);
+      send_motors(false, 0, 0, 0, 0);
       pkt_to_remote_timestamp = millis();
     }
-    if (recieve_packet(pkt_from_remote) && !pkt_from_remote.armed) {
+    if (receive_packet(pkt_from_remote) && !pkt_from_remote.armed) {
       // The remote has disarmed.
       break;
     }
@@ -128,13 +128,19 @@ unsigned long last = millis();
 void loop() {
   unsigned long now = millis();
 
-  if (recieve_packet(pkt_from_remote)) {
+  if (receive_packet(pkt_from_remote)) {
     pkt_from_remote_timestamp = millis();
     assign_PID_gains();
   }
 
   if (millis() - pkt_from_remote_timestamp > MOTOR_SHUTOFF_TIMEOUT) {
     pkt_from_remote.armed = false;
+  }
+
+  if (millis() - pkt_to_remote_timestamp > 50) {
+    send_motors(pkt_from_remote.armed, mixer_inputs.motor1_throttle, mixer_inputs.motor2_throttle,
+                mixer_inputs.motor3_throttle, mixer_inputs.motor4_throttle);
+    pkt_to_remote_timestamp = millis();
   }
   
   ahrs.getQuadOrientation(&orientation);  // Update quad orientation

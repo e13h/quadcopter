@@ -57,7 +57,7 @@ int yawRange[3];
 int rollRange[3];
 int pitchRange[3];
 
-response_pkt pkt;
+motor_pkt pkt_from_quad;
 
 bool calibrationActive = false;
 bool quadcopterArmed = false;
@@ -88,6 +88,12 @@ unsigned long packet_time = 0;
 unsigned long gimbal_time = 0;
 unsigned long armed_time = 0;
 unsigned long debug_time = 0;
+unsigned long LCD_time = 0;
+
+uint8_t quad_motor_1;
+uint8_t quad_motor_2;
+uint8_t quad_motor_3;
+uint8_t quad_motor_4;
 
 // Function Declarations
 void btn1_pressed(bool);
@@ -105,6 +111,7 @@ void print_gimbals();
 void calibrateGimbals();
 void print_range();
 void print_pid();
+void print_motors();
 void begin_tuning();
 void check_if_eeprom_loaded_nan(float&);
 void updateLCD();
@@ -175,16 +182,27 @@ void loop() {
     }
     offset();
   }
-  if (recieve_response(pkt) && !pkt.armed) {
-    quadcopterArmed = false;
+  if (receive_packet(pkt_from_quad)) {
+    if (!pkt_from_quad.armed) {
+      quadcopterArmed = false;
+    }
+    quad_motor_1 = pkt_from_quad.motor_1;
+    quad_motor_2 = pkt_from_quad.motor_2;
+    quad_motor_3 = pkt_from_quad.motor_3;
+    quad_motor_4 = pkt_from_quad.motor_4;
+    print_motors();
   }
   check_arm_status();
   if (update_time(packet_time, 50)) {  // Send a packet every 50ms
     send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
   }
-  if (update_time(debug_time, 1000)) {
+
+  if (update_time(LCD_time, 1000)) {
     updateLCD();
+  }
+
+  if (update_time(debug_time, 10)) {
     if (calibrationActive) {
       print_range();
     } else {
@@ -295,6 +313,27 @@ void print_pid() {
   Serial.print(F(" "));
   Serial.print(yaw_pid_gains.d_gain);
   Serial.println(F(""));
+}
+
+void print_motors() {
+  Serial.print(F("max:"));
+  Serial.print(255);
+  Serial.print(F(" "));
+
+  Serial.print(F("m1:"));
+  Serial.print(quad_motor_1);
+  Serial.print(F(" "));
+
+  Serial.print(F("m2:"));
+  Serial.print(quad_motor_2);
+  Serial.print(F(" "));
+
+  Serial.print(F("m3:"));
+  Serial.print(quad_motor_3);
+  Serial.print(F(" "));
+
+  Serial.print(F("m4:"));
+  Serial.println(quad_motor_4);
 }
 
 void set_gimbals() {
