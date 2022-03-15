@@ -91,6 +91,7 @@ void assign_PID_gains();
 void calibrateIMU();
 void applyIMUCalibration();
 void smoothPID();
+void constrainMotors();
 
 void setup() {
   Serial.begin(115200);
@@ -432,6 +433,8 @@ void mixer() {
     - mixer_inputs.yaw.pid
     ;
 
+  constrainMotors();
+
   // Send commands to motors
   if (pkt_from_remote.armed && mixer_inputs.gimbal_throttle > 0) {
     analogWrite(MOTOR_1, constrain(mixer_inputs.motor1_throttle, 0, 255));
@@ -444,6 +447,19 @@ void mixer() {
     analogWrite(MOTOR_3, 0);
     analogWrite(MOTOR_4, 0);
   }
+}
+
+void constrainMotors() {
+  int max_motor = max(max(mixer_inputs.motor1_throttle, mixer_inputs.motor2_throttle),
+                      max(mixer_inputs.motor3_throttle, mixer_inputs.motor4_throttle));
+  int diff = 0;
+  if (max_motor > 255) {
+    diff = max_motor - 255;
+  }
+  mixer_inputs.motor1_throttle -= diff;
+  mixer_inputs.motor2_throttle -= diff;
+  mixer_inputs.motor3_throttle -= diff;
+  mixer_inputs.motor4_throttle -= diff;
 }
 
 void smoothPID() {
