@@ -634,8 +634,8 @@ void deadband() {
 }
 
 void offset() {
-  const int YAW_OFFSET_ANGLE_MAX = 125;  // degrees
-  const int TILT_OFFSET_ANGLE_MAX = 10;  // degrees
+  const int YAW_OFFSET_ANGLE_MAX = 70;  // degrees
+  const int TILT_OFFSET_ANGLE_MAX = 5;  // degrees
 
   pitch_offset = convert_gimbal_to_angle(pitch, TILT_OFFSET_ANGLE_MAX, pitch_trim, pitchRange[2]);
   roll_offset = convert_gimbal_to_angle(roll, TILT_OFFSET_ANGLE_MAX, roll_trim, rollRange[2]);
