@@ -386,6 +386,11 @@ void mixer() {
   mixer_inputs.roll.offset_degrees = pkt_from_remote.roll;
   mixer_inputs.yaw.offset_degrees = pkt_from_remote.yaw;
 
+  if (BOARD_IS_FCB) {
+    mixer_inputs.roll.offset_degrees = -mixer_inputs.roll.offset_degrees;
+    mixer_inputs.yaw.offset_degrees = -mixer_inputs.yaw.offset_degrees;
+  }
+
   runCompFilter();
   
   // PID
@@ -396,6 +401,11 @@ void mixer() {
   float yaw_error = mixer_inputs.yaw.offset_degrees - orientation.yaw_rate;
   mixer_inputs.yaw.pid = PID_calc(yaw_pid_inputs, yaw_error, loopDeltaTime);
   smoothPID();
+
+  if (BOARD_IS_FCB) {
+    mixer_inputs.yaw.pid = -mixer_inputs.yaw.pid;
+    mixer_inputs.pitch.pid = -mixer_inputs.pitch.pid;
+  }
 
   // Mix
   mixer_inputs.motor1_throttle = mixer_inputs.gimbal_throttle 
