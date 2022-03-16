@@ -371,7 +371,7 @@ float PID_calc(pid_input_config& config, float cur_err, float delta_time){
   if (pkt_from_remote.throttle == 0) {
     config.sum_error = 0;
   } else {
-    config.sum_error = (0.95 * config.sum_error) + .5 * (cur_err + config.prev_error) * delta_time;
+    config.sum_error = (config.sum_error) + .5 * (cur_err + config.prev_error) * delta_time;
   }
   
   config.prev_error = cur_err;
