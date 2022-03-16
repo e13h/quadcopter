@@ -603,7 +603,7 @@ void knobs_update() {
       case PROPORTIONAL:
       case INTEGRAL:
       case DERIVATIVE:
-        knob_divider = 20.0;
+        knob_divider = 100.0;
         gain_max = 2.5;
         break;
       default:
