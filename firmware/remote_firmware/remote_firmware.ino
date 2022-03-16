@@ -346,7 +346,7 @@ void print_motors() {
 
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
+  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, 240);
   yaw = analogRead(PIN_YAW);
   yaw = map(yaw, yawRange[1], yawRange[0], AXIS_MIN, AXIS_MAX);
   roll = analogRead(PIN_ROLL);
