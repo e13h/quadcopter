@@ -206,7 +206,7 @@ void loop() {
     updateLCD();
   }
 
-  if (update_time(debug_time, 10)) {
+  if (update_time(debug_time, 100)) {
     if (calibrationActive) {
       print_range();
     } else {
