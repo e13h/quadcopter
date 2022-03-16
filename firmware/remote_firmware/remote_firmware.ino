@@ -225,7 +225,6 @@ void loop() {
 }
 
 void updateLCD() {
-  lcd.setCursor(0, 0);
   if (quadcopterArmed) {
     lcd.setFastBacklight(255, 0, 0);  // red
   } else if (calibrationActive) {
@@ -234,6 +233,7 @@ void updateLCD() {
     lcd.setFastBacklight(0, 0, 255);  // blue
   }
   if (calibrationActive) {
+    lcd.setCursor(0, 0);
     lcd.print("Calibrating");
   } else if (tuningActive) {
     String msg = TUNING_PARAM_LABELS[currentTuningParamType];
@@ -241,8 +241,10 @@ void updateLCD() {
       msg += TUNING_AXIS_LABELS[currentTuningAxis];
     }
     msg = msg + String(*currentTuningParam, 2);
+    lcd.setCursor(0, 0);
     lcd.print(msg);
   } else if (trimmingActive) {
+    lcd.setCursor(0, 0);
     lcd.print("Trim    Y: " + String(yaw_trim));
     lcd.setCursor(0, 1);
     String msg = "R: " + String(roll_trim) + "   P: " + String(pitch_trim);
