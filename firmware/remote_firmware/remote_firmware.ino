@@ -111,6 +111,7 @@ void updateLCD();
 void deadband();
 void offset();
 bool update_time(unsigned long& prev_time, int interval);
+int convert_gimbal_to_angle(int, const int, int, int);
 
 
 // Implementation
@@ -181,12 +182,11 @@ void loop() {
   if (update_time(packet_time, 50)) {  // Send a packet every 50ms
     send_packet(throttle, yaw_offset, roll_offset, pitch_offset, quadcopterArmed,
       complementaryFilterGain, pitch_pid_gains, roll_pid_gains, yaw_pid_gains);
-      Serial.println(packet_time);
   }
   if (update_time(debug_time, 1000)) {
     updateLCD();
     if (calibrationActive) {
-      //print_range();
+      print_range();
     } else {
       //print_gimbals();
       // print_pid();
@@ -299,35 +299,22 @@ void print_pid() {
 
 void set_gimbals() {
   throttle = analogRead(PIN_THROTTLE);
-  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, 200);
+  throttle = map(throttle, throttleRange[0], throttleRange[1], AXIS_MIN, AXIS_MAX);
   yaw = analogRead(PIN_YAW);
-  yaw = map(yaw, yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
-  yaw = constrain(yaw + int((128 - yawRange[2] + yaw_trim) * offset_factor(yaw)), AXIS_MIN, AXIS_MAX);
+  yaw = map(yaw, yawRange[1], yawRange[0], AXIS_MIN, AXIS_MAX);
   roll = analogRead(PIN_ROLL);
   roll = map(roll, rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
-  roll = constrain(roll + int((128 - rollRange[2] + roll_trim) * offset_factor(roll)), AXIS_MIN, AXIS_MAX);
   pitch = analogRead(PIN_PITCH);
-  pitch = map(pitch, pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
-  pitch = constrain(pitch + int((128 - pitchRange[2] + pitch_trim) * offset_factor(pitch)), AXIS_MIN, AXIS_MAX);
+  pitch = map(pitch, pitchRange[1], pitchRange[0], AXIS_MIN, AXIS_MAX);
 }
-
-/*void print_update_time(int prev_time, int cur_time){
-  Serial.print("packet sent: ");
-  Serial.println(prev_time - cur_time);
-}*/
 
 bool update_time(unsigned long& prev_time, int interval){
   unsigned long new_time = millis();
-  //print_update_time(prev_time, new_time);
   if(new_time - prev_time > interval){
     prev_time = new_time;
     return true;
   }
   return false;
-}
-
-float offset_factor(int raw_input) {
-  return (1.0 - abs((raw_input - 128.0)/128.0));
 }
 
 void print_gimbals() {
@@ -337,21 +324,51 @@ void print_gimbals() {
     Serial.print(". ");
   }
   Serial.print(throttle);
-  Serial.print("   ");
+  Serial.print(" [");
+  Serial.print(analogRead(PIN_THROTTLE));
+  Serial.print("]   ");
+
   Serial.print(yaw);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(yawRange[0]);
+  Serial.print(", ");
+  Serial.print(yawRange[2]);
+  Serial.print(", ");
+  Serial.print(yawRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_YAW));
+  Serial.print("] ");
   Serial.print(yaw_offset);
   Serial.print("   ");
+
   Serial.print(roll);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(rollRange[0]);
+  Serial.print(", ");
+  Serial.print(rollRange[2]);
+  Serial.print(", ");
+  Serial.print(rollRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_ROLL));
+  Serial.print("] ");
   Serial.print(roll_offset);
   Serial.print("   ");
+
   Serial.print(pitch);
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(pitchRange[0]);
+  Serial.print(", ");
+  Serial.print(pitchRange[2]);
+  Serial.print(", ");
+  Serial.print(pitchRange[1]);
+  Serial.print(") [");
+  Serial.print(analogRead(PIN_PITCH));
+  Serial.print("] ");
   Serial.println(pitch_offset);
 }
 
 void btn1_pressed(bool down) {
+  lcd.clear();
   if (down && !quadcopterArmed && !tuningActive && !calibrationActive && !trimmingActive) {
     calibrationActive = true;
 
@@ -377,14 +394,15 @@ void btn1_pressed(bool down) {
 }
 
 void btn2_pressed(bool down) {
+  lcd.clear();
   if (down && quadcopterArmed) {
     quadcopterArmed = false;
   }
   if (down && calibrationActive) {
     // Update the centers
-    yawRange[2] = map(analogRead(PIN_YAW), yawRange[0], yawRange[1], AXIS_MAX, AXIS_MIN);
+    yawRange[2] = map(analogRead(PIN_YAW), yawRange[1], yawRange[0], AXIS_MIN, AXIS_MAX);
     rollRange[2] = map(analogRead(PIN_ROLL), rollRange[0], rollRange[1], AXIS_MIN, AXIS_MAX);
-    pitchRange[2] = map(analogRead(PIN_PITCH), pitchRange[0], pitchRange[1], AXIS_MAX, AXIS_MIN);
+    pitchRange[2] = map(analogRead(PIN_PITCH), pitchRange[1], pitchRange[0], AXIS_MIN, AXIS_MAX);
 
     // Save
     eeprom_store(THR_POS, throttleRange);
@@ -560,23 +578,19 @@ void check_if_eeprom_loaded_nan(float& param) {
 }
 
 void deadband() {
-  const uint8_t THROTTLE_DEADBAND = 15;
-  const uint8_t PITCH_DEADBAND = 15;
-  const uint8_t ROLL_DEADBAND = 15;
-  const uint8_t YAW_DEADBAND = 15;
-  const uint8_t CENTERING_ORIGIN = 128;
+  const uint8_t DEADBAND_OFFSET = 10;
 
-  if (throttle < THROTTLE_DEADBAND) {
+  if (throttle < DEADBAND_OFFSET) {
     throttle = 0;
   }
-  if (pitch >= CENTERING_ORIGIN - PITCH_DEADBAND && pitch <= CENTERING_ORIGIN + PITCH_DEADBAND) {
-    pitch = CENTERING_ORIGIN;
+  if (pitch >= pitchRange[2] - DEADBAND_OFFSET && pitch <= pitchRange[2] + DEADBAND_OFFSET) {
+    pitch = pitchRange[2];
   }
-  if (roll >= CENTERING_ORIGIN - ROLL_DEADBAND && roll <= CENTERING_ORIGIN + ROLL_DEADBAND) {
-    roll = CENTERING_ORIGIN;
+  if (roll >= rollRange[2] - DEADBAND_OFFSET && roll <= rollRange[2] + DEADBAND_OFFSET) {
+    roll = rollRange[2];
   }
-  if (yaw >= CENTERING_ORIGIN - YAW_DEADBAND && yaw <= CENTERING_ORIGIN + YAW_DEADBAND) {
-    yaw = CENTERING_ORIGIN;
+  if (yaw >= yawRange[2] - DEADBAND_OFFSET && yaw <= yawRange[2] + DEADBAND_OFFSET) {
+    yaw = yawRange[2];
   }
 }
 
@@ -584,7 +598,18 @@ void offset() {
   const int YAW_OFFSET_ANGLE_MAX = 125;  // degrees
   const int TILT_OFFSET_ANGLE_MAX = 10;  // degrees
 
-  pitch_offset = map(pitch, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
-  roll_offset = map(roll, 0, 255, -TILT_OFFSET_ANGLE_MAX, TILT_OFFSET_ANGLE_MAX);
-  yaw_offset = map(yaw, 0, 255, -YAW_OFFSET_ANGLE_MAX, YAW_OFFSET_ANGLE_MAX);
+  pitch_offset = convert_gimbal_to_angle(pitch, TILT_OFFSET_ANGLE_MAX, pitch_trim, pitchRange[2]);
+  roll_offset = convert_gimbal_to_angle(roll, TILT_OFFSET_ANGLE_MAX, roll_trim, rollRange[2]);
+  yaw_offset = convert_gimbal_to_angle(yaw, YAW_OFFSET_ANGLE_MAX, yaw_trim, yawRange[2]);
+}
+
+int convert_gimbal_to_angle(int gimbal_pos, const int angle_offset, int trim, int center) {
+  int angle = map(gimbal_pos, AXIS_MIN, AXIS_MAX, -angle_offset, angle_offset);
+  int offset_center = map(center, AXIS_MIN, AXIS_MAX, -angle_offset, angle_offset);
+  if (angle > offset_center) {
+    angle = map(angle, offset_center, angle_offset, trim, trim + angle_offset);
+  } else {
+    angle = map(angle, -angle_offset, offset_center, trim - angle_offset, trim);
+  }
+  return angle;
 }
