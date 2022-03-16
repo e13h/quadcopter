@@ -171,7 +171,9 @@ void setup() {
   eeprom_load(YAW_TRIM, yaw_trim);
 }
 
+unsigned long last = 0;
 void loop() {
+  unsigned long now = millis();
   if (calibrationActive) {
     calibrateGimbals();
   } else if (update_time(gimbal_time,10)) {  // Read gimbal values every 10ms
@@ -190,6 +192,8 @@ void loop() {
     quad_motor_2 = pkt_from_quad.motor_2;
     quad_motor_3 = pkt_from_quad.motor_3;
     quad_motor_4 = pkt_from_quad.motor_4;
+    Serial.print(now - last);
+    Serial.print(F("  "));
     print_motors();
   }
   check_arm_status();
@@ -216,6 +220,8 @@ void loop() {
   } else {
     digitalWrite(LED_BUILTIN, LOW);
   }
+
+  last = now;
 }
 
 void updateLCD() {
