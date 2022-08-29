@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-const int MAGIC_CONSTANT = 176;
+const int MAGIC_CONSTANT = 25;
 
 struct pid_gains {
   float p_gain = 0.0;
